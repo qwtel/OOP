@@ -1,11 +1,11 @@
 /**
  * Represents a musician.
- * @author Floran Klampfer
+ * @author Florian Klampfer
  */
 class Musician {
-	private String name;
-	private String tel;
-	private String instrument;
+	private final String name;
+	private final String tel;
+	private final String instrument;
 
 	public Musician(String name, String tel, String instrument) {
 		this.name = name;
