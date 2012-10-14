@@ -24,4 +24,10 @@ class Musician {
 	public String getInstrument() {
 		return instrument;
 	}
+
+	@Override
+	public String toString() {
+		return "Name: "+name+" Tel: "+tel+" Ins: "+instrument;
+
+	}
 }
