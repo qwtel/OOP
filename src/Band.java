@@ -46,4 +46,34 @@ class Band {
 	public List<Song> getSongs(Date at) {
 		return songs.getAll(at);
 	}
+	public List<Event> getEvents(){
+		return events;
+	}
+	public List<Event> getEvents(Date from, Date to){
+		return Event.filterFromTo(events, from, to);
+	}
+	public List<Event> getGigs(){
+		List<Event> gigs = new ArrayList<Event>();
+		for(Event e: events){
+			if(e instanceof Gig){
+				gigs.add(e);
+			}
+		}
+		return gigs;
+	}
+	public List<Event> getGigs(Date from, Date to){
+		return Event.filterFromTo(getGigs(), from, to);
+	}
+	public List<Event> getRehearsals(){
+		List<Event> rehearsals = new ArrayList<Event>();
+		for(Event e: events){
+			if(e instanceof Rehearsal){
+				rehearsals.add(e);
+			}
+		}
+		return rehearsals;
+	}
+	public List<Event> getRehearsals(Date from, Date to){
+		return Event.filterFromTo(getRehearsals(), from, to);
+	}
 }
