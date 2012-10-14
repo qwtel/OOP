@@ -1,9 +1,11 @@
+import java.util.*;
+
 /**
-*@author Michael Ion
-*/
+ * @author Michael Ion
+ */
 public class Gig extends Event{
-	public gig(String location, Date date, int duration, int gage){
-		super(String location, Date date, int duration);
+	public Gig(String location, Date date, int duration, int gage){
+		super(location, date, duration);
 		this.gage = gage;
 	}
 	private int gage;
