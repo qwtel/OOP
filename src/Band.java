@@ -28,11 +28,11 @@ class Band {
 	}
 
 	public List<Musician> getMusicians() {
-		return new ArrayList<Musician>(filter(musicians, null));
+		return (List<Musician>)filter(musicians, null);
 	}
 
 	public List<Musician> getMusicians(Date d) {
-		return new ArrayList<Musician>(filter(musicians, d));
+		return (List<Musician>)filter(musicians, d);
 	}
 
 	public void addSong(Song song) {
@@ -44,11 +44,11 @@ class Band {
 	}
 
 	public List<Song> getSongs() {
-		return new ArrayList<Song>(filter(songs, null));
+		return (List<Song>)filter(songs, null);
 	}
 
 	public List<Song> getSongs(Date d) {
-		return new ArrayList<Song>(filter(songs, d));
+		return (List<Song>)filter(songs, d);
 	}
 
 	/**
@@ -61,7 +61,7 @@ class Band {
 	 * @return The active list items to a given date or the currently active
 	 *         items if no date was provided.
 	 */
-	private List filter(List list, Date d) {
+	private List filter(List<T extends Object> list, Date d) {
 		List res = new ArrayList();
 		for (Object o : list) {
 			LogEntry e = log.get(o);
@@ -82,7 +82,7 @@ class Band {
 	}
 
 	/**
-	 * Removes an item from a list by updating the entry in the log.
+	 * Removes an item from a list and updates the entry in the log.
 	 */
 	private void remove(List list, Object o) {
 		LogEntry logEntry = log.get(o);
