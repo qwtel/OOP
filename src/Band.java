@@ -82,13 +82,10 @@ class Band {
 	}
 
 	/**
-	 * Removes an item from a list and updates the entry in the log.
+	 * Removes an item from a list by updating the entry in the log.
 	 */
 	private void remove(List list, Object o) {
-		if (list.contains(o)) {
-			LogEntry logEntry = log.get(o);
-			logEntry.end();
-			list.remove(o);
-		}
+		LogEntry logEntry = log.get(o);
+		logEntry.end();
 	}
 }
