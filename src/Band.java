@@ -14,6 +14,14 @@ class Band {
 		musicians = new LoggedArrayList<Musician>();
 		songs = new LoggedArrayList<Song>();
 	}
+	
+	public void addEvent(Event e){
+		events.add(e);
+	}
+	
+	public void removeEvent(Event e){
+		events.remove(e);
+	}
 
 	public void addMusician(Musician musician) {
 		musicians.add(musician);
