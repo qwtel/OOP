@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Encapsulates time.
+ * Encapsulates start and end dates.
  * @author Florian Klampfer
  */
 class LogEntry {
