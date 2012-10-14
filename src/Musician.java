@@ -10,7 +10,7 @@ class Musician {
 	public Musician(String name, String tel, String instrument) {
 		this.name = name;
 		this.tel = tel;
-		this.name = instrument;
+		this.instrument = instrument;
 	}
 
 	public String getName() {

@@ -22,7 +22,9 @@ class LogEntry {
 	}
 
 	public boolean wasActive(Date d) {
-		// TODO
-		return false;
+		if (end == null) {
+			return start.before(d);
+		}
+		return start.before(d) && end.after(d);
 	}
 }
