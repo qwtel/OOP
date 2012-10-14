@@ -20,7 +20,7 @@ class Band {
 	}
 
 	public void removeMusician(Musician musician) {
-		musicians.remove(musician);
+		musicians.markInactive(musician);
 	}
 
 	public List<Musician> getMusicians() {
@@ -36,7 +36,7 @@ class Band {
 	}
 
 	public void removeSong(Song song) {
-		songs.remove(song);
+		songs.markInactive(song);
 	}
 
 	public List<Song> getSongs() {
