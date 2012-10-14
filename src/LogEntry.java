@@ -13,18 +13,28 @@ class LogEntry {
 		this.end = null;
 	}
 
+	/**
+	 * Marks this entry as inactive.
+	 */
 	public void end() {
 		this.end = new Date();
 	}
 
-	public boolean isActive() {
-		return (end == null);
-	}
+	/**
+	 * Checks if the entry was active to a given date.
+	 * If no date is provided (= null) checks if the entry is currently active.
+	 *
+	 * @param d A past date as Date object or null.
+	 */
+	public boolean isActive(Date d) {
+		if (d == null) {
+			return (end == null);
+		}
 
-	public boolean wasActive(Date d) {
 		if (end == null) {
 			return start.before(d);
 		}
+
 		return start.before(d) && end.after(d);
 	}
 }
