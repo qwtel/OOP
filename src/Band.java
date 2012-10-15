@@ -88,9 +88,9 @@ class Band {
 		int balance = 0;
 		for(Event e : temp){
 			if(e instanceof Gig)
-				balance += e.getGage();
+				balance += ((Gig) e).getGage();
 			else
-				balance -= e.getRent();
+				balance -= ((Rehearsal) e).getRent();
 		}
 		return balance;
 	}
