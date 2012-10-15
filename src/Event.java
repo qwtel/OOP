@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * 
  * Abstract Class for Appearances and Reahearsals
- * @author Johannes Deml
+ * @author Johannes Deml, Michael Ion
  *
  */
 public abstract class Event {
@@ -40,10 +40,12 @@ public abstract class Event {
 	 * Creates a List consisting of events which occurred during a given time frame.
 	 * If one date is missing (= null), the other one is the indicator for validity.
 	 * If both are missing, it returns the whole list.
+	 *
 	 * @param events List of Events
 	 * @param from The beginning date of the specified time frame.
 	 * @param to The end date of the specified time frame.
 	 * @return list of events inside the time frame
+	 *
 	 * @author Michael Ion
 	 */
 	public static List<Event> filterFromTo(List<Event> events, Date from, Date to){

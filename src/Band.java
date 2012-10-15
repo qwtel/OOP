@@ -54,12 +54,15 @@ class Band {
 	public List<Song> getSongs(Date at) {
 		return songs.getAll(at);
 	}
+
 	public List<Event> getEvents(){
 		return events;
 	}
+
 	public List<Event> getEvents(Date from, Date to){
 		return Event.filterFromTo(events, from, to);
 	}
+
 	public List<Event> getGigs(){
 		List<Event> gigs = new ArrayList<Event>();
 		for(Event e: events){
@@ -69,9 +72,11 @@ class Band {
 		}
 		return gigs;
 	}
+
 	public List<Event> getGigs(Date from, Date to){
 		return Event.filterFromTo(getGigs(), from, to);
 	}
+
 	public List<Event> getRehearsals(){
 		List<Event> rehearsals = new ArrayList<Event>();
 		for(Event e: events){
@@ -81,9 +86,11 @@ class Band {
 		}
 		return rehearsals;
 	}
+
 	public List<Event> getRehearsals(Date from, Date to){
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
+
 	public int getBalance(List<Event> temp){
 		int balance = 0;
 		for(Event e : temp){
@@ -94,16 +101,16 @@ class Band {
 		}
 		return balance;
 	}
-	public int getBalance(Date from, Date to){
 
+	public int getBalance(Date from, Date to){
 		return getBalance(getEvents(from, to));
 	}	
+
 	public int getBalanceGigs(Date from, Date to){
-		
 		return getBalance(getGigs(from,to));
 	}
+
 	public int getBalanceRehearsals(Date from, Date to){
-		
 		return getBalance(getRehearsals(from,to));
 	}
 }

@@ -16,5 +16,8 @@ public class Song{
 	public int getDuration(){
 		return duration;
 	}
-	
-}
+
+	public String toString(){
+		return "Name: "+name+" Duration: "+duration;
+	}
+}   
