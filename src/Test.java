@@ -68,6 +68,8 @@ public class Test{
 			for(Event e: rehearsals1){
 				System.out.println(e.toString());
 			}
+			System.out.println(band.getBalance(b0,c1));//555
+			System.out.println(band.getBalanceGigs(a1, b1));//620
 
 		} catch(InterruptedException ex) {
 			Thread.currentThread().interrupt();
