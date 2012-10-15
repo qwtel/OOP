@@ -36,6 +36,7 @@ public abstract class Event {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	abstract int getIncome();
 	/**
 	 * Creates a List consisting of events which occurred during a given time frame.
 	 * If one date is missing (= null), the other one is the indicator for validity.

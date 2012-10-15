@@ -10,7 +10,7 @@ class Rehearsal extends Event {
 		this.rent = rent;
 	}
 
-	public int getRent() {
-		return rent;
+	public int getIncome() {
+		return -rent;
 	}
 }

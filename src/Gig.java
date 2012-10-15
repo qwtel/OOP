@@ -9,7 +9,7 @@ public class Gig extends Event{
 		this.gage = gage;
 	}
 	private int gage;
-	public int getGage(){
+	public int getIncome(){
 		return gage;
 	}
 	public String toString(){
