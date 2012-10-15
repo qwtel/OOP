@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * @author <author>
+ * @author Florian Klampfer
  */
 class Rehearsal extends Event {
 	private int rent;
