@@ -84,4 +84,26 @@ class Band {
 	public List<Event> getRehearsals(Date from, Date to){
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
+	public int getBalance(List<Event> temp){
+		int balance = 0;
+		for(Event e : temp){
+			if(e instanceof Gig)
+				balance += e.getGage();
+			else
+				balance -= e.getRent();
+		}
+		return balance;
+	}
+	public int getBalance(Date from, Date to){
+
+		return getBalance(getEvents(from, to));
+	}	
+	public int getBalanceGigs(Date from, Date to){
+		
+		return getBalance(getGigs(from,to));
+	}
+	public int getBalanceRehearsals(Date from, Date to){
+		
+		return getBalance(getRehearsals(from,to));
+	}
 }
