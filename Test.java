@@ -20,7 +20,7 @@ public class Test{
 
 		band.addSong(song1);
 		band.addEvent(gig1);
-		Date sleep = new UniqueDate();
+		Date sleep = new UniqueDate(); // for side effects
 
 		band.addSong(song2);
 		Date b0 = new UniqueDate();

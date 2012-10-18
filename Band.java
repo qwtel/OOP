@@ -4,7 +4,7 @@ import java.util.*;
  * Provides methods to manage a band.
  * @author Johannes Deml, Michael Ion, Florian Klampfer 
  */
-class Band {
+public class Band {
 	private List<Event> events;
 	private LoggedArrayList<Musician> musicians;
 	private LoggedArrayList<Song> songs;

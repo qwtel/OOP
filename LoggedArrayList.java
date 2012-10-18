@@ -4,7 +4,7 @@ import java.util.*;
  * An ArrayList that keeps track of added and removed items.
  * @author Florian Klampfer
  */
-class LoggedArrayList<E> extends ArrayList<E> {
+public class LoggedArrayList<E> extends ArrayList<E> {
 	private Map<E, LogEntry> log;
 
 	public LoggedArrayList() {
@@ -54,7 +54,7 @@ class LoggedArrayList<E> extends ArrayList<E> {
 	 * Encapsulates start and end dates.
  	 * @author Florian Klampfer
 	 */
-	class LogEntry {
+	private class LogEntry {
 		public Date start;
 		public Date end;
 

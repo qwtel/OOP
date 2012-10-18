@@ -2,7 +2,7 @@
  * Represents a musician.
  * @author Florian Klampfer
  */
-class Musician {
+public class Musician {
 	private final String name;
 	private final String tel;
 	private final String instrument;
