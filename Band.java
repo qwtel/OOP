@@ -7,7 +7,7 @@ import java.util.*;
 public class Band {
 	private List<Event> events;
 	private LoggedArrayList<Musician> musicians;
-	private LoggedArrayList<Song> songs;
+	private LoggedArrayList<Song> songs; // depricated
 
 	public Band() {
 		events = new ArrayList<Event>();
@@ -28,7 +28,7 @@ public class Band {
 	}
 
 	public void removeMusician(Musician musician) {
-		musicians.markInactive(musician);
+		musicians.remove(musician);
 	}
 
 	public List<Musician> getMusicians() {
@@ -39,20 +39,57 @@ public class Band {
 		return musicians.getAll(at);
 	}
 
+	/**
+	 * Adds a song to all currently active musiceans.
+	 */
 	public void addSong(Song song) {
-		songs.add(song);
+		for(Musician m : getMusicians()) {
+			m.addSong(song);
+		}
 	}
 
+	/**
+	 * Removes a song from all currently active musiceans.
+	 */
 	public void removeSong(Song song) {
-		songs.markInactive(song);
+		for(Musician m : getMusicians()) {
+			m.removeSong(song);
+		}
 	}
 
-	public List<Song> getSongs() {
-		return songs.getAll(null);
+	/**
+	 * Returns all songs that can be played with the current roster of the
+	 * band. 
+	 *
+	 * @return The songs that all currently active band members are able to
+	 *         play.
+	 */
+	public Set<Song> getSongs() {
+		return getSongs(null);
 	}
 
-	public List<Song> getSongs(Date at) {
-		return songs.getAll(at);
+	/**
+	 * Returns all the songs at a given date as a set. 
+	 * Only those songs are listed, that could have been be played with the 
+	 * roster of the band at that date.
+	 *
+	 * @param at A past date.
+	 * @return The songs that all band members at the given time were able to
+	 *         play.
+	 */
+	public Set<Song> getSongs(Date at) {
+		List<Musician> roster = getMusicians(at); 
+		Set<Song> set = new HashSet<Song>();
+
+		for(Musician m : getMusicians(at)) {
+			set.addAll(m.getSongs(at));
+		}
+
+		for(Musician m : getMusicians(at)) {
+			set.retainAll(m.getSongs(at));
+		}
+
+		return set;
 	}
 
 	public List<Event> getEvents(){

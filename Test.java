@@ -9,6 +9,10 @@ public class Test{
 		Date a1 = new UniqueDate();
 		Date a = new UniqueDate();
 
+		Musician musician1 = new Musician("Name 1", "555123", "Bass");
+		Musician musician2 = new Musician("Name 1", "555456", "Piano"); 
+		Musician musician3 = new Musician("Name 1", "555789", "Guitar");  
+
 		Song song1 = new Song("Energy Wizard", 225);
 		Song song2 = new Song("Brain Damage", 230);
 		Song song3 = new Song("Contrapunctus 11", 350);
@@ -17,6 +21,16 @@ public class Test{
 		Rehearsal rehearsal1 = new Rehearsal("Mamas Keller", a, 1750, 50);
 
 		Band band = new Band();
+
+		band.addMusician(musician1);
+
+		/*
+		 * Only musician2 can play this song. It should never be returned by
+		 * getSongs
+		 */
+		Song song4 = new Song("Nobody wants to play this song", 350);
+		musician2.addSong(song4);
+		band.addMusician(musician2);
 
 		band.addSong(song1);
 		band.addEvent(gig1);
@@ -50,10 +64,11 @@ public class Test{
 		 * Checking if getSongs returns all currently active songs (but not
 		 * those that have been 'deleted')
 		 */
-		List<Song> expectedResult1 = new ArrayList<Song>(Arrays.asList(
+		Set<Song> expectedResult1 = new HashSet<Song>(Arrays.asList(
 			new Song[]{song1, song3}
 		));
-		List<Song> result1 = band.getSongs();
+		Set<Song> result1 = band.getSongs();
+		System.out.println(result1);
 
 		doTest(expectedResult1, result1);
 
@@ -62,10 +77,10 @@ public class Test{
 		 * Checking if getSongs returns all songs that were active at a previous
 		 * point in time (but have since been 'deleted')
 		 */
-		List<Song> expectedResult2 = new ArrayList<Song>(Arrays.asList(
+		Set<Song> expectedResult2 = new HashSet<Song>(Arrays.asList(
 			new Song[]{song1, song2}
 		));
-		List<Song> result2 = band.getSongs(b);
+		Set<Song> result2 = band.getSongs(b);
 
 		doTest(expectedResult2, result2);
 
@@ -141,7 +156,7 @@ public class Test{
 }
 
 /**
- * HACK: Ensuring that dates are unique. 
+ * XXX: Ensuring that dates are unique. 
  * This is not a real issue, since songs will not be added and
  * removed within 1 millisecond in 'production'.
  *

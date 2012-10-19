@@ -14,4 +14,9 @@ public class Rehearsal extends Event {
 	public int getIncome() {
 		return -rent;
 	}
+	
+	@Override
+	public String toString(){
+		return super.toString() + " Rent: " + rent;
+	}
 }

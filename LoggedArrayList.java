@@ -4,27 +4,28 @@ import java.util.*;
  * An ArrayList that keeps track of added and removed items.
  * @author Florian Klampfer
  */
-public class LoggedArrayList<E> extends ArrayList<E> {
+public class LoggedArrayList<E> {
+	private List<E> list;
 	private Map<E, LogEntry> log;
 
 	public LoggedArrayList() {
+		list = new ArrayList<E>();
 		log = new HashMap<E, LogEntry>();
 	}
 
 	/**
 	 * Adds an item to a list and creates an entry in the log.
 	 */
-	@Override
-	public boolean add(E e) {
+	public void add(E e) {
 		LogEntry logEntry = new LogEntry();
 		log.put(e, logEntry);
-		return super.add(e);
+		list.add(e);
 	}
 
 	/**
 	 * Pseudo-removes an item from a list and updates the entry in the log.
 	 */
-	public void markInactive(E e) {
+	public void remove(E e) {
 		LogEntry logEntry = log.get(e);
 		logEntry.end();
 	}
@@ -41,7 +42,7 @@ public class LoggedArrayList<E> extends ArrayList<E> {
 	 */
 	public List<E> getAll(Date at) {
 		List<E> res = new ArrayList<E>();
-		for (E e : this) {
+		for (E e : list) {
 			LogEntry logEntry = log.get(e);
 			if (logEntry.isActive(at)) {
 				res.add(e);
