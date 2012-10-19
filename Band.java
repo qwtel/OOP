@@ -8,13 +8,11 @@ public class Band {
 	private List<Event> events;
 	private LoggedArrayList<Musician> musicians;
 	private LoggedArrayList<Musician> secondaryMusicians;
-	private LoggedArrayList<Song> songs; // depricated
 
 	public Band() {
 		events = new ArrayList<Event>();
 		musicians = new LoggedArrayList<Musician>();
 		secondaryMusicians = new LoggedArrayList<Musician>();
-		songs = new LoggedArrayList<Song>();
 	}
 	
 	public void addEvent(Event e){
