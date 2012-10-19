@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Represents a musician.
+ * Provides basic methods to manage a musician.
  * @author Florian Klampfer
  */
 public class Musician {
@@ -39,11 +39,11 @@ public class Musician {
 	}
 
 	public Set<Song> getSongs() {
-		return songs.getAll(null);
+		return songs.getAt(null);
 	}
 
-	public Set<Song> getSongs(Date at) {
-		return songs.getAll(at);
+	public Set<Song> getSongs(Date date) {
+		return songs.getAt(date);
 	}
 
 	@Override

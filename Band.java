@@ -7,11 +7,13 @@ import java.util.*;
 public class Band {
 	private List<Event> events;
 	private LoggedArrayList<Musician> musicians;
+	private LoggedArrayList<Musician> secondaryMusicians;
 	private LoggedArrayList<Song> songs; // depricated
 
 	public Band() {
 		events = new ArrayList<Event>();
 		musicians = new LoggedArrayList<Musician>();
+		secondaryMusicians = new LoggedArrayList<Musician>();
 		songs = new LoggedArrayList<Song>();
 	}
 	
@@ -32,11 +34,11 @@ public class Band {
 	}
 
 	public Set<Musician> getMusicians() {
-		return musicians.getAll(null);
+		return musicians.getAt(null);
 	}
 
-	public Set<Musician> getMusicians(Date at) {
-		return musicians.getAll(at);
+	public Set<Musician> getMusicians(Date date) {
+		return musicians.getAt(date);
 	}
 
 	/**
@@ -77,16 +79,16 @@ public class Band {
 	 * @return The songs that all band members at the given time were able to
 	 *         play.
 	 */
-	public Set<Song> getSongs(Date at) {
-		Set<Musician> roster = getMusicians(at); 
+	public Set<Song> getSongs(Date date) {
+		Set<Musician> roster = getMusicians(date); 
 		Set<Song> set = new HashSet<Song>();
 
-		for(Musician m : getMusicians(at)) {
-			set.addAll(m.getSongs(at));
+		for(Musician m : getMusicians(date)) {
+			set.addAll(m.getSongs(date));
 		}
 
-		for(Musician m : getMusicians(at)) {
-			set.retainAll(m.getSongs(at));
+		for(Musician m : getMusicians(date)) {
+			set.retainAll(m.getSongs(date));
 		}
 
 		return set;

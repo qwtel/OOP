@@ -40,11 +40,11 @@ public class LoggedArrayList<E> {
 	 * @return The active list items to a given date or the currently active
 	 *         items if no date was provided.
 	 */
-	public Set<E> getAll(Date at) {
+	public Set<E> getAt(Date date) {
 		Set<E> res = new HashSet<E>();
 		for (E e : set) {
 			LogEntry logEntry = log.get(e);
-			if (logEntry.isActive(at)) {
+			if (logEntry.isActive(date)) {
 				res.add(e);
 			}
 		}
@@ -77,6 +77,7 @@ public class LoggedArrayList<E> {
 		 * active.
 		 *
 		 * @param d A past date as Date object or null.
+		 * @return true if the item was active at the given time.
 		 */
 		public boolean isActive(Date d) {
 			if (d == null) {
