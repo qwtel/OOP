@@ -20,7 +20,7 @@ public class Test{
 
 		band.addSong(song1);
 		band.addEvent(gig1);
-		Date sleep = new UniqueDate(); // for side effects
+		UniqueDate.sleep(); // for side effects
 
 		band.addSong(song2);
 		Date b0 = new UniqueDate();
@@ -30,10 +30,10 @@ public class Test{
 		Rehearsal rehearsal2 = new Rehearsal("Dorftheater", b, 2500, 20);
 
 		band.addSong(song3);
-		sleep = new UniqueDate();
+		UniqueDate.sleep();
 
 		band.removeSong(song2);
-		sleep = new UniqueDate();
+		UniqueDate.sleep(); 
 
 		Date c = new UniqueDate();
 		Date c1 = new UniqueDate();
@@ -150,6 +150,10 @@ public class Test{
 class UniqueDate extends Date {
 	public UniqueDate() {
 		super();
+		sleep();
+	}
+
+	public static void sleep() {
 		try {
 			Thread.sleep(1);
 		} catch(InterruptedException ex) {
