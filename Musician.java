@@ -9,13 +9,13 @@ public class Musician {
 	private final String tel;
 	private final String instrument;
 
-	private LoggedArrayList<Song> songs;
+	private AssociationStorage<Song> songs;
 
 	public Musician(String name, String tel, String instrument) {
 		this.name = name;
 		this.tel = tel;
 		this.instrument = instrument;
-		this.songs = new LoggedArrayList<Song>();
+		this.songs = new AssociationStorage<Song>();
 	}
 
 	public String getName() {

@@ -2,17 +2,16 @@ import java.util.*;
 
 /**
  * Provides methods to manage a band.
+ *
  * @author Johannes Deml, Michael Ion, Florian Klampfer 
  */
 public class Band {
 	private List<Event> events;
-	private LoggedArrayList<Musician> musicians;
-	private LoggedArrayList<Musician> secondaryMusicians;
+	private AssociationStorage<Musician> musicians;
 
 	public Band() {
 		events = new ArrayList<Event>();
-		musicians = new LoggedArrayList<Musician>();
-		secondaryMusicians = new LoggedArrayList<Musician>();
+		musicians = new AssociationStorage<Musician>();
 	}
 	
 	public void addEvent(Event e){
@@ -23,8 +22,37 @@ public class Band {
 		events.remove(e);
 	}
 
+	/**
+	 * Adds a new primary musician to this band.
+	 */
 	public void addMusician(Musician musician) {
-		musicians.add(musician);
+		musicians.add(musician, new MusicianLogEntry(true));
+	}
+
+	/**
+	 * Adds a musician with a given role (primary or secondary) to this band.
+	 *
+	 * @param musician The new musician.
+	 * @param isPrimary true for primary, false for secondary.
+	 */
+	public void addMusician(Musician musician, boolean isPrimary) {
+    	musicians.add(musician, new MusicianLogEntry(isPrimary));
+	}
+
+	/**
+	 * Marks a musician as primary in this band.
+	 */
+	public void markPrimary(Musician m) {
+ 		MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
+    	meta.isPrimary = true;
+	}
+
+	/**
+	 * Marks a musician as secondary in this band.
+	 */
+	public void markSecondary(Musician m) {
+ 		MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
+    	meta.isPrimary = false;
 	}
 
 	public void removeMusician(Musician musician) {
@@ -40,7 +68,7 @@ public class Band {
 	}
 
 	/**
-	 * Adds a song to all currently active musiceans.
+	 * Adds a song to all currently active musicians.
 	 */
 	public void addSong(Song song) {
 		for(Musician m : getMusicians()) {
@@ -49,7 +77,7 @@ public class Band {
 	}
 
 	/**
-	 * Removes a song from all currently active musiceans.
+	 * Removes a song from all currently active musicians.
 	 */
 	public void removeSong(Song song) {
 		for(Musician m : getMusicians()) {
@@ -74,8 +102,8 @@ public class Band {
 	 * roster of the band at that date.
 	 *
 	 * @param at A past date.
-	 * @return The songs that all band members at the given time were able to
-	 *         play.
+	 * @return The songs that all band members were able to play at the given
+     *         time.
 	 */
 	public Set<Song> getSongs(Date date) {
 		Set<Musician> roster = getMusicians(date); 
