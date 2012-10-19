@@ -31,11 +31,11 @@ public class Band {
 		musicians.remove(musician);
 	}
 
-	public List<Musician> getMusicians() {
+	public Set<Musician> getMusicians() {
 		return musicians.getAll(null);
 	}
 
-	public List<Musician> getMusicians(Date at) {
+	public Set<Musician> getMusicians(Date at) {
 		return musicians.getAll(at);
 	}
 
@@ -78,7 +78,7 @@ public class Band {
 	 *         play.
 	 */
 	public Set<Song> getSongs(Date at) {
-		List<Musician> roster = getMusicians(at); 
+		Set<Musician> roster = getMusicians(at); 
 		Set<Song> set = new HashSet<Song>();
 
 		for(Musician m : getMusicians(at)) {

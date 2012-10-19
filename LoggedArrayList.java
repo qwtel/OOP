@@ -5,11 +5,11 @@ import java.util.*;
  * @author Florian Klampfer
  */
 public class LoggedArrayList<E> {
-	private List<E> list;
+	private Set<E> set;
 	private Map<E, LogEntry> log;
 
 	public LoggedArrayList() {
-		list = new ArrayList<E>();
+		set = new HashSet<E>();
 		log = new HashMap<E, LogEntry>();
 	}
 
@@ -19,7 +19,7 @@ public class LoggedArrayList<E> {
 	public void add(E e) {
 		LogEntry logEntry = new LogEntry();
 		log.put(e, logEntry);
-		list.add(e);
+		set.add(e);
 	}
 
 	/**
@@ -40,9 +40,9 @@ public class LoggedArrayList<E> {
 	 * @return The active list items to a given date or the currently active
 	 *         items if no date was provided.
 	 */
-	public List<E> getAll(Date at) {
-		List<E> res = new ArrayList<E>();
-		for (E e : list) {
+	public Set<E> getAll(Date at) {
+		Set<E> res = new HashSet<E>();
+		for (E e : set) {
 			LogEntry logEntry = log.get(e);
 			if (logEntry.isActive(at)) {
 				res.add(e);

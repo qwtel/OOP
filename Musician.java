@@ -38,11 +38,11 @@ public class Musician {
 		songs.remove(song);
 	}
 
-	public List<Song> getSongs() {
+	public Set<Song> getSongs() {
 		return songs.getAll(null);
 	}
 
-	public List<Song> getSongs(Date at) {
+	public Set<Song> getSongs(Date at) {
 		return songs.getAll(at);
 	}
 
