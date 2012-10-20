@@ -153,6 +153,17 @@ public class Test{
 				new Event[]{gig1})); 
 		gig1.setLocation("Stadttheater");
 		doTest(expectedResult9, gig1.getChangeHist());
+		
+		
+		/*
+		 * Test 10
+		 * 
+		 * Checks functionality of deletedEvents list
+		 */
+		List<Event> expectedResult10 = new ArrayList<Event>(Arrays.asList(
+				new Event[]{gig1}));
+		band.removeEvent(gig1);
+		doTest(expectedResult10, band.getDeletedEvents());
 	}
 
 	private static int i = 0;

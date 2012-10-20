@@ -7,12 +7,14 @@ import java.util.*;
  */
 public class Band {
 	private List<Event> events;
+	private List<Event> deletedEvents;
 	private AssociationStorage<Musician> musicians;
 	private ArrayList<Income> otherIncome;
 	public Band() {
 		events = new ArrayList<Event>();
 		musicians = new AssociationStorage<Musician>();
 		otherIncome = new ArrayList<Income>();
+		deletedEvents = new ArrayList<Event>();
 	}
 	
 	public void addEvent(Event e){
@@ -20,6 +22,7 @@ public class Band {
 	}
 	
 	public void removeEvent(Event e){
+		deletedEvents.add(e);
 		events.remove(e);
 	}
 
@@ -121,39 +124,43 @@ public class Band {
 		return set;
 	}
 
-	public List<Event> getEvents(){
+	public List<Event> getEvents() {
 		return events;
 	}
 
-	public List<Event> getEvents(Date from, Date to){
+	public List<Event> getEvents(Date from, Date to) {
 		return Event.filterFromTo(events, from, to);
 	}
+	
+	public List<Event> getDeletedEvents() {
+		return deletedEvents;
+	}
 
-	public List<Event> getGigs(){
+	public List<Event> getGigs() {
 		List<Event> gigs = new ArrayList<Event>();
-		for(Event e: events){
-			if(e instanceof Gig){
+		for(Event e: events) {
+			if(e instanceof Gig) {
 				gigs.add(e);
 			}
 		}
 		return gigs;
 	}
 
-	public List<Event> getGigs(Date from, Date to){
+	public List<Event> getGigs(Date from, Date to) {
 		return Event.filterFromTo(getGigs(), from, to);
 	}
 
-	public List<Event> getRehearsals(){
+	public List<Event> getRehearsals() {
 		List<Event> rehearsals = new ArrayList<Event>();
 		for(Event e: events){
-			if(e instanceof Rehearsal){
+			if(e instanceof Rehearsal) {
 				rehearsals.add(e);
 			}
 		}
 		return rehearsals;
 	}
 
-	public List<Event> getRehearsals(Date from, Date to){
+	public List<Event> getRehearsals(Date from, Date to) {
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
 	public List<IncomeInterface> getOtherIncome() {
@@ -165,23 +172,23 @@ public class Band {
 		return selectedIncome;
 	}
 
-	public int getBalance(List<Event> temp){
+	public int getBalance(List<Event> temp) {
 		int balance = 0;
-		for(Event e : temp){
+		for(Event e : temp) {
 			balance += e.getIncome();
 		}
 		return balance;
 	}
 
-	public int getBalance(Date from, Date to){
+	public int getBalance(Date from, Date to) {
 		return getBalance(getEvents(from, to));
 	}	
 
-	public int getBalanceGigs(Date from, Date to){
+	public int getBalanceGigs(Date from, Date to) {
 		return getBalance(getGigs(from,to));
 	}
 
-	public int getBalanceRehearsals(Date from, Date to){
+	public int getBalanceRehearsals(Date from, Date to) {
 		return getBalance(getRehearsals(from,to));
 	}
 }
