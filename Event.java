@@ -5,25 +5,29 @@ import java.util.*;
  * Abstract Class for Appearances and Reahearsals
  * @author Johannes Deml, Michael Ion
  *
+ * @param changeHist contains the change history of this Event
  */
 public abstract class Event {
+	
+	private String location;
+	private Date date;
+	private int duration;
+	protected List<Event> changeHist;
 	
 	public Event(String location, Date date, int duration)
 	{
 		this.location = location;
 		this.date = date;
 		this.duration = duration;
+		this.changeHist = new ArrayList<Event>();
 	}
 
-	private String location;
-	private Date date;
-	private int duration;
-	
 	public String getLocation() {
 		return location;
 	}
 
 	public void setLocation(String location) {
+		saveChange();
 		this.location = location;
 	}
 
@@ -32,6 +36,7 @@ public abstract class Event {
 	}
 
 	public void setDate(Date date) {
+		saveChange();
 		this.date = date;
 	}
 
@@ -40,9 +45,24 @@ public abstract class Event {
 	}
 
 	public void setDuration(int duration) {
+		saveChange();
 		this.duration = duration;
 	}
+	/**
+	 * Adds original Event to changeHist
+	 */
+	public abstract void saveChange();
 
+	/**
+	 * Returns list with all changes
+	 */
+	public List<Event> getChangeHist() {
+		List<Event> temp = new ArrayList<Event>();
+		for(Event e : changeHist) {
+			temp.add(e);
+		}
+		return temp;
+	}
 	public abstract int getIncome();
 
 	/**
@@ -57,7 +77,7 @@ public abstract class Event {
 	 *
 	 * @author Michael Ion
 	 */
-	public static List<Event> filterFromTo(List<Event> events, Date from, Date to){
+	public static List<Event> filterFromTo(List<Event> events, Date from, Date to) {
 		List<Event> res = new ArrayList<Event>();
 		if( from == null && to == null)
 			return events;

@@ -16,10 +16,13 @@ public class Rehearsal extends Event {
 	}
 	
 	@Override
-	public String toString(){
+	public String toString() {
 		return super.toString() + " Rent: " + rent;
 	}
 	public void setIncome(int income) {
 		rent = income;
+	}
+	public void saveChange() {
+		changeHist.add(new Rehearsal(getLocation(), getDate(), getDuration(), getIncome()));
 	}
 }
