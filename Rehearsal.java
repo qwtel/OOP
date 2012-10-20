@@ -23,6 +23,6 @@ public class Rehearsal extends Event {
 		rent = income;
 	}
 	public void saveChange() {
-		changeHist.add(new Rehearsal(getLocation(), getDate(), getDuration(), getIncome()));
+		changeHist.add(this);
 	}
 }

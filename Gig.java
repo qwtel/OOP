@@ -20,6 +20,6 @@ public class Gig extends Event {
 		
 	}
 	public void saveChange() {
-		changeHist.add(new Gig(getLocation(), getDate(), getDuration(), getIncome()));
+		changeHist.add(this);
 	}
 }

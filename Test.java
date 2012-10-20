@@ -18,6 +18,7 @@ public class Test{
 		Song song3 = new Song("Contrapunctus 11", 350);
 
 		Gig gig1 = new Gig("Volksoper", a, 3500, 120);
+		Gig gig1change = new Gig("Stadttheater", a, 3500, 120);
 		Rehearsal rehearsal1 = new Rehearsal("Mamas Keller", a, 1750, 50);
 
 		Band band = new Band();
@@ -141,6 +142,17 @@ public class Test{
 		Integer expectedResult8 = 620;
 		Integer result8 = band.getBalanceGigs(a1, b1);
 		doTest(expectedResult8, result8);
+		
+		/*
+		 * Test 9
+		 * 
+		 * Checks changeHist functionality in Event
+		 */
+		
+		List<Event> expectedResult9 = new ArrayList<Event>(Arrays.asList(
+				new Event[]{gig1})); 
+		gig1.setLocation("Stadttheater");
+		doTest(expectedResult9, gig1.getChangeHist());
 	}
 
 	private static int i = 0;
