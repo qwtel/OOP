@@ -19,8 +19,6 @@ public class Rehearsal extends Event {
 	public String toString(){
 		return super.toString() + " Rent: " + rent;
 	}
-
-	@Override
 	public void setIncome(int income) {
 		rent = income;
 	}

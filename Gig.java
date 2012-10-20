@@ -15,7 +15,6 @@ public class Gig extends Event{
 	public String toString(){
 		return super.toString() + gage;
 	}
-	@Override
 	public void setIncome(int income) {
 		gage = income;
 		

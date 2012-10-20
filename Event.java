@@ -6,7 +6,7 @@ import java.util.*;
  * @author Johannes Deml, Michael Ion
  *
  */
-public abstract class Event implements IncomeInterface {
+public abstract class Event {
 	
 	public Event(String location, Date date, int duration)
 	{

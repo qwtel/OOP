@@ -1,3 +1,5 @@
+import java.util.Date;
+
 /**
  * Income.java
  *
@@ -7,9 +9,11 @@
  */
 public class Income implements IncomeInterface {
 	private int income;
-	public Income(int income)
+	private Date date;
+	public Income(int income, Date date)
 	{
 		this.income = income;
+		this.date = date;
 	}
 	/**
 	 * @return the income
@@ -22,6 +26,18 @@ public class Income implements IncomeInterface {
 	 */
 	public void setIncome(int income) {
 		this.income = income;
+	}
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }

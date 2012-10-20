@@ -8,11 +8,11 @@ import java.util.*;
 public class Band {
 	private List<Event> events;
 	private AssociationStorage<Musician> musicians;
-	private AssociationStorage<Income> otherIncome;
+	private ArrayList<Income> otherIncome;
 	public Band() {
 		events = new ArrayList<Event>();
 		musicians = new AssociationStorage<Musician>();
-		otherIncome = new AssociationStorage<Income>();
+		otherIncome = new ArrayList<Income>();
 	}
 	
 	public void addEvent(Event e){
@@ -155,6 +155,14 @@ public class Band {
 
 	public List<Event> getRehearsals(Date from, Date to){
 		return Event.filterFromTo(getRehearsals(), from, to);
+	}
+	public List<IncomeInterface> getOtherIncome() {
+		List<IncomeInterface> selectedIncome = new ArrayList<IncomeInterface>();
+		for(IncomeInterface i: otherIncome)
+		{
+			selectedIncome.add(i);
+		}
+		return selectedIncome;
 	}
 
 	public int getBalance(List<Event> temp){
