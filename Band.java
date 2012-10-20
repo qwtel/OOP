@@ -8,10 +8,11 @@ import java.util.*;
 public class Band {
 	private List<Event> events;
 	private AssociationStorage<Musician> musicians;
-
+	private AssociationStorage<Income> otherIncome;
 	public Band() {
 		events = new ArrayList<Event>();
 		musicians = new AssociationStorage<Musician>();
+		otherIncome = new AssociationStorage<Income>();
 	}
 	
 	public void addEvent(Event e){
