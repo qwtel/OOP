@@ -1,13 +1,13 @@
 import java.util.Date;
 
 /**
- * IncomeInterface.java
+ * Billable.java
  *
  * @author Johannes Deml
  * @version 1.2
- * @since 1.2 - Oct 20, 2012
+ * @since 1.2 - Oct 22, 2012
  */
-public interface IncomeInterface {
+public interface Billable {
 	public int getIncome();
 	public void setIncome(int income);
 	public Date getDate();
