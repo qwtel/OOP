@@ -4,7 +4,7 @@ import java.util.*;
  * Quick and dirty test class
  * @author Johannes Deml, Michael Ion, Florian Klampfer 
  */
-public class Test{
+public class Test {
 	public static void main(String[] args){
 		Date a1 = new UniqueDate();
 		Date a = new UniqueDate();
@@ -143,7 +143,9 @@ public class Test{
 		Integer result8 = band.getBalanceGigs(a1, b1);
 		doTest(expectedResult8, result8);
 		
-		/*
+        /*
+         * Aufgabe 2
+         *
 		 * Test 9
 		 * 
 		 * Checks changeHist functionality in Event
@@ -229,6 +231,8 @@ public class Test{
 
 		Set<Musician> result13 = manager.getMusicians();
 		doTest(expectedResult13, result13);
+
+        System.out.println("For additional information see Test.java");
 	}
 
 	private static int i = 0;
