@@ -13,7 +13,7 @@ public class EventProposal {
 
 	public EventProposal(Event e, String status) {
 		this.e = e;
-		this.status = "new";
+		this.status = status;
 	}
 
 	public Event getEvent() {

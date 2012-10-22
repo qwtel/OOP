@@ -28,34 +28,37 @@ public class Band {
 	 */
 	public void addEvent(Event e) {
 		boolean confirmation = true;
+
 		for(Musician m : getMusicians()) {
 			EventResponse ep = m.getResponse(new EventProposal(e, "new"));
 			confirmation = confirmation && ep.getDecision();
 		}
-		if(confirmation)
+
+		if(confirmation) {
 			events.add(e);
+        }
 	}
 	
-	public void changeEventDate(Event e, Date date) {
-		events.remove(e);
-		e.setDate(date);
-		informMusicians(new EventProposal(e, "changed"));
-		events.add(e);
-	}
-	
-	public void changeEventLocation(Event e, String location) {
-		events.remove(e);
-		e.setLocation(location);
-		informMusicians(new EventProposal(e, "changed"));
-		events.add(e);
-	}
-	
-	public void changeEventDuration(Event e, int duration) {
-		events.remove(e);
-		e.setDuration(duration);
-		informMusicians(new EventProposal(e, "changed"));
-		events.add(e);
-	}
+    public void changeEventDate(Event e, Date date) {
+    	events.remove(e);
+    	e.setDate(date);
+    	informMusicians(new EventProposal(e, "changed"));
+    	events.add(e);
+    }
+    
+    public void changeEventLocation(Event e, String location) {
+    	events.remove(e);
+    	e.setLocation(location);
+    	informMusicians(new EventProposal(e, "changed"));
+    	events.add(e);
+    }
+    
+    public void changeEventDuration(Event e, int duration) {
+    	events.remove(e);
+    	e.setDuration(duration);
+    	informMusicians(new EventProposal(e, "changed"));
+    	events.add(e);
+    }
 	
 	public void removeEvent(Event e) {
 		deletedEvents.add(e);
