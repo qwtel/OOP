@@ -5,6 +5,7 @@ import java.util.*;
  */
 public class Rehearsal extends Event {
 	private int rent;
+
 	public Rehearsal(String location, Date date, int duration, int rent) {
 		super(location, date, duration);
 		this.rent = rent;
@@ -19,9 +20,11 @@ public class Rehearsal extends Event {
 	public String toString() {
 		return super.toString() + " Rent: " + rent;
 	}
+
 	public void setIncome(int income) {
 		rent = income;
 	}
+
 	public void saveChange() {
 		changeHist.add(this);
 	}

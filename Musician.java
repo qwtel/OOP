@@ -2,6 +2,7 @@ import java.util.*;
 
 /**
  * Provides basic methods to manage a musician.
+ *
  * @author Florian Klampfer
  */
 public class Musician {
@@ -65,6 +66,7 @@ public class Musician {
 	public void addResponse(Event e, boolean decision, String message) {
 		responses.add(new EventResponse(e, decision, message));
 	}
+
 	/*
 	 * Musician sees changed or removed Event entries
 	 * on Notification List

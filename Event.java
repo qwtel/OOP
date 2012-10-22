@@ -1,17 +1,19 @@
 import java.util.*;
 
 /**
- * 
  * Abstract Class for Appearances and Reahearsals
- * @author Johannes Deml, Michael Ion
  *
- * @param changeHist contains the change history of this Event
+ * @author Johannes Deml, Michael Ion
  */
 public abstract class Event {
 	
 	private String location;
 	private Date date;
 	private int duration;
+
+    /**
+     * Contains the change history of this Event.
+     */
 	protected List<Event> changeHist;
 	
 	public Event(String location, Date date, int duration)
@@ -63,6 +65,7 @@ public abstract class Event {
 		}
 		return temp;
 	}
+
 	public abstract int getIncome();
 
 	/**
@@ -96,8 +99,7 @@ public abstract class Event {
 		return res;
 	}
 	
-	public String toString()
-	{
+	public String toString() {
 		return date.toString()+": Ort: "+location+" Dauer: "+duration;
 	}
 }

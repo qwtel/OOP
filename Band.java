@@ -10,6 +10,7 @@ public class Band {
 	private List<Event> deletedEvents;
 	private AssociationStorage<Musician> musicians;
 	private ArrayList<Income> otherIncome;
+
 	public Band() {
 		events = new ArrayList<Event>();
 		musicians = new AssociationStorage<Musician>();
@@ -68,7 +69,7 @@ public class Band {
 	}
 
 	/**
-	 * Adds a new primary musician to this band.
+	 * Adds a new primary musician to this band. (default)
 	 */
 	public void addMusician(Musician musician) {
 		musicians.add(musician, new MusicianLogEntry(true));
@@ -146,7 +147,7 @@ public class Band {
 	 * Only those songs are listed, that could have been be played with the 
 	 * roster of the band at that date.
 	 *
-	 * @param at A past date.
+	 * @param date A past date.
 	 * @return The songs that all band members were able to play at the given
      *         time.
 	 */
@@ -204,14 +205,15 @@ public class Band {
 	public List<Event> getRehearsals(Date from, Date to) {
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
-	public List<IncomeInterface> getOtherIncome() {
-		List<IncomeInterface> selectedIncome = new ArrayList<IncomeInterface>();
-		for(IncomeInterface i: otherIncome)
-		{
-			selectedIncome.add(i);
-		}
-		return selectedIncome;
-	}
+
+    //public List<IncomeInterface> getOtherIncome() {
+    //	List<IncomeInterface> selectedIncome = new ArrayList<IncomeInterface>();
+    //	for(IncomeInterface i: otherIncome)
+    //	{
+    //		selectedIncome.add(i);
+    //	}
+    //	return selectedIncome;
+    //}
 
 	public int getBalance(List<Event> temp) {
 		int balance = 0;
