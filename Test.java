@@ -255,6 +255,8 @@ public class Test {
  * @author Florian Klampfer
  */
 class UniqueDate extends Date {
+	private static final long serialVersionUID = 1L;
+
 	public UniqueDate() {
 		super();
 		sleep();
