@@ -232,6 +232,25 @@ public class Test {
 		doTest(expectedResult13, result13);
 
         System.out.println("For additional information see Test.java");
+	
+        /*
+         * Test 14 & Test 15
+         * 
+         * Tests the response functionality. At first, there is no response,
+         * so the command line output is negative. After the musicians added a
+         * positive response, the command line output is "The musicians agree!"
+         */
+       
+        i++;
+        System.out.printf("Test "+ i +" :");
+        band.getMusiciansResponse(gig1);
+        for(Musician m : band.getMusicians()){
+        	m.addResponse(gig1, true , "Ist genehmigt, ich hab Zeit!");
+        }
+        i++;
+        System.out.printf("Test "+ i +" :");
+        band.getMusiciansResponse(gig1);
+        
 	}
 
 	private static int i = 0;
