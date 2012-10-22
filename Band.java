@@ -11,14 +11,14 @@ public class Band {
 	private List<Event> events;
 	private List<Event> deletedEvents;
 	private AssociationStorage<Musician> musicians;
-	private ArrayList<Income> otherIncome;
+	private List<Event> otherIncome;
 
 	public Band(String name) {
 		this.name = name;
 
 		events = new ArrayList<Event>();
 		musicians = new AssociationStorage<Musician>();
-		otherIncome = new ArrayList<Income>();
+		otherIncome = new ArrayList<Event>();
 		deletedEvents = new ArrayList<Event>();
 	}
 	
@@ -151,6 +151,20 @@ public class Band {
 	}
 
 	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
 	 * Adds a song to all currently active musicians.
 	 */
 	public void addSong(Song song) {
@@ -224,7 +238,7 @@ public class Band {
 		}
 		return gigs;
 	}
-
+	
 	public List<Event> getGigs(Date from, Date to) {
 		return Event.filterFromTo(getGigs(), from, to);
 	}
@@ -242,16 +256,26 @@ public class Band {
 	public List<Event> getRehearsals(Date from, Date to) {
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
-
-	//public List<IncomeInterface> getOtherIncome() {
-	//	List<IncomeInterface> selectedIncome = new ArrayList<IncomeInterface>();
-	//	for(IncomeInterface i: otherIncome)
-	//	{
-	//		selectedIncome.add(i);
-	//	}
-	//	return selectedIncome;
-	//}
-
+	
+	public List<Event> getOtherIncome() {
+		return otherIncome;
+	}
+	
+	public List<Event> getOtherIncome(Date from, Date to) {
+		return Event.filterFromTo(otherIncome, from, to);
+	}
+	
+	public List<Event> getAllIncome() {
+		List<Event> allIncome = new ArrayList<Event>(events);
+		allIncome.addAll(otherIncome);
+		return allIncome;
+	}
+	
+	public List<Event> getAllIncome(Date from, Date to)
+	{
+		return(Event.filterFromTo(getAllIncome(), from, to));
+	}
+	
 	public int getBalance(List<Event> temp) {
 		int balance = 0;
 		for(Event e : temp) {
