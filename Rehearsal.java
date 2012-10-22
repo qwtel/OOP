@@ -16,12 +16,12 @@ public class Rehearsal extends Event {
 		return -rent;
 	}
 	
+	public void setIncome(int income) {
+		rent = income;
+	}
+
 	@Override
 	public String toString() {
 		return super.toString() + " Rent: " + rent;
-	}
-
-	public void setIncome(int income) {
-		rent = income;
 	}
 }

@@ -33,7 +33,7 @@ public class AssociationStorage<E> {
 	 *
 	 * @param e The item to be added to the set.
 	 * @param customLogEntry A sub class of LogEntry that can provide additional
-	 *                       information about the item.
+	 *         information about the item.
 	 */
 	public void add(E e, LogEntry customLogEntry) {
 		log.put(e, customLogEntry);
@@ -44,14 +44,17 @@ public class AssociationStorage<E> {
 	 * Returns the log entry (meta information) for the given element.
 	 */
 	public LogEntry getLogEntry(E e) {
-    	return log.get(e);
+		return log.get(e);
 	}
 
 	/**
 	 * Pseudo-removes an item from the set and updates the entry in the log.
 	 */
 	public void remove(E e) {
-		log.get(e).end();
+		LogEntry logEntry;
+		if((logEntry = log.get(e)) != null) {
+			logEntry.end();
+		}
 	}
 
 	/**
@@ -62,7 +65,7 @@ public class AssociationStorage<E> {
 	 * @param list The list to be filtered.
 	 * @param d A past date as Date object or null
 	 * @return The active list items to a given date or the currently active
-	 *         items if no date was provided.
+	 *		 items if no date was provided.
 	 */
 	public Set<E> getAt(Date date) {
 		Set<E> res = new HashSet<E>();

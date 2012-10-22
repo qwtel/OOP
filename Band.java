@@ -6,12 +6,16 @@ import java.util.*;
  * @author Johannes Deml, Michael Ion, Florian Klampfer 
  */
 public class Band {
+	private String name;
+
 	private List<Event> events;
 	private List<Event> deletedEvents;
 	private AssociationStorage<Musician> musicians;
 	private ArrayList<Income> otherIncome;
 
-	public Band() {
+	public Band(String name) {
+		this.name = name;
+
 		events = new ArrayList<Event>();
 		musicians = new AssociationStorage<Musician>();
 		otherIncome = new ArrayList<Income>();
@@ -82,7 +86,7 @@ public class Band {
 	 * @param isPrimary true for primary, false for secondary.
 	 */
 	public void addMusician(Musician musician, boolean isPrimary) {
-    	musicians.add(musician, new MusicianLogEntry(isPrimary));
+		musicians.add(musician, new MusicianLogEntry(isPrimary));
 	}
 
 	/**
@@ -90,7 +94,7 @@ public class Band {
 	 */
 	public void markPrimary(Musician m) {
  		MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
-    	meta.isPrimary = true;
+		meta.isPrimary = true;
 	}
 
 	/**
@@ -98,7 +102,7 @@ public class Band {
 	 */
 	public void markSecondary(Musician m) {
  		MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
-    	meta.isPrimary = false;
+		meta.isPrimary = false;
 	}
 
 	public void removeMusician(Musician musician) {
@@ -109,8 +113,26 @@ public class Band {
 		return musicians.getAt(null);
 	}
 
-	public Set<Musician> getMusicians(Date date) {
+	/**
+	 * Returns all musicians.
+	 */
+	public Set<Musician> getAllMusicians(Date date) {
 		return musicians.getAt(date);
+	}
+
+	/**
+	 * Returns only the primary musicians.
+	 */
+	public Set<Musician> getMusicians(Date date) {
+		Set<Musician> res = new HashSet();
+
+		for(Musician m : getAllMusicians(date)) {
+			MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
+			if(meta.isPrimary) {
+				res.add(m);
+			}
+		}
+		return res;
 	}
 
 	/**
@@ -136,7 +158,7 @@ public class Band {
 	 * band. 
 	 *
 	 * @return The songs that all currently active band members are able to
-	 *         play.
+	 *		 play.
 	 */
 	public Set<Song> getSongs() {
 		return getSongs(null);
@@ -149,7 +171,7 @@ public class Band {
 	 *
 	 * @param date A past date.
 	 * @return The songs that all band members were able to play at the given
-     *         time.
+	 *		 time.
 	 */
 	public Set<Song> getSongs(Date date) {
 		Set<Musician> roster = getMusicians(date); 
@@ -206,14 +228,14 @@ public class Band {
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
 
-    //public List<IncomeInterface> getOtherIncome() {
-    //	List<IncomeInterface> selectedIncome = new ArrayList<IncomeInterface>();
-    //	for(IncomeInterface i: otherIncome)
-    //	{
-    //		selectedIncome.add(i);
-    //	}
-    //	return selectedIncome;
-    //}
+	//public List<IncomeInterface> getOtherIncome() {
+	//	List<IncomeInterface> selectedIncome = new ArrayList<IncomeInterface>();
+	//	for(IncomeInterface i: otherIncome)
+	//	{
+	//		selectedIncome.add(i);
+	//	}
+	//	return selectedIncome;
+	//}
 
 	public int getBalance(List<Event> temp) {
 		int balance = 0;

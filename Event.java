@@ -11,9 +11,9 @@ public abstract class Event {
 	private Date date;
 	private int duration;
 
-    /**
-     * Contains the change history of this Event.
-     */
+	/**
+	 * Contains the change history of this Event.
+	 */
 	protected List<Event> changeHist;
 	
 	public Event(String location, Date date, int duration)
@@ -99,6 +99,7 @@ public abstract class Event {
 		return res;
 	}
 	
+	@Override
 	public String toString() {
 		return date.toString()+": Ort: "+location+" Dauer: "+duration;
 	}

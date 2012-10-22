@@ -9,9 +9,9 @@ public class Test{
 		Date a1 = new UniqueDate();
 		Date a = new UniqueDate();
 
-		Musician musician1 = new Musician("Name 1", "555123", "Bass");
-		Musician musician2 = new Musician("Name 1", "555456", "Piano"); 
-		Musician musician3 = new Musician("Name 1", "555789", "Guitar");  
+		Musician musician1 = new Musician("Though Guy", "555123", "Bass");
+		Musician musician2 = new Musician("Sweet Guy", "555456", "Piano"); 
+		Musician musician3 = new Musician("Guy with Glasses", "555789", "Guitar");  
 
 		Song song1 = new Song("Energy Wizard", 225);
 		Song song2 = new Song("Brain Damage", 230);
@@ -21,7 +21,7 @@ public class Test{
 		Gig gig1change = new Gig("Stadttheater", a, 3500, 120);
 		Rehearsal rehearsal1 = new Rehearsal("Mamas Keller", a, 1750, 50);
 
-		Band band = new Band();
+		Band band = new Band("A Drop In The Sea");
 
 		band.addMusician(musician1);
 
@@ -164,6 +164,71 @@ public class Test{
 				new Event[]{gig1}));
 		band.removeEvent(gig1);
 		doTest(expectedResult10, band.getDeletedEvents());
+
+		/*
+		 * Managing multiple bands
+		 */
+		BandManager manager = new BandManager();
+		manager.addBand(band);
+		
+		Band band2 = new Band("The Swift Taylors");
+		manager.addBand(band2);
+
+		Musician musician4 = new Musician("Wierd Guy", "555asdf", "Bass");
+		band2.addMusician(musician4);
+
+		// This guy plays in both bands. 
+		band2.addMusician(musician1);
+
+		Song song5 = new Song("Intro", 15);
+		band2.addSong(song5);
+
+		Song song6 = new Song("Outro", 29);
+		band2.addSong(song6);
+
+		/*
+		 * Add a guy to band1. Since he in not primary, he should not affect
+		 * that band1 is able to play song1 and song2.
+		 */
+		band.addMusician(musician3, false);
+
+		/*
+		 * Test 11
+		 * This should return the intro and outro as well as all songs of band1.
+		 * (song1 and song3) See Test1.
+		 */
+		Set<Song> expectedResult11 = new HashSet<Song>(Arrays.asList(
+				new Song[]{song5, song6, song1, song3}
+		));
+
+		Set<Song> result11 = manager.getSongs();
+		doTest(expectedResult11, result11);
+
+		/*
+		 * Test 12
+		 * Now we mark musician3 as primary. This means that band1 is no longer 
+		 * albe play song1 and song2 since not all primary members have 
+		 * them in their repository.
+		 */
+		band.markPrimary(musician3);
+
+		Set<Song> expectedResult12 = new HashSet<Song>(Arrays.asList(
+				new Song[]{song5, song6}
+		));
+
+		Set<Song> result12 = manager.getSongs();
+		doTest(expectedResult12, result12);
+
+		/*
+		 * Test 13
+		 */
+		Set<Musician> expectedResult13 = new HashSet<Musician>(Arrays.asList(
+				new Musician[]{}
+        ));
+		expectedResult13.addAll(band.getMusicians());
+
+		Set<Musician> result13 = manager.getMusicians();
+		doTest(expectedResult13, result13);
 	}
 
 	private static int i = 0;
