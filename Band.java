@@ -139,7 +139,7 @@ public class Band {
 	 * Returns only the primary musicians.
 	 */
 	public Set<Musician> getMusicians(Date date) {
-		Set<Musician> res = new HashSet();
+		Set<Musician> res = new HashSet<Musician>();
 
 		for(Musician m : getAllMusicians(date)) {
 			MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
@@ -195,15 +195,12 @@ public class Band {
 
 	/**
 	 * Returns all the songs at a given date as a set. 
-	 * Only those songs are listed, that could have been be played with the 
-	 * roster of the band at that date.
 	 *
 	 * @param date A past date.
 	 * @return The songs that all band members were able to play at the given
 	 *		 time.
 	 */
 	public Set<Song> getSongs(Date date) {
-		Set<Musician> roster = getMusicians(date); 
 		Set<Song> set = new HashSet<Song>();
 
 		for(Musician m : getMusicians(date)) {
