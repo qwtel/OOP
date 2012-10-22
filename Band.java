@@ -30,6 +30,10 @@ public class Band {
 		events.add(e);
 		informMusicians(new EventProposal(e, "new"));
 	}
+	public void addOtherIncome(Event i)
+	{
+		otherIncome.add(i);
+	}
 	
     public void changeEventDate(Event e, Date date) {
     	events.remove(e);
@@ -262,15 +266,15 @@ public class Band {
 		return Event.filterFromTo(otherIncome, from, to);
 	}
 	
-	public List<Event> getAllIncome() {
+	public List<Event> getAllBills() {
 		List<Event> allIncome = new ArrayList<Event>(events);
 		allIncome.addAll(otherIncome);
 		return allIncome;
 	}
 	
-	public List<Event> getAllIncome(Date from, Date to)
+	public List<Event> getAllBills(Date from, Date to)
 	{
-		return(Event.filterFromTo(getAllIncome(), from, to));
+		return(Event.filterFromTo(getAllBills(), from, to));
 	}
 	
 	public int getBalance(List<Event> temp) {
@@ -291,5 +295,13 @@ public class Band {
 
 	public int getBalanceRehearsals(Date from, Date to) {
 		return getBalance(getRehearsals(from,to));
+	}
+	
+	public int getBalanceOtherIncome(Date from, Date to) {
+		return getBalance(getOtherIncome(from,to));
+	}
+	
+	public int getBalanceAllBills(Date from, Date to) {
+		return getBalance(getAllBills(from,to));
 	}
 }
