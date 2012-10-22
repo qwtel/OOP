@@ -24,8 +24,4 @@ public class Rehearsal extends Event {
 	public void setIncome(int income) {
 		rent = income;
 	}
-
-	public void saveChange() {
-		changeHist.add(this);
-	}
 }

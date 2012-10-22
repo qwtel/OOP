@@ -22,8 +22,4 @@ public class Gig extends Event {
 	public void setIncome(int income) {
 		gage = income;
 	}
-
-	public void saveChange() {
-		changeHist.add(this);
-	}
 }

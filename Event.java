@@ -50,10 +50,10 @@ public abstract class Event {
 		saveChange();
 		this.duration = duration;
 	}
-	/**
-	 * Adds original Event to changeHist
-	 */
-	public abstract void saveChange();
+
+	public void saveChange() {
+		changeHist.add(this);
+	}
 
 	/**
 	 * Returns list with all changes
