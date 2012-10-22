@@ -10,6 +10,11 @@ public class Gig extends Event {
 		super(location, date, duration);
 		this.gage = gage;
 	}
+	
+	public Gig(Gig g) {
+		super(g);
+		this.gage = g.getIncome();
+	}
 
 	public int getIncome() {
 		return gage;
@@ -20,6 +25,17 @@ public class Gig extends Event {
 	}
 
 	public void setIncome(int income) {
+		saveChange();
 		gage = income;
+	}
+	
+	public void saveChange() {
+		Gig temp = new Gig(getLocation(), getDate(), getDuration(), getIncome());
+		changeHist.add(new Gig(temp));	
+	}
+	
+	public boolean equals(Gig i){
+		
+		return true;
 	}
 }

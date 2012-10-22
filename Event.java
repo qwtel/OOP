@@ -23,6 +23,13 @@ public abstract class Event {
 		this.duration = duration;
 		this.changeHist = new ArrayList<Event>();
 	}
+	
+	public Event(Event e) {
+		this.location = e.getLocation();
+		this.date = e.getDate();
+		this.duration = e.getDuration();
+		this.changeHist = new ArrayList<Event>();
+	}
 
 	public String getLocation() {
 		return location;
@@ -51,9 +58,7 @@ public abstract class Event {
 		this.duration = duration;
 	}
 
-	public void saveChange() {
-		changeHist.add(this);
-	}
+	public abstract void saveChange();
 
 	/**
 	 * Returns list with all changes
@@ -103,4 +108,5 @@ public abstract class Event {
 	public String toString() {
 		return date.toString()+": Ort: "+location+" Dauer: "+duration;
 	}
+	
 }

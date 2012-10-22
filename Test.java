@@ -151,10 +151,10 @@ public class Test {
 		 * Checks changeHist functionality in Event
 		 */
 		
-		List<Event> expectedResult9 = new ArrayList<Event>(Arrays.asList(
-				new Event[]{gig1})); 
+		Gig expectedResult9 = new Gig(gig1); 
 		gig1.setLocation("Stadttheater");
-		doTest(expectedResult9, gig1.getChangeHist());
+		System.out.println(expectedResult9.equals((Gig)gig1.getChangeHist().get(0)));
+		doTest(expectedResult9, (Gig)gig1.getChangeHist().get(0));
 		
 		
 		/*

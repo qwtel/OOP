@@ -55,12 +55,12 @@ public class Musician {
 	 * Returns a response on a specific Event. If there is none,
 	 * the Response returns false with a "No current response" message
 	 */
-	public EventResponse getResponse(EventProposal e) {
+	public EventResponse getResponse(Event e) {
 		for(EventResponse r : responses){
-			if(r.getEvent().equals(e.getEvent()))
+			if(r.getEvent().equals(e))
 				return r;
 		}
-		return new EventResponse(e.getEvent(), false, "No current response");
+		return new EventResponse(e, false, "No current response");
 	}
 	
 	public void addResponse(Event e, boolean decision, String message) {

@@ -10,6 +10,11 @@ public class Rehearsal extends Event {
 		super(location, date, duration);
 		this.rent = rent;
 	}
+	
+	public Rehearsal(Rehearsal r) {
+		super(r);
+		this.rent = r.getIncome();
+	}
 
 	@Override
 	public int getIncome() {
@@ -17,11 +22,16 @@ public class Rehearsal extends Event {
 	}
 	
 	public void setIncome(int income) {
+		saveChange();
 		rent = income;
 	}
 
 	@Override
 	public String toString() {
 		return super.toString() + " Rent: " + rent;
+	}
+
+	public void saveChange() {
+		changeHist.add(new Rehearsal(this));	
 	}
 }

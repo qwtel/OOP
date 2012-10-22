@@ -27,16 +27,8 @@ public class Band {
 	 * Sends notification to musicians.
 	 */
 	public void addEvent(Event e) {
-		boolean confirmation = true;
-
-		for(Musician m : getMusicians()) {
-			EventResponse ep = m.getResponse(new EventProposal(e, "new"));
-			confirmation = confirmation && ep.getDecision();
-		}
-
-		if(confirmation) {
-			events.add(e);
-        }
+		events.add(e);
+		informMusicians(new EventProposal(e, "new"));
 	}
 	
     public void changeEventDate(Event e, Date date) {
@@ -72,6 +64,26 @@ public class Band {
 	public void informMusicians(EventProposal e) {
 		for(Musician m : getMusicians()) {
 			m.eventNotification(e);
+		}
+	}
+	/*
+	 * Gets, if possible, the response of every participating Musician on 
+	 * a specific Event. If all musicians agree on an event, there is a positive command
+	 * line output. If they disagree, there is a negative command line output.
+	 */
+	public void getMusiciansResponse(Event e){
+		boolean confirmation = true;
+
+		for(Musician m : getMusicians()) {
+			EventResponse ep = m.getResponse(e);
+			confirmation = confirmation && ep.getDecision();
+		}
+
+		if(confirmation) {
+			System.out.println("The musicians agree!");
+        }
+		else {
+			System.out.println("The musicians disagree!");
 		}
 	}
 
