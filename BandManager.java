@@ -20,31 +20,55 @@ public class BandManager {
 		bands.remove(band);
 	}
 
-	/**
-	 * TODO
-	 */
-	public Collection<Musician> getMusicians() {
-		return new HashSet<Musician>();
+    public Set<Band> getBands() {
+        return getBands(null);
+    }
+
+    public Set<Band> getBands(Date d) {
+        return bands.getAt(d);
+    }
+
+    /**
+     * Get all musicians in all bands.
+     */
+	public Collection<Musician> getMusicians(Date d) {
+		Set<Musician> res = new HashSet<Musician>();
+        for(Band b : getBands(d)) {
+            res.addAll(b.getMusicians(d));
+        }
+        return res;
 	}
 
-	/**
-	 * TODO
-	 */
-	public Collection<Song> getSongs() {
-		return new HashSet<Song>();
+    /**
+     * Get a complete collection of all songs.
+     */
+	public Collection<Song> getSongs(Date d) {
+		Set<Song> res = new HashSet<Song>();
+        for(Band b : getBands(d)) {
+            res.addAll(b.getSongs(d));
+        }
+        return res;
 	}
 
-	/**
-	 * TODO
-	 */
-	public Collection<Event> getEvents() {
-		return new ArrayList<Event>();
+    /**
+     * Get the events of all bands.
+     */
+	public Collection<Event> getEvents(Date from, Date to) {
+		Set<Event> res = new HashSet<Event>();
+        for(Band b : getBands(null)) {
+            res.addAll(b.getEvents(from, to));
+        }
+        return res;
 	}
 
-	/**
-	 * TODO
-	 */
-	public int getBalance() {
-		return 0;
+    /**
+     * Get the balance over all bands from-to.
+     */
+	public int getBalance(Date from, Date to) {
+		int res = 0;
+        for(Band b : getBands(null)) {
+            res += b.getBalance(from, to);
+        }
+        return res;
 	}
 }
