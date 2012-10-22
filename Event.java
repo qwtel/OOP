@@ -105,6 +105,19 @@ public abstract class Event {
 	}
 	
 	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Event) {
+			if(location.equals(((Event) o).getLocation())) {
+				if(date.equals(((Event) o).getDate())) {
+					if(duration == (((Event) o).getDuration())) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	@Override
 	public String toString() {
 		return date.toString()+": Ort: "+location+" Dauer: "+duration;
 	}

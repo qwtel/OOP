@@ -34,8 +34,10 @@ public class Gig extends Event {
 		changeHist.add(new Gig(temp));	
 	}
 	
-	public boolean equals(Gig i){
-		
-		return true;
+	public boolean equals(Object o) {
+		super.equals(o);
+		if(gage == (((Gig) o).getIncome()))
+			return true;
+		return false;
 	}
 }

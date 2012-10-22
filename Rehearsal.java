@@ -34,4 +34,11 @@ public class Rehearsal extends Event {
 	public void saveChange() {
 		changeHist.add(new Rehearsal(this));	
 	}
+	@Override
+	public boolean equals(Object o) {
+		super.equals(o);
+		if(rent == -(((Rehearsal) o).getIncome()))
+			return true;
+		return true;
+	}
 }
