@@ -74,6 +74,10 @@ public class Musician {
 	public void eventNotification(EventProposal e) {
 		proposals.add(e);
 	}
+	
+	public List<EventProposal> getProposals() {
+		return proposals;
+	}
 
 	@Override
 	public String toString() {

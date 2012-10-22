@@ -23,4 +23,17 @@ public class EventProposal {
 	public String getStatus() {
 		return status;
 	}
+	
+	public String toString(){
+		return e.toString() + "status: " + status;
+	}
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof EventProposal) {
+			if(getEvent().equals(((EventProposal) o).getEvent()) && getStatus().equals(((EventProposal) o).getStatus()))
+				return true;
+		}
+		return false;
+	}
+
 }

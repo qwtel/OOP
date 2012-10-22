@@ -251,6 +251,19 @@ public class Test {
         System.out.printf("Test "+ i +" :");
         band.getMusiciansResponse(gig1);
         
+        /*
+         * Test 16
+         * tests if musician get notifications for new, changed or removed Events
+         */
+		List<EventProposal> expectedResult16 = new ArrayList<EventProposal>(Arrays.asList(
+				new EventProposal[]{new EventProposal(gig1, "new"), new EventProposal(gig2, "new"),
+						new EventProposal(gig3, "new"), new EventProposal(rehearsal1, "new")
+				, new EventProposal(rehearsal2, "new"), new EventProposal(rehearsal3, "new"),
+				new EventProposal(gig1change, "removed")} 
+			));
+		List<EventProposal> result16 = musician1.getProposals();
+		doTest(expectedResult16, result16);
+        
 	}
 
 	private static int i = 0;
