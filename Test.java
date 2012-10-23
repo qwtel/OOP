@@ -5,7 +5,7 @@ import java.util.*;
  * @author Johannes Deml, Michael Ion, Florian Klampfer 
  */
 public class Test {
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Date a1 = new UniqueDate();
 		Date a = new UniqueDate();
 
@@ -153,18 +153,16 @@ public class Test {
 		 * Checks changeHist functionality in Event
 		 * Michi
 		 */
-		
 		Gig expectedResult9 = new Gig(gig1); 
 		gig1.setLocation("Stadttheater");
 		doTest(expectedResult9, (Gig)gig1.getChangeHist().get(0));
-		
 		
 		/*
 		 * Test 10
 		 * Checks functionality of deletedEvents list
 		 */
 		List<Event> expectedResult10 = new ArrayList<Event>(Arrays.asList(
-				new Event[]{gig1}));
+			new Event[]{gig1}));
 		band.removeEvent(gig1);
 		doTest(expectedResult10, band.getDeletedEvents());
 
@@ -201,7 +199,7 @@ public class Test {
 		 * (song1 and song3) See Test1.
 		 */
 		Set<Song> expectedResult11 = new HashSet<Song>(Arrays.asList(
-				new Song[]{song5, song6, song1, song3}
+			new Song[]{song5, song6, song1, song3}
 		));
 		Set<Song> result11 = manager.getSongs();
 		doTest(expectedResult11, result11);
@@ -215,7 +213,7 @@ public class Test {
 		band.markPrimary(musician3);
 
 		Set<Song> expectedResult12 = new HashSet<Song>(Arrays.asList(
-				new Song[]{song5, song6}
+			new Song[]{song5, song6}
 		));
 		Set<Song> result12 = manager.getSongs();
 		doTest(expectedResult12, result12);
@@ -230,7 +228,7 @@ public class Test {
 		 * Test 13
 		 */
 		Set<Musician> expectedResult13 = new HashSet<Musician>(Arrays.asList(
-				new Musician[]{musician1, musician2, musician4}
+			new Musician[]{musician1, musician2, musician4}
 		));
 		Set<Musician> result13 = manager.getMusicians();
 		doTest(expectedResult13, result13);
@@ -254,9 +252,6 @@ public class Test {
 		Boolean result15 = band.getMusiciansResponse(gig1);
 		doTest(expectedResult15, result15);
 
-        System.out.println("For additional information see Test.java");
-        
-		
 		/*
 		 * Test 16
 		 * tests if musician get notifications for new, changed or removed Events
