@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * Used to inform musicians about new, changed or removed Events
  *

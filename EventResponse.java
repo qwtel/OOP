@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * Used to give musicians a possibility to response on a possible new Event date
  *

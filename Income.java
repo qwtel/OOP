@@ -7,13 +7,12 @@ import java.util.Date;
  * @version 1.2 - Oct 20, 2012
  * @since 1.2
  */
-public class Income implements IncomeInterface {
+public class Income extends Event {
 	private int income;
 	private Date date;
-
 	public Income(int income, Date date) {
+		super(date);
 		this.income = income;
-		this.date = date;
 	}
 
 	/**
@@ -42,5 +41,10 @@ public class Income implements IncomeInterface {
 	 */
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	@Override
+	public void saveChange() {
+		// TODO Auto-generated method stub
+		
 	}
 }

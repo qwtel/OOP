@@ -15,11 +15,14 @@ public abstract class Event {
 	 * Contains the change history of this Event.
 	 */
 	protected List<Event> changeHist;
+	public Event(Date date){
+		this.date=date;
+	}
 	
 	public Event(String location, Date date, int duration)
 	{
+		this(date);
 		this.location = location;
-		this.date = date;
 		this.duration = duration;
 		this.changeHist = new ArrayList<Event>();
 	}
@@ -117,9 +120,9 @@ public abstract class Event {
 		}
 		return false;
 	}
+
 	@Override
 	public String toString() {
 		return date.toString()+": Ort: "+location+" Dauer: "+duration;
 	}
-	
 }

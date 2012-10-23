@@ -271,6 +271,34 @@ public class Test {
 		List<EventProposal> result16 = musician1.getProposals();
 		doTest(expectedResult16, result16);
 
+		/*
+		 * Test 17
+		 * tests OtherIncome balance
+		 * Johannes
+		 */
+		Date date0 = new UniqueDate();
+		Date date1 = new UniqueDate();
+		Date date2 = new UniqueDate();
+		Date date3 = new UniqueDate();
+		Date date4 = new UniqueDate();
+		Date date5 = new UniqueDate();
+
+		band.addOtherIncome(new Income(300,date0));
+
+		// Im gestesteten Intervall
+		band.addOtherIncome(new Income(300,date1));
+		band.addOtherIncome(new Income(40,date2));
+		band.addOtherIncome(new Income(5,date3));
+
+		// Nicht im getesteten Intervall
+		band.addOtherIncome(new Income(-3000,date5));
+
+		Integer result17 = band.getBalanceOtherIncome(date1, date4);
+		Integer expectedResult17 = 345;
+		doTest(expectedResult17,result17);
+		
+
+		
 		
 		System.out.println("For additional information see Test.java");
 	}

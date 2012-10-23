@@ -11,14 +11,14 @@ public class Band {
 	private List<Event> events;
 	private List<Event> deletedEvents;
 	private AssociationStorage<Musician> musicians;
-	private ArrayList<Income> otherIncome;
+	private List<Event> otherIncome;
 
 	public Band(String name) {
 		this.name = name;
 
 		events = new ArrayList<Event>();
 		musicians = new AssociationStorage<Musician>();
-		otherIncome = new ArrayList<Income>();
+		otherIncome = new ArrayList<Event>();
 		deletedEvents = new ArrayList<Event>();
 	}
 	
@@ -29,6 +29,10 @@ public class Band {
 	public void addEvent(Event e) {
 		events.add(e);
 		informMusicians(new EventProposal(e, "new"));
+	}
+	public void addOtherIncome(Event i)
+	{
+		otherIncome.add(i);
 	}
 	
 	public void changeEventDate(Event e, Date date) {
@@ -135,7 +139,7 @@ public class Band {
 	 * Returns only the primary musicians.
 	 */
 	public Set<Musician> getMusicians(Date date) {
-		Set<Musician> res = new HashSet();
+		Set<Musician> res = new HashSet<Musician>();
 
 		for(Musician m : getAllMusicians(date)) {
 			MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
@@ -144,6 +148,20 @@ public class Band {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -177,15 +195,12 @@ public class Band {
 
 	/**
 	 * Returns all the songs at a given date as a set. 
-	 * Only those songs are listed, that could have been be played with the 
-	 * roster of the band at that date.
 	 *
 	 * @param date A past date.
 	 * @return The songs that all band members were able to play at the given
 	 *		 time.
 	 */
 	public Set<Song> getSongs(Date date) {
-		Set<Musician> roster = getMusicians(date); 
 		Set<Song> set = new HashSet<Song>();
 
 		for(Musician m : getMusicians(date)) {
@@ -220,7 +235,7 @@ public class Band {
 		}
 		return gigs;
 	}
-
+	
 	public List<Event> getGigs(Date from, Date to) {
 		return Event.filterFromTo(getGigs(), from, to);
 	}
@@ -238,7 +253,25 @@ public class Band {
 	public List<Event> getRehearsals(Date from, Date to) {
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
-
+	
+	public List<Event> getOtherIncome() {
+		return otherIncome;
+	}
+	
+	public List<Event> getOtherIncome(Date from, Date to) {
+		return Event.filterFromTo(otherIncome, from, to);
+	}
+	
+	public List<Event> getAllBills() {
+		List<Event> allIncome = new ArrayList<Event>(events);
+		allIncome.addAll(otherIncome);
+		return allIncome;
+	}
+	
+	public List<Event> getAllBills(Date from, Date to) {
+		return(Event.filterFromTo(getAllBills(), from, to));
+	}
+	
 	public int getBalance(List<Event> temp) {
 		int balance = 0;
 		for(Event e : temp) {
@@ -257,5 +290,13 @@ public class Band {
 
 	public int getBalanceRehearsals(Date from, Date to) {
 		return getBalance(getRehearsals(from,to));
+	}
+	
+	public int getBalanceOtherIncome(Date from, Date to) {
+		return getBalance(getOtherIncome(from,to));
+	}
+	
+	public int getBalanceAllBills(Date from, Date to) {
+		return getBalance(getAllBills(from,to));
 	}
 }
