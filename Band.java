@@ -35,26 +35,26 @@ public class Band {
 		otherIncome.add(i);
 	}
 	
-    public void changeEventDate(Event e, Date date) {
-    	events.remove(e);
-    	e.setDate(date);
-    	informMusicians(new EventProposal(e, "changed"));
-    	events.add(e);
-    }
-    
-    public void changeEventLocation(Event e, String location) {
-    	events.remove(e);
-    	e.setLocation(location);
-    	informMusicians(new EventProposal(e, "changed"));
-    	events.add(e);
-    }
-    
-    public void changeEventDuration(Event e, int duration) {
-    	events.remove(e);
-    	e.setDuration(duration);
-    	informMusicians(new EventProposal(e, "changed"));
-    	events.add(e);
-    }
+	public void changeEventDate(Event e, Date date) {
+		events.remove(e);
+		e.setDate(date);
+		informMusicians(new EventProposal(e, "changed"));
+		events.add(e);
+	}
+	
+	public void changeEventLocation(Event e, String location) {
+		events.remove(e);
+		e.setLocation(location);
+		informMusicians(new EventProposal(e, "changed"));
+		events.add(e);
+	}
+	
+	public void changeEventDuration(Event e, int duration) {
+		events.remove(e);
+		e.setDuration(duration);
+		informMusicians(new EventProposal(e, "changed"));
+		events.add(e);
+	}
 	
 	public void removeEvent(Event e) {
 		deletedEvents.add(e);
@@ -70,12 +70,13 @@ public class Band {
 			m.eventNotification(e);
 		}
 	}
+
 	/*
 	 * Gets, if possible, the response of every participating Musician on 
 	 * a specific Event. If all musicians agree on an event, there is a positive command
 	 * line output. If they disagree, there is a negative command line output.
 	 */
-	public void getMusiciansResponse(Event e){
+	public boolean getMusiciansResponse(Event e) {
 		boolean confirmation = true;
 
 		for(Musician m : getMusicians()) {
@@ -83,12 +84,7 @@ public class Band {
 			confirmation = confirmation && ep.getDecision();
 		}
 
-		if(confirmation) {
-			System.out.println("The musicians agree!");
-        }
-		else {
-			System.out.println("The musicians disagree!");
-		}
+		return confirmation;
 	}
 
 	/**
@@ -272,8 +268,7 @@ public class Band {
 		return allIncome;
 	}
 	
-	public List<Event> getAllBills(Date from, Date to)
-	{
+	public List<Event> getAllBills(Date from, Date to) {
 		return(Event.filterFromTo(getAllBills(), from, to));
 	}
 	

@@ -121,9 +121,9 @@ public abstract class Event {
 		}
 		return false;
 	}
+
 	@Override
 	public String toString() {
 		return date.toString()+": Ort: "+location+" Dauer: "+duration;
 	}
-	
 }

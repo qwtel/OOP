@@ -21,7 +21,7 @@ public class Test {
 		Gig gig1change = new Gig("Stadttheater", a, 3500, 120);
 		Rehearsal rehearsal1 = new Rehearsal("Mamas Keller", a, 1750, 50);
 
-		Band band = new Band("A Drop In The Sea");
+		Band band = new Band("The Lazy Programmers");
 
 		band.addMusician(musician1);
 
@@ -35,7 +35,7 @@ public class Test {
 
 		band.addSong(song1);
 		band.addEvent(gig1);
-		UniqueDate.sleep(); // for side effects
+		UniqueDate.sleep();
 
 		band.addSong(song2);
 		Date b0 = new UniqueDate();
@@ -143,11 +143,13 @@ public class Test {
 		Integer result8 = band.getBalanceGigs(a1, b1);
 		doTest(expectedResult8, result8);
 		
-        /*
-         * Aufgabe 2
-         *
+		/*
+		 * AUFGABE 2
+		 * =========
+		 */
+
+		/*
 		 * Test 9
-		 * 
 		 * Checks changeHist functionality in Event
 		 * Michi
 		 */
@@ -159,7 +161,6 @@ public class Test {
 		
 		/*
 		 * Test 10
-		 * 
 		 * Checks functionality of deletedEvents list
 		 */
 		List<Event> expectedResult10 = new ArrayList<Event>(Arrays.asList(
@@ -190,7 +191,7 @@ public class Test {
 
 		/*
 		 * Add a guy to band1. Since he in not primary, he should not affect
-		 * that band1 is able to play song1 and song2.
+		 * that band1 is able to play song1 and song2. (See test 12)
 		 */
 		band.addMusician(musician3, false);
 
@@ -202,14 +203,13 @@ public class Test {
 		Set<Song> expectedResult11 = new HashSet<Song>(Arrays.asList(
 				new Song[]{song5, song6, song1, song3}
 		));
-
 		Set<Song> result11 = manager.getSongs();
 		doTest(expectedResult11, result11);
 
 		/*
 		 * Test 12
 		 * Now we mark musician3 as primary. This means that band1 is no longer 
-		 * albe play song1 and song2 since not all primary members have 
+		 * able to play song1 and song2 since not all primary members have 
 		 * them in their repository.
 		 */
 		band.markPrimary(musician3);
@@ -217,56 +217,63 @@ public class Test {
 		Set<Song> expectedResult12 = new HashSet<Song>(Arrays.asList(
 				new Song[]{song5, song6}
 		));
-
 		Set<Song> result12 = manager.getSongs();
 		doTest(expectedResult12, result12);
+
+		/*
+		 * Marking musician3 secondary again should remove him from the list 
+		 * of musicians returned by getMusicians()
+		 */
+		band.markSecondary(musician3);
 
 		/*
 		 * Test 13
 		 */
 		Set<Musician> expectedResult13 = new HashSet<Musician>(Arrays.asList(
-				new Musician[]{}
-        ));
-		expectedResult13.addAll(band.getMusicians());
-
+				new Musician[]{musician1, musician2, musician4}
+		));
 		Set<Musician> result13 = manager.getMusicians();
 		doTest(expectedResult13, result13);
-
-        System.out.println("For additional information see Test.java");
-        
-        /*
-         * Test 14 & Test 15
-         * 
-         * Tests the response functionality. At first, there is no response,
-         * so the command line output is negative. After the musicians added a
-         * positive response, the command line output is "The musicians agree!"
-         * Michi
-         */
-       
-        i++;
-        System.out.printf("Test "+ i +" :");
-        band.getMusiciansResponse(gig1);
+	
+		/*
+		 * Test 14 & Test 15
+		 * 
+		 * Tests the response functionality. At first, there is no response,
+		 * so the command line output is negative. After the musicians added a
+		 * positive response, the command line output is "The musicians agree!"
+		 */
+	   
+		Boolean expectedResult14 = false;
+		Boolean result14 = band.getMusiciansResponse(gig1);
+		doTest(expectedResult14, result14);
+		
         for(Musician m : band.getMusicians()){
         	m.addResponse(gig1, true , "Ist genehmigt, ich hab Zeit!");
         }
-        i++;
-        System.out.printf("Test "+ i +" :");
-        band.getMusiciansResponse(gig1);
+		Boolean expectedResult15 = true;
+		Boolean result15 = band.getMusiciansResponse(gig1);
+		doTest(expectedResult15, result15);
+
+        System.out.println("For additional information see Test.java");
         
-        /*
-         * Test 16
-         * tests if musician get notifications for new, changed or removed Events
-         * Michi
-         */
+		
+		/*
+		 * Test 16
+		 * tests if musician get notifications for new, changed or removed Events
+		 */
 		List<EventProposal> expectedResult16 = new ArrayList<EventProposal>(Arrays.asList(
-				new EventProposal[]{new EventProposal(gig1, "new"), new EventProposal(gig2, "new"),
-						new EventProposal(gig3, "new"), new EventProposal(rehearsal1, "new")
-				, new EventProposal(rehearsal2, "new"), new EventProposal(rehearsal3, "new"),
-				new EventProposal(gig1change, "removed")} 
-			));
+			new EventProposal[]{
+				new EventProposal(gig1, "new"),
+				new EventProposal(gig2, "new"),
+				new EventProposal(gig3, "new"),
+				new EventProposal(rehearsal1, "new"),
+				new EventProposal(rehearsal2, "new"),
+				new EventProposal(rehearsal3, "new"),
+				new EventProposal(gig1change, "removed")}
+		));
 		List<EventProposal> result16 = musician1.getProposals();
 		doTest(expectedResult16, result16);
-		
+
 		/*
 		 * Test 17
 		 * tests OtherIncome balance
@@ -278,17 +285,24 @@ public class Test {
 		Date date3 = new UniqueDate();
 		Date date4 = new UniqueDate();
 		Date date5 = new UniqueDate();
+
 		band.addOtherIncome(new Income(300,date0));
-		//Im gestesteten Intervall
+
+		// Im gestesteten Intervall
 		band.addOtherIncome(new Income(300,date1));
 		band.addOtherIncome(new Income(40,date2));
 		band.addOtherIncome(new Income(5,date3));
-		//Nicht im getesteten Intervall
+
+		// Nicht im getesteten Intervall
 		band.addOtherIncome(new Income(-3000,date5));
 		Integer result17 = band.getBalanceOtherIncome(date0, date4);
 		Integer expectedResult17 = 345;
 		doTest(expectedResult17,result17);
-        
+		
+
+		
+		
+		System.out.println("For additional information see Test.java");
 	}
 
 	private static int i = 0;
