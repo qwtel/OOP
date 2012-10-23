@@ -9,7 +9,6 @@ import java.util.Date;
  */
 public class Income extends Event {
 	private int income;
-	private Date date;
 	public Income(int income, Date date) {
 		super(date);
 		this.income = income;
@@ -27,20 +26,6 @@ public class Income extends Event {
 	 */
 	public void setIncome(int income) {
 		this.income = income;
-	}
-
-	/**
-	 * @return the date
-	 */
-	public Date getDate() {
-		return date;
-	}
-
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
 	}
 	@Override
 	public void saveChange() {

@@ -149,6 +149,7 @@ public class Test {
 		 * Test 9
 		 * 
 		 * Checks changeHist functionality in Event
+		 * Michi
 		 */
 		
 		Gig expectedResult9 = new Gig(gig1); 
@@ -239,6 +240,7 @@ public class Test {
          * Tests the response functionality. At first, there is no response,
          * so the command line output is negative. After the musicians added a
          * positive response, the command line output is "The musicians agree!"
+         * Michi
          */
        
         i++;
@@ -254,6 +256,7 @@ public class Test {
         /*
          * Test 16
          * tests if musician get notifications for new, changed or removed Events
+         * Michi
          */
 		List<EventProposal> expectedResult16 = new ArrayList<EventProposal>(Arrays.asList(
 				new EventProposal[]{new EventProposal(gig1, "new"), new EventProposal(gig2, "new"),
@@ -282,7 +285,7 @@ public class Test {
 		band.addOtherIncome(new Income(5,date3));
 		//Nicht im getesteten Intervall
 		band.addOtherIncome(new Income(-3000,date5));
-		Integer result17 = band.getBalanceOtherIncome(date1, date4);
+		Integer result17 = band.getBalanceOtherIncome(date0, date4);
 		Integer expectedResult17 = 345;
 		doTest(expectedResult17,result17);
         

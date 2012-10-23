@@ -15,7 +15,8 @@ public abstract class Event {
 	 * Contains the change history of this Event.
 	 */
 	protected List<Event> changeHist;
-	public Event(Date date){
+	
+	public Event(Date date) {
 		this.date=date;
 	}
 	
