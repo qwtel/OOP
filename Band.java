@@ -22,48 +22,72 @@ public class Band {
 		deletedEvents = new ArrayList<Event>();
 	}
 	
-	/*
-	 * Methods to add, change and remove Events.
-	 * Sends notification to musicians.
+	/**
+	 * @param e an instance of a subclass of Event
+	 * Adds e to events and informs all musicians with a new
+	 * EventProposal
 	 */
 	public void addEvent(Event e) {
 		events.add(e);
 		informMusicians(new EventProposal(e, "new"));
 	}
+	
 	public void addOtherIncome(Event i)
 	{
 		otherIncome.add(i);
 	}
-	
+	/**
+	 * @param e an instance of a subclass of Event
+	 * e must be in events
+	 * changes Date in e and informs all musicians with a changed
+	 * EventProposal
+	 */
 	public void changeEventDate(Event e, Date date) {
 		events.remove(e);
 		e.setDate(date);
 		informMusicians(new EventProposal(e, "changed"));
 		events.add(e);
 	}
-	
+	/**
+	 * @param e an instance of a subclass of Event
+	 * e must be in events
+	 * changes location in e and informs all musicians with a changed
+	 * EventProposal
+	 */
 	public void changeEventLocation(Event e, String location) {
 		events.remove(e);
 		e.setLocation(location);
 		informMusicians(new EventProposal(e, "changed"));
 		events.add(e);
 	}
-	
+	/**
+	 * @param e an instance of a subclass of Event
+	 * e must be in events
+	 * changes duration in e and informs all musicians with a changed
+	 * EventProposal
+	 */	
 	public void changeEventDuration(Event e, int duration) {
 		events.remove(e);
 		e.setDuration(duration);
 		informMusicians(new EventProposal(e, "changed"));
 		events.add(e);
 	}
-	
+	/**
+	 * @param e an instance of a subclass of Event
+	 * e must be in events
+	 * removes e and informs all musicians with a removed
+	 * EventProposal
+	 */
 	public void removeEvent(Event e) {
 		deletedEvents.add(e);
 		informMusicians(new EventProposal(e, "removed"));
 		events.remove(e);
 	}
 	
-	/*
-	 * Informs Musicians about changed, new or removed Events
+	/**
+	 * @param e an Event Proposal on an Event with a corresponding status
+	 * which must be "new", "changed" or "removed"
+	 * Sends e to every musician stored in musicians
 	 */
 	public void informMusicians(EventProposal e) {
 		for(Musician m : getMusicians()) {
@@ -71,7 +95,7 @@ public class Band {
 		}
 	}
 
-	/*
+	/**
 	 * Gets, if possible, the response of every participating Musician on 
 	 * a specific Event. If all musicians agree on an event, there is a positive command
 	 * line output. If they disagree, there is a negative command line output.
