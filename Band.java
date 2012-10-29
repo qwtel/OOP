@@ -31,11 +31,17 @@ public class Band {
 		events.add(e);
 		informMusicians(new EventProposal(e, "new"));
 	}
-	
+	/**
+	 * @param i
+	 * i must be an instance of Income
+	 */
 	public void addOtherIncome(Event i) {
 		otherIncome.add(i);
 	}
-
+	/*
+	 * BAD: No method removeOtherIncome
+	 */
+	
 	/**
 	 * @param e an instance of a subclass of Event
 	 * e must be in events
@@ -289,11 +295,18 @@ public class Band {
 
 		return set;
 	}
-
+	/*
+	 * NOTE: Class got really huge. It would have been a good Idea to 
+	 * pull out some of the Code and put it in an other Class, just for
+	 * a better legibility. 
+	 */
 	public List<Event> getEvents() {
 		return events;
 	}
-
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 */
 	public List<Event> getEvents(Date from, Date to) {
 		return Event.filterFromTo(events, from, to);
 	}
@@ -311,7 +324,10 @@ public class Band {
 		}
 		return gigs;
 	}
-	
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 */	
 	public List<Event> getGigs(Date from, Date to) {
 		return Event.filterFromTo(getGigs(), from, to);
 	}
@@ -325,7 +341,10 @@ public class Band {
 		}
 		return rehearsals;
 	}
-
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 */
 	public List<Event> getRehearsals(Date from, Date to) {
 		return Event.filterFromTo(getRehearsals(), from, to);
 	}
@@ -333,7 +352,10 @@ public class Band {
 	public List<Event> getOtherIncome() {
 		return otherIncome;
 	}
-	
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 */	
 	public List<Event> getOtherIncome(Date from, Date to) {
 		return Event.filterFromTo(otherIncome, from, to);
 	}
@@ -343,14 +365,18 @@ public class Band {
 		allIncome.addAll(otherIncome);
 		return allIncome;
 	}
-	
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 */	
 	public List<Event> getAllBills(Date from, Date to) {
 		return(Event.filterFromTo(getAllBills(), from, to));
 	}
 	
 	/*
-	 * GOOD: 
-	 * TODO @Johannes: Let the world know just how awesome dynamic binding is ;)
+	 * GOOD: We're able to do all the balancing stuff
+	 * with Lists of Events (Gigs, Rehearsals and Income)
+	 * which all have the methods getDate and getIncome
 	 */
 	public int getBalance(List<Event> temp) {
 		int balance = 0;
@@ -359,23 +385,49 @@ public class Band {
 		}
 		return balance;
 	}
-
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 * @return the balance (sum) of all Events within
+	 * two Dates Either positive or negative Integer
+	 */
 	public int getBalance(Date from, Date to) {
 		return getBalance(getEvents(from, to));
 	}	
-
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 * @return the balance (sum) of all Gigs within
+	 * two Dates Either positive or negative Integer
+	 */
 	public int getBalanceGigs(Date from, Date to) {
 		return getBalance(getGigs(from,to));
 	}
-
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 * @return the balance (sum) of all Rehearsals within
+	 * two Dates Either positive or negative Integer
+	 */
 	public int getBalanceRehearsals(Date from, Date to) {
 		return getBalance(getRehearsals(from,to));
 	}
-	
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 * @return the balance (sum) of all other Income
+	 * (saved in EventList OtherIncome) within
+	 * two Dates Either positive or negative Integer
+	 */
 	public int getBalanceOtherIncome(Date from, Date to) {
 		return getBalance(getOtherIncome(from,to));
 	}
-	
+	/**
+	 * NTOE: The Income from Events at the exact Date 
+	 * from and to are not included
+	 * @return the balance (sum) of all Income and outcome
+	 *  within two Dates Either positive or negative Integer
+	 */
 	public int getBalanceAllBills(Date from, Date to) {
 		return getBalance(getAllBills(from,to));
 	}

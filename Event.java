@@ -18,7 +18,7 @@ public abstract class Event {
 	protected List<Event> changeHist;
 	
 	/**
-	 * 
+	 * GOOD: Exists in all Subclasses
 	 * @param date
 	 */
 	public Event(Date date) {

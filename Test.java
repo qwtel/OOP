@@ -31,7 +31,7 @@ public class Test {
 		band.addMusician(musician1);
 
 		/*
-		 * Only musician2 can play this song. It should never be returned by
+		 * NOTE: Only musician2 can play this song. It should never be returned by
 		 * getSongs
 		 */
 		Song song4 = new Song("Nobody wants to play this song", 350);
@@ -287,12 +287,12 @@ public class Test {
 
 		band.addOtherIncome(new Income(300,date0));
 
-		// Im gestesteten Intervall
+		// In tested interval
 		band.addOtherIncome(new Income(300,date1));
 		band.addOtherIncome(new Income(40,date2));
 		band.addOtherIncome(new Income(5,date3));
 
-		// Nicht im getesteten Intervall
+		// not in tested interval
 		band.addOtherIncome(new Income(-3000,date5));
 		Integer result17 = band.getBalanceOtherIncome(date0, date4);
 		Integer expectedResult17 = 345;
