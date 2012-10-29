@@ -31,7 +31,9 @@ public class Gig extends Event {
 		saveChange();
 		gage = income;
 	}
-	
+	/**
+	 * adds a duplicate of this Gig to changeHist
+	 */
 	public void saveChange() {
 		Gig temp = new Gig(getLocation(), getDate(), getDuration(), getIncome());
 		changeHist.add(new Gig(temp));	

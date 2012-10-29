@@ -65,7 +65,12 @@ public abstract class Event {
 		saveChange();
 		this.duration = duration;
 	}
-
+	/**
+	 * provides a method to add a duplicate of this Event
+	 * to changeHist
+	 * 
+	 * BAD: could be fully implemented, saving code in all subclasses
+	 */
 	public abstract void saveChange();
 
 	/**

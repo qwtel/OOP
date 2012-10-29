@@ -33,7 +33,9 @@ public class Rehearsal extends Event {
 	public String toString() {
 		return super.toString() + " Rent: " + rent;
 	}
-
+	/**
+	 * adds a duplicate of this Rehearsal to changeHist
+	 */
 	public void saveChange() {
 		changeHist.add(new Rehearsal(this));	
 	}
