@@ -304,7 +304,7 @@ public class Band {
 		return events;
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 */
 	public List<Event> getEvents(Date from, Date to) {
@@ -325,7 +325,7 @@ public class Band {
 		return gigs;
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 */	
 	public List<Event> getGigs(Date from, Date to) {
@@ -342,7 +342,7 @@ public class Band {
 		return rehearsals;
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 */
 	public List<Event> getRehearsals(Date from, Date to) {
@@ -353,7 +353,7 @@ public class Band {
 		return otherIncome;
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 */	
 	public List<Event> getOtherIncome(Date from, Date to) {
@@ -366,7 +366,7 @@ public class Band {
 		return allIncome;
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 */	
 	public List<Event> getAllBills(Date from, Date to) {
@@ -386,7 +386,7 @@ public class Band {
 		return balance;
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 * @return the balance (sum) of all Events within
 	 * two Dates Either positive or negative Integer
@@ -395,7 +395,7 @@ public class Band {
 		return getBalance(getEvents(from, to));
 	}	
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 * @return the balance (sum) of all Gigs within
 	 * two Dates Either positive or negative Integer
@@ -404,7 +404,7 @@ public class Band {
 		return getBalance(getGigs(from,to));
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 * @return the balance (sum) of all Rehearsals within
 	 * two Dates Either positive or negative Integer
@@ -413,7 +413,7 @@ public class Band {
 		return getBalance(getRehearsals(from,to));
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 * @return the balance (sum) of all other Income
 	 * (saved in EventList OtherIncome) within
@@ -423,7 +423,7 @@ public class Band {
 		return getBalance(getOtherIncome(from,to));
 	}
 	/**
-	 * NTOE: The Income from Events at the exact Date 
+	 * NOTE: The Income from Events at the exact Date 
 	 * from and to are not included
 	 * @return the balance (sum) of all Income and outcome
 	 *  within two Dates Either positive or negative Integer
