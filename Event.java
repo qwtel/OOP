@@ -18,7 +18,7 @@ public abstract class Event {
 	protected List<Event> changeHist;
 	
 	/**
-	 * ERROR: Not a valid constructor. I don't even
+	 *
 	 */
 	public Event(Date date) {
 		this.date=date;
@@ -44,7 +44,9 @@ public abstract class Event {
 		this.duration = e.getDuration();
 		this.changeHist = new ArrayList<Event>();
 	}
-
+	/**
+	 * @return the location of this Event
+	 */
 	public String getLocation() {
 		return location;
 	}
@@ -53,7 +55,9 @@ public abstract class Event {
 		saveChange();
 		this.location = location;
 	}
-
+	/**
+	 * @return the date of this Event
+	 */
 	public Date getDate() {
 		return date;
 	}
@@ -62,7 +66,9 @@ public abstract class Event {
 		saveChange();
 		this.date = date;
 	}
-
+	/**
+	 * @return the duration of this Event
+	 */
 	public int getDuration() {
 		return duration;
 	}
