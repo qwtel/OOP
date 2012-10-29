@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Abstract Class for Appearances and Reahearsals
+ * Abstract Class which stores a location, a date and duration for an Event.
  * @param location: the location of the Event
  * @param date: the date of the Event
  * @param duration: the duration of the Event 
@@ -17,6 +17,9 @@ public abstract class Event {
 	 */
 	protected List<Event> changeHist;
 	
+	/**
+	 * ERROR: Not a valid constructor. I don't even
+	 */
 	public Event(Date date) {
 		this.date=date;
 	}
@@ -31,7 +34,10 @@ public abstract class Event {
 		this.duration = duration;
 		this.changeHist = new ArrayList<Event>();
 	}
-	
+	/**
+	 * Creates a new Event as a clone of a given Event
+	 * @param e the basis for the new Event
+	 */
 	public Event(Event e) {
 		this.location = e.getLocation();
 		this.date = e.getDate();
@@ -144,7 +150,9 @@ public abstract class Event {
 		}
 		return false;
 	}
-
+	/**
+	 * @param return a String consisting of the contents of this Event
+	 */
 	@Override
 	public String toString() {
 		return date.toString()+": Ort: "+location+" Dauer: "+duration;
