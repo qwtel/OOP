@@ -18,7 +18,8 @@ public abstract class Event {
 	protected List<Event> changeHist;
 	
 	/**
-	 *
+	 * 
+	 * @param date
 	 */
 	public Event(Date date) {
 		this.date=date;
@@ -50,7 +51,10 @@ public abstract class Event {
 	public String getLocation() {
 		return location;
 	}
-
+	/**
+	 * Changes the location of this Event and saves a copy of the unchanged Event.
+	 * @param location the new location of the event
+	 */
 	public void setLocation(String location) {
 		saveChange();
 		this.location = location;
@@ -61,7 +65,10 @@ public abstract class Event {
 	public Date getDate() {
 		return date;
 	}
-
+	/**
+	 * Changes the date of this Event and saves a copy of the unchanged Event.
+	 * @param location the new date of the event
+	 */
 	public void setDate(Date date) {
 		saveChange();
 		this.date = date;
@@ -72,7 +79,10 @@ public abstract class Event {
 	public int getDuration() {
 		return duration;
 	}
-
+	/**
+	 * Changes the duration of this Event and saves a copy of the unchanged Event.
+	 * @param location the new duration of the event; must be a positive value
+	 */
 	public void setDuration(int duration) {
 		saveChange();
 		this.duration = duration;
@@ -86,7 +96,7 @@ public abstract class Event {
 	public abstract void saveChange();
 
 	/**
-	 * Returns list with all changes
+	 * Returns a copy of changeHist consisting of all changed Events
 	 */
 	public List<Event> getChangeHist() {
 		List<Event> temp = new ArrayList<Event>();
@@ -108,9 +118,9 @@ public abstract class Event {
 	 * Creates a List consisting of events which occurred during a given time frame.
 	 * If one date is missing (= null), the other one is the indicator for validity.
 	 * If both are missing, it returns the whole list.
-	 *
+	 * 
 	 * @param events List of Events
-	 * @param from The beginning date of the specified time frame
+	 * @param from The beginning date of the specified time frame; must be older than to
 	 * @param to The end date of the specified time frame.
 	 * @return list of events inside the time frame
 	 *
