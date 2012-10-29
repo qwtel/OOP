@@ -2,24 +2,28 @@ import java.util.*;
 
 /**
  * Abstract Class for Appearances and Reahearsals
- *
+ * @param location: the location of the Event
+ * @param date: the date of the Event
+ * @param duration: the duration of the Event 
  * @author Johannes Deml, Michael Ion
  */
 public abstract class Event {
-	
-	private String location;
+	String location;
 	private Date date;
 	private int duration;
 
 	/**
-	 * Contains the change history of this Event.
+	 * A list containing all changes of this Event
 	 */
 	protected List<Event> changeHist;
 	
 	public Event(Date date) {
 		this.date=date;
 	}
-	
+	/**
+	 * Creates a new Event with the specified values
+	 * @param duration: must be a positive value
+	 */
 	public Event(String location, Date date, int duration)
 	{
 		this(date);
@@ -74,8 +78,14 @@ public abstract class Event {
 		}
 		return temp;
 	}
-
+	/**
+	 * GOOD: demands from the subclass an implementation of a method to return
+	 * income (calls in a context where event is used -e.g. Data Structures- the
+	 * subclasses' method through dynamic binding, making it easier to gather the amount
+	 * of incomes from all events)
+	 */
 	public abstract int getIncome();
+	//BAD: an abstract method setIncome would be a good idea as it goes hand in hand with getIncome
 
 	/**
 	 * Creates a List consisting of events which occurred during a given time frame.
@@ -83,7 +93,7 @@ public abstract class Event {
 	 * If both are missing, it returns the whole list.
 	 *
 	 * @param events List of Events
-	 * @param from The beginning date of the specified time frame.
+	 * @param from The beginning date of the specified time frame
 	 * @param to The end date of the specified time frame.
 	 * @return list of events inside the time frame
 	 *
@@ -107,7 +117,15 @@ public abstract class Event {
 		}
 		return res;
 	}
-	
+	/**
+	 * Checks if an object is equal to this event;
+	 * returns true if the object is an instance of Event and
+	 * location, date and duration are equal.
+	 * 
+	 * GOOD: this method is called from the equals functions in all
+	 * subclasses, which results in less code (because the subclasses don't
+	 * have to check all variables)
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Event) {
