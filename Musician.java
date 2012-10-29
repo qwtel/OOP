@@ -35,18 +35,30 @@ public class Musician {
 		return instrument;
 	}
 
+	/**
+	 * @see AssociationStorage
+	 */
 	public void addSong(Song song) {
 		songs.add(song);
 	}
 
+	/**
+	 * @see AssociationStorage
+	 */
 	public void removeSong(Song song) {
 		songs.remove(song);
 	}
 
+	/**
+	 * @see AssociationStorage
+	 */
 	public Set<Song> getSongs() {
 		return songs.getAt(null);
 	}
 
+	/**
+	 * @see AssociationStorage
+	 */
 	public Set<Song> getSongs(Date date) {
 		return songs.getAt(date);
 	}

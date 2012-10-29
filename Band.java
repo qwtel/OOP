@@ -32,10 +32,10 @@ public class Band {
 		informMusicians(new EventProposal(e, "new"));
 	}
 	
-	public void addOtherIncome(Event i)
-	{
+	public void addOtherIncome(Event i) {
 		otherIncome.add(i);
 	}
+
 	/**
 	 * @param e an instance of a subclass of Event
 	 * e must be in events
@@ -48,6 +48,7 @@ public class Band {
 		informMusicians(new EventProposal(e, "changed"));
 		events.add(e);
 	}
+
 	/**
 	 * @param e an instance of a subclass of Event
 	 * e must be in events
@@ -60,6 +61,7 @@ public class Band {
 		informMusicians(new EventProposal(e, "changed"));
 		events.add(e);
 	}
+
 	/**
 	 * @param e an instance of a subclass of Event
 	 * e must be in events
@@ -72,6 +74,7 @@ public class Band {
 		informMusicians(new EventProposal(e, "changed"));
 		events.add(e);
 	}
+
 	/**
 	 * @param e an instance of a subclass of Event
 	 * e must be in events
@@ -112,7 +115,11 @@ public class Band {
 	}
 
 	/**
-	 * Adds a new primary musician to this band. (default)
+	 * Adds a new primary musician to this band. (postcondition)
+	 *
+	 * @see MusicianLogEntry
+	 * @param musician A Musician that hasn't been added to the band before
+	 *         (precondition).
 	 */
 	public void addMusician(Musician musician) {
 		musicians.add(musician, new MusicianLogEntry(true));
@@ -120,8 +127,11 @@ public class Band {
 
 	/**
 	 * Adds a musician with a given role (primary or secondary) to this band.
+	 *         (postcondition)
 	 *
-	 * @param musician The new musician.
+	 * @see MusicianLogEntry
+	 * @param musician A Musician that hasn't been added to the band before
+	 * (precondition).
 	 * @param isPrimary true for primary, false for secondary.
 	 */
 	public void addMusician(Musician musician, boolean isPrimary) {
@@ -129,7 +139,11 @@ public class Band {
 	}
 
 	/**
-	 * Marks a musician as primary in this band.
+	 * Marks a musician as primary in this band. (postcondition)
+	 *
+	 * @see MusicianLogEntry
+	 * @param musician A Musician that has been added to the band before
+	 *         (precondition).
 	 */
 	public void markPrimary(Musician m) {
  		MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
@@ -137,13 +151,24 @@ public class Band {
 	}
 
 	/**
-	 * Marks a musician as secondary in this band.
+	 * Marks a musician as secondary in this band. (postcondition)
+	 *
+	 * @see MusicianLogEntry
+	 * @param musician A Musician that has been added to the band before
+	 *         (precondition).
 	 */
 	public void markSecondary(Musician m) {
  		MusicianLogEntry meta = (MusicianLogEntry)musicians.getLogEntry(m);
 		meta.isPrimary = false;
 	}
 
+	/**
+	 * Removes a musician from the band.
+	 *
+	 * @see AssociationStorage
+	 * @param musician A Musician that has been added to the band before
+	 *         (precondition).
+	 */
 	public void removeMusician(Musician musician) {
 		musicians.remove(musician);
 	}
@@ -153,14 +178,22 @@ public class Band {
 	}
 
 	/**
-	 * Returns all musicians.
+	 * Returns all musicians to a given date.
+	 *
+	 * @param date A past date as Date object or null (precondition).
+	 * @return All musicians (primary and secondary) that were active at the
+	 *         given date. (postcondition)
 	 */
 	public Set<Musician> getAllMusicians(Date date) {
 		return musicians.getAt(date);
 	}
 
 	/**
-	 * Returns only the primary musicians.
+	 * Returns only the primary musicians. (postcondition)
+	 *
+	 * @param date A past date as Date object or null (precondition).
+	 * @return Only the primary musicians that were active at the given date.
+	 *         (postcondition)
 	 */
 	public Set<Musician> getMusicians(Date date) {
 		Set<Musician> res = new HashSet<Musician>();
@@ -189,7 +222,19 @@ public class Band {
 	}
 
 	/**
-	 * Adds a song to all currently active musicians.
+	 * Adds a song to all currently active musicians. (postcondition)
+	 *
+	 * ERROR: If the song is already known by any of the band members, its
+	 * LogEntry is replaced in the AssociationStorage. This should rather be
+	 * prevented by code than by contract, since a client wouldn't expect 
+	 * that a method like addSong could breaks something.
+	 *
+	 * NOTE: This method should probably be marked depricated since I only
+	 * implemented it so that some tests from the pervious version still work. 
+	 *
+	 * @see AssociationStorage
+	 * @param song A song, that is new to all currently active band member.
+	 *         Consider using addSong for individual Musicians instead.
 	 */
 	public void addSong(Song song) {
 		for(Musician m : getMusicians()) {
@@ -199,6 +244,13 @@ public class Band {
 
 	/**
 	 * Removes a song from all currently active musicians.
+	 *
+	 * NOTE: This forced me to write an additional if-statement in the remove
+	 * method to test if the element was actually stored in the 
+	 * AssociationStorage. This caused a NullPointerException. 
+	 * See comment above.
+	 *
+	 * @see AssociationStorage
 	 */
 	public void removeSong(Song song) {
 		for(Musician m : getMusicians()) {
@@ -220,9 +272,9 @@ public class Band {
 	/**
 	 * Returns all the songs at a given date as a set. 
 	 *
-	 * @param date A past date.
+	 * @param date A past date as Date object or null (precondition).
 	 * @return The songs that all band members were able to play at the given
-	 *		 time.
+	 *		 time. (postcondition)
 	 */
 	public Set<Song> getSongs(Date date) {
 		Set<Song> set = new HashSet<Song>();
@@ -296,6 +348,10 @@ public class Band {
 		return(Event.filterFromTo(getAllBills(), from, to));
 	}
 	
+	/*
+	 * GOOD: 
+	 * TODO @Johannes: Let the world know just how awesome dynamic binding is ;)
+	 */
 	public int getBalance(List<Event> temp) {
 		int balance = 0;
 		for(Event e : temp) {

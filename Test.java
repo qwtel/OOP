@@ -1,5 +1,10 @@
 import java.util.*;
 
+/*
+ * We couldn't find at least 5 BAD locations, because we are either too GOOD or
+ * too ignorant.
+ */
+
 /**
  * Quick and dirty test class
  * @author Johannes Deml, Michael Ion, Florian Klampfer 
