@@ -1,5 +1,6 @@
 /**
- * Used to give musicians a possibility to response on a possible new Event date
+ * A class which stores a decision in form of a boolean on an Event,
+ * with a corresponding message explaining that decision
  *
  * @author Michael Ion
  * @version 1.0
@@ -15,15 +16,21 @@ public class EventResponse {
 		this.decision = decision;
 		this.message = message;
 	}
-
+	/**
+	 * @return a reference on the Event
+	 */
 	public Event getEvent() {
 		return e;
 	}
-
+	/**
+	 * @return the decision on the Event in form of a boolean
+	 */
 	public boolean getDecision() {
 		return decision;
 	}
-
+	/**
+	 * @return a reference on the stored message
+	 */
 	public String getMessage() {
 		return message;
 	}
