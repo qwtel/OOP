@@ -8,4 +8,8 @@ public abstract class ClearBox extends AbstractBox {
 	public ClearBox(double width, double height){
 		super(width, height, '*', ' ' );
 	}
+
+	public double getRatio() {
+		return ratio;
+	}
 }
