@@ -9,15 +9,13 @@
 public class AbstractBox implements Pict {
 	private double height;
     private double width;
-    private double ratio;
 
-	private final char border;
-    private final char fill;
+	private char border;
+    private char fill;
 
 	public AbstractBox(double width, double height, char border, char fill) {
 		this.width = width;
 		this.height = height;
-		this.ratio = width/height;
 		this.border = border;
 		this.fill = fill;
 	}
@@ -30,28 +28,6 @@ public class AbstractBox implements Pict {
 	public void scale(double factor) {
 		width *= factor;
 		height *= factor;
-	}
-
-	/**
-	 * rounds up width and height for drawing
-	 */
-	@Override
-	public String toString() {
-		int tempWidth = (int) Math.ceil(width);
-		int tempHeight = (int) Math.ceil(height);
-		char[][] charArray = new char[tempWidth][tempHeight];
-
-		charArray = fillArray(charArray, tempWidth, tempHeight, fill);
-		charArray = drawBorder(charArray, tempWidth, tempHeight, border);
-		String boxString = new String();
-
-		for(int h=0; h<tempHeight; h++) {
-			for(int w=0; w<tempWidth; w++) {
-				boxString += charArray[w][h];
-			}
-			boxString+= "\n";
-		}
-		return boxString;
 	}
 
 	/**
@@ -95,32 +71,12 @@ public class AbstractBox implements Pict {
 		return charArray;
 	}
 
-   	//@Override
-   	//public boolean equals(Object o) {
-   	//	if(o instanceof Box) {
-   	//		if(width == ((Box) o).getWidth()) {
-   	//			if(height == ((Box) o).getHeight()) {
-   	//				if(ratio == ((Box) o).getRatio()) {
-   	//					if(toString().equals(((Box) o).toString())) {
-   	//						return true;
-   	//					}
-   	//				}
-   	//			}
-   	//		}
-   	//	}
-   	//	return false;
-   	//}
-
 	public double getHeight() {
 		return height;
 	}
 
 	public double getWidth() {
 		return width;
-	}
-
-	public double getRatio() {
-		return ratio;
 	}
 
 	public char getBorder() {
@@ -130,4 +86,40 @@ public class AbstractBox implements Pict {
 	public char getFill() {
 		return fill;
 	}
+
+	/**
+	 * rounds up width and height for drawing
+	 */
+	@Override
+	public String toString() {
+		int tempWidth = (int) Math.ceil(width);
+		int tempHeight = (int) Math.ceil(height);
+		char[][] charArray = new char[tempWidth][tempHeight];
+
+		charArray = fillArray(charArray, tempWidth, tempHeight, fill);
+		charArray = drawBorder(charArray, tempWidth, tempHeight, border);
+		String boxString = new String();
+
+		for(int h=0; h<tempHeight; h++) {
+			for(int w=0; w<tempWidth; w++) {
+				boxString += charArray[w][h];
+			}
+			boxString+= "\n";
+		}
+		return boxString;
+	}
+
+   	@Override
+   	public boolean equals(Object o) {
+   		if(o instanceof Box) {
+   			if(width == ((Box) o).getWidth()) {
+   				if(height == ((Box) o).getHeight()) {
+					if(toString().equals(((Box) o).toString())) {
+						return true;
+					}
+   				}
+   			}
+   		}
+   		return false;
+   	}
 }
