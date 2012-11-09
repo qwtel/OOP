@@ -1,5 +1,3 @@
-package task4;
-
 /**
  * Box
  * 
@@ -11,6 +9,7 @@ public class Box implements Pict {
 	private double height, width, ratio;
 	private final char border, fill;
 	private CharHandler borderChars = new CharHandler(true, new char[' ']);
+
 	public Box(double width, double height, char border, char fill) {
 		this.width = width;
 		this.height = height;
@@ -22,15 +21,16 @@ public class Box implements Pict {
 		this.fill = fill;
 	}
 	
-	@Override
 	/**
 	 * preCondition: factor is a number larger than zero
 	 * postCondition: ratio has to stay the same
 	 */
+	@Override
 	public void scale(double factor) {
 		width = width*factor;
 		height = height*factor;
 	}
+
 	/**
 	 * rounds up width and height for drawing
 	 */
@@ -50,15 +50,16 @@ public class Box implements Pict {
 		}
 		return boxString;
 	}
+
 	/**
 	 * HistoryConstraint: FillArray is never after drawBorder
 	 */
+
 	/**
 	 * 
 	 * @return charArray with all fields filled with char @param fill
 	 */
-	private char[][] fillArray(char[][] charArray,int tempWidth, int tempHeight, char fill)
-	{
+	private char[][] fillArray(char[][] charArray,int tempWidth, int tempHeight, char fill) {
 		for(int h=0; h<tempHeight; h++) {
 			for(int w=0; w<tempWidth; w++) {
 				charArray[w][h] = fill;
@@ -66,6 +67,7 @@ public class Box implements Pict {
 		}
 		return charArray;
 	}
+
 	/**
 	 * 
 	 * @return charArray with a one char-wide border. boderchar is @param border
@@ -82,6 +84,7 @@ public class Box implements Pict {
 		}
 		return charArray;
 	}
+
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Box) {
@@ -117,6 +120,4 @@ public class Box implements Pict {
 	public char getFill() {
 		return fill;
 	}
-	
-
 }

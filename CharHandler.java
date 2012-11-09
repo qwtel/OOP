@@ -1,4 +1,3 @@
-package task4;
 /**
  * CharHandler
  * 
@@ -25,6 +24,5 @@ public class CharHandler {
 		}
 		return isRestricted^inArray;
 	}
-	
 }
 

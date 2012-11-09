@@ -1,5 +1,3 @@
-package task4;
-
 /**
  * Test
  * 
@@ -9,7 +7,6 @@ package task4;
  * @version 1.4
  */
 public class Test {
-
 	public static void main(String[] args) {
 		System.out.println("Tests für die Typen Box, ClearBox, DarkBox und FreeBox\n");
 				
@@ -27,9 +24,10 @@ public class Test {
 		
 		
 		System.out.println("\n------------------------------------------------------" +
-						   "\nTests für die Typen Repeated<P> undScaled<P>\n");
+						   "\nTests für die Typen Repeated<P> und Scaled<P>\n");
 
 	}
+
 	private static int i = 0;
 	public static void doTest(Object expected, Object result) {
 		i++;
@@ -40,5 +38,4 @@ public class Test {
 			System.out.println("Test "+i+" failed");
 		}
 	}
-
 }
