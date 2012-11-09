@@ -47,16 +47,6 @@ public class AbstractBox implements Pict {
 				charArray[w][h] = fill;
 			}
 		}
-		return charArray;
-	}
-
-	/**
-	 * 
-	 * @return charArray with a one char-wide border. boderchar is @param border
-	 * All other fields are not changed
-	 */
-	private char[][] drawBorder(char[][] charArray, int tempWidth, 
-            int tempHeight, char border) {
 
 		for(int w=0; w<tempWidth; w++) {
 			charArray[w][0]= border;
@@ -97,7 +87,6 @@ public class AbstractBox implements Pict {
 		char[][] charArray = new char[tempWidth][tempHeight];
 
 		charArray = fillArray(charArray, tempWidth, tempHeight, fill);
-		charArray = drawBorder(charArray, tempWidth, tempHeight, border);
 		String boxString = new String();
 
 		for(int h=0; h<tempHeight; h++) {
