@@ -119,4 +119,14 @@ public abstract class AbstractBox implements Pict {
 	protected void setHeight(double height) {
     	this.height = height;
 	}
+
+   	@Override
+	public boolean equals(Object o) {
+		if (o == null) return false;
+		if (o == this) return true;
+
+		if (!(o instanceof AbstractBox)) return false;
+		AbstractBox other = (AbstractBox)o;
+		return (this.width == other.width) && (this.height == other.height);
+	}
 }

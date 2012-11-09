@@ -73,4 +73,14 @@ public class FreeBox extends AbstractBox {
 			}
 		}
 	}
+
+   	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o)) return false;
+
+		if (!(o instanceof FreeBox)) return false;
+		FreeBox other = (FreeBox)o;
+		// TODO: Implement this method
+		return false;
+	}
 }

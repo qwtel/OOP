@@ -81,18 +81,12 @@ public abstract class ClassicBox extends AbstractBox {
 		this.fill = fill;
 	}
 
-	// TODO
-   	//@Override
-   	//public boolean equals(Object o) {
-   	//	if(o instanceof Box) {
-   	//		if(width == ((Box) o).getWidth()) {
-   	//			if(height == ((Box) o).getHeight()) {
-   	//				if(toString().equals(((Box) o).toString())) {
-   	//					return true;
-   	//				}
-   	//			}
-   	//		}
-   	//	}
-   	//	return false;
-   	//}
+   	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o)) return false;
+
+		if (!(o instanceof ClassicBox)) return false;
+		ClassicBox other = (ClassicBox)o;
+		return (this.border == other.border) && (this.fill == other.fill);
+	}
 }
