@@ -7,8 +7,8 @@
  * @version 1.4
  */
 public class Test {
-	public static void main(String[] args) {
-		System.out.println("Tests für die Typen Box, ClearBox, DarkBox und FreeBox\n");
+	public static void main(String[] args) throws Exception {
+		System.out.println("Tests fï¿½r die Typen Box, ClearBox, DarkBox und FreeBox\n");
 				
 		/**
 		 * Test1
@@ -24,7 +24,7 @@ public class Test {
 		
 		
 		System.out.println("\n------------------------------------------------------" +
-						   "\nTests für die Typen Repeated<P> und Scaled<P>\n");
+						   "\nTests fï¿½r die Typen Repeated<P> und Scaled<P>\n");
 
 	}
 
