@@ -1,28 +1,41 @@
 /**
  * AbstractBox
  *
- * TODO
- * 
+ * Stellt von allen Boxen benötigte Methoden zur Verfügung.
+ *
+ * Höhe und Breite (jeweils als Anzahl der Zeichen angegeben) stehen in einem 
+ * fixen Verhältnis zueinander. 
+ *
  * @author Johannes Deml, Florian Klampfer
- * @version 1.4
  */
-public class AbstractBox implements Pict {
-	private double height;
+public abstract class AbstractBox implements Pict {
+
+	/*
+	 * Das Verältnis von Höhe zu Breite bleibt bestehen. (history constraint)
+	 */
     private double width;
+	private double height;
 
-	private char border;
-    private char fill;
-
-	public AbstractBox(double width, double height, char border, char fill) {
+	/**
+	 * Legt die Größe der Box fest.
+	 *
+	 * @param width Eine Zahl größer 1.
+	 * @param height Eine Zahl größer 1.
+	 */
+	public AbstractBox(double width, double height) {
 		this.width = width;
 		this.height = height;
-		this.border = border;
-		this.fill = fill;
 	}
-	
+
 	/**
-	 * preCondition: factor is a number larger than zero
-	 * postCondition: ratio has to stay the same
+	 * Ein leerer Konstruktur, der das nachträgliche Setzen der Größe erlaubt.
+	 */
+	public AbstractBox() {}
+
+
+	/**
+	 * Multipliziert die Seitenlängen mit dem als Parameter übergebenen Faktor. 
+	 * Lässt das Verhältnis von Höhe zu Breite unverändert.
 	 */
 	@Override
 	public void scale(double factor) {
@@ -31,64 +44,33 @@ public class AbstractBox implements Pict {
 	}
 
 	/**
-	 * HistoryConstraint: FillArray is never after drawBorder
-	 * TODO: This is not a history constraint.
+	 * Zeichnet die Box in ein 2D Array.
+	 * Muss von abgeleiteten Klasse implementiert werden.
+	 *
+	 * @param charArray Ein 2D char-Array das exakt der Größe der skalierten Box 
+	 *         entspricht
+	 * @param width Die Breite der skalierten Box
+	 * @param height Die Höhe der skalierten Box
 	 */
-
+	abstract protected void fillArray(char[][] charArray, int width, 
+			int height);
+	
 	/**
-	 * 
-	 * @return charArray with all fields filled with char @param fill
-	 */
-	private char[][] fillArray(char[][] charArray, int tempWidth,
-            int tempHeight, char fill) {
-
-		for(int h=0; h<tempHeight; h++) {
-			for(int w=0; w<tempWidth; w++) {
-				charArray[w][h] = fill;
-			}
-		}
-
-		for(int w=0; w<tempWidth; w++) {
-			charArray[w][0]= border;
-			charArray[w][tempHeight-1]= border;
-		}
-
-		for(int h=0; h<tempHeight; h++) {
-			charArray[0][h]= border;
-			charArray[tempWidth-1][h]= border;
-
-		}
-		return charArray;
-	}
-
-	public double getHeight() {
-		return height;
-	}
-
-	public double getWidth() {
-		return width;
-	}
-
-	public char getBorder() {
-		return border;
-	}
-
-	public char getFill() {
-		return fill;
-	}
-
-	/**
-	 * rounds up width and height for drawing
+	 * Gibt die Box als String aus.
+	 *
+	 * Delegiert an fillArray.
+	 *
+	 * @see #fillArray(char[][])
 	 */
 	@Override
 	public String toString() {
-		int tempWidth = (int) Math.ceil(width);
-		int tempHeight = (int) Math.ceil(height);
+		int tempWidth = getWidth();
+		int tempHeight = getHeight();
+
 		char[][] charArray = new char[tempWidth][tempHeight];
+		fillArray(charArray, tempWidth, tempHeight);
 
-		charArray = fillArray(charArray, tempWidth, tempHeight, fill);
 		String boxString = new String();
-
 		for(int h=0; h<tempHeight; h++) {
 			for(int w=0; w<tempWidth; w++) {
 				boxString += charArray[w][h];
@@ -98,17 +80,43 @@ public class AbstractBox implements Pict {
 		return boxString;
 	}
 
-   	@Override
-   	public boolean equals(Object o) {
-   		if(o instanceof Box) {
-   			if(width == ((Box) o).getWidth()) {
-   				if(height == ((Box) o).getHeight()) {
-					if(toString().equals(((Box) o).toString())) {
-						return true;
-					}
-   				}
-   			}
-   		}
-   		return false;
-   	}
+	/**
+	 * Liefert die Breite der Box als aufgerundete Ganzzahl. 
+	 * Darf nicht Aufgerufen werden, bevor die Breite gesetzt wurde.
+	 *
+	 * @return Die Breite der Box.
+	 */
+	protected int getWidth() {
+		return (int)Math.ceil(width);
+	}
+
+	/**
+	 * Liefert die Höhe der Box als aufgerundete Ganzzahl. 
+	 * Darf nicht Aufgerufen werden, bevor die Höhe gesetzt wurde.
+	 *
+	 * @return Die Höhe der Box.
+	 */
+	protected int getHeight() {
+		return (int)Math.ceil(height);
+	}
+
+	/**
+	 * Bietet die Möglichkeit die Breite im Nachhinein zu setzen. 
+	 * Darf nur Verwendet werden, wenn die Breite noch nicht gesetzt wurde. 
+	 *
+	 * @param width Eine Zahl größer 1.
+	 */
+	protected void setWidth(double width) {
+    	this.width = width;
+	}
+
+	/**
+	 * Bietet die Möglichkeit die Höhe im Nachhinein zu setzen. 
+	 * Darf nur Verwendet werden, wenn die Höhe noch nicht gesetzt wurde. 
+	 *
+	 * @param height Eine Zahl größer 1.
+	 */
+	protected void setHeight(double height) {
+    	this.height = height;
+	}
 }
