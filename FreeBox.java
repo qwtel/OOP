@@ -52,7 +52,8 @@ public class FreeBox extends AbstractBox {
 		setHeight(height);
 	}
 	
-	private char[][] fillPatternArray(char[][] tempPatternArray, int tempWidth, int tempHeight ) {
+	private char[][] fillPatternArray(char[][] tempPatternArray, int tempWidth, 
+			int tempHeight ) {
 		Scanner scan = new Scanner(pattern);
 		for(int h=0; h<tempHeight; h++) {
 			String currentLine = scan.nextLine();
