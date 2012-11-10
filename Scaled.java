@@ -21,6 +21,12 @@ public class Scaled<P extends Pict> extends AbstractPictArray<P> {
 	 */
 	@Override
 	public void scale(double factor) {
-   		// TODO
+		int width = getContent().length;
+		int height = getContent()[0].length;
+		for (int h=0; h<height; h++) {
+			for(int w=0; w<width; w++) {
+				getContent()[w][h].scale(factor);
+			}
+		}
 	}
 }
