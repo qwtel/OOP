@@ -27,24 +27,11 @@ public class FreeBox extends AbstractBox {
 		double width = 0;
 		double height = 0;
 		Scanner scan = new Scanner(pattern);
-		boolean firstRun = true;
-
-		if(pattern.isEmpty()) {
-			// throw new Exception("Missing String for FreeBox");
-		}
-
 		while(scan.hasNextLine()) {
 			int count;
 			String currentLine = scan.nextLine();
 			count = currentLine.length();
-
-			if(firstRun) {
-				width = count;
-			}
-			else if(width != count) {
-				// throw new Exception("This is not a rectangle.");
-			}
-
+			width = count;
 			height++;
 		}
 
@@ -73,6 +60,7 @@ public class FreeBox extends AbstractBox {
 			}
 		}
 	}
+	
 
    	@Override
 	public boolean equals(Object o) {
@@ -80,7 +68,6 @@ public class FreeBox extends AbstractBox {
 
 		if (!(o instanceof FreeBox)) return false;
 		FreeBox other = (FreeBox)o;
-		// TODO: Implement this method
-		return false;
+		return pattern.equals(other.pattern);
 	}
 }
