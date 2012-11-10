@@ -60,7 +60,7 @@ public abstract class AbstractBox implements Pict {
 	 *
 	 * Delegiert an fillArray.
 	 *
-	 * @see #fillArray(char[][])
+	 * @see #fillArray(char[][], int, int)
 	 */
 	@Override
 	public String toString() {

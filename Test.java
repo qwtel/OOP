@@ -8,34 +8,37 @@
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
-		System.out.println("Tests f�r die Typen Box, ClearBox, DarkBox und FreeBox\n");
-				
-		/**
-		 * Test1
-		 * tests the scaling function of Box
-		 */
+        String description = "Testing the scaling function of Box.";
 		Box box1 = new Box(3.7,2.3,'o','.');
 		box1.scale(2);
 		Box expectedBox1 = new Box(3.7*2,2.3*2,'o','.');
-		doTest(box1,expectedBox1);
-		System.out.println("Result:");
-		System.out.println(box1.toString());
-		
-		
-		
-		System.out.println("\n------------------------------------------------------" +
-						   "\nTests f�r die Typen Repeated<P> und Scaled<P>\n");
-
+		doTest(description, box1, expectedBox1);
 	}
 
 	private static int i = 0;
-	public static void doTest(Object expected, Object result) {
+	public static void doTest(String description, Object expected, 
+            Object result) {
+
 		i++;
+		System.out.println("Test "+i+" "+description);
+
 		if (expected.equals(result)) {
-			System.out.println("Test "+i+" passed");
+            //System.out.println("Result:");
+            //System.out.println(result);
+		    System.out.println("Test "+i+" passed.");
 		}
 		else {
-			System.out.println("Test "+i+" failed");
+            System.out.println("Expected result:");
+            System.out.println(expected);
+
+            System.out.println("Failed Result:");
+            System.out.println(result);
+
+			System.out.println("Test "+i+" failed!");
 		}
+
+		System.out.println(
+                "------------------------------------------------------\n");
+
 	}
 }

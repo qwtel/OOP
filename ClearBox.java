@@ -3,7 +3,7 @@
  *
  * Instanzen von Box stellen aus druckbaren Zeichen geformte Rechtecke dar.
  *
- * Verwendet als Zeichen für die Ränder immer  * und für den Inhalt das 
+ * Verwendet als Zeichen für die Ränder immer * und für den Inhalt das 
  * Leerzeichen. 
  *
  * @author Michael Ion, Florian Klampfer
