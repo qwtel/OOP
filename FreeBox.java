@@ -20,7 +20,7 @@ public class FreeBox extends AbstractBox {
 		int width = getWidth();
 		int height = getHeight();
 		patternArray = new char[width][height];
-		patternArray = fillPatternArray(patternArray, width, height);
+		fillPatternArray(width, height);
 	}
 
 	private void calculateSize(String pattern) {
@@ -39,22 +39,20 @@ public class FreeBox extends AbstractBox {
 		setHeight(height);
 	}
 	
-	private char[][] fillPatternArray(char[][] tempPatternArray, int tempWidth, 
-			int tempHeight ) {
+	private void fillPatternArray(int tempWidth, int tempHeight ) {
 		Scanner scan = new Scanner(pattern);
 		for(int h=0; h<tempHeight; h++) {
 			String currentLine = scan.nextLine();
 			for(int w=0; w<tempWidth; w++) {
-				tempPatternArray[w][h] = currentLine.charAt(w);
+				patternArray[w][h] = currentLine.charAt(w);
 			}
 		}
-		return patternArray;
 	}
 
 	@Override
 	public void fillArray(char[][] charArray, int tempWidth, int tempHeight) {
-		int originalWidth = patternArray[0].length;
-		int originalHeight = patternArray.length;
+		int originalWidth = patternArray.length;
+		int originalHeight = patternArray[0].length;
 		for (int h=0; h<tempHeight; h++) {
 			for(int w=0; w<tempWidth; w++) {
 				charArray[w][h]= patternArray[w%originalWidth][h%originalHeight];
