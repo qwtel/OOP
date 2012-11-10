@@ -5,6 +5,9 @@
  *
  * Das Zeichen für den Inhalt entspricht stets dem Zeichen für die Ränder.
  *
+ * Höhe und Breite (jeweils als Anzahl der Zeichen angegeben) stehen in einem 
+ * fixen Verhältnis zueinander. 
+ *
  * @author Florian Klampfer
  */
 public class DarkBox extends ClassicBox {

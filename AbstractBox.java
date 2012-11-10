@@ -1,7 +1,7 @@
 /**
  * AbstractBox
  *
- * Stellt von allen Boxen benötigte Methoden zur Verfügung.
+ * Ein Pict mit Höhe und Breite.
  *
  * Höhe und Breite (jeweils als Anzahl der Zeichen angegeben) stehen in einem 
  * fixen Verhältnis zueinander. 
@@ -11,7 +11,7 @@
 public abstract class AbstractBox implements Pict {
 
 	/*
-	 * Das Verältnis von Höhe zu Breite bleibt bestehen. (history constraint)
+	 * Das Verhältnis von Höhe zu Breite bleibt bestehen. (history constraint)
 	 */
     private double width;
 	private double height;
@@ -36,6 +36,8 @@ public abstract class AbstractBox implements Pict {
 	/**
 	 * Multipliziert die Seitenlängen mit dem als Parameter übergebenen Faktor. 
 	 * Lässt das Verhältnis von Höhe zu Breite unverändert.
+	 *
+	 * @param factor Eine reelle Zahl größer 0.
 	 */
 	@Override
 	public void scale(double factor) {
@@ -45,7 +47,7 @@ public abstract class AbstractBox implements Pict {
 
 	/**
 	 * Zeichnet die Box in ein 2D Array.
-	 * Muss von abgeleiteten Klasse implementiert werden.
+	 * Muss von abgeleiteten Klassen implementiert werden.
 	 *
 	 * @param charArray Ein 2D char-Array das exakt der Größe der skalierten Box 
 	 *         entspricht

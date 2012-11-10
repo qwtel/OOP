@@ -6,6 +6,9 @@
  * Verwendet als Zeichen für die Ränder immer * und für den Inhalt das 
  * Leerzeichen. 
  *
+ * Höhe und Breite (jeweils als Anzahl der Zeichen angegeben) stehen in einem 
+ * fixen Verhältnis zueinander. 
+ *
  * @author Michael Ion, Florian Klampfer
  */
 public class ClearBox extends ClassicBox {

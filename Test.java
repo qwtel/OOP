@@ -4,7 +4,6 @@
  * handels all TestCases, includes main method
  * 
  * @author Florian Klampfer, Michael Ion Johannes Deml
- * @version 1.4
  */
 public class Test {
 	public static void main(String[] args) throws Exception {

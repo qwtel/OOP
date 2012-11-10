@@ -1,10 +1,13 @@
 /**
  * ClassicBox
  *
- * Stellt Methoden für Boxen mit Rändern zur Verfügung.
+ * Eine AbstractBox welche eine Füllung und einen Rand besitzt.
  *
  * Die Ränder einer ClassicBox können aus anderen Zeichen bestehen als der 
  * Inhalt.
+ *
+ * Höhe und Breite (jeweils als Anzahl der Zeichen angegeben) stehen in einem 
+ * fixen Verhältnis zueinander. 
  *
  * @author Johannes Deml, Florian Klampfer
  */

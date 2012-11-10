@@ -2,7 +2,6 @@
  * AbstractPictArray
  * 
  * @author mihi
- * @version 0.1
  */
 public abstract class AbstractPictArray<P> implements Pict {
 	private final P[][] content;
@@ -23,7 +22,7 @@ public abstract class AbstractPictArray<P> implements Pict {
 	}
 
 	@Override
-	public boolean equals() {
+	public boolean equals(Object o) {
 	 	return false;
 	}
 }
