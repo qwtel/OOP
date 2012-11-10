@@ -34,7 +34,7 @@ public class FreeBox extends AbstractBox {
 			width = count;
 			height++;
 		}
-
+		scan.close();
 		setWidth(width);
 		setHeight(height);
 	}
@@ -47,6 +47,7 @@ public class FreeBox extends AbstractBox {
 				patternArray[w][h] = currentLine.charAt(w);
 			}
 		}
+		scan.close();
 	}
 
 	@Override

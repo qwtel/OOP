@@ -27,7 +27,7 @@ public class Test {
 			Object expected) {
 
 		i++;
-		System.out.println("Test "+i+" "+description);
+		System.out.println("Test "+i+": "+description);
 
 		if (expected.equals(result)) {
 			System.out.println("Result:");
