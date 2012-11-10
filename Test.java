@@ -23,8 +23,8 @@ public class Test {
 		System.out.println("Test "+i+" "+description);
 
 		if (expected.equals(result)) {
-            //System.out.println("Result:");
-            //System.out.println(result);
+            System.out.println("Result:");
+            System.out.println(result);
 		    System.out.println("Test "+i+" passed.");
 		}
 		else {
