@@ -12,8 +12,8 @@
  */
 public class DarkBox extends ClassicBox {
 
-    /**
-     * Erzeugt eine DarkBox.
+	/**
+	 * Erzeugt eine DarkBox.
 	 *
 	 * @param width Eine Zahl größer 1.
 	 * @param height Eine Zahl größer 1.

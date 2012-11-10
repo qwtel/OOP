@@ -13,7 +13,7 @@ public abstract class AbstractBox implements Pict {
 	/*
 	 * Das Verhältnis von Höhe zu Breite bleibt bestehen. (history constraint)
 	 */
-    private double width;
+	private double width;
 	private double height;
 
 	/**
@@ -50,7 +50,7 @@ public abstract class AbstractBox implements Pict {
 	 * Muss von abgeleiteten Klassen implementiert werden.
 	 *
 	 * @param charArray Ein 2D char-Array das exakt der Größe der skalierten Box 
-	 *         entspricht
+	 *		 entspricht
 	 * @param width Die Breite der skalierten Box
 	 * @param height Die Höhe der skalierten Box
 	 */
@@ -109,7 +109,7 @@ public abstract class AbstractBox implements Pict {
 	 * @param width Eine Zahl größer 1.
 	 */
 	protected void setWidth(double width) {
-    	this.width = width;
+		this.width = width;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public abstract class AbstractBox implements Pict {
 	 * @param height Eine Zahl größer 1.
 	 */
 	protected void setHeight(double height) {
-    	this.height = height;
+		this.height = height;
 	}
 
    	@Override
