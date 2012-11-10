@@ -10,16 +10,16 @@ public class Test {
 
         /*
          * Box - ClearBox: Keine Untertypbeziehung, da Clearbox das Leerzeichen
-         * für den Rand verwendet, aber Box genau das nicht erlaubt.
+         * fÃ¼r den Rand verwendet, aber Box genau das nicht erlaubt.
          *
-         * Box - DarkBox: Keine Untertypbeziehung, da DarkBox nachträgliches
-         * ändern der Füllung zulässt, aber Box genau das nicht erlaubt.
+         * Box - DarkBox: Keine Untertypbeziehung, da DarkBox nachtrÃ¤gliches
+         * Ã¤ndern der FÃ¼llung zulÃ¤sst, aber Box genau das nicht erlaubt.
          *
          * Box - FreeBox: Keine Untertypbeziehung, da FreeBox keinen Rand 
          * besitzt (In unserem Fall: FreeBox ist keine ClassicBox)
          *
-         * ClearBox - DarkBox: Keine Untertypbeziehung, da DarkBox das ändern
-         * der Füllung zulässt.
+         * ClearBox - DarkBox: Keine Untertypbeziehung, da DarkBox das Ã¤ndern
+         * der FÃ¼llung zulÃ¤sst.
          *
          * ClearBox - FreeBox: Kein Untertypbeziehung, da FreeBox keinen Rand
          * besitzt.
