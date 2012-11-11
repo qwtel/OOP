@@ -67,6 +67,7 @@ public abstract class AbstractPictArray<P> implements Pict {
 					lengthy++;
 				}
 				scan.close();
+				//um den entsprechenden Faktor sind die Felder zu erweitern
 				if(lengthx > maxWidth[w])
 					maxWidth[w] = (int) Math.ceil(lengthx*getFactor());
 				if(lengthy > maxHeight[h])
@@ -85,7 +86,20 @@ public abstract class AbstractPictArray<P> implements Pict {
 		// TODO
 	 	return new String();
 	}
+	/**
+	 * @return die Gesamtlänge (also die Summe aller gespeicherten Werte) zurück
+	 */
+	public int getSumLength(int[] lengthArray) {
+		int sum = 0;
+		for(int i=0; i< lengthArray.length; i++) {
+			sum += lengthArray[i];
+		}
+		return sum;
+	}
 	
+	/**
+	 * @return der Skalierungsfaktor
+	 */
 	public abstract double getFactor();
 	
 	/**
