@@ -80,8 +80,12 @@ public abstract class AbstractPictArray<P> implements Pict {
 		char[][] printArray = getPrintArray(maxWidth, maxHeight);
 		
 		String ausgabe = "";
-		for(int h=0; h<printArray[0].length; h++) {
-			ausgabe = ausgabe + printArray[h].toString() + "\n";
+		for(int h = 0; h < printArray[0].length; h++) {
+			for(int w = 0; w < printArray.length; w++) {
+				ausgabe = ausgabe + "" + printArray[w][h];
+			}
+			if(h != printArray[0].length -1)
+				ausgabe += "\n";
 		}
 	 	return ausgabe;
 	}

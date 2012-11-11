@@ -103,6 +103,33 @@ public class Test {
 				   "*  *\n" +
 				   "****\n";
 		doTest(description, pict.toString(), expected);
+	
+		//Test8
+		description = "Tests the scaling and toString functionality of Scaled";
+		Pict[][] array = new Pict[2][3];
+		array[0][0] = new Box(3.7,3.3,'o','.');
+		array[0][1] = new DarkBox(2.3, 1.8, 'c');
+		array[0][2] = new ClearBox(7.3, 4.5);
+		array[1][0] = new DarkBox(2.3, 1.8, 'c');
+		array[1][1] = new ClearBox(2.3, 4.5);
+		array[1][2] = new Box(3.7,5.3,'o','.');
+		pict = new Scaled<Pict>(array);
+		pict.scale(0.7);
+		expected = 	"ooo   cc \n" +
+					"o.o   cc \n" +
+					"ooo      \n" +
+					"cc    ** \n" +
+					"cc    ** \n" +
+					"      ** \n" +
+					"      ** \n" +
+					"******ooo\n" +
+					"*    *o.o\n" +
+					"*    *o.o\n" +
+					"******ooo";
+
+		doTest(description, pict.toString(), expected);
+		
+		//Test9
 	}
 
 	private static int i = 0;

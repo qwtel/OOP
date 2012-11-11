@@ -42,15 +42,17 @@ public class Scaled<P extends Pict> extends AbstractPictArray<P> {
 		int sumHeight = getSumLength(maxHeight);
 		int sumWidth = getSumLength(maxWidth);
 		char[][] printArray = new char[sumWidth][sumHeight];
-		Arrays.fill(printArray, ' ');
+		for(int i = 0; i< sumWidth; i++) {
+			Arrays.fill(printArray[i], ' ');
+		}
 		//das printArray wird mit den Ergebnissen der toString()-Aufrufe befüllt
 		//Schrittweite ist dabei immer die Höhe bzw. Breite der einzelnen Zelle;
 		//x- und yCounter sind schrittweise Inkrementierungen, wir brauchen sie um content
 		//abzutasten und die richtige Höhe aus maxHeight und maxWidth abzulesen
 		int yCounter = 0;
-		for(int h = 0; h < sumHeight; h += maxHeight[yCounter]) {
+		for(int h = 0; h < sumHeight; h += maxHeight[yCounter-1]) {
 			int xCounter = 0;
-			for(int w = 0; w < sumWidth; w += maxWidth[xCounter]) {
+			for(int w = 0; w < sumWidth; w += maxWidth[xCounter-1]) {
 				//Objekt aus content in einen String
 				String contentString = content[xCounter][yCounter].toString();
 				Scanner sc = new Scanner(contentString);
