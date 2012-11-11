@@ -44,7 +44,6 @@ public abstract class AbstractPictArray<P> implements Pict {
 	public String toString() {
 		int contentHeight = content[0].length;
 		int contentWidth = content.length;
-		//alter ansatz, aber unnötig kompliziert: int[][][] lengthIndex = new int[contentHeight][contentWidth][2];
 		int[] maxHeight = new int[contentHeight];
 		int[] maxWidth = new int[contentWidth];
 		Arrays.fill(maxHeight, 0);
@@ -58,6 +57,7 @@ public abstract class AbstractPictArray<P> implements Pict {
 				int lengthy = 0;
 				String contentString = content[w][h].toString();
 				Scanner scan = new Scanner(contentString);
+				//Berechnung der Maße
 				while(scan.hasNextLine()) {
 					String temp = scan.nextLine();
 					//Maximum Breite aller Zeilen ist gesucht (bei Boxen immer konstant)
@@ -68,12 +68,13 @@ public abstract class AbstractPictArray<P> implements Pict {
 				}
 				scan.close();
 				if(lengthx > maxWidth[w])
-					maxWidth[w] = lengthx;
+					maxWidth[w] = (int) Math.ceil(lengthx*getFactor());
 				if(lengthy > maxHeight[h])
-					maxHeight[h] = lengthy;
+					maxHeight[h] = (int) Math.ceil(lengthy*getFactor());
 			}
 		}
 		
+		char[][] printArray = getPrintArray(maxWidth, maxHeight);
 		
 		
 		// TODO
@@ -84,6 +85,16 @@ public abstract class AbstractPictArray<P> implements Pict {
 		// TODO
 	 	return new String();
 	}
+	
+	public abstract double getFactor();
+	
+	/**
+	 * liefert die finale druckfähige Version des Inhalts als char array
+	 * @param maxWidth die einheitliche Breiten für jede Spalte 
+	 * @param maxHeight die einheitlichen Höhen für jede Zeile
+	 * @return char array für den toString() Aufruf
+	 */
+	public abstract char[][] getPrintArray(int[] maxWidth, int[] maxHeight);
 
 	@Override
 	public boolean equals(Object o) {

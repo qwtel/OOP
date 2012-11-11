@@ -29,4 +29,15 @@ public class Scaled<P extends Pict> extends AbstractPictArray<P> {
 			}
 		}
 	}
+	
+	/**
+	 * liefert eine charArray Repräsentation für den toString() Aufruf
+	 */
+	public char[][] getPrintArray(int[] maxWidth, int[] maxHeight) {
+		return null;
+	}
+	
+	public double getFactor() {
+		return 1.0;
+	}
 }
