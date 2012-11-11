@@ -74,17 +74,16 @@ public abstract class AbstractPictArray<P> implements Pict {
 					maxHeight[h] = (int) Math.ceil(lengthy*getFactor());
 			}
 		}
-		
+		/* printArray ist ein massives charArray mit allen Zeichen 
+		 * der gesamten Ausgabe, wird jetzt nacheinander in einen String umgewandelt
+		 */
 		char[][] printArray = getPrintArray(maxWidth, maxHeight);
 		
-		
-		// TODO
-		for(int h=0; h<contentHeight; h++) {
-			for(int w=0; w<contentWidth; w++) {
-			}
+		String ausgabe = "";
+		for(int h=0; h<printArray[0].length; h++) {
+			ausgabe = ausgabe + printArray[h].toString() + "\n";
 		}
-		// TODO
-	 	return new String();
+	 	return ausgabe;
 	}
 	/**
 	 * @return die Gesamtlänge (also die Summe aller gespeicherten Werte) zurück
