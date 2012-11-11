@@ -27,7 +27,18 @@ public class Repeated<P> extends AbstractPictArray<P> {
 	public void scale(double factor) {
 		this.factor *= factor;
 	}
+	
+	public double getFactor() {
+		return factor;
+	}
 
+	/**
+	 * liefert eine charArray Repräsentation für den toString() Aufruf
+	 */
+	public char[][] getPrintArray(int[] maxWidth, int[] maxHeight) {
+		return null;
+	}
+	
 	/**
 	 * TODO 
 	 *
