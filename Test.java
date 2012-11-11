@@ -61,6 +61,48 @@ public class Test {
 		pict.scale(0.5);
         expected = "012\n";
 		doTest(description, pict.toString(), expected);
+		
+		//Test4
+		//TODO: Nach dem Fehler in DarkBox suchen
+		description = "Tests the features of scaling and chnging the " +
+					  "char it is filled with";
+		ClassicBox cb = new DarkBox(2.3, 1.8, 'c');
+		cb.setFill('>');
+		cb.scale(3);
+		pict = cb;
+		expected = ">>>>>>>>>\n" +
+				   ">>>>>>>>>\n" +
+				   ">>>>>>>>>\n" +
+				   ">>>>>>>>>\n" +
+				   ">>>>>>>>>\n" +
+				   ">>>>>>>>>\n";
+		doTest(description, pict.toString(), expected);
+		
+		//Test5
+		description = "Tests the scaling fuction of DarkBox";
+		pict = new DarkBox(5.0,1.2,'x');
+		pict.scale(0.5);
+		expected = "xxx\n";
+		doTest(description, pict.toString(), expected); 
+		
+		//Test6
+		description = "Tests the ratio fuction of ClearBox ";
+		ClearBox clearBox = new ClearBox(64.26, 1.53);
+		double expectedDouble = 42;
+		doTest(description, clearBox.getRatio(), expectedDouble);
+		
+		//Test7
+		description = "Tests the scaling function of ClearBox";
+		pict = new ClearBox(2.3, 4.5);
+		pict.scale(1.4);
+		expected = "****\n" +
+				   "*  *\n" +
+				   "*  *\n" +
+				   "*  *\n" +
+				   "*  *\n" +
+				   "*  *\n" +
+				   "****\n";
+		doTest(description, pict.toString(), expected);
 	}
 
 	private static int i = 0;
