@@ -130,6 +130,44 @@ public class Test {
 		doTest(description, pict.toString(), expected);
 		
 		//Test9
+		description = "Tests the scaling and toString functionality of Repeated";
+		array = new Pict[2][3];
+		array[0][0] =  new FreeBox("012\n"+
+                "345\n");
+		array[0][1] =  new FreeBox("0\n");
+		array[0][2] =  new FreeBox("01\n"+
+                "23\n"+
+                "45\n"+
+                "67\n");
+		array[1][0] =  new FreeBox("012345\n"+
+                "678910\n");
+		array[1][1] =  new FreeBox("blah\n"+
+                "affe\n");
+		array[1][2] =  new FreeBox("01234\n"+
+                "56789\n");
+		
+		pict = new Repeated<>(array);
+		pict.scale(2.0);
+		expected =  "012012012345012345\n"+
+					"345345678910678910\n"+
+					"012012012345012345\n"+
+					"345345678910678910\n"+
+					"00    blahblah    \n"+
+					"00    affeaffe    \n"+
+					"0101  0123401234  \n"+
+					"2323  5678956789  \n"+
+					"4545  0123401234  \n"+
+					"6767  5678956789  \n"+
+					"0101              \n"+
+					"2323              \n"+
+					"4545              \n"+
+					"6767              ";
+
+		
+		
+		
+		doTest(description, pict.toString(), expected);
+		
 	}
 
 	private static int i = 0;

@@ -57,7 +57,7 @@ public class Scaled<P extends Pict> extends AbstractPictArray<P> {
 				String contentString = content[xCounter][yCounter].toString();
 				Scanner sc = new Scanner(contentString);
 				//Strings aus content[][].toString sind mehrere Zeilen, zeilenweise zum richtigen Platz in charArray
-				//dabei Stellen yZeile und xZeile die Stellen innerhalb einer ganzen Zelle dar (also der Platz von einem
+				//dabei stellen yZeile und xZeile die Stellen innerhalb einer ganzen Zelle dar (also der Platz von einem
 				//Aufruf von toString eines Objekts aus Content innerhalb von printArray)
 				int yZeile = 0;
 				while(sc.hasNextLine()) {
