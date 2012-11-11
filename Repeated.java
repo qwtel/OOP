@@ -97,20 +97,5 @@ public class Repeated<P> extends AbstractPictArray<P> {
 		return printArray;
 	}
 	
-	/*
-	
-	 * TODO 
-	 *
-	 * Ist der durch (wiederholte) Aufrufe von scale gesetzte Skalierungsfaktor 
-	 * kleiner 1.0, so liefert toString nur die entsprechend große linke obere 
-	 * Ecke. Ist der Skalierungsfaktor größer als 1.0, so wird der Text 
-	 * entsprechend oft neben- bzw. übereinander wiederholt.
-	 
-	@Override
-	public String toString() {
-		// TODO
-	 	return new String();
-	}
-	
-	*/
+
 }
