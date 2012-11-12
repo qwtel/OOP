@@ -6,7 +6,7 @@ import java.util.Scanner;
  *
  * TODO: Beschreibung
  * 
- * @author mihi
+ * @author Michael Ion
  */
 public abstract class AbstractPictArray<P> implements Pict {
 	private final P[][] content;

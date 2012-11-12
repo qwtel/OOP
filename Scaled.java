@@ -4,9 +4,10 @@ import java.util.Scanner;
 /**
  * Scaled
  *
- * TODO: Beschreibung
+ * Speichert Pict - Objekte in ein Array und
+ * leitet einen scale() Aufruf an diese weiter
  * 
- * @author TODO
+ * @author Michael Ion
  */
 public class Scaled<P extends Pict> extends AbstractPictArray<P> {
 	/**

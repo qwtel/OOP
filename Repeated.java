@@ -4,9 +4,11 @@ import java.util.Scanner;
 /**
  * Repeated
  *
- * TODO: Beschreibung
+ * Speichert Objekte in ein Array und
+ * erweitert bei Bedarf die toString() Aufrufe
+ * mit dem scale factor
  * 
- * @author TODO
+ * @author Michael Ion
  */
 public class Repeated<P> extends AbstractPictArray<P> {
 	private double factor;
