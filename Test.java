@@ -63,19 +63,18 @@ public class Test {
 		doTest(description, pict.toString(), expected);
 		
 		//Test4
-		//TODO: Nach dem Fehler in DarkBox suchen
 		description = "Tests the features of scaling and chnging the " +
 					  "char it is filled with";
 		ClassicBox cb = new DarkBox(2.3, 1.8, 'c');
-		cb.setFill('>');
+		cb.setFill('<');
 		cb.scale(3);
 		pict = cb;
-		expected = ">>>>>>>>>\n" +
-				   ">>>>>>>>>\n" +
-				   ">>>>>>>>>\n" +
-				   ">>>>>>>>>\n" +
-				   ">>>>>>>>>\n" +
-				   ">>>>>>>>>\n";
+		expected = "<<<<<<<\n" +
+				   "<<<<<<<\n" +
+				   "<<<<<<<\n" +
+				   "<<<<<<<\n" +
+				   "<<<<<<<\n" +
+				   "<<<<<<<\n";
 		doTest(description, pict.toString(), expected);
 		
 		//Test5
@@ -146,7 +145,7 @@ public class Test {
 		array[1][2] =  new FreeBox("01234\n"+
                 "56789\n");
 		
-		pict = new Repeated<>(array);
+		pict = new Repeated<Pict>(array);
 		pict.scale(2.0);
 		expected =  "012012012345012345\n"+
 					"345345678910678910\n"+
