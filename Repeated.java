@@ -12,7 +12,10 @@ import java.util.Scanner;
  */
 public class Repeated<P> extends AbstractPictArray<P> {
 	private double factor;
-
+	private int width;
+	private int height;
+	private char pattern[][];
+	private String inhalt;
 	/**
 	 * Setzt das Array und bestimmt den initialen Skalierungsfaktor.
 	 *
@@ -21,6 +24,10 @@ public class Repeated<P> extends AbstractPictArray<P> {
 	public Repeated(P[][] content) {
 		super(content);		
 		factor = 1.0;
+		width = 0;
+		height = 0;
+		pattern = new char[width][height];
+		inhalt = "";
 	}
 
 	/**
@@ -36,6 +43,37 @@ public class Repeated<P> extends AbstractPictArray<P> {
 	public double getFactor() {
 		return factor;
 	}
+	
+	private void calculateSize(String pattern) {
+		Scanner sc = new Scanner(pattern);
+		//Strings aus content[][].toString sind mehrere Zeilen, zeilenweise zum richtigen Platz in charArray
+		//dabei stellen yZeile und xZeile die Stellen innerhalb einer ganzen Zelle dar (also der Platz von einem
+		//Aufruf von toString eines Objekts aus Content innerhalb von printArray)
+		//Zuerst Anzahl der Zeilen herausfinden:
+		int zeilenZahl = 0;
+		int spaltenZahl = 0;
+		while(sc.hasNextLine()) {
+			spaltenZahl = sc.nextLine().length();
+			zeilenZahl++;
+		}
+		sc.close();
+		height = zeilenZahl;
+		width = spaltenZahl;
+	}
+	
+	
+	private void fillPatternArray(int tempWidth, int tempHeight ) {
+		pattern = new char[tempWidth][tempHeight];
+		Scanner sc = new Scanner(inhalt);
+		for(int y = 0; sc.hasNextLine(); y++) {
+			String temp = sc.nextLine();
+			for(int x = 0; x < temp.length(); x++) {
+				pattern[x][y] = temp.charAt(x);
+			}
+		}
+		sc.close();
+	}
+	
 
 	/**
 	 * liefert eine charArray Repräsentation für den toString() Aufruf; Scale erweitert die Zellen mit dem Inhalt als Textur
@@ -58,38 +96,19 @@ public class Repeated<P> extends AbstractPictArray<P> {
 			int xCounter = 0;
 			for(int w = 0; w < sumWidth; w += maxWidth[xCounter-1]) {
 				//Objekt aus content in einen String
-				String contentString = content[xCounter][yCounter].toString();
-				Scanner sc = new Scanner(contentString);
-				//Strings aus content[][].toString sind mehrere Zeilen, zeilenweise zum richtigen Platz in charArray
-				//dabei stellen yZeile und xZeile die Stellen innerhalb einer ganzen Zelle dar (also der Platz von einem
-				//Aufruf von toString eines Objekts aus Content innerhalb von printArray)
-				//Zuerst Anzahl der Zeilen herausfinden:
-				int zeilenZahl = 0;
-				int spaltenZahl = 0;
-				while(sc.hasNextLine()) {
-					spaltenZahl = sc.nextLine().length();
-					zeilenZahl++;
-				}
-				int zeilenZahlSkaliert = (int) Math.ceil(zeilenZahl*factor);
-				int spaltenZahlSkaliert = (int) Math.ceil(spaltenZahl*factor);
-				sc.close();
+				inhalt = content[xCounter][yCounter].toString();
+				//Größe des Inhalts bestimmen
+				calculateSize(inhalt);
+				int heightScaled = (int) Math.ceil(height*factor);
+				int widthScaled = (int) Math.ceil(width*factor);
 				
 				//Pattern in ein Array speichern
-				char[][] pattern = new char[spaltenZahl][zeilenZahl];
-				sc = new Scanner(contentString);
-				
-				for(int y = 0; sc.hasNextLine(); y++) {
-					String temp = sc.nextLine();
-					for(int x = 0; x < temp.length(); x++) {
-						pattern[x][y] = temp.charAt(x);
-					}
-				}
-				sc.close();
+				fillPatternArray(width, height);
 				
 				//jetzt wird das Pattern übertragen und wenn nötig skaliert
-				for(int y = 0; y < zeilenZahlSkaliert; y++) {
-					for(int x = 0; x < spaltenZahlSkaliert; x++) {
-						printArray[w+x][h+y] = pattern[x%(spaltenZahl)][y%(zeilenZahl)];
+				for(int y = 0; y < heightScaled; y++) {
+					for(int x = 0; x < widthScaled; x++) {
+						printArray[w+x][h+y] = pattern[x%(width)][y%(height)];
 					}
 				}
 				xCounter++;

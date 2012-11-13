@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * AbstractPictArray
  *
- * TODO: Beschreibung
+ * beinhaltet ein Array mit beliebigen Objekten.
  * 
  * @author Michael Ion
  */
