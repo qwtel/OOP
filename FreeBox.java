@@ -38,7 +38,7 @@ public class FreeBox extends AbstractBox {
 	 * Breite heraus
 	 * @param pattern Die Zeilen im String müssen die gleiche Länge haben
 	 */
-	private void calculateSize(String pattern) {
+	public void calculateSize(String pattern) {
 		double width = 0;
 		double height = 0;
 		Scanner scan = new Scanner(pattern);
@@ -59,7 +59,7 @@ public class FreeBox extends AbstractBox {
 	 * @param tempWidth Breite des Patterns
 	 * @param tempHeight Höhe des Patterns
 	 */
-	private void fillPatternArray(int tempWidth, int tempHeight ) {
+	public void fillPatternArray(int tempWidth, int tempHeight ) {
 		Scanner scan = new Scanner(pattern);
 		for(int h=0; h<tempHeight; h++) {
 			String currentLine = scan.nextLine();

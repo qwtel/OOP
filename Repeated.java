@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 
  * @author Michael Ion
  */
-public class Repeated<P> extends AbstractPictArray<P> {
+public class Repeated<P> extends AbstractPictArray<P> implements FillPattern{
 	private double factor;
 	private int width;
 	private int height;
@@ -44,7 +44,7 @@ public class Repeated<P> extends AbstractPictArray<P> {
 		return factor;
 	}
 	
-	private void calculateSize(String pattern) {
+	public void calculateSize(String pattern) {
 		Scanner sc = new Scanner(pattern);
 		//Strings aus content[][].toString sind mehrere Zeilen, zeilenweise zum richtigen Platz in charArray
 		//dabei stellen yZeile und xZeile die Stellen innerhalb einer ganzen Zelle dar (also der Platz von einem
@@ -62,7 +62,7 @@ public class Repeated<P> extends AbstractPictArray<P> {
 	}
 	
 	
-	private void fillPatternArray(int tempWidth, int tempHeight ) {
+	public void fillPatternArray(int tempWidth, int tempHeight ) {
 		pattern = new char[tempWidth][tempHeight];
 		Scanner sc = new Scanner(inhalt);
 		for(int y = 0; sc.hasNextLine(); y++) {
@@ -72,6 +72,16 @@ public class Repeated<P> extends AbstractPictArray<P> {
 			}
 		}
 		sc.close();
+	}
+	
+	public void fillArray(char[][] charArray, int tempWidth, int tempHeight) {
+		int heightScaled = (int) Math.ceil(height*factor);
+		int widthScaled = (int) Math.ceil(width*factor);
+		for(int y = 0; y < heightScaled; y++) {
+			for(int x = 0; x < widthScaled; x++) {
+				charArray[tempWidth+x][tempHeight+y] = pattern[x%(width)][y%(height)];
+			}
+		}
 	}
 	
 
@@ -99,18 +109,14 @@ public class Repeated<P> extends AbstractPictArray<P> {
 				inhalt = content[xCounter][yCounter].toString();
 				//Größe des Inhalts bestimmen
 				calculateSize(inhalt);
-				int heightScaled = (int) Math.ceil(height*factor);
-				int widthScaled = (int) Math.ceil(width*factor);
+
 				
 				//Pattern in ein Array speichern
 				fillPatternArray(width, height);
 				
 				//jetzt wird das Pattern übertragen und wenn nötig skaliert
-				for(int y = 0; y < heightScaled; y++) {
-					for(int x = 0; x < widthScaled; x++) {
-						printArray[w+x][h+y] = pattern[x%(width)][y%(height)];
-					}
-				}
+				fillArray(printArray, w, h);
+				
 				xCounter++;
 			}
 			yCounter++;
