@@ -7,27 +7,6 @@
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
-
-		/*
-		 * Box - ClearBox: Keine Untertypbeziehung, da Clearbox das Leerzeichen
-		 * für den Rand verwendet, aber Box genau das nicht erlaubt.
-		 *
-		 * Box - DarkBox: Keine Untertypbeziehung, da DarkBox nachträgliches
-		 * ändern der Füllung zulässt, aber Box genau das nicht erlaubt.
-		 *
-		 * Box - FreeBox: Keine Untertypbeziehung, da FreeBox keinen Rand 
-		 * besitzt (In unserem Fall: FreeBox ist keine ClassicBox)
-		 *
-		 * ClearBox - DarkBox: Keine Untertypbeziehung, da DarkBox das ändern
-		 * der Füllung zulässt.
-		 *
-		 * ClearBox - FreeBox: Kein Untertypbeziehung, da FreeBox keinen Rand
-		 * besitzt.
-		 *
-		 * DarkBox - FreeBox: Keine Untertypbeziehung, da FreeBox keinen Rand
-		 * besitzt.
-		 */
-
 		String description;
 		Pict pict;
 		String expected;

@@ -112,10 +112,4 @@ public abstract class AbstractPictArray<P> implements Pict {
 	 * @return char array für den toString() Aufruf
 	 */
 	public abstract char[][] getPrintArray(int[] maxWidth, int[] maxHeight);
-
-	@Override
-	public boolean equals(Object o) {
-		// TODO
-	 	return false;
-	}
 }

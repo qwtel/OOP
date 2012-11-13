@@ -123,6 +123,4 @@ public class Repeated<P> extends AbstractPictArray<P> implements FillPattern{
 		}
 		return printArray;
 	}
-	
-
 }
