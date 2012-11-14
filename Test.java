@@ -1,148 +1,18 @@
 /**
  * Test
  * 
- * handels all TestCases, includes main method
+ * Handels all TestCases, includes main method.
  * 
- * @author Florian Klampfer, Michael Ion Johannes Deml
+ * @author Florian Klampfer, Michael Ion, Johannes Deml
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
 		String description;
-		Pict pict;
-		String expected;
+		Object pict;
+		Object expected;
 
-		//Test1
-		description = "Testing the scaling function of Box.";
-		pict = new Box(3.7,2.3,'o','.');
-		pict.scale(2);
-		expected = "oooooooo\n"+
-		           "o......o\n"+
-		           "o......o\n"+
-		           "o......o\n"+
-		           "oooooooo\n";
-		doTest(description, pict.toString(), expected);
-		
-		//Test2
-		description = "Tests the scaling function of FreeBox when > 1";
-		pict = new FreeBox("01234\n"+
-		                   "56789\n");
-		pict.scale(2);
-		expected = "0123401234\n" +
-		           "5678956789\n" +
-		           "0123401234\n" + 
-		           "5678956789\n";
-		doTest(description, pict.toString(), expected);
-
-		//Test3
-		description = "Tests the scaling function of FreeBox when < 1";
-		pict = new FreeBox("01234\n"+
-		                   "56789\n");
-		pict.scale(0.5);
-		expected = "012\n";
-		doTest(description, pict.toString(), expected);
-		
-		//Test4
-		description = "Tests the features of scaling and chnging the " +
-		        "char it is filled with";
-		ClassicBox cb = new DarkBox(2.3, 1.8, 'c');
-		cb.setFill('<');
-		cb.scale(3);
-		pict = cb;
-		expected = "<<<<<<<\n" +
-		           "<<<<<<<\n" +
-		           "<<<<<<<\n" +
-		           "<<<<<<<\n" +
-		           "<<<<<<<\n" +
-		           "<<<<<<<\n";
-		doTest(description, pict.toString(), expected);
-		
-		//Test5
-		description = "Tests the scaling fuction of DarkBox";
-		pict = new DarkBox(5.0,1.2,'x');
-		pict.scale(0.5);
-		expected = "xxx\n";
-		doTest(description, pict.toString(), expected); 
-		
-		//Test6
-		description = "Tests the ratio fuction of ClearBox ";
-		ClearBox clearBox = new ClearBox(64.26, 1.53);
-		double expectedDouble = 42;
-		doTest(description, clearBox.getRatio(), expectedDouble);
-		
-		//Test7
-		description = "Tests the scaling function of ClearBox";
-		pict = new ClearBox(2.3, 4.5);
-		pict.scale(1.4);
-		expected = "****\n" +
-		           "*  *\n" +
-		           "*  *\n" +
-		           "*  *\n" +
-		           "*  *\n" +
-		           "*  *\n" +
-		           "****\n";
-		doTest(description, pict.toString(), expected);
-	
-		//Test8
-		description = "Tests the scaling and toString functionality of Scaled";
-		Pict[][] array = new Pict[2][3];
-		array[0][0] = new Box(3.7,3.3,'o','.');
-		array[0][1] = new DarkBox(2.3, 1.8, 'c');
-		array[0][2] = new ClearBox(7.3, 4.5);
-		array[1][0] = new DarkBox(2.3, 1.8, 'c');
-		array[1][1] = new ClearBox(2.3, 4.5);
-		array[1][2] = new Box(3.7,5.3,'o','.');
-		pict = new Scaled<Pict>(array);
-		pict.scale(0.7);
-		expected = 	"ooo   cc \n" +
-		            "o.o   cc \n" +
-		            "ooo      \n" +
-		            "cc    ** \n" +
-		            "cc    ** \n" +
-		            "      ** \n" +
-		            "      ** \n" +
-		            "******ooo\n" +
-		            "*    *o.o\n" +
-		            "*    *o.o\n" +
-		            "******ooo";
-
-		doTest(description, pict.toString(), expected);
-		
-		//Test9
-		description = "Tests the scaling and toString functionality of Repeated";
-		array = new Pict[2][3];
-		array[0][0] = new FreeBox("012\n"+
-		                          "345\n");
-		array[0][1] = new FreeBox("0\n");
-		array[0][2] = new FreeBox("01\n"+
-		                          "23\n"+
-		                          "45\n"+
-		                          "67\n");
-		array[1][0] = new FreeBox("012345\n"+
-		                          "678910\n");
-		array[1][1] = new FreeBox("blah\n"+
-		                          "affe\n");
-		array[1][2] = new FreeBox("01234\n"+
-		                          "56789\n");
-		
-		pict = new Repeated<Pict>(array);
-		pict.scale(2.0);
-		expected =  "012012012345012345\n"+
-		            "345345678910678910\n"+
-		            "012012012345012345\n"+
-		            "345345678910678910\n"+
-		            "00    blahblah    \n"+
-		            "00    affeaffe    \n"+
-		            "0101  0123401234  \n"+
-		            "2323  5678956789  \n"+
-		            "4545  0123401234  \n"+
-		            "6767  5678956789  \n"+
-		            "0101              \n"+
-		            "2323              \n"+
-		            "4545              \n"+
-		            "6767              ";
-		
-		doTest(description, pict.toString(), expected);
-		
+		// Test 1
+		// TODO
 	}
 
 	private static int i = 0;
