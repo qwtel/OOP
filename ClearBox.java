@@ -19,8 +19,8 @@ public class ClearBox extends ClassicBox {
 	 */
 	private final double ratio;
 
-    /**
-     * Erzeugt eine ClearBox.
+	/**
+	 * Erzeugt eine ClearBox.
 	 *
 	 * @param width Eine Zahl größer 1.
 	 * @param height Eine Zahl größer 1.

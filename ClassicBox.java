@@ -13,15 +13,15 @@
  */
 public abstract class ClassicBox extends AbstractBox {
 	private char border;
-    private char fill;
+	private char fill;
 
 	/**
 	 * Setzt die Zeichen für Rand und Inhalt einer ClassicBox.
 	 *
 	 * @param width Eine Zahl größer 1.
 	 * @param height Eine Zahl größer 1.
-     * @param border Ein druckbarers Zeichen.
-     * @param fill Ein druckbares Zeichen.
+	 * @param border Ein druckbarers Zeichen.
+	 * @param fill Ein druckbares Zeichen.
 	 */
 	public ClassicBox(double width, double height, char border, char fill) {
 		super(width, height);
@@ -71,14 +71,14 @@ public abstract class ClassicBox extends AbstractBox {
 	}
 
 	/**
-     * @param border Ein druckbarers Zeichen.
+	 * @param border Ein druckbarers Zeichen.
 	 */
 	protected void setBorder(char border) {
 		this.border = border;
 	}
 
 	/**
-     * @param fill Ein druckbares Zeichen.
+	 * @param fill Ein druckbares Zeichen.
 	 */
 	protected void setFill(char fill) {
 		this.fill = fill;
