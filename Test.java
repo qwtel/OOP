@@ -106,7 +106,8 @@ public class Test {
 		CompositeTime c2 = new CompositeTime(new double[]{0.13, 0.02234, 0.17236});
 		CompositeTime c3 = new CompositeTime(new double[]{0.012, 0.169, 0.32534});
 
-		// XXX: What is this shit???
+		// XXX: I have no idea who to test OrderedMap...
+
 	}
 
 	private static int i = 0;

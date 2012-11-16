@@ -18,21 +18,32 @@ public class Description implements Shorter<Description> {
 		this.description = description;
 	}
 
+ 	/**
+	 * Gibt genau dann true zurück, wenn diese Beschreibung kürzer als die 
+	 * übergebene Beschreibung ist.
+	 *
+	 * @param other Die zu vergleichende Description.
+	 * @return true, wenn this kürzer als other ist.
+	 */
 	@Override
 	public boolean shorter(Description other) {
-		return (this.count() < other.count());
+		return (this.description.length() < other.description.length());
 	}
 
+    /**
+	 * Erlaubt das Auslesen der Beschreibung.
+	 * @return Die Beschreibung als String.
+	 */
 	@Override
 	public String toString() {
 		return description;
 	}
 
 	/**
-	 * Liefert die Anzahl der Zeichen zurück.
-	 * @return Die Anzahl der Zeichen.
+	 * Liefert die Anzahl der Zeilen zurück.
+	 * @return Die Anzahl der Zeilen.
 	 */
 	public int count() {
-		return description.length();
+		// TODO
 	}
 }

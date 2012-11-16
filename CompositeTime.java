@@ -17,6 +17,11 @@ public class CompositeTime extends ElapsedTime {
 
 	private double[] measures;
 
+	/**
+	 * Erzeugt eine neue CompositeTime und berechnet die Gesamtzeit.
+	 *
+	 * @param measures Ein Array das die Messwerte beinhaltet.
+	 */
 	public CompositeTime(double[] measures) {
 		this.measures = measures;
 
@@ -29,6 +34,8 @@ public class CompositeTime extends ElapsedTime {
 
 	/**
 	 * Liefert die Länge des Arrays.
+	 *
+	 * @return Die Anzahl durchgeführter Messungen.
 	 */
 	@Override
 	public int count() {
@@ -36,7 +43,11 @@ public class CompositeTime extends ElapsedTime {
 	}
 
 	/**
-	 * TODO
+	 * TODO: Implementierung.
+	 *
+	 * XXX: Sollte das vielleicht eine statische, generische Methode sein? Kommt
+	 * im Skriptum vor. Testfälle genau anschaun, vielleicht finden sich da
+	 * Hinweise darauf.
 	 */
 	public double getMinMeasure() {
 		// TODO
