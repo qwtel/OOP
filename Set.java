@@ -43,7 +43,7 @@ public class Set<E> implements Iterable<E> {
 			Node<E> node = root;
 			Node<E> prev = null;
 
-			while(node != null) {
+			while(loopCondition(node, prev, newNode)) {
 				if(node.elem == e) {
                 	return false;
 				}
@@ -55,6 +55,11 @@ public class Set<E> implements Iterable<E> {
 		}
 		
 		return true;
+	}
+
+	protected boolean loopCondition(Node<E> node, Node<E> prev, Node<E> newNode)
+	{
+		return (node != null);
 	}
 
 	/**
