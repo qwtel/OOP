@@ -1,3 +1,4 @@
+import java.util.Scanner;
 /**
  * Description
  *
@@ -8,7 +9,7 @@
  * Ein Vergleich mit shorter vergleicht die Texte anhand ihrer Längen in 
  * Zeichen. Es gibt eine Methode um die Anzahl der Zeilen zu ermitteln.
  *
- * @author TODO, Florian Klampfer
+ * @author Florian Klampfer, Michael Ion
  */
 public class Description implements Shorter<Description> {
 
@@ -44,7 +45,13 @@ public class Description implements Shorter<Description> {
 	 * @return Die Anzahl der Zeilen.
 	 */
 	public int count() {
-		// TODO
-		return 0;
+		int count = 0;
+		Scanner sc = new Scanner(description);
+		while(sc.hasNextLine()) {
+			sc.nextLine();
+			++count;
+		}
+		sc.close();
+		return count;
 	}
 }

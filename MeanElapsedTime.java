@@ -11,7 +11,7 @@
  * Methoden zum Hinzufügen weiterer Messwerte sowie zur Ermittlung des größten 
  * Messwerts sind nötig. Andere Messwerte sollen nicht direkt abfragbar sein.
  *
- * @author TODO, Florian Klampfer
+ * @author Florian Klampfer, Michael Ion
  */
 public class MeanElapsedTime extends ElapsedTime {
 
@@ -55,14 +55,14 @@ public class MeanElapsedTime extends ElapsedTime {
 	}
 
 	/**
-	 * TODO: Implementierung.
-	 *
-	 * XXX: Sollte das vielleicht eine statische, generische Methode sein? Kommt
-	 * im Skriptum vor. Testfälle genau anschaun, vielleicht finden sich da
-	 * Hinweise darauf.
+	 * Gibt den größten Messwert zurück
 	 */
 	public double getMaxMeasure() {
-		// TODO
-		return 0.0;
+		double max = -1;
+		for(Double d : measures) {
+			if(max < d)
+				max = d;
+		}
+		return max;
 	}
 }
