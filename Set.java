@@ -51,12 +51,16 @@ public class Set<E> implements Iterable<E> {
 				node = node.next;
 			}
 			
+			// deal with special cases here
 			prev.next = newNode;
 		}
 		
 		return true;
 	}
 
+	/**
+	 * XXX: Override this method in OrderedSet
+	 */
 	protected boolean loopCondition(Node<E> node, Node<E> prev, Node<E> newNode)
 	{
 		return (node != null);
