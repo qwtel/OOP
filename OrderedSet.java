@@ -13,7 +13,7 @@ import java.util.Iterator;
  *
  * @param <E> Typ der Elemente welche das Set enthalten soll. Muss das Interface
  *         Shorter für einen Obertyp von E implementieren.
- * @author TODO
+ * @author Michael Ion
  */
 public class OrderedSet<E extends Shorter<? super E>> extends Set<E> {
 
