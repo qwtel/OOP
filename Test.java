@@ -25,7 +25,7 @@ public class Test {
 		OrderedSet<Description> set = new OrderedSet<Description>();
 		Description desc1 = new Description("asdfasdf");
 		Description desc2 = new Description("qwertz");
-		Description desc3 = new Description("asdf asdf asdf zzwasdf ad");
+		Description desc3 = new Description("asdfasdf asdf zzwasdf ad");
 		set.insert(desc1);
 		set.insert(desc2);
 		set.insert(desc3);

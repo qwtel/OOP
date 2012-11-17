@@ -137,11 +137,15 @@ public class Set<E> implements Iterable<E> {
 		}
 
 		/**
-		 * XXX: this is probably not working correctly.
+		 * Löscht den letzten Node, der von next() geliefert wurde
 		 */
 		@Override
 		public void remove() {
-			prev.next = node.next;
+			Node<E> temp = root; 
+			while(temp.next != prev) {
+				temp = temp.next;
+			}
+			temp.next = prev.next;
 		}
 	}
 }

@@ -34,6 +34,8 @@ public class OrderedSet<E extends Shorter<? super E>> extends Set<E> {
 		Node<E> newNode = new Node<E>(e);
 		if(root == null) {
 			root = newNode;
+			//unnecessary
+			root.next = null;
 		}
 		else {
 			Node<E> prev = null;
