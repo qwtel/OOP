@@ -45,5 +45,6 @@ public class Description implements Shorter<Description> {
 	 */
 	public int count() {
 		// TODO
+		return 0;
 	}
 }
