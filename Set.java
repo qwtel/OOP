@@ -14,7 +14,7 @@ public class Set<E> implements Iterable<E> {
 	/**
 	 * Set wird intern durch eine verkettete Liste realisiert.
 	 */
-	private Node<E> root;
+	protected Node<E> root;
 
 	/**
 	 * Erzeugt ein leeres Set.
@@ -94,9 +94,9 @@ public class Set<E> implements Iterable<E> {
 	 * @param <T> Typ des Elements welcher von Node gekapselt wird.
 	 * @author Florian Klampfer
 	 */
-	private class Node<T> {
-		private T elem;
-		private Node next;
+	protected class Node<T> {
+		protected T elem;
+		protected Node next;
 
 		/**
 		 * Erzeugt einen neuen Knoten welcher zum Einfügen an das Ende einer
@@ -104,7 +104,7 @@ public class Set<E> implements Iterable<E> {
 		 *
 		 * @param elem Das Element welches in der Liste gespeichert werden soll.
 		 */
-		private Node(T elem) {
+		protected Node(T elem) {
 			this.elem = elem;
 			this.next = null;
 		}

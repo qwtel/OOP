@@ -31,7 +31,34 @@ public class OrderedSet<E extends Shorter<? super E>> extends Set<E> {
 	 */
 	@Override
 	public boolean insert(E e) {
-		// TODO
-     	return false;
+		Node<E> newNode = new Node<E>(e);
+		if(root == null) {
+			root = newNode;
+		}
+		else {
+			Node<E> prev = null;
+			Node<E> curr = root;			
+			while(curr != null) {
+				if(curr == newNode) {
+					return false;
+				}
+				else if(newNode.elem.shorter(curr.elem)) {
+					if(prev != null) {
+						prev.next = newNode;
+					}
+					else {
+						root = newNode;
+					}
+					newNode.next = curr;
+					return true;
+				}
+			
+				prev = curr;
+				curr = prev.next;
+			}
+			prev.next = newNode;
+		}
+		return true;
+		
 	}
 }
