@@ -57,7 +57,14 @@ public class Set<E> implements Iterable<E> {
 		
 		return true;
 	}
-
+	
+	/**
+	 * Gibt true zurück wenn das Set leer ist, sonst false
+	 */
+	public boolean isEmpty() {
+		return (root == null) ? true : false;
+	}
+	
 	/**
 	 * XXX: Override this method in OrderedSet
 	 */
