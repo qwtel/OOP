@@ -96,7 +96,7 @@ public class Set<E> implements Iterable<E> {
 	 */
 	protected class Node<T> {
 		protected T elem;
-		protected Node next;
+		protected Node<T> next;
 
 		/**
 		 * Erzeugt einen neuen Knoten welcher zum Einfügen an das Ende einer
