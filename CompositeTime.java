@@ -15,14 +15,14 @@
  */
 public class CompositeTime extends ElapsedTime {
 
-	private double[] measures;
+	private Double[] measures;
 
 	/**
 	 * Erzeugt eine neue CompositeTime und berechnet die Gesamtzeit.
 	 *
 	 * @param measures Ein Array das die Messwerte beinhaltet.
 	 */
-	public CompositeTime(double[] measures) {
+	public CompositeTime(Double[] measures) {
 		this.measures = measures;
 
 		double sum = 0.0;

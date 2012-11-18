@@ -83,7 +83,7 @@ public class Set<E> implements Iterable<E> {
 	 */
 	@Override
 	public Iterator<E> iterator() {
-		return new SetIterator();
+		return new SetIterator<E>(root);
 	}
 
 	/**
@@ -117,9 +117,17 @@ public class Set<E> implements Iterable<E> {
 	 *
 	 * @author Florian Klampfer
 	 */
- 	protected class SetIterator implements Iterator<E> {
-		private Node<E> node = root;
-		private Node<E> prev = null;
+ 	protected class SetIterator<T> implements Iterator<T> {
+		
+		private final Node<T> root;
+		private Node<T> node;
+		private Node<T> prev;
+
+		public SetIterator(Node<T> node) {
+			this.root = node;
+			this.node = node;
+			this.prev = null;
+		}
 
 		@Override
 		public boolean hasNext() {
@@ -127,7 +135,7 @@ public class Set<E> implements Iterable<E> {
 		}
 
 		@Override
-		public E next() {
+		public T next() {
 			if(node == null) {
 				return null;
 			}
@@ -141,7 +149,7 @@ public class Set<E> implements Iterable<E> {
 		 */
 		@Override
 		public void remove() {
-			Node<E> temp = root; 
+			Node<T> temp = root; 
 			while(temp.next != prev) {
 				temp = temp.next;
 			}
