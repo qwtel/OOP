@@ -1,7 +1,6 @@
 import java.util.Iterator;
 import java.util.ListIterator;
 
-import Set.SetIterator;
 
 /**
  * OrderedMap
@@ -64,7 +63,7 @@ public class OrderedMap<E extends Shorter<? super E>,
 	}
 	
 	@Override
-	public Iterator<E> iterator() {z
+	public Iterator<E> iterator() {
 		return new OrderedMapIterator();
 	}
 	/**
