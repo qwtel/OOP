@@ -1,6 +1,8 @@
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import Set.SetIterator;
+
 /**
  * OrderedMap
  *
@@ -13,72 +15,136 @@ import java.util.ListIterator;
  *
  * @param <E> ???
  * @param <F> ???
- * @author TODO
+ * @author Johannes Deml
  */
 public class OrderedMap<E extends Shorter<? super E>, 
 	   F extends Shorter<? super F>> extends OrderedSet<E> {
-
-	/**
-	 * Iterator entspricht im Wesentlichen der gleichnamigen Methode in 
-	 * OrderedSet. 
-	 *
-	 * Der zurückgegebene Iterator hat jedoch (neben hasNext, next und remove) 
-	 * ebenfalls eine Methode iterator, die einen Iterator über den Objekten 
-	 * zurückgibt, auf welche das aktuelle Element verweist. Der zuletzt 
-	 * genannte Iterator gibt die Objekte in der beim Einfügen bestimmten 
-	 * Reihenfolge zurück. 
-	 *
-	 * Neben hasNext und next unterstützt er auch die Methoden remove zum 
-	 * Löschen des zuletzt zurückgegebenen Elements sowie add zum Einfügen eines
-	 * neuen Elements an der aktuellen Position. Diese Methoden entsprechen 
-	 * jenen in der API-Spezifikation von java.util.ListIterator (jedoch ohne 
-	 * weitere Methoden wie previous, set, etc.).
-	 */
+	
+	private class MapNode<K,V>{
+		private K key;
+		private Set<V> value;
+		private MapNode<K,V> next = null;
+		MapNode(K key, Set<V> value) {
+			this.key = key;
+			this.value = value;
+		}
+	}
+	
+	private MapNode<E,F> rootMapNode;
+	
+	public OrderedMap () {
+		super();
+		rootMapNode = null;
+	}
+	
+	public boolean insert(E key, Set<F> value) {
+		if(! super.insert(key)) {
+			return false;
+		}
+		MapNode<E,F> newNode = new MapNode<E,F>(key, value);
+		if(rootMapNode == null) {
+			rootMapNode = newNode;
+		} else {
+			
+			MapNode<E,F> currentMapNode = rootMapNode;
+			MapNode<E,F> previousMapNode = null;
+			
+			while(currentMapNode != null) {
+				if(currentMapNode.key == newNode.key) {
+					return false;
+				}
+				previousMapNode = currentMapNode;
+				currentMapNode = currentMapNode.next;
+			}
+			
+			previousMapNode.next = newNode;
+		}
+		
+		return true;
+	}
+	
 	@Override
 	public Iterator<E> iterator() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return new OrderedMapIterator();
 	}
-
 	/**
 	 * TODO
 	 */
- 	private class OrderedMapIterator implements Iterable<E>, ListIterator<E> {
-
-		@Override
-		public Iterator<E> iterator() {
-			throw new UnsupportedOperationException("Not supported yet.");
-		}
-		
-		@Override
-		public boolean hasNext() {
-			throw new UnsupportedOperationException("Not supported yet.");
-		}
-
+ 	private class OrderedMapIterator extends SetIterator implements Iterable<E> {
+ 		private MapNode<E, F> currentMapNode = rootMapNode;
+ 		private MapNode<E, F> previousMapNode = null;
+ 		boolean hasSet = false;
 		@Override
 		public E next() {
-			throw new UnsupportedOperationException("Not supported yet.");
+			E node = super.next();
+			if(currentMapNode.key == node) {
+				if(!(currentMapNode == null)) {
+				previousMapNode = currentMapNode;
+				currentMapNode = currentMapNode.next;
+				hasSet = true;
+				}
+				
+			} else {
+				hasSet = false;
+			}
+			return node;
 		}
 
 		@Override
 		public void remove() {
-			throw new UnsupportedOperationException("Not supported yet.");
+			super.remove();
+			if(hasSet) {
+				MapNode<E,F> temp = rootMapNode;
+				while(temp.next != previousMapNode) {
+					temp = temp.next;
+				}
+				temp.next = previousMapNode.next;
+			}
+		}
+		
+		public Iterator<F> iterator() {
+			return currentMapNode.value.iterator();
+		}
+ 	}
+
+
+ 	// TODO add für Set hinzufügen
+/* 	private class OrderedMapSetIterator implements ListIterator<F> {
+
+ 		@Override
+		public void add(F e) {
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override
-		public void add(E e) {
-			throw new UnsupportedOperationException("Not supported yet.");
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return false;
 		}
 
-		/*
+		@Override
+		public F next() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void remove() {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
 		 * XXX: No need to implement the following methods:
-		 */
-		@Override
+		 
+ 		@Override
 		public boolean hasPrevious() {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
 
 		@Override
-		public E previous() {
+		public F previous() {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
 
@@ -93,8 +159,8 @@ public class OrderedMap<E extends Shorter<? super E>,
 		}
 
 		@Override
-		public void set(E e) {
+		public void set(F e) {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
-	}
+	}*/
 }

@@ -117,7 +117,7 @@ public class Set<E> implements Iterable<E> {
 	 *
 	 * @author Florian Klampfer
 	 */
- 	private class SetIterator implements Iterator<E> {
+ 	protected class SetIterator implements Iterator<E> {
 		private Node<E> node = root;
 		private Node<E> prev = null;
 
