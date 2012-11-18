@@ -64,7 +64,7 @@ public class OrderedMap<E extends Shorter<? super E>,
 	}
 	
 	@Override
-	public Iterator<E> iterator() {
+	public Iterator<E> iterator() {z
 		return new OrderedMapIterator();
 	}
 	/**
@@ -101,10 +101,15 @@ public class OrderedMap<E extends Shorter<? super E>,
 				temp.next = previousMapNode.next;
 			}
 		}
-		
+		// TODO Fehler beheben
+		/*
 		public Iterator<F> iterator() {
-			return currentMapNode.value.iterator();
+			if(hasSet) {
+				return currentMapNode.value.iterator();
+			}
+			return null;
 		}
+		*/
  	}
 
 
