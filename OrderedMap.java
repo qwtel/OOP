@@ -70,7 +70,7 @@ public class OrderedMap<E extends Shorter<? super E>,
 	/**
 	 * TODO
 	 */
- 	private class OrderedMapIterator extends SetIterator implements Iterable<E> {
+ 	private class OrderedMapIterator extends SetIterator implements Iterator<E> {
  		private MapNode<E, F> currentMapNode = rootMapNode;
  		private MapNode<E, F> previousMapNode = null;
  		boolean hasSet = false;
@@ -101,15 +101,13 @@ public class OrderedMap<E extends Shorter<? super E>,
 				temp.next = previousMapNode.next;
 			}
 		}
-		// TODO Fehler beheben
-		/*
+		
 		public Iterator<F> iterator() {
 			if(hasSet) {
 				return currentMapNode.value.iterator();
 			}
 			return null;
 		}
-		*/
  	}
 
 
