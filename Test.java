@@ -23,7 +23,6 @@ public class Test {
 		 * Diesen Vorgang können Sie mit unterschiedlichen Änderungen so oft 
 		 * wiederholen, wie es Ihnen als nötig erscheint.
 		 */
-
 		String test1 = "Testing the size of OrderedSet";
 		String test2 = "Testing the order of OrderedSet";
 
@@ -145,7 +144,7 @@ public class Test {
 		String test8 = "Checking getMinMeasure in CompositeTime (depends on sub iterator)";
 		List<Double> result8 = new ArrayList<Double>();
 		List<Double> expected8 = new ArrayList<Double>(Arrays.asList(
-					new Double[] {0.2, 0.1, 0.1, 0.2, 0.0, 0.1}));
+					new Double[] {0.2, 0.0, 0.1, 0.2, 0.1, 0.1}));
 
 		Iterator<MeanElapsedTime> iter1 = orderedMap.iterator();
 		while(iter1.hasNext()) {
@@ -181,7 +180,6 @@ public class Test {
 		 * der Testergebnisse eine Begründung dafür aus, warum zwischen diesen 
 		 * Typen keine Untertypbeziehung besteht.
 		 */
-
 		String test9 = "Is OrderedSet really a sub type of OrderedMap?";
 
 		OrderedSet<MeanElapsedTime> orderdSet = 
@@ -205,10 +203,10 @@ public class Test {
 			result9.add(m.getMaxMeasure());
 		}
 
-        doTest(test9, result9, expected9);
+		doTest(test9, result9, expected9);
 
 		/*
-		 * Erzeugen Sie eine Instanz von OrderedSet, deren Elemente vom Typ 
+		 * 4. Erzeugen Sie eine Instanz von OrderedSet, deren Elemente vom Typ 
 		 * ElapsedTime sind. Lesen Sie alle Elemente der in Punkt 2 erzeugten 
 		 * (und möglicherweise in Punkt 3 erweiterten) Menge und alle Objekte, 
 		 * auf welche die Elemente verweisen, aus und fügen Sie diese 
