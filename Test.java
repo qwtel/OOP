@@ -153,11 +153,16 @@ public class Test {
 			result5.add(m);
 			result7.add(m.getMaxMeasure());
 
-			Iterator<CompositeTime> iter2 = ((Iterable)iter1).iterator();
-			while(iter2.hasNext()) {
-				CompositeTime c = iter2.next();
-				result6.add(c);
-				result8.add(c.getMinMeasure());
+			if(iter1 instanceof Iterable) {
+				Iterator iter2 = ((Iterable)iter1).iterator();
+				while(iter2.hasNext()) {
+					Object o = iter2.next();
+					if(o instanceof CompositeTime) {
+						CompositeTime c = (CompositeTime)o;
+						result6.add(c);
+						result8.add(c.getMinMeasure());
+					}
+				}
 			}
 		}
 
@@ -219,10 +224,15 @@ public class Test {
 			MeanElapsedTime m = iter1.next();
 			ALL_THE_THINGS.insert(m);
 
-			Iterator<CompositeTime> iter2 = ((Iterable)iter1).iterator();
-        	while(iter2.hasNext()) {
-				CompositeTime c = iter2.next();
-				ALL_THE_THINGS.insert(c);
+			if(iter1 instanceof Iterable) {
+				Iterator iter2 = ((Iterable)iter1).iterator();
+				while(iter2.hasNext()) {
+					Object o = iter2.next();
+					if(o instanceof CompositeTime) {
+						CompositeTime c = (CompositeTime)o;
+						ALL_THE_THINGS.insert(c);
+					}
+				}
 			}
 		}
 
