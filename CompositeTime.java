@@ -11,7 +11,7 @@
  * Eine Methode zur Ermittlung der kürzesten Einzelzeit ist nötig, aber andere 
  * Einzelzeiten sollen nicht abfragbar sein.
  *
- * @author TODO, Florian Klampfer
+ * @author Florian Klampfer, Michael Ion
  */
 public class CompositeTime extends ElapsedTime {
 
@@ -43,14 +43,14 @@ public class CompositeTime extends ElapsedTime {
 	}
 
 	/**
-	 * TODO: Implementierung.
-	 *
-	 * XXX: Sollte das vielleicht eine statische, generische Methode sein? Kommt
-	 * im Skriptum vor. Testfälle genau anschaun, vielleicht finden sich da
-	 * Hinweise darauf.
+	 * Gibt den kleinsten Messwert zurück
 	 */
 	public double getMinMeasure() {
-		// TODO
-		return 0.0;
+		double min = Double.MAX_VALUE;
+		for(int i = 0; i < measures.length; i++) {
+			if(min > measures[i])
+				min = measures[i];
+		}
+		return min;
 	}
 }
