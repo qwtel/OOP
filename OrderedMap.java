@@ -1,5 +1,5 @@
 import java.util.Iterator;
-import java.util.ListIterator;
+
 
 
 /**
@@ -41,14 +41,23 @@ public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
 				if(currentMapNode.key == newNode.key) {
 					return false;
 				}
+				if(newNode.key.shorter(currentMapNode.key)) {
+					if(previousMapNode != null) {
+						previousMapNode.next = newNode;
+					} else {
+						rootMapNode = newNode;
+					}
+					newNode.next = currentMapNode;
+					return true;
+				}
+				
 				previousMapNode = currentMapNode;
 				currentMapNode = currentMapNode.next;
 			}
 			
 			previousMapNode.next = newNode;
 		}
-		
-		return true;
+		return true;		
 	}
 	
 	@Override
@@ -87,8 +96,8 @@ public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
 
 		@Override
 		public K next() {
-			K node = super.next();
-			if(currentMapNode.key == node) {
+			K receivedNode = super.next();
+			if(currentMapNode.key == receivedNode) {
 				if(!(currentMapNode == null)) {
 					previousMapNode = currentMapNode;
 					currentMapNode = currentMapNode.next;
@@ -98,7 +107,7 @@ public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
 			} else {
 				hasSet = false;
 			}
-			return node;
+			return receivedNode;
 		}
 
 		@Override
@@ -116,7 +125,7 @@ public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
 		@Override
 		public Iterator<V> iterator() {
 			if(hasSet) {
-				return currentMapNode.value.iterator();
+				return previousMapNode.value.iterator();
 			}
 			return new SetIterator<V>(null);
 		}
