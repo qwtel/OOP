@@ -8,12 +8,16 @@ import java.util.Iterator;
  * OrderedMap unterscheidet sich von OrderedSet nur dadurch, dass jedes Element
  * der Menge auf weitere Objekte verweisen kann. 
  *
- * Der Typ dieser Objekte wird durch einen weiteren Typparameter bestimmt.
+ * OrderedMap hat 2 Listen. In einer sind die Keys in Form
+ * von Nodes allein gespeichert (wird von OrderedSet übernommen), in der
+ * anderen sind Sowohl die Keys als auch die Nodes gespeichert. So muss ein
+ * Node nicht unbedingt mit einem Set zusammenhängen
  * 
- * XXX: I have no idea what this is supposed to do o_O
  *
- * @param <E> ???
- * @param <F> ???
+ * @param <E> Typ der Elemente die den Key für die Map bilden dürfen. 
+ * 			  Nach E wird die Map auch sortiert.
+ * @param <F> Typ der Elemente die im ValueSet gespeichert werden. Muss nicht
+ * 			  über shorten vergleichbar sein.
  * @author Johannes Deml
  */
 public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
@@ -64,7 +68,13 @@ public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
 	public Iterator<E> iterator() {
 		return new OrderedMapIterator<E, F>(root, rootMapNode);
 	}
-		
+	/**
+	 * Speichert sowohl den Key als auch das ValueSet. MapNode bildet die
+	 * Grundlage für die Speicherung der verketteten Liste der Map.
+	 *
+	 * @param <K> Ist immer vom Parametertyp E und wird für den Key genutzt
+	 * @param <V> Ist immer vom Parametertyp F und wird für die values genutzt
+	 */
 	private class MapNode<K,V>{
 		private K key;
 		private Set<V> value;
@@ -76,9 +86,6 @@ public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
 		}
 	}
 	
-	/**
-	 * TODO
-	 */
  	private class OrderedMapIterator<K, V> extends SetIterator<K> 
 			implements Iterable<V> {
 
@@ -130,61 +137,4 @@ public class OrderedMap<E extends Shorter<? super E>, F> extends OrderedSet<E> {
 			return new SetIterator<V>(null);
 		}
  	}
-
-
- 	// TODO add für Set hinzufügen
-/* 	private class OrderedMapSetIterator implements ListIterator<F> {
-
- 		@Override
-		public void add(F e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public F next() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void remove() {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		
-		 * XXX: No need to implement the following methods:
-		 
- 		@Override
-		public boolean hasPrevious() {
-			throw new UnsupportedOperationException("Not supported yet.");
-		}
-
-		@Override
-		public F previous() {
-			throw new UnsupportedOperationException("Not supported yet.");
-		}
-
-		@Override
-		public int nextIndex() {
-			throw new UnsupportedOperationException("Not supported yet.");
-		}
-
-		@Override
-		public int previousIndex() {
-			throw new UnsupportedOperationException("Not supported yet.");
-		}
-
-		@Override
-		public void set(F e) {
-			throw new UnsupportedOperationException("Not supported yet.");
-		}
-	}*/
 }
