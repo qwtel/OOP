@@ -28,6 +28,15 @@ public class MeanElapsedTime extends ElapsedTime {
 		count = 0;
 	}
 
+	@Override
+	public double getTime() {
+		double sum = 0.0;
+		for(double d : measures) {
+			sum += d;
+		}
+		return sum/count;
+	}
+
 	/**
 	 * Liefert die Anzahl durch add hinzugefügter Messungen.
 	 *
@@ -46,12 +55,6 @@ public class MeanElapsedTime extends ElapsedTime {
 	public void add(double measure) {
     	measures.insert(measure);
 		count++;
-
-		double sum = 0.0;
-		for(double d : measures) {
-			sum += d;
-		}
-		setTime(sum/count);
 	}
 
 	/**

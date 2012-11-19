@@ -16,6 +16,7 @@
 public class CompositeTime extends ElapsedTime {
 
 	private Double[] measures;
+	private double time;
 
 	/**
 	 * Erzeugt eine neue CompositeTime und berechnet die Gesamtzeit.
@@ -29,7 +30,12 @@ public class CompositeTime extends ElapsedTime {
 		for(int i=0; i<measures.length; i++) {
         	sum += measures[i];
 		}
-		setTime(sum);
+		time = sum;
+	}
+
+	@Override
+	public double getTime() {
+		return time;
 	}
 
 	/**
