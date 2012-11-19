@@ -7,7 +7,7 @@ import java.util.Iterator;
  * Typparameter bestimmt werden. 
  * 
  * @param <E> Typ der Elemente welche das Set enthalten soll.
- * @author Florian Klampfer
+ * @author Michael Ion, Florian Klampfer
  */
 public class Set<E> implements Iterable<E> {
 	
@@ -40,15 +40,26 @@ public class Set<E> implements Iterable<E> {
 			root = newNode;
 		}
 		else {
-			Node<E> node = root;
 			Node<E> prev = null;
+			Node<E> curr = root;
 
-			while(loopCondition(node, prev, newNode)) {
-				if(node.elem == e) {
+			while(curr != null) {
+				if(curr.key == e) {
                 	return false;
 				}
-				prev = node;
-				node = node.next;
+				else if(insertHere(curr, newNode)) {
+					if(prev != null) {
+						prev.next = newNode;
+					}
+					else {
+						root = newNode;
+					}
+					newNode.next = curr;
+					return true;
+				}
+
+				prev = curr;
+				curr = prev.next;
 			}
 			
 			// deal with special cases here
@@ -59,18 +70,14 @@ public class Set<E> implements Iterable<E> {
 	}
 	
 	/**
-	 * Gibt true zurück wenn das Set leer ist, sonst false
+	 * Entscheidet ob ein Knoten an der Stelle (curr) in die Liste eingefügt
+	 * wird. 
+	 *
+	 * @param curr Der aktuelle Knoten der Listen-Schleife.
+	 * @param newNode Der einzufügende Knoten.
 	 */
-	public boolean isEmpty() {
-		return (root == null) ? true : false;
-	}
-	
-	/**
-	 * XXX: Override this method in OrderedSet
-	 */
-	protected boolean loopCondition(Node<E> node, Node<E> prev, Node<E> newNode)
-	{
-		return (node != null);
+	protected boolean insertHere(Node<E> curr, Node<E> newNode) {
+		return false;
 	}
 
 	/**
@@ -95,7 +102,7 @@ public class Set<E> implements Iterable<E> {
 	 * @author Florian Klampfer
 	 */
 	protected class Node<T> {
-		protected T elem;
+		protected T key;
 		protected Node<T> next;
 
 		/**
@@ -104,8 +111,8 @@ public class Set<E> implements Iterable<E> {
 		 *
 		 * @param elem Das Element welches in der Liste gespeichert werden soll.
 		 */
-		protected Node(T elem) {
-			this.elem = elem;
+		protected Node(T key) {
+			this.key = key;
 			this.next = null;
 		}
 	}
@@ -141,7 +148,7 @@ public class Set<E> implements Iterable<E> {
 			}
 			prev = node;
 			node = node.next;
-			return prev.elem;
+			return prev.key;
 		}
 
 		/**
