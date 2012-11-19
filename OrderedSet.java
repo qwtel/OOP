@@ -15,6 +15,13 @@
  */
 public class OrderedSet<E extends Shorter<? super E>> extends Set<E> {
 
+	/**
+	 * Entscheidet ob ein Knoten an der Stelle (curr) in die Liste eingefügt
+	 * wird. 
+	 *
+	 * @param curr Der aktuelle Knoten der Listen-Schleife.
+	 * @param newNode Der einzufügende Knoten.
+	 */
 	@Override
 	protected boolean insertHere(Node<E> curr, Node<E> newNode) {
     	return (newNode.key.shorter(curr.key));

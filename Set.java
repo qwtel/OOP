@@ -70,7 +70,11 @@ public class Set<E> implements Iterable<E> {
 	}
 	
 	/**
-	 * XXX: Override this method in OrderedSet
+	 * Entscheidet ob ein Knoten an der Stelle (curr) in die Liste eingefügt
+	 * wird. 
+	 *
+	 * @param curr Der aktuelle Knoten der Listen-Schleife.
+	 * @param newNode Der einzufügende Knoten.
 	 */
 	protected boolean insertHere(Node<E> curr, Node<E> newNode) {
 		return false;
