@@ -1,9 +1,9 @@
 
 public class SoftwareBauarbeiter extends Software {
 
-	public SoftwareBauarbeiter(int s) {
+	public SoftwareBauarbeiter(int s, SoftwareStufe softwareStufe) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		softwareStufe.fuerSoftwareBauarbeiter(this);
 	}
 
 	@Override

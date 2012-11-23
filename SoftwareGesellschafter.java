@@ -1,9 +1,8 @@
 
 public class SoftwareGesellschafter extends Software {
-
+	
 	public SoftwareGesellschafter(int s) {
 		super(s);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

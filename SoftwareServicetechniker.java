@@ -1,9 +1,9 @@
 
 public class SoftwareServicetechniker extends Software {
-
+	
 	public SoftwareServicetechniker (int s) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

@@ -2,6 +2,7 @@
 public abstract class Software {
 	private int seriennummer;
 	private SoftwareStufe softwareStufe;
+	
 	public Software(int seriennummer) {
 		this.seriennummer = seriennummer;
 	}
