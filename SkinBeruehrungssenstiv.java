@@ -3,20 +3,17 @@ public class SkinBeruehrungssenstiv extends Skin{
 
 	@Override
 	public void fuerBediener(Bediener bediener) {
-		// TODO Auto-generated method stub
-		
+		bediener.setSkin(this);
 	}
 
 	@Override
 	public void fuerSchwerarbeiter(Schwerarbeiter schwerarbeiter) {
-		// TODO Auto-generated method stub
-		
+		schwerarbeiter.setSkin(this);
 	}
 
 	@Override
 	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
-		// TODO Auto-generated method stub
-		
+		beschuetzer.setSkin(this);
 	}
 
 }

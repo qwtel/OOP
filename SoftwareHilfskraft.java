@@ -3,7 +3,6 @@ public class SoftwareHilfskraft extends Software {
 
 	public SoftwareHilfskraft(int s) {
 		super(s);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

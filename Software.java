@@ -1,10 +1,9 @@
 
 public abstract class Software {
-	private int s;
-	
-	
-	public Software(int s) {
-		this.s = s;
+	private int seriennummer;
+	private SoftwareStufe softwareStufe;
+	public Software(int seriennummer) {
+		this.seriennummer = seriennummer;
 	}
 	
 	public abstract void fuerBauarbeiter(Bauarbeiter bauarbeiter);
@@ -17,4 +16,14 @@ public abstract class Software {
 	public abstract void fuerObjektbewacher(Objektbewacher objektbewacher);
 	public abstract void fuerLeibwaechter(Leibwaechter leibwaechter);
 	public abstract void fuerKaempfer(Kaempfer kaempfer);
+
+	public SoftwareStufe getSoftwareStufe() {
+		return softwareStufe;
+	}
+
+	public void setSoftwareStufe(SoftwareStufe softwareStufe) {
+		this.softwareStufe = softwareStufe;
+	}
+	
+	
 }
