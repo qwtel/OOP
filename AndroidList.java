@@ -5,10 +5,10 @@ import java.util.ArrayList;
  *
  */
 public class AndroidList {
-	private ArrayList<Seriennummer> al;
+	private ArrayList<Android> al;
 	
 	public AndroidList() {
-		al = new ArrayList<Seriennummer>();
+		al = new ArrayList<Android>();
 	}
 	/**
 	 * Fügt einen Androiden mit eindeutiger Seriennummer und allen Ausstattungsdetails
@@ -20,7 +20,7 @@ public class AndroidList {
 	 * Android ein Sensoren-Aktoren-Kit, eine Skin und eine Software mit.
 	 * @param a
 	 */
-	public void insert(Seriennummer a) {
+	public void insert(Android a) {
 		
 	}
 }
