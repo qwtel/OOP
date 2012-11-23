@@ -1,5 +1,5 @@
 
-public class SkinGepanzert implements Skin{
+public class SkinGepanzert extends Skin{
 
 	@Override
 	public void fuerBediener(Bediener bediener) {

@@ -1,12 +1,13 @@
 
 public abstract class Android {
 	
-	
+	private static int seriennummerZaehler =0;
+	private final int seriennummer;
 	private Skin skin;
 	private Software software;
 	
 	public Android() {
-		
+		this.seriennummer = seriennummerZaehler++;
 	}
 
 	public Skin getSkin() {

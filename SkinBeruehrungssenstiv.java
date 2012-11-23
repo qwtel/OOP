@@ -1,5 +1,5 @@
 
-public class SkinBeruehrungssenstiv implements Skin{
+public class SkinBeruehrungssenstiv extends Skin{
 
 	@Override
 	public void fuerBediener(Bediener bediener) {

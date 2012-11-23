@@ -1,5 +1,5 @@
 
-public class SkinHochfest implements Skin {
+public class SkinHochfest extends Skin {
 
 	@Override
 	public void fuerBediener(Bediener bediener) {
