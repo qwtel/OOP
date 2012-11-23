@@ -2,7 +2,10 @@
 public abstract class Android {
 	
 	
-	public Android() {
+	private Skin skin;
+	private Software software;
+	
+	public Android(Skin skin) {
 		
 	}
 	
