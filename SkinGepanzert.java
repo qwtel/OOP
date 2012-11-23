@@ -3,20 +3,17 @@ public class SkinGepanzert extends Skin{
 
 	@Override
 	public void fuerBediener(Bediener bediener) {
-		// TODO Auto-generated method stub
-		
+		bediener.setSkin(null);
 	}
 
 	@Override
 	public void fuerSchwerarbeiter(Schwerarbeiter schwerarbeiter) {
-		// TODO Auto-generated method stub
-		
+		schwerarbeiter.setSkin(null);
 	}
 
 	@Override
 	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
-		// TODO Auto-generated method stub
-		
+		beschuetzer.setSkin(this);
 	}
 
 }

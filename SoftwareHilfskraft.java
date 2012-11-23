@@ -3,13 +3,11 @@ public class SoftwareHilfskraft extends Software {
 
 	public SoftwareHilfskraft(int s) {
 		super(s);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void fuerBauarbeiter(Bauarbeiter bauarbeiter) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
