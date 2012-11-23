@@ -8,6 +8,7 @@ public abstract class Skin {
 	public void fuerSchwerarbeiter(Schwerarbeiter schwerarbeiter) {
 		
 	}
+	
 	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
 		
 	}
