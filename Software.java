@@ -1,8 +1,8 @@
 
 public abstract class Software {
-	private Software s;
+	private Seriennummer s;
 	
-	public Software(Software s) {
+	public Software(Seriennummer s) {
 		this.s = s;
 	}
 	

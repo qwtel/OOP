@@ -1,7 +1,7 @@
 
-public class SoftwareHilfskraft extends Software {
+public class SoftwareServicetechniker extends Software {
 
-	public SoftwareHilfskraft(Seriennummer s) {
+	public SoftwareServicetechniker (Seriennummer s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}
