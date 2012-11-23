@@ -6,55 +6,47 @@ public class SoftwareStufe4 extends SoftwareStufe{
 
 	@Override
 	public void fuerSoftwareBauarbeiter(SoftwareBauarbeiter softwareBauarbeiter) {
-		// TODO Auto-generated method stub
-		
+		softwareBauarbeiter.setSoftwareStufe(this);
 	}
 
 	@Override
 	public void fuerSoftwareServicetechniker(
 			SoftwareServicetechniker softwareServicetechniker) {
-		// TODO Auto-generated method stub
-		
+		softwareServicetechniker.setSoftwareStufe(this);
 	}
 
 	@Override
 	public void fuerSoftwareTransportarbeiter(
 			SoftwareTransportarbeiter softwareTransportarbeiter) {
-		// TODO Auto-generated method stub
-		
+		softwareTransportarbeiter.setSoftwareStufe(this);
 	}
 
 	@Override
 	public void fuerSoftwareHilfskraft(SoftwareHilfskraft softwareHilfskraft) {
-		// TODO Auto-generated method stub
-		
+		softwareHilfskraft.setSoftwareStufe(null);
 	}
 
 	@Override
 	public void fuerSoftwareGesellschafter(
 			SoftwareGesellschafter softwareGesellschafter) {
-		// TODO Auto-generated method stub
-		
+		softwareGesellschafter.setSoftwareStufe(null);
 	}
 
 	@Override
 	public void fuerSoftwareObjektbewacher(
 			SoftwareObjektbewacher softwareObjektbewacher) {
-		// TODO Auto-generated method stub
-		
+		softwareObjektbewacher.setSoftwareStufe(this);
 	}
 
 	@Override
 	public void fuerSoftwareLeibwaechter(
 			SoftwareLeibwaechter softwareLeibwaechter) {
-		// TODO Auto-generated method stub
-		
+		softwareLeibwaechter.setSoftwareStufe(this);
 	}
 
 	@Override
 	public void fuerSoftwareKaempfer(SoftwareKaempfer softwarekaempfer) {
-		// TODO Auto-generated method stub
-		
+		softwarekaempfer.setSoftwareStufe(null);
 	}
 
 	
