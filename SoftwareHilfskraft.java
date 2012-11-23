@@ -1,7 +1,7 @@
 
 public class SoftwareHilfskraft extends Software {
 
-	public SoftwareHilfskraft(Seriennummer s) {
+	public SoftwareHilfskraft(int s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}

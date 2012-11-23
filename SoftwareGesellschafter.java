@@ -1,7 +1,7 @@
 
 public class SoftwareGesellschafter extends Software {
 
-	public SoftwareGesellschafter(Seriennummer s) {
+	public SoftwareGesellschafter(int s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}

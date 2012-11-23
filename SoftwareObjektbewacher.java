@@ -1,7 +1,7 @@
 
 public class SoftwareObjektbewacher extends Software {
 
-	public SoftwareObjektbewacher(Seriennummer s) {
+	public SoftwareObjektbewacher(int s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}

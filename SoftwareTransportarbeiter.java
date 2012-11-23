@@ -1,7 +1,7 @@
 
-public class SoftwareObjektbewacher extends Software {
+public class SoftwareTransportarbeiter extends Software {
 
-	public SoftwareObjektbewacher(Seriennummer s) {
+	public SoftwareTransportarbeiter(int s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}

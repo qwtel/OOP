@@ -1,7 +1,7 @@
 
 public class SoftwareLeibwaechter extends Software {
 
-	public SoftwareLeibwaechter(Seriennummer s) {
+	public SoftwareLeibwaechter(int s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}

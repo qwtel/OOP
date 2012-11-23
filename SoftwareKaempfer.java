@@ -1,7 +1,7 @@
 
 public class SoftwareKaempfer extends Software {
 
-	public SoftwareKaempfer (Seriennummer s) {
+	public SoftwareKaempfer (int s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}

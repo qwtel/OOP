@@ -1,7 +1,7 @@
 
 public class SoftwareServicetechniker extends Software {
 
-	public SoftwareServicetechniker (Seriennummer s) {
+	public SoftwareServicetechniker (int s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}
