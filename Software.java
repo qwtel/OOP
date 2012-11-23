@@ -2,6 +2,7 @@
 public abstract class Software {
 	private int s;
 	
+	
 	public Software(int s) {
 		this.s = s;
 	}
