@@ -21,6 +21,17 @@ public class AndroidList {
 	 * @param a
 	 */
 	public void insert(Android a) {
-		
+		if(a.getSkin() != null && a.getSoftware() != null) {
+			if(! al.contains(a)) {
+				al.add(a);
+			} else {
+				 //schauen ob es den gleichen Haupttyp und Seriennummmer hat
+				
+			}
+		}
+	}
+	
+	public String find(String seriennummer) {
+		return 
 	}
 }
