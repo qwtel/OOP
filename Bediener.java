@@ -1,9 +1,9 @@
 
 public class Bediener extends Android {
 
-	public void setSkin(Skin skin) {
-		// TODO Auto-generated method stub
-		
+	public Bediener(Skin skin) {
+		super();
+		skin.fuerBediener(this);
 	}
 
 }
