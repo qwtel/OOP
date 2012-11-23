@@ -1,9 +1,9 @@
 
 public class SoftwareLeibwaechter extends Software {
 
-	public SoftwareLeibwaechter(int s) {
+	public SoftwareLeibwaechter(int s, SoftwareStufe softwareStufe) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		softwareStufe.fuerSoftwareLeibwaechter(this);
 	}
 
 	@Override
