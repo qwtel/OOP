@@ -1,9 +1,9 @@
 
 public class SoftwareServicetechniker extends Software {
 	
-	public SoftwareServicetechniker (int s) {
+	public SoftwareServicetechniker (int s, SoftwareStufe softwareStufe) {
 		super(s);
-		
+		softwareStufe.fuerSoftwareServicetechniker(this);
 	}
 
 	@Override

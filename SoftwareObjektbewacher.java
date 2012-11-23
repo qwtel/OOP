@@ -1,9 +1,9 @@
 
 public class SoftwareObjektbewacher extends Software {
 
-	public SoftwareObjektbewacher(int s) {
+	public SoftwareObjektbewacher(int s, SoftwareStufe softwareStufe) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		softwareStufe.fuerSoftwareObjektbewacher(this);
 	}
 
 	@Override
