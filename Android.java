@@ -9,6 +9,10 @@ public abstract class Android {
 	public Android() {
 		this.seriennummer = seriennummerZaehler++;
 	}
+	
+	public Android(int seriennummer) {
+		this.seriennummer = seriennummer;
+	}
 
 	public Skin getSkin() {
 		return skin;
@@ -24,5 +28,9 @@ public abstract class Android {
 
 	public void setSoftware(Software software) {
 		this.software = software;
+	}
+
+	public int getSeriennummer() {
+		return seriennummer;
 	}
 }
