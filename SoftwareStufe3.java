@@ -5,51 +5,58 @@ public class SoftwareStufe3 extends SoftwareStufe{
 	}
 
 	@Override
-	public void fuerBauarbeiter(Bauarbeiter bauarbeiter) {
+	public void fuerSoftwareBauarbeiter(SoftwareBauarbeiter softwareBauarbeiter) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fuerServicetechniker(Servicetechniker servicetechniker) {
+	public void fuerSoftwareServicetechniker(
+			SoftwareServicetechniker softwareServicetechniker) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fuerTransportarbeiter(Transportarbeiter transportarbeiter) {
+	public void fuerSoftwareTransportarbeiter(
+			SoftwareTransportarbeiter softwareTransportarbeiter) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fuerHilfskraft(Hilfskraft hilfskraft) {
+	public void fuerSoftwareHilfskraft(SoftwareHilfskraft softwareHilfskraft) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fuerGesellschafter(Gesellschafter gesellschafter) {
+	public void fuerSoftwareGesellschafter(
+			SoftwareGesellschafter softwareGesellschafter) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fuerObjektbewacher(Objektbewacher objektbewacher) {
+	public void fuerSoftwareObjektbewacher(
+			SoftwareObjektbewacher softwareObjektbewacher) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fuerLeibwaechter(Leibwaechter leibwaechter) {
+	public void fuerSoftwareLeibwaechter(
+			SoftwareLeibwaechter softwareLeibwaechter) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fuerKaempfer(Kaempfer kaempfer) {
+	public void fuerSoftwareKaempfer(SoftwareKaempfer softwarekaempfer) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 	
 }
