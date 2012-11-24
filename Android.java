@@ -33,4 +33,7 @@ public abstract class Android {
 	public int getSeriennummer() {
 		return seriennummer;
 	}
+	public String toString() {
+		return software.toString() + skin.toString();
+	}
 }

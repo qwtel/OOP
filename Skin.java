@@ -12,4 +12,7 @@ public abstract class Skin {
 	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
 		
 	}
+	public String toString() {
+		return "Skin: ";
+	}
 }

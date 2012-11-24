@@ -15,5 +15,7 @@ public class SkinHochfest extends Skin {
 	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
 		beschuetzer.setSkin(this);
 	}
-
+	public String toString() {
+		return super.toString()+"Gepanzert";
+	}
 }

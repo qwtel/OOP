@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Führt eine Liste mit allen Androiden
@@ -32,6 +33,10 @@ public class AndroidList {
 	}
 	
 	public String find(String seriennummer) {
-		return 
+		return "blub";
+	}
+	
+	public Iterator iterator() {
+		return al.iterator();
 	}
 }
