@@ -4,10 +4,10 @@ import java.util.ArrayList;
  * Führt eine Liste mit allen Androiden
  *
  */
-public class AndroidList {
+public class RobiesRoboShop {
 	private ArrayList<Android> al;
 	
-	public AndroidList() {
+	public RobiesRoboShop() {
 		al = new ArrayList<Android>();
 	}
 	/**
@@ -32,6 +32,6 @@ public class AndroidList {
 	}
 	
 	public String find(String seriennummer) {
-		return 
+		return "";
 	}
 }
