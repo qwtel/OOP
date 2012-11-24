@@ -1,15 +1,9 @@
 
 public abstract class Skin {
 	
-	public void fuerBediener(Bediener bediener) {
-		
-	}
+	public abstract void fuerBediener(Bediener bediener);
 	
-	public void fuerSchwerarbeiter(Schwerarbeiter schwerarbeiter) {
-		
-	}
+	public abstract void fuerSchwerarbeiter(Schwerarbeiter schwerarbeiter);
 	
-	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
-		
-	}
+	public abstract void fuerBeschuetzer(Beschuetzer beschuetzer);
 }
