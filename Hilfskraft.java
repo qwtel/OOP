@@ -1,8 +1,8 @@
 
 public class Hilfskraft extends Bediener {
 	
-	public Hilfskraft(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerHilfskraft(this);
 	}
 }

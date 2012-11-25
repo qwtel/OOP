@@ -1,8 +1,8 @@
 
 public class Leibwaechter extends Beschuetzer {
 	
-	public Leibwaechter(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerLeibwaechter(this);
 	}
 }

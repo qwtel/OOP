@@ -1,9 +1,9 @@
 
 public class SoftwareKaempfer extends Software {
 
-	public SoftwareKaempfer (int s) {
+	public SoftwareKaempfer(int s, SoftwareStufe softwareStufe) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		softwareStufe.fuerSoftwareKaempfer(this);
 	}
 
 	@Override
@@ -14,7 +14,6 @@ public class SoftwareKaempfer extends Software {
 	@Override
 	public void fuerServicetechniker(Servicetechniker servicetechniker) {
 		servicetechniker.setSoftware(null);
-
 	}
 
 	@Override

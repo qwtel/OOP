@@ -1,8 +1,8 @@
 
 public class Objektbewacher extends Beschuetzer {
 	
-	public Objektbewacher(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerObjektbewacher(this);
 	}
 }

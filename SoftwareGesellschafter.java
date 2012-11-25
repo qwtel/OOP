@@ -1,8 +1,9 @@
 
 public class SoftwareGesellschafter extends Software {
 	
-	public SoftwareGesellschafter(int s) {
+	public SoftwareGesellschafter(int s, SoftwareStufe softwareStufe) {
 		super(s);
+		softwareStufe.fuerSoftwareGesellschafter(this);
 	}
 
 	@Override
@@ -13,7 +14,6 @@ public class SoftwareGesellschafter extends Software {
 	@Override
 	public void fuerServicetechniker(Servicetechniker servicetechniker) {
 		servicetechniker.setSoftware(null);
-
 	}
 
 	@Override
@@ -45,5 +45,4 @@ public class SoftwareGesellschafter extends Software {
 	public void fuerKaempfer(Kaempfer kaempfer) {
 		kaempfer.setSoftware(null);
 	}
-
 }

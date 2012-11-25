@@ -1,9 +1,8 @@
 
-public class Schwerarbeiter extends Android {
+public abstract class Schwerarbeiter extends Android {
 
-	public Schwerarbeiter(Skin skin) {
-		super();
+	@Override
+	public void installSkin(Skin skin) {
 		skin.fuerSchwerarbeiter(this);
 	}
-
 }

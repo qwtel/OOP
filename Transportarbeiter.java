@@ -1,8 +1,8 @@
 
 public class Transportarbeiter extends Schwerarbeiter {
 	
-	public Transportarbeiter(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerTransportarbeiter(this);
 	}
 }

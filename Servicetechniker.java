@@ -1,8 +1,8 @@
 
 public class Servicetechniker extends Schwerarbeiter {
 	
-	public Servicetechniker(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerServicetechniker(this);
 	}
 }

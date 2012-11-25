@@ -9,7 +9,6 @@ public class SoftwareTransportarbeiter extends Software {
 	@Override
 	public void fuerBauarbeiter(Bauarbeiter bauarbeiter) {
 		bauarbeiter.setSoftware(null);
-
 	}
 
 	@Override
@@ -46,5 +45,4 @@ public class SoftwareTransportarbeiter extends Software {
 	public void fuerKaempfer(Kaempfer kaempfer) {
 		kaempfer.setSoftware(null);
 	}
-
 }

@@ -1,9 +1,8 @@
 
-public class Bediener extends Android {
+public abstract class Bediener extends Android {
 
-	public Bediener(Skin skin) {
-		super();
+	@Override
+	public void installSkin(Skin skin) {
 		skin.fuerBediener(this);
 	}
-
 }

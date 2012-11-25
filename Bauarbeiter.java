@@ -1,9 +1,8 @@
 
 public class Bauarbeiter extends Schwerarbeiter {
 
-	public Bauarbeiter(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerBauarbeiter(this);
 	}
-
 }

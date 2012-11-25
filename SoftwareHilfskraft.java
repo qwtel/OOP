@@ -1,8 +1,9 @@
 
 public class SoftwareHilfskraft extends Software {
 
-	public SoftwareHilfskraft(int s) {
+	public SoftwareHilfskraft(int s, SoftwareStufe softwareStufe) { 
 		super(s);
+		softwareStufe.fuerSoftwareHilfskraft(this);
 	}
 
 	@Override
@@ -13,7 +14,6 @@ public class SoftwareHilfskraft extends Software {
 	@Override
 	public void fuerServicetechniker(Servicetechniker servicetechniker) {
 		servicetechniker.setSoftware(null);
-
 	}
 
 	@Override

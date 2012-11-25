@@ -1,8 +1,8 @@
 
 public class Kaempfer extends Beschuetzer {
 	
-	public Kaempfer(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerKaempfer(this);
 	}
 }

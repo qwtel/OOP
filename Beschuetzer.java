@@ -1,9 +1,8 @@
 
-public class Beschuetzer extends Android {
+public abstract class Beschuetzer extends Android {
 
-	public Beschuetzer(Skin skin) {
-		super();
+	@Override
+	public void installSkin(Skin skin) {
 		skin.fuerBeschuetzer(this);
 	}
-
 }

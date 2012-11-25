@@ -1,8 +1,8 @@
 
 public class Gesellschafter extends Bediener {
 	
-	public Gesellschafter(Skin skin, Software software) {
-		super(skin);
+	@Override
+	public void installSoftware(Software software) {
 		software.fuerGesellschafter(this);
 	}
 }

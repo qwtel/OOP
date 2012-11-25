@@ -1,11 +1,9 @@
 
 public class SoftwareStufe2 extends SoftwareStufe{
-	public SoftwareStufe2() {
-		
-	}
 
 	@Override
-	public void fuerSoftwareBauarbeiter(SoftwareBauarbeiter softwareBauarbeiter) {
+	public void fuerSoftwareBauarbeiter(
+			SoftwareBauarbeiter softwareBauarbeiter) {
 		softwareBauarbeiter.setSoftwareStufe(null);
 	}
 
@@ -48,6 +46,4 @@ public class SoftwareStufe2 extends SoftwareStufe{
 	public void fuerSoftwareKaempfer(SoftwareKaempfer softwarekaempfer) {
 		softwarekaempfer.setSoftwareStufe(null);
 	}
-
-	
 }

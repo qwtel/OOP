@@ -7,8 +7,25 @@
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
+		RobiesRoboShop roboShop = new RobiesRoboShop();
 
-		
+		Android hilfskraft = new Hilfskraft();
+
+		Skin hilfskraftSkin = new SkinBeruehrungssenstiv(
+				hilfskraft.getSeriennummer());
+
+		SoftwareStufe stufe1 = new SoftwareStufe1();
+		Software hilfskraftSoftware = new SoftwareHilfskraft(
+				hilfskraft.getSeriennummer(), stufe1);
+
+		hilfskraft.setSkin(hilfskraftSkin);
+		hilfskraft.setSoftware(hilfskraftSoftware);
+
+		roboShop.insert(hilfskraft);
+		String result1 = roboShop.find(hilfskraft.getSeriennummer());
+		String expected1 = hilfskraft.toString();
+		doTest("asdf", result1, expected1);
+
 	}
 
 	private static int i = 0;

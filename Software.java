@@ -1,8 +1,22 @@
 
 public abstract class Software {
-	private int seriennummer;
+
+	/**
+	 * Die Seriennummer des Androiden für den diese Software bestimmt ist.
+	 */
+	private final int seriennummer;
+
+	/**
+	 * TODO
+	 */
 	private SoftwareStufe softwareStufe;
 	
+	/**
+	 * Erzeugt eine neues Software Objekt für den Androiden mit der 
+	 * spezifizierten Seriennummer.
+	 *
+	 * @param seriennummer Die Seriennummer des Ziel-Androiden.
+	 */
 	public Software(int seriennummer) {
 		this.seriennummer = seriennummer;
 	}
@@ -18,13 +32,11 @@ public abstract class Software {
 	public abstract void fuerLeibwaechter(Leibwaechter leibwaechter);
 	public abstract void fuerKaempfer(Kaempfer kaempfer);
 
-	public SoftwareStufe getSoftwareStufe() {
-		return softwareStufe;
-	}
-
 	public void setSoftwareStufe(SoftwareStufe softwareStufe) {
 		this.softwareStufe = softwareStufe;
 	}
-	
-	
+
+	public SoftwareStufe getSoftwareStufe() {
+		return softwareStufe;
+	}
 }
