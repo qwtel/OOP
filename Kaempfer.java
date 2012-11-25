@@ -13,4 +13,10 @@ public class Kaempfer extends Beschuetzer {
 	public void installSoftware(Software software) {
 		software.fuerKaempfer(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerKaempfer(this);
+		
+	}
 }

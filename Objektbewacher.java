@@ -13,4 +13,10 @@ public class Objektbewacher extends Beschuetzer {
 	public void installSoftware(Software software) {
 		software.fuerObjektbewacher(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerObjektbewacher(this);
+		
+	}
 }

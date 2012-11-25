@@ -13,4 +13,9 @@ public class Gesellschafter extends Bediener {
 	public void installSoftware(Software software) {
 		software.fuerGesellschafter(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerGesellschafter(this);
+	}
 }

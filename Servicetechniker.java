@@ -13,4 +13,11 @@ public class Servicetechniker extends Schwerarbeiter {
 	public void installSoftware(Software software) {
 		software.fuerServicetechniker(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerServicetechniker(this);
+		
+	}
+	
 }

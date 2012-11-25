@@ -13,4 +13,11 @@ public class Transportarbeiter extends Schwerarbeiter {
 	public void installSoftware(Software software) {
 		software.fuerTransportarbeiter(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerTransportarbeiter(this);
+		
+	}
+
 }

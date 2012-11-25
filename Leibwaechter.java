@@ -13,4 +13,9 @@ public class Leibwaechter extends Beschuetzer {
 	public void installSoftware(Software software) {
 		software.fuerLeibwaechter(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerLeibwaechter(this);	
+	}
 }

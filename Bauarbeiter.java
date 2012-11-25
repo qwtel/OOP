@@ -13,4 +13,10 @@ public class Bauarbeiter extends Schwerarbeiter {
 	public void installSoftware(Software software) {
 		software.fuerBauarbeiter(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerBauarbeiter(this);
+		
+	}
 }

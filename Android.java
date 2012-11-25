@@ -17,6 +17,7 @@ public abstract class Android {
 
 	private Skin skin;
 	private Software software;
+	private Aktor aktor;
 	
 	/**
 	 * Erzeugt einen neuen Androiden mit einer eindeutigen Seriennummer.
@@ -25,6 +26,7 @@ public abstract class Android {
 		this.seriennummer = seriennummerZaehler++;
 		this.skin = null;
 		this.software = null;
+		this.aktor = null;
 	}
 
 	/**
@@ -37,6 +39,7 @@ public abstract class Android {
 		this.seriennummer = seriennummer;
 		this.skin = null;
 		this.software = null;
+		this.aktor = null;
 	}
 
 	/**
@@ -83,6 +86,7 @@ public abstract class Android {
 	 */
 	public abstract void installSoftware(Software software);
 
+
 	/**
 	 * Setter-Methode für die Software. Default-Sichtbarkeit, wird nur von
 	 * Untertypen von Software verwendet um software dieses Androiden setzen zu
@@ -99,7 +103,40 @@ public abstract class Android {
 	public Software getSoftware() {
 		return software;
 	}
+	
+	/**
+	 * Stattet den Androiden mit einem Aktor aus. 
+	 *
+	 * Die Seriennummer des Aktors muss mit der des Androiden übereinstimmen
+	 * (Vorbedingung). 
+	 * 
+	 * Der Aktor muss mit der Softwarestufe des Androiden kompatibel sein. (Vorbedingung)
+	 *
+	 * Ist der spezifizierte Aktorfür den Typ dieses Androiden nicht 
+	 * zulässig, wird aktor auf null gesetzt (Nachbedingung).
+	 *
+	 * @param aktor Der Aktor für diesen Androiden. Die Seriennummer muss
+	 *         mit der des Androiden übereinstimmen.
+	 */	
+	public abstract void installAktor(Aktor aktor);
 
+	/**
+	 * Setter-Methode für den Aktor. Default-Sichtbarkeit, wird nur von
+	 * Untertypen von Aktor verwendet um aktor dieses Androiden setzen zu
+	 * können.
+	 *
+	 * @param aktor Der Aktor für diesen Androiden. Die Seriennummer muss
+	 *         mit der des Androiden übereinstimmen. Der Typ des Aktors muss
+	 *         mit dem Typ der Software des Androiden kompatibel sein.
+	 */
+	void setAktor(Aktor aktor) {
+    	this.aktor= aktor;
+	}
+	
+	public Aktor getAktor() {
+		return aktor;
+	}	
+	
 	public int getSeriennummer() {
 		return seriennummer;
 	}
@@ -109,7 +146,8 @@ public abstract class Android {
     	return String.format(
 			   "Seriennummer: %s\n" +
 			   "Skin: %s\n" +
-			   "Software: %s\n",
-			   seriennummer, skin, software);
+			   "Software: %s\n" +
+			   "Sensoren/Aktoren: %s",
+			   seriennummer, skin, software, aktor);
 	}
 }

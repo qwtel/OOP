@@ -16,15 +16,16 @@ public class Test {
 		SoftwareStufe stufe1 = new SoftwareStufe1();
 		Software hilfskraftSoftware = new SoftwareHilfskraft(
 				hilfskraft.getSeriennummer(), stufe1);
+		Aktor hilfskraftAktor = new AktorMax1Kw(hilfskraft.getSeriennummer());
 
-		roboShop.insert(hilfskraft, hilfskraftSkin, hilfskraftSoftware);
+		roboShop.insert(hilfskraft, hilfskraftSkin, hilfskraftSoftware, hilfskraftAktor);
 
 		String result1 = roboShop.find(hilfskraft.getSeriennummer());
 		String expected1 = hilfskraft.toString();
 		doTest("Test Einfügen von Androiden", result1, expected1);
 
 		Android hilfskraftUpgrade = new Hilfskraft(0);
-		roboShop.insert(hilfskraftUpgrade, hilfskraftSkin, hilfskraftSoftware);
+		roboShop.insert(hilfskraftUpgrade, hilfskraftSkin, hilfskraftSoftware, hilfskraftAktor);
 		
 		String result2 = "";
 		for(Android a : roboShop) {
@@ -41,8 +42,9 @@ public class Test {
 		SoftwareStufe g2Stufe1 = new SoftwareStufe1();
 		Software g2Software = new SoftwareGesellschafter(g2.getSeriennummer(), 
 				g2Stufe1);
+		Aktor g2Aktor = new AktorMax1Kw(g2.getSeriennummer());
 
-		roboShop.insert(g2, g2Skin, g2Software);
+		roboShop.insert(g2, g2Skin, g2Software, g2Aktor);
 
 		String result3 = "";
 		for(Android a : roboShop) {

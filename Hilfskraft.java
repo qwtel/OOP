@@ -13,4 +13,9 @@ public class Hilfskraft extends Bediener {
 	public void installSoftware(Software software) {
 		software.fuerHilfskraft(this);
 	}
+
+	@Override
+	public void installAktor(Aktor aktor) {
+		aktor.fuerHilfskraft(this);
+	}
 }

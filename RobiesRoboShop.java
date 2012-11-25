@@ -44,12 +44,13 @@ public class RobiesRoboShop implements Iterable<Android> {
 	 *          Sicherheitsstufe nicht geändert werden.
 	 * @return false wenn der Androide nicht der Androide-Verordnung entspricht.
 	 */
-	public boolean insert(Android android, Skin skin, Software software) {
+	public boolean insert(Android android, Skin skin, Software software, Aktor aktor) {
 
 		android.installSkin(skin);
 		android.installSoftware(software);
+		android.installAktor(aktor);
 
-		if(android.getSkin() != null && android.getSoftware() != null) {
+		if(android.getSkin() != null && android.getSoftware() != null && android.getAktor() != null) {
 			int seriennummer = android.getSeriennummer();
 			if(androidenListe.get(seriennummer) == null) {
             	einfuegeReihenfolge.add(seriennummer);
