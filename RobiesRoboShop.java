@@ -8,8 +8,8 @@ import java.util.Iterator;
 public class RobiesRoboShop implements Iterable<Android> {
 
 	/**
-	 * Eine Liste ausgelieferter Androiden.
-	 * Der Index entspricht immer der Seriennummer des Androiden.
+	 * Die "Liste" ausgelieferter Androiden.
+	 * Der Key entspricht der Seriennummer des Androiden.
 	 */
 	private HashMap<Integer, Android> androidenListe; 
 	private ArrayList<Integer> einfuegeReihenfolge;
