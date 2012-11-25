@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -70,5 +69,9 @@ public class RobiesRoboShop implements Iterable<Android> {
 	@Override
 	public Iterator<Android> iterator() {
 		return einfuegeReihenfolge.iterator();
+	}
+	
+	public Iterator<Android> iterator() {
+		return al.iterator();
 	}
 }

@@ -25,4 +25,8 @@ public class SkinHochfest extends Skin {
 		beschuetzer.setSkin(this);
 	}
 
+	@Override
+	public String toString() {
+		return "HochFest";
+	}
 }

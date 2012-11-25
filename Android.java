@@ -82,11 +82,6 @@ public abstract class Android {
 	}
 
 	@Override
-    public int hashCode() {
-    	return seriennummer;
-	}
-
-	@Override
 	public String toString() {
     	return String.format(
 			   "Seriennummer: %s\n" +

@@ -24,4 +24,9 @@ public class SkinBeruehrungssenstiv extends Skin {
 	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
 		beschuetzer.setSkin(this);
 	}
+
+	@Override
+	public String toString() {
+		return "Berührungssensitiv";
+	}
 }

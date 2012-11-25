@@ -1,5 +1,5 @@
 
-public class SkinGepanzert extends Skin{
+public class SkinGepanzert extends Skin {
 
 	/**
 	 * Erzeugt eine Skin für den Androiden mit der spezifizierten Seriennummer.
@@ -25,4 +25,8 @@ public class SkinGepanzert extends Skin{
 		beschuetzer.setSkin(this);
 	}
 
+	@Override
+	public String toString() {
+		return "Gepanzert";
+	}
 }
