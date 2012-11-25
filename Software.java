@@ -6,9 +6,6 @@ public abstract class Software {
 	 */
 	private final int seriennummer;
 
-	/**
-	 * TODO
-	 */
 	private SoftwareStufe softwareStufe;
 	
 	/**

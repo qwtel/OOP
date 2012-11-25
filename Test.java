@@ -13,19 +13,44 @@ public class Test {
 
 		Skin hilfskraftSkin = new SkinBeruehrungssenstiv(
 				hilfskraft.getSeriennummer());
-
 		SoftwareStufe stufe1 = new SoftwareStufe1();
 		Software hilfskraftSoftware = new SoftwareHilfskraft(
 				hilfskraft.getSeriennummer(), stufe1);
 
-		hilfskraft.setSkin(hilfskraftSkin);
-		hilfskraft.setSoftware(hilfskraftSoftware);
+		roboShop.insert(hilfskraft, hilfskraftSkin, hilfskraftSoftware);
 
-		roboShop.insert(hilfskraft);
 		String result1 = roboShop.find(hilfskraft.getSeriennummer());
 		String expected1 = hilfskraft.toString();
-		doTest("asdf", result1, expected1);
+		doTest("Test Einfügen von Androiden", result1, expected1);
 
+		Android hilfskraftUpgrade = new Hilfskraft(0);
+		roboShop.insert(hilfskraftUpgrade, hilfskraftSkin, hilfskraftSoftware);
+		
+		String result2 = "";
+		for(Android a : roboShop) {
+			result2 += a.toString();
+		}
+		String expected2 = hilfskraftUpgrade.toString();
+		doTest("Teste Änderung bestehender Androiden", result2, expected2);
+
+		Android g1 = new Gesellschafter();
+		Android g2 = new Gesellschafter();
+		Android g3 = new Gesellschafter();
+
+		Skin g2Skin = new SkinBeruehrungssenstiv(g2.getSeriennummer());
+		SoftwareStufe g2Stufe1 = new SoftwareStufe1();
+		Software g2Software = new SoftwareGesellschafter(g2.getSeriennummer(), 
+				g2Stufe1);
+
+		roboShop.insert(g2, g2Skin, g2Software);
+
+		String result3 = "";
+		for(Android a : roboShop) {
+			result3 += a.toString();
+		}
+
+		String expected3 = hilfskraftUpgrade.toString() + g2.toString();
+		doTest("Teste iterator", result3, expected3);
 	}
 
 	private static int i = 0;
@@ -52,6 +77,5 @@ public class Test {
 
 		System.out.println(
 				"------------------------------------------------------\n");
-
 	}
 }

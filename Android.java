@@ -1,7 +1,18 @@
 
 public abstract class Android {
 	
-	static int seriennummerZaehler = 0;
+	/**
+	 * Entspricht immer der Anzahl ausgelieferter Androiden.
+	 */
+	private static int seriennummerZaehler = 0;
+
+	static int getSeriennummerZaehler() {
+    	return seriennummerZaehler;
+	}
+
+	/**
+	 * Die Seriennummer des Androiden.
+	 */
 	private final int seriennummer;
 
 	private Skin skin;
@@ -15,7 +26,19 @@ public abstract class Android {
 		this.skin = null;
 		this.software = null;
 	}
-	
+
+	/**
+	 * Erzeugt einen Androiden mit der angegebenen Seriennummer.
+	 * Darf nur zum Upgraden bereits ausgelieferter Androiden verwendet werden.
+	 *
+	 * @param seriennummer Muss kleiner gleich seriennummerZaehler sein.
+	 */
+	public Android(int seriennummer) {
+		this.seriennummer = seriennummer;
+		this.skin = null;
+		this.software = null;
+	}
+
 	/**
 	 * Stattet den Androiden mit einer Skin aus. 
 	 *
