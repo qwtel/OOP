@@ -63,7 +63,7 @@ public class Test {
 		}
 		
 		String expected4 = expected3;
-		doTest("Teste einfügen von inkompatiblen Androiden", result4, expected4);
+		doTest("Teste Einfügen von inkompatiblen Androiden", result4, expected4);
 	}
 
 	private static int i = 0;

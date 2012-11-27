@@ -147,7 +147,7 @@ public abstract class Android {
 			   "Seriennummer: %s\n" +
 			   "Skin: %s\n" +
 			   "Software: %s\n" +
-			   "Sensoren/Aktoren: %s",
+			   "Sensoren/Aktoren: %s\n",
 			   seriennummer, skin, software, aktor);
 	}
 }
