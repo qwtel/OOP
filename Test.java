@@ -17,7 +17,7 @@ public class Test {
 		SoftwareStufe stufe1 = new SoftwareStufe1();
 		Software hilfskraftSoftware = new SoftwareHilfskraft(
 				hilfskraft.getSeriennummer(), stufe1);
-		Aktor hilfskraftAktor = new AktorMax1Kw(hilfskraft.getSeriennummer());
+		SensorAktorKit hilfskraftAktor = new SensorAktorKitMax1Kw(hilfskraft.getSeriennummer());
 
 		roboShop.insert(hilfskraft, hilfskraftSkin, hilfskraftSoftware, hilfskraftAktor);
 
@@ -46,7 +46,7 @@ public class Test {
 		SoftwareStufe g2Stufe1 = new SoftwareStufe1();
 		Software g2Software = new SoftwareGesellschafter(g2.getSeriennummer(), 
 				g2Stufe1);
-		Aktor g2Aktor = new AktorMax1Kw(g2.getSeriennummer());
+		SensorAktorKit g2Aktor = new SensorAktorKitMax1Kw(g2.getSeriennummer());
 
 		roboShop.insert(g2, g2Skin, g2Software, g2Aktor);
 
@@ -75,7 +75,7 @@ public class Test {
 		Skin hochfest_t5 = new SkinHochfest(bauarbeiter_t5.getSeriennummer());
 		SoftwareStufe softwareStufe2_t5 = new SoftwareStufe2();
 		Software software_t5 = new SoftwareBauarbeiter(bauarbeiter_t5.getSeriennummer(), softwareStufe2_t5);
-		Aktor bauarbeiterAktor_t5 = new AktorMax1Kw(hilfskraft.getSeriennummer());
+		SensorAktorKit bauarbeiterAktor_t5 = new SensorAktorKitMax1Kw(hilfskraft.getSeriennummer());
 		
 		roboShop.insert(bauarbeiter_t5, hochfest_t5, software_t5, bauarbeiterAktor_t5);
 		
@@ -123,13 +123,13 @@ public class Test {
 		Software kaempferSoftware = new SoftwareKaempfer(kaempfer.getSeriennummer(), kaempferSoftwareStufe);
 		Software objektbewacherSoftware = new SoftwareObjektbewacher(objektbewacher.getSeriennummer(), objektbewacherSoftwareStufe);
 		
-		Aktor bauarbeiterAktor = new AktorMax5Kw(bauarbeiter.getSeriennummer());
-		Aktor servicetechnikerAktor = new AktorMax5Kw(servicetechniker.getSeriennummer());
-		Aktor transportarbeiterAktor = new AktorMax10Kw(transportarbeiter.getSeriennummer());
+		SensorAktorKit bauarbeiterAktor = new SensorAktorKitMax5Kw(bauarbeiter.getSeriennummer());
+		SensorAktorKit servicetechnikerAktor = new SensorAktorKitMax5Kw(servicetechniker.getSeriennummer());
+		SensorAktorKit transportarbeiterAktor = new SensorAktorKitMax10Kw(transportarbeiter.getSeriennummer());
 		
-		Aktor leibwaechterAktor = new AktorMax10Kw(leibwaechter.getSeriennummer());
-		Aktor kaempferAktor = new AktorMaxInfinite(kaempfer.getSeriennummer());
-		Aktor objektbewacherAktor = new AktorMax10Kw(objektbewacher.getSeriennummer());
+		SensorAktorKit leibwaechterAktor = new SensorAktorKitMax10Kw(leibwaechter.getSeriennummer());
+		SensorAktorKit kaempferAktor = new SensorAktorKit(kaempfer.getSeriennummer());
+		SensorAktorKit objektbewacherAktor = new SensorAktorKitMax10Kw(objektbewacher.getSeriennummer());
 		
 		roboShop.insert(bauarbeiter, bauarbeiterSkin, bauarbeiterSoftware, bauarbeiterAktor);
 		roboShop.insert(servicetechniker, servicetechnikerSkin, servicetechnikerSoftware, servicetechnikerAktor);

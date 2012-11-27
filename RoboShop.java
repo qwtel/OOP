@@ -48,7 +48,7 @@ public class RoboShop implements Iterable<Android> {
 	 * @return false wenn der Androide nicht der Androide-Verordnung entspricht.
 	 */
 	public boolean insert(Android android, Skin skin, Software software, 
-	        Aktor aktor) {
+	        SensorAktorKit aktor) {
 	
 		android.setSkin(skin);
 		android.setSoftware(software);

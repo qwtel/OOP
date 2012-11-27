@@ -1,5 +1,5 @@
 
-public class Aktor {
+public class SensorAktorKit {
 
 	/**
 	 * Die Seriennummer des Androiden für den dieser Aktor bestimmt ist.
@@ -12,7 +12,7 @@ public class Aktor {
 	 *
 	 * @param seriennummer Die Seriennummer des Ziel-Androiden.
 	 */
-	public Aktor(int seriennummer) {
+	public SensorAktorKit(int seriennummer) {
 		this.seriennummer = seriennummer;
 	}
 	

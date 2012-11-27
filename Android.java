@@ -22,7 +22,7 @@ public abstract class Android {
 
 	Skin skin;
 	Software software;
-	Aktor aktor;
+	SensorAktorKit aktor;
 
 	public void setSkin(Skin skin) {
 		this.skin = skin;
@@ -32,7 +32,7 @@ public abstract class Android {
 		this.software = software;
 	}
 
-	public void setAktor(Aktor aktor) {
+	public void setAktor(SensorAktorKit aktor) {
 		this.aktor = aktor;
 	}
 

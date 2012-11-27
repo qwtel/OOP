@@ -1,7 +1,7 @@
 
-public class AktorMax10Kw extends Aktor {
+public class SensorAktorKitMax10Kw extends SensorAktorKit {
 
-	public AktorMax10Kw(int seriennummer) {
+	public SensorAktorKitMax10Kw(int seriennummer) {
 		super(seriennummer);
 	}
 
