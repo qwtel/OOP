@@ -105,7 +105,13 @@ public class RoboShop implements Iterable<Android> {
 		}
 	}
 
-	boolean otherInsert(Android android) {
+	/**
+	 * Liefert einen Androiden aus. 
+	 * Der Androide muss der Androide-Verordnung entsprechen.
+	 * 
+	 * @param android Ein Androide, welcher der Androide-Verordnung entspricht.
+	 */
+	void ship(Android android) {
  		int seriennummer = android.getSeriennummer();
 
 		if(androidenListe.get(seriennummer) == null) {
@@ -113,6 +119,5 @@ public class RoboShop implements Iterable<Android> {
 		}
 
 		androidenListe.put(seriennummer, android);
-		return true;
 	}
 }

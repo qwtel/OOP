@@ -10,7 +10,7 @@ public class Kaempfer extends Beschuetzer {
 	}
 
 	@Override
-	boolean checkSoftware(RoboShop shop) {
+	boolean insert2(RoboShop shop) {
 		return software.fuerKaempfer(shop, this);
 	}
 }

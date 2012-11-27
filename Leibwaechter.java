@@ -10,7 +10,7 @@ public class Leibwaechter extends Beschuetzer {
 	}
 
 	@Override
-	boolean checkSoftware(RoboShop shop) {
+	boolean insert2(RoboShop shop) {
 		return software.fuerLeibwaechter(shop, this);
 	}
 }

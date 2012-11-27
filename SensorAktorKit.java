@@ -29,7 +29,8 @@ public class SensorAktorKit {
 	}
 	
 	boolean fuerKaempfer(RoboShop shop, Kaempfer android) {
-		return shop.otherInsert(android);
+		shop.ship(android);
+		return true;
 	}
 
 	@Override

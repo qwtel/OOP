@@ -10,7 +10,7 @@ public class Servicetechniker extends Schwerarbeiter {
 	}
 
 	@Override
-	boolean checkSoftware(RoboShop shop) {
+	boolean insert2(RoboShop shop) {
 		return software.fuerServicetechniker(shop, this);
 	}
 }

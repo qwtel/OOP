@@ -16,38 +16,38 @@ public abstract class Software {
 	 */
 	public Software(int seriennummer, SoftwareStufe softwareStufe) {
 		this.seriennummer = seriennummer;
-        this.softwareStufe = softwareStufe;
+		this.softwareStufe = softwareStufe;
 	}
 
 	boolean fuerHilfskraft(RoboShop shop, Hilfskraft android) {
-        return false;
-    }
+		return false;
+	}
 
 	boolean fuerGesellschafter(RoboShop shop, Gesellschafter android) {
-        return false;
-    }
+		return false;
+	}
 
 	boolean fuerBauarbeiter(RoboShop shop, Bauarbeiter android) {
-        return false;
-    }
+		return false;
+	}
 
 	boolean fuerServicetechniker(RoboShop shop, Servicetechniker android) {
-        return false;
-    }
+		return false;
+	}
 
 	boolean fuerTransportarbeiter(RoboShop shop, Transportarbeiter android) {
-        return false;
-    }
+		return false;
+	}
 
 	boolean fuerObjektbewacher(RoboShop shop, Objektbewacher android) {
-        return false;
-    }
+		return false;
+	}
 
 	boolean fuerLeibwaechter(RoboShop shop, Leibwaechter android) {
-        return false;
-    }
+		return false;
+	}
 
 	boolean fuerKaempfer(RoboShop shop, Kaempfer android) {
-        return false;
-    }
+		return false;
+	}
 }

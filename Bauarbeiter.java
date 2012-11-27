@@ -10,7 +10,7 @@ public class Bauarbeiter extends Schwerarbeiter {
 	}
 
 	@Override
-	boolean checkSoftware(RoboShop shop) {
+	boolean insert2(RoboShop shop) {
 		return software.fuerBauarbeiter(shop, this);
 	}
 }

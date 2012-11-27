@@ -10,7 +10,7 @@ public class Objektbewacher extends Beschuetzer {
 	}
 
 	@Override
-	boolean checkSoftware(RoboShop shop) {
+	boolean insert2(RoboShop shop) {
 		return software.fuerObjektbewacher(shop, this);
 	}
 }

@@ -10,7 +10,7 @@ public class Hilfskraft extends Bediener {
 	}
 
 	@Override
-    boolean checkSoftware(RoboShop shop) {
-        return software.fuerHilfskraft(shop, this);
-    }
+	boolean insert2(RoboShop shop) {
+		return software.fuerHilfskraft(shop, this);
+	}
 }

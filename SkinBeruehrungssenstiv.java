@@ -12,17 +12,17 @@ public class SkinBeruehrungssenstiv extends Skin {
 
 	@Override
 	boolean fuerBediener(RoboShop shop, Bediener android) {
-		return android.checkSoftware(shop);
+		return android.insert2(shop);
 	}
 
 	@Override
 	boolean fuerSchwerarbeiter(RoboShop shop, Schwerarbeiter android) {
-		return android.checkSoftware(shop);
+		return android.insert2(shop);
 	}
 
 	@Override
 	boolean fuerBeschuetzer(RoboShop shop, Beschuetzer android) {
-		return android.checkSoftware(shop);
+		return android.insert2(shop);
 	}
 
 	@Override

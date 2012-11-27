@@ -59,17 +59,11 @@ public abstract class Android {
 		this.aktor = null;
 	}
 
-	/**
-	 * Hilfsmethode, wird in Unterklassen überschrieben.
-	 */
 	boolean insert(RoboShop shop) {
 		return false;
 	}
 
-	/**
-	 * Hilfsmethode, wird von Unterklassen verwendet.
-	 */
-	boolean checkSoftware(RoboShop shop) {
+	boolean insert2(RoboShop shop) {
 		return false;
 	}
 

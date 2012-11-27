@@ -7,7 +7,8 @@ public class SensorAktorKitMax10Kw extends SensorAktorKit {
 
 	@Override
 	boolean fuerStufe4(RoboShop shop, Android android) {
-		return shop.otherInsert(android);
+		shop.ship(android);
+		return true;
 	}
 
 	@Override

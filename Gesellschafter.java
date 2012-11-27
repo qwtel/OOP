@@ -10,7 +10,7 @@ public class Gesellschafter extends Bediener {
 	}
 
 	@Override
-	boolean checkSoftware(RoboShop shop) {
+	boolean insert2(RoboShop shop) {
 		return software.fuerGesellschafter(shop, this);
 	}
 }

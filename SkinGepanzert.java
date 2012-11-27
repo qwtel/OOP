@@ -12,7 +12,7 @@ public class SkinGepanzert extends Skin {
 
 	@Override
 	boolean fuerBeschuetzer(RoboShop shop, Beschuetzer android) {
-		return android.checkSoftware(shop);
+		return android.insert2(shop);
 	}
 
 	@Override
