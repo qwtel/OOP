@@ -6,8 +6,13 @@ public abstract class Android {
 	 */
 	private static int seriennummerZaehler = 0;
 
+	/**
+	 * Liefert die höchste vergeben Seriennummer.
+	 *
+	 * @return Die Seriennummer des zuletzt ausgelieferten Androiden.
+	 */
 	static int getSeriennummerZaehler() {
-    	return seriennummerZaehler;
+		return seriennummerZaehler;
 	}
 
 	/**
@@ -15,10 +20,22 @@ public abstract class Android {
 	 */
 	private final int seriennummer;
 
-	private Skin skin;
-	private Software software;
-	private Aktor aktor;
-	
+	Skin skin;
+	Software software;
+	Aktor aktor;
+
+	public void setSkin(Skin skin) {
+		this.skin = skin;
+	}
+
+	public void setSoftware(Software software) {
+		this.software = software;
+	}
+
+	public void setAktor(Aktor aktor) {
+		this.aktor = aktor;
+	}
+
 	/**
 	 * Erzeugt einen neuen Androiden mit einer eindeutigen Seriennummer.
 	 */
@@ -43,107 +60,31 @@ public abstract class Android {
 	}
 
 	/**
-	 * Stattet den Androiden mit einer Skin aus. 
-	 *
-	 * Die Seriennummer der Skin muss mit der des Androiden übereinstimmen 
-	 * (Vorbedingung). 
-	 *
-	 * Ist die spezifizierte Skin für den Typ dieses Androiden nicht zulässig,
-	 * wird skin auf null gesetzt (Nachbedingung).
-	 *
-	 * @param skin Die Skin für diesen Androiden. Die Seriennummer muss mit der
-	 *         des Androiden übereinstimmen.
+	 * Hilfsmethode, wird in Unterklassen überschrieben.
 	 */
-	public abstract void installSkin(Skin skin);
-
-	/**
-	 * Setter-Methode für die Skin. Default-Sichtbarkeit, wird nur von
-	 * Untertypen von Skin verwendet um skin dieses Androiden setzen zu können.
-	 *
-	 * @param skin Die Skin für diesen Androiden. Die Seriennummer muss
-	 *         mit der des Androiden übereinstimmen. Der Typ der Skin muss
-	 *         mit dem Typ des Androiden kompatibel sein.
-	 */
-	void setSkin(Skin skin) {
-    	this.skin = skin;
-	}
-
-	public Skin getSkin() {
-		return skin;
+	boolean insert(RoboShop shop) {
+		return false;
 	}
 
 	/**
-	 * Stattet den Androiden mit einer Software aus. 
-	 *
-	 * Die Seriennummer der Software muss mit der des Androiden übereinstimmen
-	 * (Vorbedingung). 
-	 *
-	 * Ist die spezifizierte Software für den Typ dieses Androiden nicht 
-	 * zulässig, wird software auf null gesetzt (Nachbedingung).
-	 *
-	 * @param software Die Software für diesen Androiden. Die Seriennummer muss
-	 *         mit der des Androiden übereinstimmen.
+	 * Hilfsmethode, wird von Unterklassen verwendet.
 	 */
-	public abstract void installSoftware(Software software);
-
-
-	/**
-	 * Setter-Methode für die Software. Default-Sichtbarkeit, wird nur von
-	 * Untertypen von Software verwendet um software dieses Androiden setzen zu
-	 * können.
-	 *
-	 * @param software Die Software für diesen Androiden. Die Seriennummer muss
-	 *         mit der des Androiden übereinstimmen. Der Typ der Software muss
-	 *         mit dem Typ des Androiden kompatibel sein.
-	 */
-	void setSoftware(Software software) {
-    	this.software = software;
+	boolean checkSoftware(RoboShop shop) {
+		return false;
 	}
 
-	public Software getSoftware() {
-		return software;
-	}
-	
 	/**
-	 * Stattet den Androiden mit einem Aktor aus. 
+	 * Liefert die Seriennummer des Androiden.
 	 *
-	 * Die Seriennummer des Aktors muss mit der des Androiden übereinstimmen
-	 * (Vorbedingung). 
-	 * 
-	 * Der Aktor muss mit der Softwarestufe des Androiden kompatibel sein. (Vorbedingung)
-	 *
-	 * Ist der spezifizierte Aktorfür den Typ dieses Androiden nicht 
-	 * zulässig, wird aktor auf null gesetzt (Nachbedingung).
-	 *
-	 * @param aktor Der Aktor für diesen Androiden. Die Seriennummer muss
-	 *         mit der des Androiden übereinstimmen.
-	 */	
-	public abstract void installAktor(Aktor aktor);
-
-	/**
-	 * Setter-Methode für den Aktor. Default-Sichtbarkeit, wird nur von
-	 * Untertypen von Aktor verwendet um aktor dieses Androiden setzen zu
-	 * können.
-	 *
-	 * @param aktor Der Aktor für diesen Androiden. Die Seriennummer muss
-	 *         mit der des Androiden übereinstimmen. Der Typ des Aktors muss
-	 *         mit dem Typ der Software des Androiden kompatibel sein.
+	 * @return Die Seriennummer des Androiden.
 	 */
-	void setAktor(Aktor aktor) {
-    	this.aktor= aktor;
-	}
-	
-	public Aktor getAktor() {
-		return aktor;
-	}	
-	
 	public int getSeriennummer() {
 		return seriennummer;
 	}
 
 	@Override
 	public String toString() {
-    	return String.format(
+		return String.format(
 			   "Seriennummer: %s\n" +
 			   "Skin: %s\n" +
 			   "Software: %s\n" +

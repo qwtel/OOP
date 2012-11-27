@@ -10,14 +10,7 @@ public class Servicetechniker extends Schwerarbeiter {
 	}
 
 	@Override
-	public void installSoftware(Software software) {
-		software.fuerServicetechniker(this);
+	boolean checkSoftware(RoboShop shop) {
+		return software.fuerServicetechniker(shop, this);
 	}
-
-	@Override
-	public void installAktor(Aktor aktor) {
-		aktor.fuerServicetechniker(this);
-		
-	}
-	
 }

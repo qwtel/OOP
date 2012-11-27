@@ -9,20 +9,10 @@ public class SkinGepanzert extends Skin {
 	public SkinGepanzert(int sn) {
 		super(sn);
 	}
-	
-	@Override
-	public void fuerBediener(Bediener bediener) {
-		bediener.setSkin(null);
-	}
 
 	@Override
-	public void fuerSchwerarbeiter(Schwerarbeiter schwerarbeiter) {
-		schwerarbeiter.setSkin(null);
-	}
-
-	@Override
-	public void fuerBeschuetzer(Beschuetzer beschuetzer) {
-		beschuetzer.setSkin(this);
+	boolean fuerBeschuetzer(RoboShop shop, Beschuetzer android) {
+		return android.checkSoftware(shop);
 	}
 
 	@Override

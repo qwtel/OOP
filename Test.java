@@ -7,7 +7,7 @@
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
-		RobiesRoboShop roboShop = new RobiesRoboShop();
+		RoboShop roboShop = new RoboShop();
 
 		Android hilfskraft = new Hilfskraft();
 

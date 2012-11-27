@@ -1,14 +1,35 @@
 
 public abstract class SoftwareStufe {
 
-	public abstract void fuerSoftwareBauarbeiter(SoftwareBauarbeiter softwareBauarbeiter);
-	public abstract void fuerSoftwareServicetechniker(SoftwareServicetechniker softwareServicetechniker);
-	public abstract void fuerSoftwareTransportarbeiter(SoftwareTransportarbeiter softwareTransportarbeiter);
-	
-	public abstract void fuerSoftwareHilfskraft(SoftwareHilfskraft softwareHilfskraft);
-	public abstract void fuerSoftwareGesellschafter(SoftwareGesellschafter softwareGesellschafter);
-	
-	public abstract void fuerSoftwareObjektbewacher(SoftwareObjektbewacher softwareObjektbewacher);
-	public abstract void fuerSoftwareLeibwaechter(SoftwareLeibwaechter softwareLeibwaechter);
-	public abstract void fuerSoftwareKaempfer(SoftwareKaempfer softwarekaempfer);
+	boolean fuerHilfskraft(RoboShop shop, Hilfskraft android) {
+		return false;
+	}
+
+	boolean fuerGesellschafter(RoboShop shop, Gesellschafter android) {
+		return false;
+	}
+
+	boolean fuerBauarbeiter(RoboShop shop, Bauarbeiter android) {
+		return false;
+	}
+
+	boolean fuerServicetechniker(RoboShop shop, Servicetechniker android) {
+		return false;
+	}
+
+	boolean fuerTransportarbeiter(RoboShop shop, Transportarbeiter android) {
+		return false;
+	}
+
+	boolean fuerObjektbewacher(RoboShop shop, Objektbewacher android) {
+		return false;
+	}
+
+	boolean fuerLeibwaechter(RoboShop shop, Leibwaechter android) {
+		return false;
+	}
+
+	boolean fuerKaempfer(RoboShop shop, Kaempfer android) {
+		return false;
+	}
 }

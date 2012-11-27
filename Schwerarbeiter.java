@@ -10,7 +10,7 @@ public abstract class Schwerarbeiter extends Android {
 	}
 
 	@Override
-	public void installSkin(Skin skin) {
-		skin.fuerSchwerarbeiter(this);
+	boolean insert(RoboShop shop) {
+		return skin.fuerSchwerarbeiter(shop, this);
 	}
 }

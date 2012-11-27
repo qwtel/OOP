@@ -10,12 +10,7 @@ public class Leibwaechter extends Beschuetzer {
 	}
 
 	@Override
-	public void installSoftware(Software software) {
-		software.fuerLeibwaechter(this);
-	}
-
-	@Override
-	public void installAktor(Aktor aktor) {
-		aktor.fuerLeibwaechter(this);	
+	boolean checkSoftware(RoboShop shop) {
+		return software.fuerLeibwaechter(shop, this);
 	}
 }

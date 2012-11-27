@@ -2,47 +2,27 @@
 public class SoftwareStufe4 extends SoftwareStufe{
 
 	@Override
-	public void fuerSoftwareBauarbeiter(SoftwareBauarbeiter softwareBauarbeiter) {
-		softwareBauarbeiter.setSoftwareStufe(this);
+	boolean fuerBauarbeiter(RoboShop shop, Bauarbeiter android) {
+		return android.aktor.fuerStufe4(shop, android);
 	}
 
 	@Override
-	public void fuerSoftwareServicetechniker(
-			SoftwareServicetechniker softwareServicetechniker) {
-		softwareServicetechniker.setSoftwareStufe(this);
+	boolean fuerServicetechniker(RoboShop shop, Servicetechniker android) {
+		return android.aktor.fuerStufe4(shop, android);
 	}
 
 	@Override
-	public void fuerSoftwareTransportarbeiter(
-			SoftwareTransportarbeiter softwareTransportarbeiter) {
-		softwareTransportarbeiter.setSoftwareStufe(this);
+	boolean fuerTransportarbeiter(RoboShop shop, Transportarbeiter android) {
+		return android.aktor.fuerStufe4(shop, android);
 	}
 
 	@Override
-	public void fuerSoftwareHilfskraft(SoftwareHilfskraft softwareHilfskraft) {
-		softwareHilfskraft.setSoftwareStufe(null);
+	boolean fuerObjektbewacher(RoboShop shop, Objektbewacher android) {
+		return android.aktor.fuerStufe4(shop, android);
 	}
 
 	@Override
-	public void fuerSoftwareGesellschafter(
-			SoftwareGesellschafter softwareGesellschafter) {
-		softwareGesellschafter.setSoftwareStufe(null);
-	}
-
-	@Override
-	public void fuerSoftwareObjektbewacher(
-			SoftwareObjektbewacher softwareObjektbewacher) {
-		softwareObjektbewacher.setSoftwareStufe(this);
-	}
-
-	@Override
-	public void fuerSoftwareLeibwaechter(
-			SoftwareLeibwaechter softwareLeibwaechter) {
-		softwareLeibwaechter.setSoftwareStufe(this);
-	}
-
-	@Override
-	public void fuerSoftwareKaempfer(SoftwareKaempfer softwarekaempfer) {
-		softwarekaempfer.setSoftwareStufe(null);
+	boolean fuerLeibwaechter(RoboShop shop, Leibwaechter android) {
+		return android.aktor.fuerStufe4(shop, android);
 	}
 }

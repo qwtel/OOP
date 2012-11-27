@@ -10,12 +10,7 @@ public class Hilfskraft extends Bediener {
 	}
 
 	@Override
-	public void installSoftware(Software software) {
-		software.fuerHilfskraft(this);
-	}
-
-	@Override
-	public void installAktor(Aktor aktor) {
-		aktor.fuerHilfskraft(this);
-	}
+    boolean checkSoftware(RoboShop shop) {
+        return software.fuerHilfskraft(shop, this);
+    }
 }

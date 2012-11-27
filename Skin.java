@@ -15,11 +15,17 @@ public abstract class Skin {
 		this.seriennummer = seriennummer;
 	}
 	
-	public abstract void fuerBediener(Bediener bediener);
-	
-	public abstract void fuerSchwerarbeiter(Schwerarbeiter schwerarbeiter);
-	
-	public abstract void fuerBeschuetzer(Beschuetzer beschuetzer);
+	boolean fuerBediener(RoboShop shop, Bediener android) {
+		return false;
+	}
+
+	boolean fuerSchwerarbeiter(RoboShop shop, Schwerarbeiter android) {
+		return false;
+	}
+
+	boolean fuerBeschuetzer(RoboShop shop, Beschuetzer android) {
+		return false;
+	}
 
 	@Override
 	public abstract String toString();

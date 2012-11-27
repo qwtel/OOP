@@ -1,5 +1,5 @@
 
-public abstract class Aktor {
+public class Aktor {
 
 	/**
 	 * Die Seriennummer des Androiden für den dieser Aktor bestimmt ist.
@@ -16,17 +16,24 @@ public abstract class Aktor {
 		this.seriennummer = seriennummer;
 	}
 	
-	public abstract void fuerBauarbeiter(Bauarbeiter bauarbeiter);
-	public abstract void fuerServicetechniker(Servicetechniker servicetechniker);
-	public abstract void fuerTransportarbeiter(Transportarbeiter transportarbeiter);
+	boolean fuerBediener(RoboShop shop, Bediener android) {
+		return false;
+	}
 	
-	public abstract void fuerHilfskraft(Hilfskraft hilfskraft);
-	public abstract void fuerGesellschafter(Gesellschafter gesellschafter);
+	boolean fuerStufe3(RoboShop shop, Android android) {
+		return false;
+	}
 	
-	public abstract void fuerObjektbewacher(Objektbewacher objektbewacher);
-	public abstract void fuerLeibwaechter(Leibwaechter leibwaechter);
-	public abstract void fuerKaempfer(Kaempfer kaempfer);
+	boolean fuerStufe4(RoboShop shop, Android android) {
+		return false;
+	}
+	
+	boolean fuerKaempfer(RoboShop shop, Kaempfer android) {
+		return shop.otherInsert(android);
+	}
 
 	@Override
-	public abstract String toString();
+	public String toString() {
+		return "maxInf";
+	}
 }

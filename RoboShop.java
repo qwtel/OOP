@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Führt eine Liste mit allen Androiden
  */
-public class RobiesRoboShop implements Iterable<Android> {
+public class RoboShop implements Iterable<Android> {
 
 	/**
 	 * Die "Liste" ausgelieferter Androiden.
@@ -14,7 +14,7 @@ public class RobiesRoboShop implements Iterable<Android> {
 	private HashMap<Integer, Android> androidenListe; 
 	private ArrayList<Integer> einfuegeReihenfolge;
 	
-	public RobiesRoboShop() {
+	public RoboShop() {
  		androidenListe = new HashMap<Integer, Android>(); 
 		einfuegeReihenfolge = new ArrayList<Integer>();
 	}
@@ -43,29 +43,17 @@ public class RobiesRoboShop implements Iterable<Android> {
 	 *          Androiden entsprechen. Handelt es sich um eine Änderung darf die
 	 *          Sicherheitsstufe nicht geändert werden.
 	 * @param aktor Ein Sensoren-Aktoren Kit mit welchem der Androide 
-     *          ausgeliefert werden soll. Die Seriennummer der Software muss der
-     *          Seriennummer des Androiden entsprechen. 
+	 *          ausgeliefert werden soll. Die Seriennummer der Software muss der
+	 *          Seriennummer des Androiden entsprechen. 
 	 * @return false wenn der Androide nicht der Androide-Verordnung entspricht.
 	 */
 	public boolean insert(Android android, Skin skin, Software software, 
-            Aktor aktor) {
-
-		android.installSkin(skin);
-		android.installSoftware(software);
-		android.installAktor(aktor);
-
-		if(android.getSkin() != null && android.getSoftware() != null && 
-                android.getSoftware().getSoftwareStufe() != null &&
-                android.getAktor() != null) {
-
-			int seriennummer = android.getSeriennummer();
-			if(androidenListe.get(seriennummer) == null) {
-            	einfuegeReihenfolge.add(seriennummer);
-			}
-			androidenListe.put(seriennummer, android);
-			return true;
-		}
-		return false;
+	        Aktor aktor) {
+	
+		android.setSkin(skin);
+		android.setSoftware(software);
+		android.setAktor(aktor);
+		return android.insert(this);
 	}
 
 	/**
@@ -115,5 +103,16 @@ public class RobiesRoboShop implements Iterable<Android> {
 		public void remove() {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
+	}
+
+	boolean otherInsert(Android android) {
+ 		int seriennummer = android.getSeriennummer();
+
+		if(androidenListe.get(seriennummer) == null) {
+			einfuegeReihenfolge.add(seriennummer);
+		}
+
+		androidenListe.put(seriennummer, android);
+		return true;
 	}
 }

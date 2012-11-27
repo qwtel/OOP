@@ -10,13 +10,7 @@ public class Kaempfer extends Beschuetzer {
 	}
 
 	@Override
-	public void installSoftware(Software software) {
-		software.fuerKaempfer(this);
-	}
-
-	@Override
-	public void installAktor(Aktor aktor) {
-		aktor.fuerKaempfer(this);
-		
+	boolean checkSoftware(RoboShop shop) {
+		return software.fuerKaempfer(shop, this);
 	}
 }

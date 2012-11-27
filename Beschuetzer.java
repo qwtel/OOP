@@ -10,7 +10,7 @@ public abstract class Beschuetzer extends Android {
 	}
 
 	@Override
-	public void installSkin(Skin skin) {
-		skin.fuerBeschuetzer(this);
+	boolean insert(RoboShop shop) {
+		return skin.fuerBeschuetzer(shop, this);
 	}
 }

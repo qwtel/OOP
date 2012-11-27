@@ -6,7 +6,7 @@ public abstract class Software {
 	 */
 	private final int seriennummer;
 
-	private SoftwareStufe softwareStufe;
+	protected SoftwareStufe softwareStufe;
 	
 	/**
 	 * Erzeugt eine neues Software Objekt für den Androiden mit der 
@@ -14,26 +14,40 @@ public abstract class Software {
 	 *
 	 * @param seriennummer Die Seriennummer des Ziel-Androiden.
 	 */
-	public Software(int seriennummer) {
+	public Software(int seriennummer, SoftwareStufe softwareStufe) {
 		this.seriennummer = seriennummer;
-	}
-	
-	public abstract void fuerBauarbeiter(Bauarbeiter bauarbeiter);
-	public abstract void fuerServicetechniker(Servicetechniker servicetechniker);
-	public abstract void fuerTransportarbeiter(Transportarbeiter transportarbeiter);
-	
-	public abstract void fuerHilfskraft(Hilfskraft hilfskraft);
-	public abstract void fuerGesellschafter(Gesellschafter gesellschafter);
-	
-	public abstract void fuerObjektbewacher(Objektbewacher objektbewacher);
-	public abstract void fuerLeibwaechter(Leibwaechter leibwaechter);
-	public abstract void fuerKaempfer(Kaempfer kaempfer);
-
-	public void setSoftwareStufe(SoftwareStufe softwareStufe) {
-		this.softwareStufe = softwareStufe;
+        this.softwareStufe = softwareStufe;
 	}
 
-	public SoftwareStufe getSoftwareStufe() {
-		return softwareStufe;
-	}
+	boolean fuerHilfskraft(RoboShop shop, Hilfskraft android) {
+        return false;
+    }
+
+	boolean fuerGesellschafter(RoboShop shop, Gesellschafter android) {
+        return false;
+    }
+
+	boolean fuerBauarbeiter(RoboShop shop, Bauarbeiter android) {
+        return false;
+    }
+
+	boolean fuerServicetechniker(RoboShop shop, Servicetechniker android) {
+        return false;
+    }
+
+	boolean fuerTransportarbeiter(RoboShop shop, Transportarbeiter android) {
+        return false;
+    }
+
+	boolean fuerObjektbewacher(RoboShop shop, Objektbewacher android) {
+        return false;
+    }
+
+	boolean fuerLeibwaechter(RoboShop shop, Leibwaechter android) {
+        return false;
+    }
+
+	boolean fuerKaempfer(RoboShop shop, Kaempfer android) {
+        return false;
+    }
 }

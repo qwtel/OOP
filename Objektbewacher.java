@@ -10,13 +10,7 @@ public class Objektbewacher extends Beschuetzer {
 	}
 
 	@Override
-	public void installSoftware(Software software) {
-		software.fuerObjektbewacher(this);
-	}
-
-	@Override
-	public void installAktor(Aktor aktor) {
-		aktor.fuerObjektbewacher(this);
-		
+	boolean checkSoftware(RoboShop shop) {
+		return software.fuerObjektbewacher(shop, this);
 	}
 }

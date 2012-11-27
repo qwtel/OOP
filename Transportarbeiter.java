@@ -10,14 +10,7 @@ public class Transportarbeiter extends Schwerarbeiter {
 	}
 
 	@Override
-	public void installSoftware(Software software) {
-		software.fuerTransportarbeiter(this);
+	boolean checkSoftware(RoboShop shop) {
+		return software.fuerTransportarbeiter(shop, this);
 	}
-
-	@Override
-	public void installAktor(Aktor aktor) {
-		aktor.fuerTransportarbeiter(this);
-		
-	}
-
 }
