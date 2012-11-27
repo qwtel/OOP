@@ -2,7 +2,7 @@
 public abstract class Aktor {
 
 	/**
-	 * Die Seriennummer des Androiden für den diese Software bestimmt ist.
+	 * Die Seriennummer des Androiden für den dieser Aktor bestimmt ist.
 	 */
 	private final int seriennummer;
 	
@@ -26,7 +26,6 @@ public abstract class Aktor {
 	public abstract void fuerObjektbewacher(Objektbewacher objektbewacher);
 	public abstract void fuerLeibwaechter(Leibwaechter leibwaechter);
 	public abstract void fuerKaempfer(Kaempfer kaempfer);
-
 
 	@Override
 	public abstract String toString();

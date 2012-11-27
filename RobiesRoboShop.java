@@ -42,15 +42,22 @@ public class RobiesRoboShop implements Iterable<Android> {
 	 *          soll. Die Seriennummer der Software muss der Seriennummer des 
 	 *          Androiden entsprechen. Handelt es sich um eine Änderung darf die
 	 *          Sicherheitsstufe nicht geändert werden.
+	 * @param aktor Ein Sensoren-Aktoren Kit mit welchem der Androide 
+     *          ausgeliefert werden soll. Die Seriennummer der Software muss der
+     *          Seriennummer des Androiden entsprechen. 
 	 * @return false wenn der Androide nicht der Androide-Verordnung entspricht.
 	 */
-	public boolean insert(Android android, Skin skin, Software software, Aktor aktor) {
+	public boolean insert(Android android, Skin skin, Software software, 
+            Aktor aktor) {
 
 		android.installSkin(skin);
 		android.installSoftware(software);
 		android.installAktor(aktor);
 
-		if(android.getSkin() != null && android.getSoftware() != null && android.getAktor() != null) {
+		if(android.getSkin() != null && android.getSoftware() != null && 
+                android.getSoftware().getSoftwareStufe() != null &&
+                android.getAktor() != null) {
+
 			int seriennummer = android.getSeriennummer();
 			if(androidenListe.get(seriennummer) == null) {
             	einfuegeReihenfolge.add(seriennummer);
