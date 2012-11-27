@@ -53,6 +53,17 @@ public class Test {
 
 		String expected3 = hilfskraftUpgrade.toString() + g2.toString();
 		doTest("Teste iterator", result3, expected3);
+		
+		Android hilfsKraftFailUpgrade = new Hilfskraft(0);
+		roboShop.insert(hilfsKraftFailUpgrade, hilfskraftSkin, g2Software, hilfskraftAktor);
+		
+		String result4 = "";
+		for(Android a : roboShop) {
+			result4 += a.toString();
+		}
+		
+		String expected4 = expected3;
+		doTest("Teste einfügen von inkompatiblen Androiden", result4, expected4);
 	}
 
 	private static int i = 0;
