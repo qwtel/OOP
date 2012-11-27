@@ -1,9 +1,6 @@
 
 public abstract class SoftwareStufe {
-	public SoftwareStufe() {
-		
-	}
-	
+
 	public abstract void fuerSoftwareBauarbeiter(SoftwareBauarbeiter softwareBauarbeiter);
 	public abstract void fuerSoftwareServicetechniker(SoftwareServicetechniker softwareServicetechniker);
 	public abstract void fuerSoftwareTransportarbeiter(SoftwareTransportarbeiter softwareTransportarbeiter);
