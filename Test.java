@@ -88,9 +88,6 @@ public class Test {
 		
 		//Test6
 		
-		
-		
-		
 		Android bauarbeiter = new Bauarbeiter();
 		Android servicetechniker = new Servicetechniker();
 		Android transportarbeiter = new Transportarbeiter();
@@ -128,7 +125,7 @@ public class Test {
 		Aktor transportarbeiterAktor = new AktorMax10Kw(transportarbeiter.getSeriennummer());
 		
 		Aktor leibwaechterAktor = new AktorMax10Kw(leibwaechter.getSeriennummer());
-		Aktor kaempferAktor = new AktorMaxInfinite(kaempfer.getSeriennummer());
+		Aktor kaempferAktor = new Aktor(kaempfer.getSeriennummer());
 		Aktor objektbewacherAktor = new AktorMax10Kw(objektbewacher.getSeriennummer());
 		
 		roboShop.insert(bauarbeiter, bauarbeiterSkin, bauarbeiterSoftware, bauarbeiterAktor);
@@ -145,6 +142,38 @@ public class Test {
 		}
 		String expected6 = expected3 + bauarbeiter.toString() + servicetechniker.toString() + transportarbeiter.toString() + objektbewacher.toString() + leibwaechter.toString() + kaempfer.toString();
 		doTest("Hinzufügen von (zulässigen) Schwerarbeitern und Beschützern ", result6, expected6);
+		
+		//Test7
+		
+		Android bauarbeiter_fail = new Bauarbeiter();
+		Android servicetechniker_fail = new Servicetechniker();
+		Android transportarbeiter_fail = new Transportarbeiter();
+		
+		Android leibwaechter_fail = new Leibwaechter();
+		Android kaempfer_fail = new Kaempfer();
+		Android objektbewacher_fail = new Objektbewacher();
+
+		Skin hilfskraftSkin_fail = new SkinBeruehrungssenstiv(leibwaechter_fail.getSeriennummer());
+		Skin kaempferSkin_fail = new SkinGepanzert(bauarbeiter_fail.getSeriennummer());
+		Software servicetechnikerSoftware_fail = new SoftwareServicetechniker(objektbewacher_fail.getSeriennummer(), servicetechnikerSoftwareStufe);
+		Aktor leibwaechterAktor_fail = new Aktor(servicetechniker_fail.getSeriennummer());
+
+		
+		roboShop.insert(bauarbeiter_fail, kaempferSkin_fail, bauarbeiterSoftware, bauarbeiterAktor);
+		roboShop.insert(servicetechniker_fail, servicetechnikerSkin, servicetechnikerSoftware, leibwaechterAktor_fail);
+		roboShop.insert(transportarbeiter_fail, transportarbeiterSkin, g2Software, transportarbeiterAktor);
+		
+		roboShop.insert(objektbewacher_fail, objektbewacherSkin, servicetechnikerSoftware_fail, objektbewacherAktor);
+		roboShop.insert(leibwaechter_fail, hilfskraftSkin_fail, g2Software, g2Aktor);
+		roboShop.insert(kaempfer_fail, kaempferSkin, servicetechnikerSoftware, kaempferAktor);
+		
+		
+		String result7 = "";
+		for(Android a : roboShop) {
+			result7 += a.toString();
+		}
+		String expected7 = expected6;
+		doTest("Hinzufügen von (unzulässigen) Schwerarbeitern und Beschützern ", result7, expected7);
 	}
 
 	private static int i = 0;
