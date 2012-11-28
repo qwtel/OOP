@@ -59,13 +59,8 @@ public abstract class Android {
 		this.aktor = null;
 	}
 
-	boolean insert(RoboShop shop) {
-		return false;
-	}
-
-	boolean insert2(RoboShop shop) {
-		return false;
-	}
+	abstract boolean insert(RoboShop shop);
+	abstract boolean insert2(RoboShop shop);
 
 	/**
 	 * Liefert die Seriennummer des Androiden.
