@@ -26,7 +26,7 @@ public abstract class Car extends Thread {
      * The number of moves this car has.
      */
     protected int steps;
-    
+
     /**
      * Initializes a new car with a random direction and position.
      *
@@ -78,4 +78,17 @@ public abstract class Car extends Thread {
 	public void turn(int n) {
 		dir = (dir+n)%4;
 	}
+
+    abstract protected int getVelocity();
+
+    public int positionCode() {
+        return x + y*grid.width;
+    }
+
+    public void run() {
+        try {
+            Thread.sleep(getVelocity());
+        }
+        catch(InterruptedException ex) {}
+    }
 }
