@@ -9,9 +9,11 @@ public class Test {
 	public static void main(String[] args) throws Exception {
 		
 		//Test1
-		private Grid grid1 = new Grid();
-		private Strategy s1 = new Strategy();
-		private Strategy s2 = new Strategy();
+		int height = 10;
+		int width = 10;
+		Grid grid1 = new Grid(width, height);
+		Strategy s1 = new StrategyRandom();
+		Strategy s2 = new StrategyRandom();
 		
 		Car c1 = new FastCar("S. Vettel", grid1, s1);
 		Car c2 = new FastCar("R. Gosling", grid1, s1);

@@ -5,6 +5,9 @@
  */
 public class StrategyRandom implements Strategy {
 
+	public StrategyRandom() {
+		
+	}
 	@Override
 	public int nextMove() {		
 		return ((int)Math.round((Math.random()*4)))-2;
