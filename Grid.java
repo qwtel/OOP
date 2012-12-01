@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Grid
  *
@@ -7,7 +11,7 @@ public class Grid {
 
     int width;
     int height;
-
+    private Field[][] grid;
     /**
      * Creates a new grid for cars to move on.
      *
@@ -17,5 +21,24 @@ public class Grid {
     public Grid(int width, int height) {
         this.width = width;
         this.height = height;
+        grid = new Field[width][height];
+        fillGrid();
+    }
+    
+    
+    private void fillGrid() {
+		for(int h =0; h<height; h++) {
+			for (int w = 0; w < width; w++) {
+				grid[w][h]= new Field();
+			}
+		}
+		
+	}
+	private class Field {
+    	private List<Car> list;
+    	public Field() {
+    		list = Collections.synchronizedList(new ArrayList<Car>());
+    	}
+    	
     }
 }
