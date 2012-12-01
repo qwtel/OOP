@@ -4,7 +4,7 @@
  * Represents a fast car.
  */
 public class FastCar extends Car {
-	public void start() {
+	public void run() {
 
 	}
 }
