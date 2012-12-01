@@ -34,23 +34,7 @@ public class Grid {
 		}
 		
 	}
-	private class Field {
-    	private List<Car> list;
-    	boolean locked;
-    	public Field() {
-    		//list = Collections.synchronizedList(new ArrayList<Car>());
-    		list = new ArrayList<Car>();
-    	}
-    	
-    	public synchronized void add(Car car) {
-    		list.add(car);
-    	}
-    	
-    	public synchronized void remove(Car car) {
-    		list.remove(car);
-    	}
-    	public int count() {
-    		return list.size();
-    	}
-    }
+	public Field getField(int x, int y) {
+		return grid[x][y];
+	}
 }
