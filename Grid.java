@@ -9,24 +9,24 @@ import java.util.List;
  */
 public class Grid {
 
-    int width;
-    int height;
-    private Field[][] grid;
-    /**
-     * Creates a new grid for cars to move on.
-     *
-     * @param width Width of the grid. 
-     * @param height Height of the grid. 
-     */
-    public Grid(int width, int height) {
-        this.width = width;
-        this.height = height;
-        grid = new Field[width][height];
-        fillGrid();
-    }
-    
-    
-    private void fillGrid() {
+	int width;
+	int height;
+	private Field[][] grid;
+
+	/**
+	 * Creates a new grid for cars to move on.
+	 *
+	 * @param width Width of the grid. 
+	 * @param height Height of the grid. 
+	 */
+	public Grid(int width, int height) {
+		this.width = width;
+		this.height = height;
+		grid = new Field[width][height];
+		fillGrid();
+	}
+	
+	private void fillGrid() {
 		for(int h =0; h<height; h++) {
 			for (int w = 0; w < width; w++) {
 				grid[w][h]= new Field();
@@ -34,6 +34,7 @@ public class Grid {
 		}
 		
 	}
+
 	public Field getField(int x, int y) {
 		return grid[x][y];
 	}
