@@ -37,9 +37,9 @@ public abstract class Car extends Thread {
 	public Car(String name, Grid grid, Strategy strat) {            
         this.name = name;
         this.grid = grid;
-        this.start = start;
-        this.x = (int)(grid.x*Math.random());
-        this.y = (int)(grid.y*Math.random());
+        this.strat = strat;
+        this.x = (int)(grid.width*Math.random());
+        this.y = (int)(grid.height*Math.random());
 		this.dir = 1 + (int)(4*Math.random());
         this.score = 0;
         this.steps = 0;
@@ -58,7 +58,7 @@ public abstract class Car extends Thread {
 	public Car(String name, Grid grid, Strategy strat, int x, int y, int dir) {
         this.name = name;
         this.grid = grid;
-        this.start = start;
+        this.strat = strat;
         this.x = x;
         this.y = y;
 		this.dir = dir;
