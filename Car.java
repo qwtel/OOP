@@ -73,7 +73,7 @@ public abstract class Car extends Thread {
 	 * if n is positive.
 	 * 
 	 * @param n The number of turns to the left if positive or to the right if
-	 *         negative.
+	 *		 negative.
 	 */
 	public void turn(int n) {
 		dir = (dir + n) % 4;
@@ -88,76 +88,76 @@ public abstract class Car extends Thread {
 	public void run() {
 		
 		int newPos = dir*2;
-        int nextMove = strat.nextMove();
-    	newPos = (newPos + nextMove)%8;
-    	turn((int)Math.signum(newPos));
-    	
-    	int oldX = x;
-    	int oldY = y;
+		int nextMove = strat.nextMove();
+		newPos = (newPos + nextMove)%8;
+		turn((int)Math.signum(newPos));
+		
+		int oldX = x;
+		int oldY = y;
 
-    	switch(newPos) {
-            case 0:
-                x+=0;
-                y+=-1;
-                break;
-            case 1:
-                x+=1;
-                y+=-1;
-                break;
-            case 2:
-                x+=1;
-                y+=0;
-                break;
-            case 3:
-                x+=1;
-                y+=1;
-                break;
-            case 4:
-                x+=0;
-                y+=1;
-                break;
-            case 5:
-                x+=-1;
-                y+=1;
-                break;
-            case 6:
-                x+=-1;
-                y+=0;
-                break;
-            case 7:
-                x+=-1;
-                y+=-1;
-                break;
-    	}
+		switch(newPos) {
+			case 0:
+				x+=0;
+				y+=-1;
+				break;
+			case 1:
+				x+=1;
+				y+=-1;
+				break;
+			case 2:
+				x+=1;
+				y+=0;
+				break;
+			case 3:
+				x+=1;
+				y+=1;
+				break;
+			case 4:
+				x+=0;
+				y+=1;
+				break;
+			case 5:
+				x+=-1;
+				y+=1;
+				break;
+			case 6:
+				x+=-1;
+				y+=0;
+				break;
+			case 7:
+				x+=-1;
+				y+=-1;
+				break;
+		}
 
-    	Field oldField = grid.getField(oldX, oldY);
-    	Field newField = grid.getField(x, y);
-    	while(oldField.isLocked() || newField.isLocked()) {
-    		try {
-    			wait();
-    		} catch(InterruptedException ex) {
-    			return;
-    		}
-    	}
+		Field oldField = grid.getField(oldX, oldY);
+		Field newField = grid.getField(x, y);
+		while(oldField.isLocked() || newField.isLocked()) {
+			try {
+				wait();
+			} catch(InterruptedException ex) {
+				return;
+			}
+		}
 
-    	//Lock them
-    	oldField.lockedOnOff();
-    	newField.lockedOnOff();
-    	
-    	oldField.remove(this);
-    	score += newField.add(this, dir);
-    	
-    	//Unlock them
-    	oldField.lockedOnOff();
-    	newField.lockedOnOff();
-    	
-    	//Wait for next step
-    	try {
-            Thread.sleep(getVelocity());
-        }
-        catch(InterruptedException ex) {}
-        
-    }
+		//Lock them
+		oldField.lockedOnOff();
+		newField.lockedOnOff();
+		
+		oldField.remove(this);
+		score += newField.add(this, dir);
+		
+		//Unlock them
+		oldField.lockedOnOff();
+		newField.lockedOnOff();
+		
+		//Wait for next step
+		try {
+			Thread.sleep(getVelocity());
+		}
+		catch(InterruptedException ex) {}
+		
+	}
 	public synchronized void collision(int otherDir) {
 		
 	}
