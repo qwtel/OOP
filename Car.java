@@ -30,12 +30,9 @@ public abstract class Car extends Thread {
 	/**
 	 * Initializes a new car with a random direction and position.
 	 * 
-	 * @param name
-	 *            The name of the car.
-	 * @param grid
-	 *            The grid on which the car moves.
-	 * @param strat
-	 *            The strategy by which the car moves.
+	 * @param name The name of the car.
+	 * @param grid The grid on which the car moves.
+	 * @param strat The strategy by which the car moves.
 	 */
 	public Car(String name, Grid grid, Strategy strat) {
 		this.name = name;
@@ -51,18 +48,12 @@ public abstract class Car extends Thread {
 	/**
 	 * Initializes a new car with with the given paramters.
 	 * 
-	 * @param name
-	 *            The name of the car.
-	 * @param grid
-	 *            The grid on which the car moves.
-	 * @param strat
-	 *            The strategy by which the car moves.
-	 * @param x
-	 *            The x position of the car.
-	 * @param y
-	 *            The y position of the car.
-	 * @param dir
-	 *            The direction the car faces.
+	 * @param name The name of the car.
+	 * @param grid The grid on which the car moves.
+	 * @param strat The strategy by which the car moves.
+	 * @param x The x position of the car.
+	 * @param y The y position of the car.
+	 * @param dir The direction the car faces.
 	 */
 	public Car(String name, Grid grid, Strategy strat, int x, int y, int dir) {
 		this.name = name;
@@ -81,9 +72,8 @@ public abstract class Car extends Thread {
 	 * Turns the car left n times if n is negative. Turns the car right n times
 	 * if n is positive.
 	 * 
-	 * @param n
-	 *            The number of turns to the left if positive or to the right if
-	 *            negative.
+	 * @param n The number of turns to the left if positive or to the right if
+	 *         negative.
 	 */
 	public void turn(int n) {
 		dir = (dir + n) % 4;
@@ -104,40 +94,42 @@ public abstract class Car extends Thread {
     	
     	int oldX = x;
     	int oldY = y;
+
     	switch(newPos) {
-    	case 0:
-			x+=0;
-			y+=-1;
-		break;
-    	case 1:
-			x+=1;
-			y+=-1;
-		break;
-    	case 2:
-			x+=1;
-			y+=0;
-		break;
-    	case 3:
-			x+=1;
-			y+=1;
-		break;
-    	case 4:
-			x+=0;
-			y+=1;
-		break;
-    	case 5:
-			x+=-1;
-			y+=1;
-		break;
-    	case 6:
-			x+=-1;
-			y+=0;
-		break;
-    	case 7:
-			x+=-1;
-			y+=-1;
-		break;
+            case 0:
+                x+=0;
+                y+=-1;
+                break;
+            case 1:
+                x+=1;
+                y+=-1;
+                break;
+            case 2:
+                x+=1;
+                y+=0;
+                break;
+            case 3:
+                x+=1;
+                y+=1;
+                break;
+            case 4:
+                x+=0;
+                y+=1;
+                break;
+            case 5:
+                x+=-1;
+                y+=1;
+                break;
+            case 6:
+                x+=-1;
+                y+=0;
+                break;
+            case 7:
+                x+=-1;
+                y+=-1;
+                break;
     	}
+
     	Field oldField = grid.getField(oldX, oldY);
     	Field newField = grid.getField(x, y);
     	while(oldField.isLocked() || newField.isLocked()) {
@@ -147,12 +139,13 @@ public abstract class Car extends Thread {
     			return;
     		}
     	}
+
     	//Lock them
     	oldField.lockedOnOff();
     	newField.lockedOnOff();
     	
     	oldField.remove(this);
-    	score+= newField.add(this, dir);
+    	score += newField.add(this, dir);
     	
     	//Unlock them
     	oldField.lockedOnOff();
