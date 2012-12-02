@@ -37,10 +37,9 @@ public abstract class Car extends Thread {
 		this.name = name;
 		this.grid = grid;
 		this.strat = strat;
-		this.x = (int) (grid.width * Math.random());
-		this.y = (int) (grid.height * Math.random());
-		int dir = 1 + (int) (3 * Math.random());
-		this.direction = new Vec(dir);
+		this.x = (int)(grid.width * Math.random());
+		this.y = (int)(grid.height * Math.random());
+		this.direction = new Vec(1 + (int)(3 * Math.random()));
 		this.score = 0;
 		this.steps = 0;
 		this.velocity = velocity;
@@ -72,18 +71,14 @@ public abstract class Car extends Thread {
 	@Override
 	public void run() {
 		while(true) {
+			this.steps++;
+
 			int nextMove = strat.nextMove();
 			Vec nextDirection = direction.rotate90((int)Math.signum(nextMove));
 			Vec moveDirection = direction.rotate45(nextMove);
 
 			int oldX = x;
 			int oldY = y;
-
-			Field oldField = grid.getField(oldX, oldY);
-			Field newField = grid.getField(x, y);
-			
-			this.steps++;
-			this.direction = nextDirection;
 
 			this.x += moveDirection.x;
 			this.y += moveDirection.y;
@@ -92,13 +87,16 @@ public abstract class Car extends Thread {
 			this.x = (this.x + grid.width) % grid.width;
 			this.y = (this.y + grid.height) % grid.height;
 
-			synchronized(this) {
-				oldField.remove(this);
-				this.score += newField.add(this);
-			}
+			Field oldField = grid.getField(oldX, oldY);
+			Field newField = grid.getField(x, y);
+			
+			this.direction = nextDirection;
+
+			oldField.remove(this);
+			this.score += newField.add(this);
 
 			if(score >= 10 || steps >= 100) {
-				System.out.println(grid.endGame());
+				grid.endGame();
 				return;
 			}
 
@@ -115,7 +113,7 @@ public abstract class Car extends Thread {
 	*/
 	public int collision(Car other) {
 		// TODO
-		  return 1;
+		return 1;
 	}
 
 	/**
@@ -132,6 +130,34 @@ public abstract class Car extends Thread {
 		public Vec(int x, int y) {
 			this.x = x;
 			this.y = y;
+		}
+
+		/**
+		 * Rotates this vector by 45 degrees `move` times.
+		 * @param move An integer between -2 and +2. 
+		 * @return The direction after a rotation as a valid Vec.
+		 */
+		public Vec rotate45(int move) {
+			double mathAngle = Math.PI/4 * move;
+			double cs = Math.cos(mathAngle);
+			double sn = Math.sin(mathAngle);
+			int px = (int)Math.round(x*cs - y*sn);
+			int py = (int)Math.round(x*sn + y*cs);
+			return new Vec(px, py);
+		}
+
+		/**
+		 * Rotates this vector by 90 degrees `move` times.
+		 * @param move An integer between -1 and +1.
+		 * @return The direction after a rotation as a valid Vec.
+		 */
+		public Vec rotate90(int move) {
+			return rotate45(2*move);
+		}
+
+		@Override
+		public String toString() {
+			return x + " " + y;
 		}
 
 		/**
@@ -162,34 +188,6 @@ public abstract class Car extends Thread {
 					y = 0;
 					break;
 			}
-		}
-
-		/**
-		 * Rotates this vector by 45 degrees `move` times.
-		 * @param move An integer between -2 and +2. 
-		 * @return The direction after a rotation as a valid Vec.
-		 */
-		public Vec rotate45(int move) {
-			double mathAngle = Math.PI/4 * move;
-			double cs = Math.cos(mathAngle);
-			double sn = Math.sin(mathAngle);
-			int px = (int)Math.round(x*cs - y*sn);
-			int py = (int)Math.round(x*sn + y*cs);
-			return new Vec(px, py);
-		}
-
-		/**
-		 * Rotates this vector by 90 degrees `move` times.
-		 * @param move An integer between -1 and +1.
-		 * @return The direction after a rotation as a valid Vec.
-		 */
-		public Vec rotate90(int move) {
-			return rotate45(2*move);
-		}
-
-		@Override
-		public String toString() {
-			return x + " " + y;
 		}
 	}
 
