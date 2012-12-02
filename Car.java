@@ -10,14 +10,14 @@ public abstract class Car extends Thread {
 
 	private Vec direction;
 
-	private String name;
+	String name;
 	private Grid grid;
 	private Strategy strat;
 
 	/**
 	 * The score of this car.
 	 */
-	protected int score;
+	int score;
 
 	/**
 	 * The number of moves this car has.
@@ -86,8 +86,8 @@ public abstract class Car extends Thread {
 			int oldX = x;
 			int oldY = y;
 
-				Field oldField = grid.getField(oldX, oldY);
-				Field newField = grid.getField(x, y);
+			Field oldField = grid.getField(oldX, oldY);
+			Field newField = grid.getField(x, y);
 			
  			/*
 			 * Another way to create synchronized code is with synchronized 
@@ -110,8 +110,9 @@ public abstract class Car extends Thread {
 			}
 
 			if (score >= 10) {
+				grid.endGame();
 				System.out.println("Wow, da hat wohl jemand gewonnen: " + name
-						+ " hat eine Score von " + score + " erreicht.");
+				        + " hat eine Score von " + score + " erreicht.");
 			//} else {
 			//	System.out.println(name + " : " + score);
 			}

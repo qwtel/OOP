@@ -12,6 +12,7 @@ public class Grid {
 	int width;
 	int height;
 	private Field[][] grid;
+	private List<Car> cars;
 
 	/**
 	 * Creates a new grid for cars to move on.
@@ -24,6 +25,7 @@ public class Grid {
 		this.height = height;
 		grid = new Field[width][height];
 		fillGrid();
+		cars = new ArrayList<Car>();
 	}
 	
 	private void fillGrid() {
@@ -31,6 +33,23 @@ public class Grid {
 			for (int w = 0; w < width; w++) {
 				grid[w][h]= new Field();
 			}
+		}
+	}
+
+	public void addCar(Car c) {
+    	cars.add(c);
+	}
+
+	public void startGame() {
+		for(Car c : cars) {
+    		c.start();
+		}
+	}
+
+	public void endGame() {
+		for(Car c : cars) {
+    		c.interrupt();
+			System.out.println(c.name + ": " + c.score);
 		}
 	}
 
