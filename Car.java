@@ -92,10 +92,12 @@ public abstract class Car extends Thread {
 			this.x = (this.x + grid.width) % grid.width;
 			this.y = (this.y + grid.height) % grid.height;
 
-			oldField.remove(this);
-			this.score += newField.add(this);
+			synchronized(this) {
+				oldField.remove(this);
+				this.score += newField.add(this);
+			}
 
-			if (score >= 10 || steps >= 100) {
+			if(score >= 10 || steps >= 100) {
 				System.out.println(grid.endGame());
 				return;
 			}
