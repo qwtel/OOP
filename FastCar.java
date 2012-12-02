@@ -26,8 +26,8 @@ public class FastCar extends Car {
 	 * @param y The y position of the car.
 	 * @param dir The direction the car faces.
 	 */
-	public FastCar(String name, Grid grid, Strategy strat, int velocity, int x,
-            int y, int dir) {
+	public FastCar(String name, Grid grid, Strategy strat, int velocity, int x, 
+			int y, int dir) {
 		super(name, grid, strat, velocity, x, y, dir);
 	}
 }

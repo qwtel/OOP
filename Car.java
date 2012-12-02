@@ -86,8 +86,8 @@ public abstract class Car extends Thread {
 			int oldX = x;
 			int oldY = y;
 
-		   	Field oldField = grid.getField(oldX, oldY);
-		   	Field newField = grid.getField(x, y);
+				Field oldField = grid.getField(oldX, oldY);
+				Field newField = grid.getField(x, y);
 			
  			/*
 			 * Another way to create synchronized code is with synchronized 
@@ -123,7 +123,7 @@ public abstract class Car extends Thread {
 	*/
 	public int collision(Car other) {
 		// TODO
-        return 1;
+		  return 1;
 	}
 
 	/**
@@ -201,26 +201,26 @@ public abstract class Car extends Thread {
 		}
 	}
 
-   	//private enum Direction {
-   	//	N  (new Vec( 0, -1)),
-   	//	NE (new Vec( 1, -1)),
-   	//	E  (new Vec( 1,  0)),
-   	//	SE (new Vec( 1,  1)),
-   	//	S  (new Vec( 0,  1)),
-   	//	SW (new Vec(-1,  1)),
-   	//	W  (new Vec(-1,  0)),
-   	//	NW (new Vec(-1, -1));
-   	//
-   	//	private Vec v;
-   	//
-   	//	Direction(Vec v) {
-   	//		this.v = v;
-   	//	}
-   	//
-   	//	public getVec() {
-   	//    	return v;
-   	//	}
-   	//}
+	//private enum Direction {
+	//	N  (new Vec( 0, -1)),
+	//	NE (new Vec( 1, -1)),
+	//	E  (new Vec( 1,  0)),
+	//	SE (new Vec( 1,  1)),
+	//	S  (new Vec( 0,  1)),
+	//	SW (new Vec(-1,  1)),
+	//	W  (new Vec(-1,  0)),
+	//	NW (new Vec(-1, -1));
+	//
+	//	private Vec v;
+	//
+	//	Direction(Vec v) {
+	//		this.v = v;
+	//	}
+	//
+	//	public getVec() {
+	//		return v;
+	//	}
+	//}
 	
 	//public synchronized void collision(int otherDir) {
 	//
