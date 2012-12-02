@@ -12,8 +12,8 @@ public class FlexCar extends Car {
 	 * @param grid The grid on which the car moves.
 	 * @param strat The strategy by which the car moves.
 	 */
-	public FlexCar(String name, Grid grid, Strategy strat) {
-		super(name, grid, strat);
+	public FlexCar(String name, Grid grid, Strategy strat, int velocity) {
+		super(name, grid, strat, velocity);
 	}
 
 	/**
@@ -26,12 +26,8 @@ public class FlexCar extends Car {
 	 * @param y The y position of the car.
 	 * @param dir The direction the car faces.
 	 */
-	public FlexCar(String name, Grid grid, Strategy strat, int x, int y, int dir) {
-		super(name, grid, strat, x, y, dir);
-	}
-
-	@Override
-	protected int getVelocity() {
-		return 50;
+	public FlexCar(String name, Grid grid, Strategy strat, int velocity, int x,
+			int y, int dir) {
+		super(name, grid, strat, velocity, x, y, dir);
 	}
 }

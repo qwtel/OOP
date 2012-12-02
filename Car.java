@@ -23,6 +23,8 @@ public abstract class Car extends Thread {
 	 * The number of moves this car has.
 	 */
 	protected int steps;
+	
+	private int velocity;
 
 	/**
 	 * Initializes a new car with a random direction and position.
@@ -31,7 +33,7 @@ public abstract class Car extends Thread {
 	 * @param grid The grid on which the car moves.
 	 * @param strat The strategy by which the car moves.
 	 */
-	public Car(String name, Grid grid, Strategy strat) {
+	public Car(String name, Grid grid, Strategy strat, int velocity) {
 		this.name = name;
 		this.grid = grid;
 		this.strat = strat;
@@ -41,6 +43,7 @@ public abstract class Car extends Thread {
 		this.direction = new Vec(dir);
 		this.score = 0;
 		this.steps = 0;
+		this.velocity = velocity;
 	}
 
 	/**
@@ -53,7 +56,7 @@ public abstract class Car extends Thread {
 	 * @param y The y position of the car.
 	 * @param dir An integer between 0 and 3, for directions N, E, S, W; 
 	 */
-	public Car(String name, Grid grid, Strategy strat, int x, int y, int dir) {
+	public Car(String name, Grid grid, Strategy strat, int velocity, int x, int y, int dir) {
 		this.name = name;
 		this.grid = grid;
 		this.strat = strat;
@@ -62,6 +65,7 @@ public abstract class Car extends Thread {
 		this.direction = new Vec(dir);
 		this.score = 0;
 		this.steps = 0;
+		this.velocity = velocity;
 	}
 
 	@Override
@@ -70,7 +74,7 @@ public abstract class Car extends Thread {
 
 			// Wait for next step
 			try {
-				Thread.sleep(getVelocity());
+				Thread.sleep(velocity);
 			} catch (InterruptedException ex) {}
 
 			int nextMove = strat.nextMove();
@@ -121,8 +125,6 @@ public abstract class Car extends Thread {
 		   	//newField.lockedOnOff();
 		}
 	}
-
-	abstract protected int getVelocity();
 
 	/**
 	 * A 2D grid vector with integer values between -1 and 1.
