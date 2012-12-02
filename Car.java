@@ -94,19 +94,19 @@ public abstract class Car extends Thread {
 		   	Field oldField = grid.getField(oldX, oldY);
 		   	Field newField = grid.getField(x, y);
 			
-		   	//while (oldField.isLocked() || newField.isLocked()) {
-		   	//	try {
-		   	//		synchronized (this) {
-		   	//			wait();
-		   	//		}
-		   	//	} catch (InterruptedException ex) {
-		   	//		return;
-		   	//	}
-		   	//}
-           	//
-		   	//// Lock them
-		   	//oldField.lockedOnOff();
-		   	//newField.lockedOnOff();
+		   	while (oldField.isLocked() || newField.isLocked()) {
+		   		try {
+		   			synchronized (this) {
+		   				wait();
+		   			}
+		   		} catch (InterruptedException ex) {
+		   			return;
+		   		}
+		   	}
+           	
+		   	// Lock them
+		   	oldField.lockedOnOff();
+		   	newField.lockedOnOff();
 
 			synchronized(this) {
 				oldField.remove(this);
@@ -121,8 +121,8 @@ public abstract class Car extends Thread {
 			}
 
 			// Unlock them
-		   	//oldField.lockedOnOff();
-		   	//newField.lockedOnOff();
+		   	oldField.lockedOnOff();
+		   	newField.lockedOnOff();
 		}
 	}
 
