@@ -46,14 +46,16 @@ public class Grid {
 		}
 	}
 
-	public void endGame() {
+	public synchronized String endGame() {
+		String s = "";
 		for(Car c : cars) {
     		c.interrupt();
-			System.out.println(c.name + ": " + c.score);
+			s += c.name + ": " + c.score + "\n";
 		}
+		return s;
 	}
 
-	public Field getField(int x, int y) {
+	public synchronized Field getField(int x, int y) {
 		return grid[x][y];
 	}
 }

@@ -71,14 +71,7 @@ public abstract class Car extends Thread {
 
 	@Override
 	public void run() {
-		while(score < 10) {
-
-			try {
-				Thread.sleep(velocity);
-			} catch (InterruptedException ex) {
-				return;
-			}
-
+		while(true) {
 			int nextMove = strat.nextMove();
 			Vec nextDirection = direction.rotate90((int)Math.signum(nextMove));
 			Vec moveDirection = direction.rotate45(nextMove);
@@ -89,32 +82,28 @@ public abstract class Car extends Thread {
 			Field oldField = grid.getField(oldX, oldY);
 			Field newField = grid.getField(x, y);
 			
- 			/*
-			 * Another way to create synchronized code is with synchronized 
-			 * statements. Unlike synchronized methods, synchronized statements 
-			 * must specify the object that provides the intrinsic lock:
-			 */
-			synchronized(this) {
-				this.steps++;
+			this.steps++;
+			this.direction = nextDirection;
 
-				this.direction = nextDirection;
-				this.x += moveDirection.x;
-				this.y += moveDirection.y;
+			this.x += moveDirection.x;
+			this.y += moveDirection.y;
 
-				// TODO: The strategy should not allow out of bounds movements.
-				this.x = (this.x + grid.width) % grid.width;
-				this.y = (this.y + grid.height) % grid.height;
+			// TODO: The strategy should not allow out of bounds movements.
+			this.x = (this.x + grid.width) % grid.width;
+			this.y = (this.y + grid.height) % grid.height;
 
-				oldField.remove(this);
-				this.score += newField.add(this);
+			oldField.remove(this);
+			this.score += newField.add(this);
+
+			if (score >= 10 || steps >= 100) {
+				System.out.println(grid.endGame());
+				return;
 			}
 
-			if (score >= 10) {
-				grid.endGame();
-				System.out.println("Wow, da hat wohl jemand gewonnen: " + name
-				        + " hat eine Score von " + score + " erreicht.");
-			//} else {
-			//	System.out.println(name + " : " + score);
+			try {
+				Thread.sleep(velocity);
+			} catch (InterruptedException ex) {
+				return;
 			}
 		}
 	}
