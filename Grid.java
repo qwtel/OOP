@@ -32,7 +32,6 @@ public class Grid {
 				grid[w][h]= new Field();
 			}
 		}
-		
 	}
 
 	public Field getField(int x, int y) {

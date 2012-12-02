@@ -56,7 +56,8 @@ public abstract class Car extends Thread {
 	 * @param y The y position of the car.
 	 * @param dir An integer between 0 and 3, for directions N, E, S, W; 
 	 */
-	public Car(String name, Grid grid, Strategy strat, int velocity, int x, int y, int dir) {
+	public Car(String name, Grid grid, Strategy strat, int velocity, int x, 
+			int y, int dir) {
 		this.name = name;
 		this.grid = grid;
 		this.strat = strat;
@@ -72,45 +73,40 @@ public abstract class Car extends Thread {
 	public void run() {
 		while(score < 10) {
 
-			// Wait for next step
 			try {
 				Thread.sleep(velocity);
-			} catch (InterruptedException ex) {}
+			} catch (InterruptedException ex) {
+				return;
+			}
 
 			int nextMove = strat.nextMove();
+			Vec nextDirection = direction.rotate90((int)Math.signum(nextMove));
 			Vec moveDirection = direction.rotate45(nextMove);
-
-			direction = direction.rotate90((int)Math.signum(nextMove));
 
 			int oldX = x;
 			int oldY = y;
 
-			x += moveDirection.x;
-			y += moveDirection.y;
-
-			x = (x + grid.width) % grid.width;
-			y = (y + grid.height) % grid.height;
-
 		   	Field oldField = grid.getField(oldX, oldY);
 		   	Field newField = grid.getField(x, y);
 			
-		   	while (oldField.isLocked() || newField.isLocked()) {
-		   		try {
-		   			synchronized (this) {
-		   				wait();
-		   			}
-		   		} catch (InterruptedException ex) {
-		   			return;
-		   		}
-		   	}
-           	
-		   	// Lock them
-		   	oldField.lockedOnOff();
-		   	newField.lockedOnOff();
-
+ 			/*
+			 * Another way to create synchronized code is with synchronized 
+			 * statements. Unlike synchronized methods, synchronized statements 
+			 * must specify the object that provides the intrinsic lock:
+			 */
 			synchronized(this) {
+				this.steps++;
+
+				this.direction = nextDirection;
+				this.x += moveDirection.x;
+				this.y += moveDirection.y;
+
+				// TODO: The strategy should not allow out of bounds movements.
+				this.x = (this.x + grid.width) % grid.width;
+				this.y = (this.y + grid.height) % grid.height;
+
 				oldField.remove(this);
-				score += newField.add(this);
+				this.score += newField.add(this);
 			}
 
 			if (score >= 10) {
@@ -119,11 +115,15 @@ public abstract class Car extends Thread {
 			//} else {
 			//	System.out.println(name + " : " + score);
 			}
-
-			// Unlock them
-		   	oldField.lockedOnOff();
-		   	newField.lockedOnOff();
 		}
+	}
+	
+	/**
+	* TODO
+	*/
+	public int collision(Car other) {
+		// TODO
+        return 1;
 	}
 
 	/**
