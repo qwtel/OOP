@@ -1,22 +1,22 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Field {
 	private List<Car> list;
-
 	private boolean locked;
 
 	public Field() {
-		//list = Collections.synchronizedList(new ArrayList<Car>());
 		list = new ArrayList<Car>();
+		//list = Collections.synchronizedList(list);
 		locked = false;
 	}
 	
-	public synchronized int add(Car car, int dir) {
+	public synchronized int add(Car car) {
 		int score = list.size();
-		for (Car attackedCar : list) {
-			attackedCar.collision(dir);
-		}
+		//for (Car attackedCar : list) {
+		//	attackedCar.collision(car.dir);
+		//}
 		list.add(car);
 		
 		return score;
@@ -33,7 +33,7 @@ public class Field {
 		}
 	}
 
-	public boolean isLocked() {
+	public synchronized boolean isLocked() {
 		return locked;
 	}
 }

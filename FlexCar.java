@@ -5,8 +5,6 @@
  */
 public class FlexCar extends Car {
 
-	protected int velocity = 50;
-
 	/**
 	 * Initializes a new car with a random direction and position.
 	 *
@@ -32,7 +30,8 @@ public class FlexCar extends Car {
 		super(name, grid, strat, x, y, dir);
 	}
 
+	@Override
 	protected int getVelocity() {
-		return velocity;
+		return 50;
 	}
 }

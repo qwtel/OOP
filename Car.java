@@ -5,17 +5,14 @@
  */
 public abstract class Car extends Thread {
 
-	protected int x;
-	protected int y;
+	private int x;
+	private int y;
 
-	/**
-	 * 0 top, 1 left, 2 bottom, 3 right
-	 */
-	protected int dir;
+	private Vec direction;
 
-	protected String name;
-	protected Grid grid;
-	protected Strategy strat;
+	private String name;
+	private Grid grid;
+	private Strategy strat;
 
 	/**
 	 * The score of this car.
@@ -40,7 +37,8 @@ public abstract class Car extends Thread {
 		this.strat = strat;
 		this.x = (int) (grid.width * Math.random());
 		this.y = (int) (grid.height * Math.random());
-		this.dir = 1 + (int) (4 * Math.random());
+		int dir = 1 + (int) (3 * Math.random());
+		this.direction = new Vec(dir);
 		this.score = 0;
 		this.steps = 0;
 	}
@@ -53,7 +51,7 @@ public abstract class Car extends Thread {
 	 * @param strat The strategy by which the car moves.
 	 * @param x The x position of the car.
 	 * @param y The y position of the car.
-	 * @param dir The direction the car faces.
+	 * @param dir An integer between 0 and 3, for directions N, E, S, W; 
 	 */
 	public Car(String name, Grid grid, Strategy strat, int x, int y, int dir) {
 		this.name = name;
@@ -61,111 +59,168 @@ public abstract class Car extends Thread {
 		this.strat = strat;
 		this.x = x;
 		this.y = y;
-		this.dir = dir;
+		this.direction = new Vec(dir);
 		this.score = 0;
 		this.steps = 0;
 	}
 
-	/**
-	 * Turns the car.
-	 * 
-	 * Turns the car left n times if n is negative. Turns the car right n times
-	 * if n is positive.
-	 * 
-	 * @param n The number of turns to the left if positive or to the right if
-	 *		 negative.
-	 */
-	public void turn(int n) {
-		dir = (dir + n) % 4;
-	}
-
-	abstract protected int getVelocity();
-
-	public int positionCode() {
-		return x + y * grid.width;
-	}
-
+	@Override
 	public void run() {
-		while (score<10) {
-			int newPos = dir * 2;
-			int nextMove = strat.nextMove();
-			newPos = (newPos + nextMove) % 8;
-			turn((int) Math.signum(newPos));
-
-			int oldX = x;
-			int oldY = y;
-			switch (newPos) {
-			case 0:
-				x += 0;
-				y += -1;
-				break;
-			case 1:
-				x += 1;
-				y += -1;
-				break;
-			case 2:
-				x += 1;
-				y += 0;
-				break;
-			case 3:
-				x += 1;
-				y += 1;
-				break;
-			case 4:
-				x += 0;
-				y += 1;
-				break;
-			case 5:
-				x += -1;
-				y += 1;
-				break;
-			case 6:
-				x += -1;
-				y += 0;
-				break;
-			case 7:
-				x += -1;
-				y += -1;
-				break;
-			}
-			x = (x + grid.width) % grid.width;
-			y = (y + grid.height) % grid.height;
-			Field oldField = grid.getField(oldX, oldY);
-			Field newField = grid.getField(x, y);
-			while (oldField.isLocked() || newField.isLocked()) {
-				try {
-					synchronized (this) {
-						wait();
-					}
-				} catch (InterruptedException ex) {
-					return;
-				}
-			}
-			// Lock them
-			oldField.lockedOnOff();
-			newField.lockedOnOff();
-
-			oldField.remove(this);
-			score += newField.add(this, dir);
-			if (score >= 10) {
-				System.out.println("Wow, da hat wohl jemand gewonnen: " + name
-						+ " hat eine Score von " + score + " erreicht.");
-			} else {
-				System.out.println(name
-						+ " : " + score);
-			}
-			// Unlock them
-			oldField.lockedOnOff();
-			newField.lockedOnOff();
+		while(score < 10) {
 
 			// Wait for next step
 			try {
 				Thread.sleep(getVelocity());
-			} catch (InterruptedException ex) {
+			} catch (InterruptedException ex) {}
+
+			int nextMove = strat.nextMove();
+			Vec moveDirection = direction.rotate45(nextMove);
+
+			direction = direction.rotate90((int)Math.signum(nextMove));
+
+			int oldX = x;
+			int oldY = y;
+
+			x += moveDirection.x;
+			y += moveDirection.y;
+
+			x = (x + grid.width) % grid.width;
+			y = (y + grid.height) % grid.height;
+
+		   	Field oldField = grid.getField(oldX, oldY);
+		   	Field newField = grid.getField(x, y);
+			
+		   	//while (oldField.isLocked() || newField.isLocked()) {
+		   	//	try {
+		   	//		synchronized (this) {
+		   	//			wait();
+		   	//		}
+		   	//	} catch (InterruptedException ex) {
+		   	//		return;
+		   	//	}
+		   	//}
+           	//
+		   	//// Lock them
+		   	//oldField.lockedOnOff();
+		   	//newField.lockedOnOff();
+
+			synchronized(this) {
+				oldField.remove(this);
+				score += newField.add(this);
 			}
+
+			if (score >= 10) {
+				System.out.println("Wow, da hat wohl jemand gewonnen: " + name
+						+ " hat eine Score von " + score + " erreicht.");
+			//} else {
+			//	System.out.println(name + " : " + score);
+			}
+
+			// Unlock them
+		   	//oldField.lockedOnOff();
+		   	//newField.lockedOnOff();
 		}
 	}
-	public synchronized void collision(int otherDir) {
 
+	abstract protected int getVelocity();
+
+	/**
+	 * A 2D grid vector with integer values between -1 and 1.
+	 */
+	private class Vec {
+		final int x;
+		final int y;
+
+		/**
+		 * @param x An integer between -1 and 1.
+		 * @param y An integer between -1 and 1.
+		 */
+		public Vec(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		/**
+		 * XXX: Fix for compability with old assertions.
+		 * @param dir An integer between 0 and 3, for directions N, E, S, W;
+		 *         respectively.
+		 */
+		public Vec(int dir) {
+			switch(dir) {
+				case 0:
+					x = 0;
+					y = -1;
+					break;
+				case 1:
+					x = 1;
+					y = 0;
+					break;
+				case 2:
+					x = 0;
+					y = 1;
+					break;
+				case 3:
+					x = -1;
+					y = 0;
+					break;
+				default:
+					x = 0;
+					y = 0;
+					break;
+			}
+		}
+
+		/**
+		 * Rotates this vector by 45 degrees `move` times.
+		 * @param move An integer between -2 and +2. 
+		 * @return The direction after a rotation as a valid Vec.
+		 */
+		public Vec rotate45(int move) {
+			double mathAngle = Math.PI/4 * move;
+			double cs = Math.cos(mathAngle);
+			double sn = Math.sin(mathAngle);
+			int px = (int)Math.round(x*cs - y*sn);
+			int py = (int)Math.round(x*sn + y*cs);
+			return new Vec(px, py);
+		}
+
+		/**
+		 * Rotates this vector by 90 degrees `move` times.
+		 * @param move An integer between -1 and +1.
+		 * @return The direction after a rotation as a valid Vec.
+		 */
+		public Vec rotate90(int move) {
+			return rotate45(2*move);
+		}
+
+		@Override
+		public String toString() {
+			return x + " " + y;
+		}
 	}
+
+   	//private enum Direction {
+   	//	N  (new Vec( 0, -1)),
+   	//	NE (new Vec( 1, -1)),
+   	//	E  (new Vec( 1,  0)),
+   	//	SE (new Vec( 1,  1)),
+   	//	S  (new Vec( 0,  1)),
+   	//	SW (new Vec(-1,  1)),
+   	//	W  (new Vec(-1,  0)),
+   	//	NW (new Vec(-1, -1));
+   	//
+   	//	private Vec v;
+   	//
+   	//	Direction(Vec v) {
+   	//		this.v = v;
+   	//	}
+   	//
+   	//	public getVec() {
+   	//    	return v;
+   	//	}
+   	//}
+	
+	//public synchronized void collision(int otherDir) {
+	//
+	//}
 }
