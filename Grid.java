@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class Grid {
 
-	int width;
-	int height;
+	protected int width;
+	protected int height;
 	private Field[][] grid;
 	private List<Car> cars;
 
