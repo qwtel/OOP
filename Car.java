@@ -132,12 +132,12 @@ public abstract class Car extends Thread {
 		}
 
 		/**
-		 * Rotates this vector by 45 degrees `move` times.
-		 * @param move An integer between -2 and +2. 
+		 * Rotates this vector by 45 degrees n times.
+		 * @param n An integer between -2 and +2. 
 		 * @return The direction after a rotation as a valid Direction.
 		 */
-		public Direction rotate45(int move) {
-			double mathAngle = Math.PI/4 * move;
+		public Direction rotate45(int n) {
+			double mathAngle = Math.PI/4 * n;
 			double cs = Math.cos(mathAngle);
 			double sn = Math.sin(mathAngle);
 			int px = (int)Math.round(x*cs - y*sn);
@@ -146,12 +146,12 @@ public abstract class Car extends Thread {
 		}
 
 		/**
-		 * Rotates this vector by 90 degrees `move` times.
-		 * @param move An integer between -1 and +1.
+		 * Rotates this vector by 90 degrees n times.
+		 * @param n An integer between -1 and +1.
 		 * @return The direction after a rotation as a valid Direction.
 		 */
-		public Direction rotate90(int move) {
-			return rotate45(2*move);
+		public Direction rotate90(int n) {
+			return rotate45(2*n);
 		}
 
 		/**
