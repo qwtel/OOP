@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Field {
@@ -11,10 +10,10 @@ public class Field {
 	}
 	
 	public synchronized int add(Car car) {
-		int score = 0;
+		int score = list.size();
 
 		for(Car attackedCar : list) {
-			score += attackedCar.collision(car);
+			attackedCar.collision(car);
 		}
 
 		list.add(car);
