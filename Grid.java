@@ -37,45 +37,63 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * TODO: Needs explanation.
+	 */
 	public synchronized boolean isRunning() {
 		return running;
 	}
 
+	/**
+	 * TODO: Needs explanation.
+	 */
 	public void addCar(Car c) {
-    	cars.add(c);
+	 	cars.add(c);
 	}
 
-	public void startGame() {
+	/**
+	 * TODO: Needs explanation.
+	 */
+	public synchronized void startGame() {
 		running = true;
 		for(Car c : cars) {
-    		c.start();
+	   		c.start();
 		}
 	}
 
+	/**
+	 * TODO: Needs explanation.
+	 */
 	public synchronized void endGame() {
 		running = false;
-		notifyAll();
 	   	for(Car c : cars) {
-       		c.interrupt();
+	   		c.interrupt();
 	   	}
+		notifyAll();
 	}
 
+	/**
+	 * TODO: Needs explanation.
+	 */
 	@Override
 	public synchronized String toString() {
 		while(running) { 
 			try {
 				// Main thread
-            	wait();
+				wait();
 			} catch (InterruptedException e) {}
 		}
 
 		String s = "";
 	   	for(Car c : cars) {
-	   		s += c.name + ": " + c.score + "\n";
+	   		s += c.toString() + "\n";
 	   	}
 		return s;
 	}
 
+	/**
+	 * TODO: Needs explanation.
+	 */
 	public Field getField(int x, int y) {
 		return grid[x][y];
 	}

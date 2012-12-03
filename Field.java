@@ -9,6 +9,9 @@ public class Field {
 		//list = Collections.synchronizedList(list);
 	}
 	
+	/**
+	 * TODO: Needs explanation.
+	 */
 	public synchronized int add(Car car) {
 		int score = list.size();
 
@@ -21,6 +24,9 @@ public class Field {
 		return score;
 	}
 	
+	/**
+	 * TODO: Needs explanation.
+	 */
 	public synchronized void remove(Car car) {
 		list.remove(car);
 	}

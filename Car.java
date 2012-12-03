@@ -10,20 +10,24 @@ public abstract class Car extends Thread {
 
 	private Direction direction;
 
-	String name;
+	private String name;
 	private Grid grid;
 	private Strategy strat;
 
 	/**
 	 * The score of this car.
 	 */
-	int score;
+	private int score;
 
 	/**
 	 * The number of moves this car has.
 	 */
 	protected int steps;
 	
+	/**
+	 * The time between moves. 
+	 * Note that a smaller velocity represents a faster car.
+	 */
 	private int velocity;
 
 	/**
@@ -128,8 +132,14 @@ public abstract class Car extends Thread {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return name + ": " + score;
+	}
+
 	/**
-	 * A 2D grid direction. 
+	 * Represents one of the 2D grid directions.
+	 * N, NE, E, SE, S, SW, W, NW;
 	 */
 	private class Direction {
 		final int x;
@@ -145,7 +155,7 @@ public abstract class Car extends Thread {
 		}
 
 		/**
-		 * Rotates this vector by 45 degrees n times.
+		 * "Rotates" this Direction by 45 degrees n times.
 		 * @param n An integer between -2 and +2. 
 		 * @return The direction after a rotation as a valid Direction.
 		 */
@@ -159,7 +169,7 @@ public abstract class Car extends Thread {
 		}
 
 		/**
-		 * Rotates this vector by 90 degrees n times.
+		 * "Rotates" this Direction by 90 degrees n times.
 		 * @param n An integer between -1 and +1.
 		 * @return The direction after a rotation as a valid Direction.
 		 */
@@ -175,7 +185,7 @@ public abstract class Car extends Thread {
 		 *         direction.
 		 */
 		public boolean isOpposite(Direction other) {
-        	return (x == -other.x) && (y == -other.y);
+			return (x == -other.x) && (y == -other.y);
 		}
 
 		@Override
