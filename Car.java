@@ -120,8 +120,7 @@ public abstract class Car extends Thread {
 	* TODO
 	*/
 	public synchronized void collision(Car other) {
-		Direction otherDir =other.getDirection();
-		if(direction.isOpposite(otherDir)) {
+		if(direction.isOpposite(other.getDirection())) {
 			score++;
 			checkScore();
 		} else {

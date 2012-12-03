@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -56,10 +55,8 @@ public class Grid {
 	public synchronized void endGame() {
 		running = false;
 		notifyAll();
-		String s = "";
 	   	for(Car c : cars) {
        		c.interrupt();
-	   		s += c.name + ": " + c.score + "\n";
 	   	}
 	}
 
