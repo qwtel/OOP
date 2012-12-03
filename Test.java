@@ -29,6 +29,7 @@ public class Test {
 		grid1.addCar(new FlexCar("David Mann", grid1, s1, 45, 3, 4, 1));
 
 		grid1.startGame();
+		System.out.println(grid1.toString());
 
 		// TODO Test 2
 		// TODO Test 3

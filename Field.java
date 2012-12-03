@@ -10,7 +10,7 @@ public class Field {
 		//list = Collections.synchronizedList(list);
 	}
 	
-	public int add(Car car) {
+	public synchronized int add(Car car) {
 		int score = 0;
 
 		for(Car attackedCar : list) {
@@ -22,7 +22,7 @@ public class Field {
 		return score;
 	}
 	
-	public void remove(Car car) {
+	public synchronized void remove(Car car) {
 		list.remove(car);
 	}
 }

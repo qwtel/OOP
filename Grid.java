@@ -14,6 +14,8 @@ public class Grid {
 	private Field[][] grid;
 	private List<Car> cars;
 
+	private boolean running = false;
+
 	/**
 	 * Creates a new grid for cars to move on.
 	 *
@@ -36,23 +38,45 @@ public class Grid {
 		}
 	}
 
+	public synchronized boolean isRunning() {
+		return running;
+	}
+
 	public void addCar(Car c) {
     	cars.add(c);
 	}
 
 	public void startGame() {
+		running = true;
 		for(Car c : cars) {
     		c.start();
 		}
 	}
 
-	public void endGame() {
+	public synchronized void endGame() {
+		running = false;
+		notifyAll();
 		String s = "";
-		for(Car c : cars) {
-    		c.interrupt();
-			s += c.name + ": " + c.score + "\n";
+	   	for(Car c : cars) {
+       		c.interrupt();
+	   		s += c.name + ": " + c.score + "\n";
+	   	}
+	}
+
+	@Override
+	public synchronized String toString() {
+		while(running) { 
+			try {
+				// Main thread
+            	wait();
+			} catch (InterruptedException e) {}
 		}
-		System.out.println(s);
+
+		String s = "";
+	   	for(Car c : cars) {
+	   		s += c.name + ": " + c.score + "\n";
+	   	}
+		return s;
 	}
 
 	public Field getField(int x, int y) {

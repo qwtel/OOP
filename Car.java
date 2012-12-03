@@ -8,7 +8,7 @@ public abstract class Car extends Thread {
 	private int x;
 	private int y;
 
-	private Vec direction;
+	private Direction direction;
 
 	String name;
 	private Grid grid;
@@ -39,7 +39,7 @@ public abstract class Car extends Thread {
 		this.strat = strat;
 		this.x = (int)(grid.width * Math.random());
 		this.y = (int)(grid.height * Math.random());
-		this.direction = new Vec(1 + (int)(3 * Math.random()));
+		this.direction = new Direction(1 + (int)(3 * Math.random()));
 		this.score = 0;
 		this.steps = 0;
 		this.velocity = velocity;
@@ -62,7 +62,7 @@ public abstract class Car extends Thread {
 		this.strat = strat;
 		this.x = x;
 		this.y = y;
-		this.direction = new Vec(dir);
+		this.direction = new Direction(dir);
 		this.score = 0;
 		this.steps = 0;
 		this.velocity = velocity;
@@ -74,8 +74,9 @@ public abstract class Car extends Thread {
 			this.steps++;
 
 			int nextMove = strat.nextMove();
-			Vec nextDirection = direction.rotate90((int)Math.signum(nextMove));
-			Vec moveDirection = direction.rotate45(nextMove);
+			Direction nextDirection = direction.rotate90((int)Math.signum(nextMove));
+			Direction moveDirection = direction.rotate45(nextMove);
+			this.direction = nextDirection;
 
 			int oldX = x;
 			int oldY = y;
@@ -90,8 +91,6 @@ public abstract class Car extends Thread {
 			Field oldField = grid.getField(oldX, oldY);
 			Field newField = grid.getField(x, y);
 			
-			this.direction = nextDirection;
-
 			oldField.remove(this);
 			this.score += newField.add(this);
 
@@ -119,7 +118,7 @@ public abstract class Car extends Thread {
 	/**
 	 * A 2D grid vector with integer values between -1 and 1.
 	 */
-	private class Vec {
+	private class Direction {
 		final int x;
 		final int y;
 
@@ -127,7 +126,7 @@ public abstract class Car extends Thread {
 		 * @param x An integer between -1 and 1.
 		 * @param y An integer between -1 and 1.
 		 */
-		public Vec(int x, int y) {
+		public Direction(int x, int y) {
 			this.x = x;
 			this.y = y;
 		}
@@ -137,13 +136,13 @@ public abstract class Car extends Thread {
 		 * @param move An integer between -2 and +2. 
 		 * @return The direction after a rotation as a valid Vec.
 		 */
-		public Vec rotate45(int move) {
+		public Direction rotate45(int move) {
 			double mathAngle = Math.PI/4 * move;
 			double cs = Math.cos(mathAngle);
 			double sn = Math.sin(mathAngle);
 			int px = (int)Math.round(x*cs - y*sn);
 			int py = (int)Math.round(x*sn + y*cs);
-			return new Vec(px, py);
+			return new Direction(px, py);
 		}
 
 		/**
@@ -151,7 +150,7 @@ public abstract class Car extends Thread {
 		 * @param move An integer between -1 and +1.
 		 * @return The direction after a rotation as a valid Vec.
 		 */
-		public Vec rotate90(int move) {
+		public Direction rotate90(int move) {
 			return rotate45(2*move);
 		}
 
@@ -165,7 +164,7 @@ public abstract class Car extends Thread {
 		 * @param dir An integer between 0 and 3, for directions N, E, S, W;
 		 *         respectively.
 		 */
-		public Vec(int dir) {
+		public Direction(int dir) {
 			switch(dir) {
 				case 0:
 					x = 0;
