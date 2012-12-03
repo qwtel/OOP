@@ -116,15 +116,15 @@ public abstract class Car extends Thread {
 	}
 
 	/**
-	 * A 2D grid vector with integer values between -1 and 1.
+	 * A 2D grid direction. 
 	 */
 	private class Direction {
 		final int x;
 		final int y;
 
 		/**
-		 * @param x An integer between -1 and 1.
-		 * @param y An integer between -1 and 1.
+		 * @param x An integer between -1 and 1, but not 0 if y is 0.
+		 * @param y An integer between -1 and 1, but not 0 if x is 0.
 		 */
 		public Direction(int x, int y) {
 			this.x = x;
@@ -134,7 +134,7 @@ public abstract class Car extends Thread {
 		/**
 		 * Rotates this vector by 45 degrees `move` times.
 		 * @param move An integer between -2 and +2. 
-		 * @return The direction after a rotation as a valid Vec.
+		 * @return The direction after a rotation as a valid Direction.
 		 */
 		public Direction rotate45(int move) {
 			double mathAngle = Math.PI/4 * move;
@@ -148,10 +148,21 @@ public abstract class Car extends Thread {
 		/**
 		 * Rotates this vector by 90 degrees `move` times.
 		 * @param move An integer between -1 and +1.
-		 * @return The direction after a rotation as a valid Vec.
+		 * @return The direction after a rotation as a valid Direction.
 		 */
 		public Direction rotate90(int move) {
 			return rotate45(2*move);
+		}
+
+		/**
+		 * Checks if the other Direction faces in the opposite direction.
+		 *
+		 * @param other The other direction.
+		 * @return true if this direction is the opposite of the other
+		 *         direction.
+		 */
+		public boolean isOpposite(Direction other) {
+        	return (x == -other.x) && (y == -other.y);
 		}
 
 		@Override
