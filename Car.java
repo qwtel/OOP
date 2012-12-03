@@ -93,11 +93,8 @@ public abstract class Car extends Thread {
 			
 			oldField.remove(this);
 			this.score += newField.add(this);
-
-			if(score >= 10 || steps >= 100) {
-				grid.endGame();
-				return;
-			}
+			checkScore();
+			
 
 			try {
 				Thread.sleep(velocity);
@@ -107,12 +104,29 @@ public abstract class Car extends Thread {
 		}
 	}
 	
+	private void checkScore() {
+		if(score >= 10 || steps >= 100) {
+			grid.endGame();
+			return;
+		}
+		
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
 	/**
 	* TODO
 	*/
-	public int collision(Car other) {
-		// TODO
-		return 1;
+	public synchronized void collision(Car other) {
+		Direction otherDir =other.getDirection();
+		if(direction.isOpposite(otherDir)) {
+			score++;
+			checkScore();
+		} else {
+			score--;
+		}
 	}
 
 	/**
