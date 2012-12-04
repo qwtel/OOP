@@ -88,10 +88,6 @@ public abstract class Car extends Thread {
 			this.x += moveDirection.x;
 			this.y += moveDirection.y;
 
-			// TODO: The strategy should not allow out of bounds movements.
-			/*this.x = (this.x + grid.width)% grid.width;
-			this.y = (this.y + grid.height)% grid.height;
-			 */
 			Field oldField = grid.getField(oldX, oldY);
 			Field newField = grid.getField(x, y);
 			
@@ -109,7 +105,7 @@ public abstract class Car extends Thread {
 	}
 	
 	private void checkScore() {
-		if(score >= 10 || steps >= 100) {
+		if(score >= 10 || steps >= 10000) {
 			grid.endGame();
 			return;
 		}
@@ -133,7 +129,7 @@ public abstract class Car extends Thread {
 	}
 
 	/**
-	* TODO
+	* Increment score if collision is frontal, else decrement.
 	*/
 	public synchronized void collision(Car other) {
 		if(direction.isOpposite(other.getDirection())) {
@@ -151,28 +147,5 @@ public abstract class Car extends Thread {
 	
 	public abstract int getThisCarMove(Car car);
 
-	//private enum Direction {
-	//	N  (new Vec( 0, -1)),
-	//	NE (new Vec( 1, -1)),
-	//	E  (new Vec( 1,  0)),
-	//	SE (new Vec( 1,  1)),
-	//	S  (new Vec( 0,  1)),
-	//	SW (new Vec(-1,  1)),
-	//	W  (new Vec(-1,  0)),
-	//	NW (new Vec(-1, -1));
-	//
-	//	private Vec v;
-	//
-	//	Direction(Vec v) {
-	//		this.v = v;
-	//	}
-	//
-	//	public getVec() {
-	//		return v;
-	//	}
-	//}
-	
-	//public synchronized void collision(int otherDir) {
-	//
-	//}
+
 }

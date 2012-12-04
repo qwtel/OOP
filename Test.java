@@ -22,8 +22,8 @@ public class Test {
 		grid1.addCar(new FlexCar("Transporter", grid1, new CircleStrategy(grid1), 50, 3, 0, 0));
 		grid1.addCar(new FlexCar("Lightning McQueen", grid1, new CircleStrategy(grid1), 10, 4, 4, 3));
 		grid1.addCar(new FlexCar("Ricco", grid1, new RandomStrategy(grid1), 55, 4, 1, 2));
-		grid1.addCar(new FlexCar("Mad Max", grid1, new RandomStrategy(grid1), 40, 0, 2, 1));
-		grid1.addCar(new FlexCar("David Mann", grid1, new RandomStrategy(grid1), 45, 3, 4, 1));
+		grid1.addCar(new FlexCar("Mad Max", grid1, new LinearStrategy(grid1), 40, 0, 2, 1));
+		grid1.addCar(new FlexCar("David Mann", grid1, new LinearStrategy(grid1), 45, 3, 4, 1));
 
 		grid1.startGame();
 		System.out.println(grid1.toString());
@@ -65,8 +65,8 @@ public class Test {
 		grid3.addCar(new FastCar("S. Vettel",grid3,new RandomStrategy(grid3),0,0,0,1));
 		grid3.addCar(new FastCar("R. Gosling",grid3,new SerpentStrategy(grid3),0,0,0,1));
 		grid3.addCar(new FastCar("Knight Rider",grid3,new CircleStrategy(grid3),0,0,0,1));
-		grid3.addCar(new FastCar("Brian O'Conner",grid3,new RandomStrategy(grid3),0,0,0,1));
-		grid3.addCar(new FastCar("Hot Rod",grid3,new RandomStrategy(grid3),0,0,0,1));
+		grid3.addCar(new FastCar("Brian O'Conner",grid3,new LinearStrategy(grid3),0,0,0,1));
+		grid3.addCar(new FastCar("Hot Rod",grid3,new LinearStrategy(grid3),0,0,0,1));
 		
 		grid3.addCar(new FlexCar("Transporter",grid3,new RandomStrategy(grid3),0,0,0,1));
 		grid3.addCar(new FlexCar("Lightning McQueen",grid3,new SerpentStrategy(grid3),0,0,0,1));

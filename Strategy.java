@@ -17,8 +17,8 @@ public abstract class Strategy {
 	}
 	
 	/**
-	 * The next move for a FlexCar, a number between -1 and 1. 
-	 *         -1 forward-left, 0 forward, 1 forward-right
+	 * The next move for a FlexCar, a number between -2 and 2.  
+	 *         -2 left, -1 forward-left, 0 forward, 1 forward-right, 2 right
 	**/
 	public synchronized int nextMove(FlexCar car) {
 		Map<Integer, Direction> next = new ConcurrentHashMap<Integer, Direction>();
@@ -48,8 +48,8 @@ public abstract class Strategy {
 		return calcNextMove(possible);
 	}
 	/**
-	 * The next move for a FlexCar, a number between -2 and 2. 
-	 *         -2 left, -1 forward-left, 0 forward, 1 forward-right, 2 right
+	 * The next move for a FastCar, a number between -1 and 1. 
+	 *         -1 forward-left, 0 forward, 1 forward-right
 	 */
 	public synchronized int nextMove(FastCar car) {
 		Map<Integer, Direction> next = new ConcurrentHashMap<Integer, Direction>();

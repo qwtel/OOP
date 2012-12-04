@@ -3,7 +3,6 @@
  *
  * Represents a flexible car.
  *
- * TODO: Do something to make this class useful, then remove this.
  */
 public class FlexCar extends Car {
 

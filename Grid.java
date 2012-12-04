@@ -37,22 +37,19 @@ public class Grid {
 		}
 	}
 
-	/**
-	 * TODO: Needs explanation.
-	 */
 	public synchronized boolean isRunning() {
 		return running;
 	}
 
 	/**
-	 * TODO: Needs explanation.
+	 * Adds a car to cars
 	 */
 	public void addCar(Car c) {
 	 	cars.add(c);
 	}
 
 	/**
-	 * TODO: Needs explanation.
+	 * Starts a thread for every car in cars 
 	 */
 	public synchronized void startGame() {
 		running = true;
@@ -62,7 +59,7 @@ public class Grid {
 	}
 
 	/**
-	 * TODO: Needs explanation.
+	 * Ends the game.
 	 */
 	public synchronized void endGame() {
 		running = false;
@@ -73,7 +70,7 @@ public class Grid {
 	}
 
 	/**
-	 * TODO: Needs explanation.
+	 * Returns a String with all scores
 	 */
 	@Override
 	public synchronized String toString() {
@@ -92,7 +89,7 @@ public class Grid {
 	}
 
 	/**
-	 * TODO: Needs explanation.
+	 * Returns the field of a specific position
 	 */
 	public Field getField(int x, int y) {
 		return grid[x][y];

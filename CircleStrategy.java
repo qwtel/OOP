@@ -1,5 +1,8 @@
 /**
  * CircleStrategy
+ * 
+ * Returns the first entry in the possible move array, 
+ * resulting in a circle-like movement (if not near wall)
  */
 public class CircleStrategy extends Strategy {
 

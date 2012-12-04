@@ -10,7 +10,8 @@ public class Field {
 	}
 	
 	/**
-	 * TODO: Needs explanation.
+	 * Adds a car on this field, checks collisions for all 
+	 * existing cars on this field and returns the number of hit cars.
 	 */
 	public synchronized int add(Car car) {
 		int score = list.size();
@@ -25,7 +26,7 @@ public class Field {
 	}
 	
 	/**
-	 * TODO: Needs explanation.
+	 * Removes a car on this field.
 	 */
 	public synchronized void remove(Car car) {
 		list.remove(car);
