@@ -6,7 +6,6 @@ public class Field {
 
 	public Field() {
 		list = new ArrayList<Car>();
-		//list = Collections.synchronizedList(list);
 	}
 	
 	/**

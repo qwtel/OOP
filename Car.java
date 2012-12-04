@@ -131,7 +131,7 @@ public abstract class Car extends Thread {
 	/**
 	* Increment score if collision is frontal, else decrement.
 	*/
-	public synchronized void collision(Car other) {
+	public void collision(Car other) {
 		if(direction.isOpposite(other.getDirection())) {
 			score++;
 			checkScore();
