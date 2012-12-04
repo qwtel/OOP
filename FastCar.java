@@ -31,5 +31,11 @@ public class FastCar extends Car {
 	public FastCar(String name, Grid grid, Strategy strat, int velocity, int x, 
 			int y, int dir) {
 		super(name, grid, strat, velocity, x, y, dir);
+	
+	
+	}
+	
+	public int getThisCarMove(Car car) {
+		return getStrategy().nextMove(this);
 	}
 }

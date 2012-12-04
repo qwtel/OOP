@@ -77,7 +77,7 @@ public abstract class Car extends Thread {
 		while(true) {
 			this.steps++;
 
-			int nextMove = strat.nextMove(this);
+			int nextMove = getThisCarMove(this);
 			Direction nextDirection = direction.rotate90((int)Math.signum(nextMove));
 			Direction moveDirection = direction.rotate45(nextMove);
 			this.direction = nextDirection;
@@ -120,6 +120,10 @@ public abstract class Car extends Thread {
 		return direction;
 	}
 	
+	public Strategy getStrategy() {
+		return strat;
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -144,6 +148,8 @@ public abstract class Car extends Thread {
 	public String toString() {
 		return name + ": " + score;
 	}
+	
+	public abstract int getThisCarMove(Car car);
 
 	//private enum Direction {
 	//	N  (new Vec( 0, -1)),

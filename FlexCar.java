@@ -32,4 +32,9 @@ public class FlexCar extends Car {
 			int y, int dir) {
 		super(name, grid, strat, velocity, x, y, dir);
 	}
+
+	@Override
+	public int getThisCarMove(Car car) {
+		return getStrategy().nextMove(this);
+	}
 }
