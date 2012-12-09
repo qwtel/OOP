@@ -1,4 +1,9 @@
-
+/**
+ * TraktorBioGas hat eine Information über den momentanen Verbrauch des BioGas-Tanks.
+ * Dieser Wert muss eine Gleitkommazahl sein.
+ * @author Michael Ion
+ *
+ */
 public class TraktorBioGas extends Traktor {
 	float verbrauch;
 	public TraktorBioGas(Geraet geraet) {
