@@ -1,4 +1,9 @@
-
+/**
+ * TraktorDiesel hat eine Information über den momentanen Verbrauch des
+ * Diesel-tanks. Dieser muss eine Ganzzahl sein.
+ * @author Michael Ion
+ *
+ */
 public class TraktorDiesel extends Traktor {
 	int verbrauch;
 	public TraktorDiesel(Geraet geraet) {

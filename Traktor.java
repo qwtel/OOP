@@ -14,7 +14,7 @@ public abstract class Traktor {
 
 	private static int seriennummer = 0;
 	private final int nummer;
-	private Geraet geraet;
+	Geraet geraet; //XXX: getter method?
 	private int betriebszeit;
 	
 	public Traktor(Geraet geraet) {
@@ -27,16 +27,20 @@ public abstract class Traktor {
 	public void erhoeheStunden(int stunden) {
 		betriebszeit += stunden;
 	}
+
 	@MethodAuthor(who = "Michael Ion")
 	public int getBetriebszeit() {
 		return betriebszeit;
 	}
+
 	@MethodAuthor(who = "Johannes Deml")
 	public void setGeraet(Geraet geraet) {
 		this.geraet = geraet;
 	}
+
 	@MethodAuthor(who = "Johannes Deml")
 	public abstract Number getTreibstoffverbrauch();
+
 	@MethodAuthor(who = "Johannes Deml")
 	public abstract void erhoeheVerbrauchtenTreibstoff(Number verbraucht);
 

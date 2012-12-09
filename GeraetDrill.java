@@ -1,6 +1,6 @@
 
 /**
- * GeraetDrill hat immer eine Infomation ueber die Anzahl der besessenen 
+ * GeraetDrill hat immer eine Infomation ueber die Anzahl der vorhandenen 
  * Saescharen. Dies muss immer eine ganze Zahl sein.
  * 
  * @author Michael Ion
