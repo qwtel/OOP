@@ -30,4 +30,12 @@ public class Bauernhof {
 	public boolean removeTraktor(Traktor t) {
 		return traktoren.insert(t);
 	}
+	
+	/**
+	 * TODO: Zusicherungen
+	 */
+	@MethodAuthor(who="Johannes Deml")
+	public void changeTraktor(Traktor t, Geraet geraet) {
+		t.setGeraet(geraet);
+	}
 }
