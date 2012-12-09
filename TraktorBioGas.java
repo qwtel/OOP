@@ -5,4 +5,14 @@ public class TraktorBioGas extends Traktor {
 		super(nummer, geraet);
 		verbrauch = 0;
 	}
+	@Override
+	public Number getTreibstoffverbrauch() {
+		return verbrauch;
+	}
+	@Override
+	public void erhoeheVerbrauchtenTreibstoff(Number verbraucht) {
+		verbrauch+=verbraucht.floatValue();
+		
+	}
+
 }

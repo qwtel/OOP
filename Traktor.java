@@ -18,5 +18,11 @@ public abstract class Traktor {
 	public int getBetriebszeit() {
 		return betriebszeit;
 	}
+	
+	public void setGeraet(Geraet geraet) {
+		this.geraet = geraet;
+	}
+	public abstract Number getTreibstoffverbrauch();
+	public abstract void erhoeheVerbrauchtenTreibstoff(Number verbraucht);
 
 }
