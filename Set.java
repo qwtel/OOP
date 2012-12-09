@@ -74,7 +74,7 @@ public class Set<E> implements Iterable<E> {
 			//if(e.equals(toRemove)) { 
 			if(e == toRemove) {
 				iter.remove();
-				return true
+				return true;
 			}
 		}
 		return false;
