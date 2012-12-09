@@ -5,6 +5,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(value = RetentionPolicy.RUNTIME)
+@ClassAuthor(who="Michael Ion")
 public @interface ClassAuthor {
+	@MethodAuthor(who="Michael Ion")
 	String who() default "OOP134";
 }

@@ -1,3 +1,5 @@
+import java.lang.reflect.Method;
+
  /**
   * Test
   * 
@@ -6,9 +8,9 @@
   * @author Florian Klampfer, Michael Ion, Johannes Deml
   */
 
-
+@ClassAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 public class Test {
-
+	@MethodAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 	public static void main(String[] args) throws Exception {
 		
 		Set<Bauernhof> bauernhoefe = new Set<Bauernhof>();
@@ -33,11 +35,44 @@ public class Test {
 		Geraet g5 = new GeraetDrill(8);
 		Traktor tgdr2 = new TraktorBioGas(g1);
 		*/
-		
+		System.out.println(getClassAnnotation(Bauernhof.class));
+		System.out.println(getClassAnnotation(ClassAuthor.class));
+		System.out.println(getClassAnnotation(Geraet.class));
+		System.out.println(getClassAnnotation(GeraetDrill.class));
+		System.out.println(getClassAnnotation(GeraetDuenger.class));
+		System.out.println(getClassAnnotation(MethodAuthor.class));
+		System.out.println(getClassAnnotation(Set.class));
+		System.out.println(getClassAnnotation(Test.class));
+		System.out.println(getClassAnnotation(Traktor.class));
+		System.out.println(getClassAnnotation(TraktorBioGas.class));
+		System.out.println(getClassAnnotation(TraktorDiesel.class));
 	}
-
+	@MethodAuthor(who="Johannes Deml")
+	private static String getClassAnnotation(Class c){
+		String classAnnotations = "";
+		classAnnotations += "Klasse: " + c.getName();
+		ClassAuthor classAuthor = (ClassAuthor) c.getAnnotation(ClassAuthor.class);
+		if(classAuthor != null) {
+			classAnnotations += "  Autor(en): " + classAuthor.who();
+		}
+		classAnnotations += "\n";
+		Method[] methods = c.getDeclaredMethods(); 
+		for (Method method : methods) {
+			MethodAuthor methodAuthor = method.getAnnotation(MethodAuthor.class);
+			classAnnotations += "  " + method.getName();
+			if(methodAuthor != null) {
+				classAnnotations += "  Autor(en): "+ methodAuthor.who();
+			}
+			classAnnotations += "\n";
+		}
+		classAnnotations += "\n";
+		
+		return classAnnotations;
+	}
+	
 	private static int i = 0;
-	public static void doTest(String description, Object result, 
+	@MethodAuthor(who="Florian Klampfer")
+	private static void doTest(String description, Object result, 
 			Object expected) {
 
 		i++;
