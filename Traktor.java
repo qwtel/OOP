@@ -22,18 +22,24 @@ public abstract class Traktor {
 		betriebszeit = 0;
 	}
 	
+	@MethodAuthor(who = "Michael Ion")
 	public void erhoeheStunden(int stunden) {
 		betriebszeit += stunden;
 	}
-	
+
+	@MethodAuthor(who = "Michael Ion")
 	public int getBetriebszeit() {
 		return betriebszeit;
 	}
-	
+
+	@MethodAuthor(who = "Johannes Deml")
 	public void setGeraet(Geraet geraet) {
 		this.geraet = geraet;
 	}
 
+	@MethodAuthor(who = "Johannes Deml")
 	public abstract Number getTreibstoffverbrauch();
+
+	@MethodAuthor(who = "Johannes Deml")
 	public abstract void erhoeheVerbrauchtenTreibstoff(Number verbraucht);
 }

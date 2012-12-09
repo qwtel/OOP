@@ -34,6 +34,14 @@ public class Bauernhof {
 	/**
 	 * TODO: Zusicherungen
 	 */
+	@MethodAuthor(who="Johannes Deml")
+	public void changeTraktor(Traktor t, Geraet geraet) {
+		t.setGeraet(geraet);
+	}
+
+	/**
+	 * TODO: Zusicherungen
+	 */
 	@MethodAuthor(who="Florian Klampfer")
 	public float avgBetriebszeit() {
 		int sum = 0;

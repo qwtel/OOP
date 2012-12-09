@@ -11,6 +11,13 @@ public class Test {
 
 	public static void main(String[] args) throws Exception {
 		
+		Set<Bauernhof> bauernhoefe = new Set<Bauernhof>();
+		bauernhoefe.insert(new Bauernhof("OrwellsFarm"));
+		bauernhoefe.insert(new Bauernhof("oldMcDonaldsFarm"));
+		bauernhoefe.insert(new Bauernhof("FarmVille"));
+		
+		
+		/*
 		Geraet g1 = new GeraetDrill(5);
 		Traktor tgdr1 = new TraktorBioGas(g1);
 		
@@ -25,6 +32,7 @@ public class Test {
 		
 		Geraet g5 = new GeraetDrill(8);
 		Traktor tgdr2 = new TraktorBioGas(g1);
+		*/
 		
 	}
 
