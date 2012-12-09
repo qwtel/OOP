@@ -1,12 +1,23 @@
 
+/**
+ * Traktor ist eine Oberklasse von TraktorBioGas und TraktorDiesel.
+ * Jeder Traktor hat eine unveraenderliche, eindeutige Nummer.
+ * Jeder Traktor hat einen Einsatzzweck der durch sein Geraet bestimmt wird.
+ * (GeraetDrill oder GeraetDuenger)
+ * 
+ * @author Michael Ion, Johannes Deml
+ *
+ */
+
 public abstract class Traktor {
 
+	private static int seriennummer = 0;
 	private final int nummer;
 	private Geraet geraet;
 	private int betriebszeit;
 	
-	public Traktor(int nummer, Geraet geraet) {
-		this.nummer = nummer;
+	public Traktor(Geraet geraet) {
+		this.nummer = seriennummer++;
 		this.geraet = geraet;
 		betriebszeit = 0;
 	}

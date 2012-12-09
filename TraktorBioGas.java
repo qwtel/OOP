@@ -1,8 +1,8 @@
 
 public class TraktorBioGas extends Traktor {
 	float verbrauch;
-	public TraktorBioGas(int nummer, Geraet geraet) {
-		super(nummer, geraet);
+	public TraktorBioGas(Geraet geraet) {
+		super(geraet);
 		verbrauch = 0;
 	}
 	@Override

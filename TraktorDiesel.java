@@ -1,8 +1,8 @@
 
 public class TraktorDiesel extends Traktor {
 	int verbrauch;
-	public TraktorDiesel(int nummer, Geraet geraet) {
-		super(nummer, geraet);
+	public TraktorDiesel(Geraet geraet) {
+		super(geraet);
 		verbrauch = 0;
 	}
 	@Override
