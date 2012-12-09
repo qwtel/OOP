@@ -7,6 +7,7 @@
  * @author Michael Ion, Johannes Deml
  *
  */
+@ClassAuthor(who="Johannes Deml, Michael Ion")
 public abstract class Traktor {
 
 	private static int seriennummer = 0;
