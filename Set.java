@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @param <E> Typ der Elemente welche das Set enthalten soll.
  * @author Michael Ion, Florian Klampfer
  */
-@Author(who="Florian Klampfer")
+@ClassAuthor(who="Florian Klampfer")
 public class Set<E> implements Iterable<E> {
 	
 	/**
@@ -20,7 +20,6 @@ public class Set<E> implements Iterable<E> {
 	/**
 	 * Erzeugt ein leeres Set.
 	 */
-	@Author(who="Florian Klampfer")
 	public Set() {
 		root = null;
 	}
@@ -36,7 +35,7 @@ public class Set<E> implements Iterable<E> {
 	 * @param e Ein Element das in der Liste gespeichert werden soll.
 	 * @return false, wenn sich das Element bereits in der Liste befindet.
 	 */
-	@Author(who="Florian Klampfer")
+	@MethodAuthor(who="Florian Klampfer")
 	public boolean insert(E e) {
 		Node<E> newNode = new Node<E>(e);
 		if(root == null) {
@@ -64,7 +63,7 @@ public class Set<E> implements Iterable<E> {
 	 * TODO: Zusicherungen
 	 * XXX: Life is to short to think about pointers (again).
 	 */
-	@Author(who="Florian Klampfer")
+	@MethodAuthor(who="Florian Klampfer")
 	public boolean remove(E toRemove) {
 		Iterator<E> iter = iterator();
 		E e;
@@ -89,7 +88,7 @@ public class Set<E> implements Iterable<E> {
 	 * UnsupportedOperationException werfen (siehe java.lang.Iterator).
 	 */
 	@Override
-	@Author(who="Florian Klampfer")
+	@MethodAuthor(who="Florian Klampfer")
 	public Iterator<E> iterator() {
 		return new SetIterator<E>(root);
 	}
@@ -102,7 +101,7 @@ public class Set<E> implements Iterable<E> {
 	 * @param <T> Typ des Elements welcher von Node gekapselt wird.
 	 * @author Florian Klampfer
 	 */
-	@Author(who="Florian Klampfer")
+	@ClassAuthor(who="Florian Klampfer")
 	protected class Node<T> {
 		protected T key;
 		protected Node<T> next;
@@ -113,7 +112,6 @@ public class Set<E> implements Iterable<E> {
 		 *
 		 * @param elem Das Element welches in der Liste gespeichert werden soll.
 		 */
-		@Author(who="Florian Klampfer")
 		protected Node(T key) {
 			this.key = key;
 			this.next = null;
@@ -127,14 +125,13 @@ public class Set<E> implements Iterable<E> {
 	 *
 	 * @author Florian Klampfer
 	 */
-	@Author(who="Florian Klampfer")
+	@ClassAuthor(who="Florian Klampfer")
 	protected class SetIterator<T> implements Iterator<T> {
 		
 		private final Node<T> root;
 		private Node<T> node;
 		private Node<T> prev;
 
-		@Author(who="Florian Klampfer")
 		public SetIterator(Node<T> node) {
 			this.root = node;
 			this.node = node;
@@ -142,13 +139,13 @@ public class Set<E> implements Iterable<E> {
 		}
 
 		@Override
-		@Author(who="Florian Klampfer")
+		@MethodAuthor(who="Florian Klampfer")
 		public boolean hasNext() {
 			return (node != null);
 		}
 
 		@Override
-		@Author(who="Florian Klampfer")
+		@MethodAuthor(who="Florian Klampfer")
 		public T next() {
 			if(node == null) {
 				return null;
@@ -163,7 +160,7 @@ public class Set<E> implements Iterable<E> {
 		 * XXX: What if the root gets deleted?
 		 */
 		@Override
-		@Author(who="Michael Ion")
+		@MethodAuthor(who="Michael Ion")
 		public void remove() {
 			Node<T> temp = root; 
 			while(temp.next != prev) {
