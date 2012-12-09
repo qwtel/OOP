@@ -8,8 +8,9 @@
  * @author Michael Ion
  *
  */
-
+@ClassAuthor(who="Michael Ion")
 public interface Geraet {
+	@MethodAuthor(who="Michael Ion")
 	public Number getZahl(); 
 
 }

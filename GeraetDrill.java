@@ -6,7 +6,7 @@
  * @author Michael Ion
  *
  */
-
+@ClassAuthor(who="Michael Ion")
 public class GeraetDrill implements Geraet {
 	private int zahl;
 	public GeraetDrill(int zahl) {
@@ -14,6 +14,7 @@ public class GeraetDrill implements Geraet {
 	}
 
 	@Override
+	@MethodAuthor(who="Michael Ion")
 	public Number getZahl() {
 		return zahl;
 	}
