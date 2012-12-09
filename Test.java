@@ -1,12 +1,10 @@
- /**
-  * Test
-  * 
-  * Handels all TestCases, includes main method.
-  * 
-  * @author Florian Klampfer, Michael Ion, Johannes Deml
-  */
-
-
+/**
+ * Test
+ * 
+ * Handels all TestCases, includes main method.
+ * 
+ * @author Florian Klampfer, Michael Ion, Johannes Deml
+ */
 public class Test {
 
 	public static void main(String[] args) throws Exception {
@@ -16,8 +14,6 @@ public class Test {
 		bauernhoefe.insert(new Bauernhof("oldMcDonaldsFarm"));
 		bauernhoefe.insert(new Bauernhof("FarmVille"));
 		
-		
-		/*
 		Geraet g1 = new GeraetDrill(5);
 		Traktor tgdr1 = new TraktorBioGas(g1);
 		
@@ -32,7 +28,6 @@ public class Test {
 		
 		Geraet g5 = new GeraetDrill(8);
 		Traktor tgdr2 = new TraktorBioGas(g1);
-		*/
 		
 	}
 
@@ -62,5 +57,3 @@ public class Test {
 				"------------------------------------------------------\n");
 	}
 }
-
-
