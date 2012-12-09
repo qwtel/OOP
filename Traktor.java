@@ -13,7 +13,7 @@ public abstract class Traktor {
 
 	private static int seriennummer = 0;
 	private final int nummer;
-	private Geraet geraet;
+	Geraet geraet; //XXX: getter method?
 	private int betriebszeit;
 	
 	public Traktor(Geraet geraet) {
@@ -33,7 +33,7 @@ public abstract class Traktor {
 	public void setGeraet(Geraet geraet) {
 		this.geraet = geraet;
 	}
+
 	public abstract Number getTreibstoffverbrauch();
 	public abstract void erhoeheVerbrauchtenTreibstoff(Number verbraucht);
-
 }
