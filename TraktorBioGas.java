@@ -26,25 +26,7 @@ public class TraktorBioGas extends Traktor {
 
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitBiogas() {
-		return new Tupel(getBetriebszeit(), 1);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauch() {
-		return new Tupel(verbrauch, 1);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	int getSaescharenBiogas() {
-		return geraet.getSaescharen();
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	float getKapazitaetDiesel() {
-		return geraet.getKapazitaet();
+	Traktor getBiogasTraktor() {
+		return this;
 	}
 }

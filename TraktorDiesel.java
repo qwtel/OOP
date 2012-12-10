@@ -26,37 +26,7 @@ public class TraktorDiesel extends Traktor {
 
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitDiesel() {
-		return new Tupel(getBetriebszeit(), 1);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauch() {
-		return new Tupel(verbrauch, 1);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchDuengen() {
-		return geraet.getDieselVerbrauchDuengen(this);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchSaeen() {
-		return geraet.getDieselVerbrauchSaeen(this);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	int getSaescharenDiesel() {
-		return geraet.getSaescharen();
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	float getKapazitaetDiesel() {
-		return geraet.getKapazitaet();
+	Traktor getDieselTraktor() {
+		return this;
 	}
 }

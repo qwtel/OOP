@@ -14,7 +14,7 @@ public abstract class Traktor {
 	private final int nummer;
 	private int betriebszeit;
 
-	protected Geraet geraet;
+	private Geraet geraet;
 	
 	public Traktor(Geraet geraet) {
 		this.nummer = seriennummer++;
@@ -44,82 +44,27 @@ public abstract class Traktor {
 	public abstract void erhoeheVerbrauchtenTreibstoff(Number verbraucht);
 
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitDuengen() {
-		return geraet.getBetriebszeitDuengen(this);
+	public Number getZahl() {
+		return geraet.getZahl();
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitSaeen() {
-		return geraet.getBetriebszeitSaeen(this);
+	Traktor getDieselTraktor() {
+		return null;
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitBiogas() {
-		return new Tupel(0, 0);
+	Traktor getBiogasTraktor() {
+		return null;
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitDiesel() {
-		return new Tupel(0, 0);
+	Traktor getTraktorDuengen() {
+		return geraet.getTraktorDuengen(this);
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauch() {
-		return new Tupel(0, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchDuengen() {
-		return new Tupel(0, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchSaeen() {
-		return new Tupel(0, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauch() {
-		return new Tupel(.0f, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauchDuengen() {
-		return new Tupel(.0f, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauchSaeen() {
-		return new Tupel(.0f, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	int getSaescharen() {
-		return geraet.getSaescharen();
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	int getSaescharenDiesel() {
-		return 0;
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	int getSaescharenBiogas() {
-		return 0;
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	float getKapazitaet() {
-		return geraet.getKapazitaet();
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	float getKapazitaetDiesel() {
-		return 0;
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	float getKapazitaetBiogas() {
-		return 0;
+	Traktor getTraktorSaeen() {
+		return geraet.getTraktorSaeen(this);
 	}
 }

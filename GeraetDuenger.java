@@ -24,28 +24,7 @@ public class GeraetDuenger extends Geraet {
 
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitDuengen(Traktor t) {
-		int x = t.getBetriebszeit();
-		return new Tupel(x, 1);
-	}
-	
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchDuengen(Traktor t) {
-		int x = t.getTreibstoffverbrauch().intValue();
-		return new Tupel(x, 1);
-	}
-	
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauchDuengen(Traktor t) {
-		float x = t.getTreibstoffverbrauch().floatValue();
-		return new Tupel(x, 1);
-	}
-	
-	@Override	
-	@MethodAuthor(who="Florian Klampfer")
-	float getKapazitaet() {
-		return kapazitaet;
+	Traktor getTraktorDuengen(Traktor t) {
+		return t;
 	}
 }

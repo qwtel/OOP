@@ -21,28 +21,7 @@ public class GeraetDrill extends Geraet {
 
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitSaeen(Traktor t) {
-		int x = t.getBetriebszeit();
-		return new Tupel(x, 1);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchSaeen(Traktor t) {
-		int x = t.getTreibstoffverbrauch().intValue();
-		return new Tupel(x, 1);
-	}
-	
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauchSaeen(Traktor t) {
-		float x = t.getTreibstoffverbrauch().floatValue();
-		return new Tupel(x, 1);
-	}
-
-	@Override
-	@MethodAuthor(who="Florian Klampfer")
-	int getSaescharen() {
-		return zahl;
+	Traktor getTraktorSaeen(Traktor t) {
+		return t;
 	}
 }

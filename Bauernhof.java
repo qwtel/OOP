@@ -19,7 +19,7 @@ public class Bauernhof {
 
 	@MethodAuthor(who="Florian Klampfer")
 	public boolean removeTraktor(Traktor t) {
-		return traktoren.insert(t);
+		return traktoren.remove(t);
 	}
 
 	// XXX: is this necessary?
@@ -27,249 +27,288 @@ public class Bauernhof {
 	public void changeTraktor(Traktor t, Geraet geraet) {
 		t.setGeraet(geraet);
 	}
-
+	
 	@MethodAuthor(who="Florian Klampfer")
-	public float avgBetriebszeit() {
-		int sum = 0;
-		int count = 0;
+	private Number mapReduce(MapReduce f) {
 		for(Traktor t : traktoren) {
-			sum += t.getBetriebszeit();
-			count++;
+			f.map(t);
 		}
-		return (float)sum/count;
+		return f.reduce();
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	public float avgBetriebszeitDuengen() {
-		Tupel sum = new Tupel(0, 0);
-		for(Traktor t : traktoren) {
-			sum.addIntValue(t.getBetriebszeitDuengen());
-		}
-		return (float)sum.intValue()/sum.getCount();
+	public int avgBetriebszeit() {
+		return mapReduce(new AvgBetriebszeitMapReduce(null)).intValue();
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	public float avgBetriebszeitSaeen() {
-		Tupel sum = new Tupel(0, 0);
-		for(Traktor t : traktoren) {
-			sum.addIntValue(t.getBetriebszeitSaeen());
-		}
-		return (float)sum.intValue()/sum.getCount();
+	public int avgBetriebszeitDuengen() {
+		return mapReduce(new AvgBetriebszeitMapReduce(
+				new TraktorDuengenFilter())).intValue();
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	public float avgBetriebszeitBiogas() {
-		Tupel sum = new Tupel(0, 0);
-		for(Traktor t : traktoren) {
-			sum.addIntValue(t.getBetriebszeitBiogas());
-		}
-		return (float)sum.intValue()/sum.getCount();
+	public int avgBetriebszeitSaeen() {
+		return mapReduce(new AvgBetriebszeitMapReduce(
+				new TraktorSaeenFilter())).intValue();
+	}
+	
+	@MethodAuthor(who="Florian Klampfer")
+	public int avgBetriebszeitDiesel() {
+		return mapReduce(new AvgBetriebszeitMapReduce(
+				new TraktorDieselFilter())).intValue();
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	public float avgBetriebszeitDiesel() {
-		Tupel sum = new Tupel(0, 0);
-		for(Traktor t : traktoren) {
-			sum.addIntValue(t.getBetriebszeitDiesel());
-		}
-		return (float)sum.intValue()/sum.getCount();
+	public int avgBetriebszeitBiogas() {
+		return mapReduce(new AvgBetriebszeitMapReduce(
+				new TraktorBiogasFilter())).intValue();
 	}
-
+	
    	@MethodAuthor(who="Florian Klampfer")
-   	public float avgDieselverbrauch() {
-   		Tupel sum = new Tupel(0, 0);
-   		for(Traktor t : traktoren) {
-			sum.addIntValue(t.getDieselVerbrauch());
-   		}
-   		return (float)sum.intValue()/sum.getCount();
+   	public int avgDieselverbrauch() {
+		return mapReduce(new AvgDieselVerbrauchMapReduce(null)).intValue();
    	}
    	
    	@MethodAuthor(who="Florian Klampfer")
-   	public float avgDieselverbrauchDuengen() {
-   		Tupel sum = new Tupel(0, 0);
-   		for(Traktor t : traktoren) {
-			sum.addIntValue(t.getDieselVerbrauchDuengen());
-   		}
-   		return (float)sum.intValue()/sum.getCount();
+   	public int avgDieselverbrauchDuengen() {
+		return mapReduce(new AvgDieselVerbrauchMapReduce(
+				new TraktorDuengenFilter())).intValue();
    	}
    	
    	@MethodAuthor(who="Florian Klampfer")
-   	public float avgDieselverbrauchSaeen() {
-   		Tupel sum = new Tupel(0, 0);
-   		for(Traktor t : traktoren) {
-			sum.addIntValue(t.getDieselVerbrauchSaeen());
-   		}
-   		return (float)sum.intValue()/sum.getCount();
+   	public int avgDieselverbrauchSaeen() {
+		return mapReduce(new AvgDieselVerbrauchMapReduce(
+				new TraktorSaeenFilter())).intValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
    	public float avgBioGasverbrauch() {
-   		Tupel sum = new Tupel(.0f, 0);
-   		for(Traktor t : traktoren) {
-			sum.addFloatValue(t.getBiogasVerbrauch());
-   		}
-   		return sum.floatValue()/sum.getCount();
+		return mapReduce(new AvgBiogasVerbrauchMapReduce(null)).floatValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
    	public float avgBioGasverbrauchDuengen() {
-   		Tupel sum = new Tupel(.0f, 0);
-   		for(Traktor t : traktoren) {
-			sum.addFloatValue(t.getBiogasVerbrauchDuengen());
-   		}
-   		return sum.floatValue()/sum.getCount();
+		return mapReduce(new AvgBiogasVerbrauchMapReduce(
+				new TraktorDuengenFilter())).floatValue();
    	}
    	
    	@MethodAuthor(who="Florian Klampfer")
    	public float avgBioGasverbrauchSaeen() {
-   		Tupel sum = new Tupel(.0f, 0);
-   		for(Traktor t : traktoren) {
-			sum.addFloatValue(t.getBiogasVerbrauchSaeen());
-   		}
-   		return sum.floatValue()/sum.getCount();
+		return mapReduce(new AvgBiogasVerbrauchMapReduce(
+				new TraktorSaeenFilter())).floatValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public int getMinSaescharen() {
-		int min = Integer.MAX_VALUE;
-		int z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getSaescharen()) < min) {
-            	min = z;
-			}
-   		}
-   		return min;
+   	public int minSaescharen() {
+		return mapReduce(new MinSaescharenMapReduce(null)).intValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public int getMaxSaescharen() {
-		int max = Integer.MIN_VALUE;
-		int z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getSaescharen()) > max) {
-            	max = z;
-			}
-   		}
-   		return max;
+   	public int maxSaescharen() {
+		return mapReduce(new MaxSaescharenMapReduce(null)).intValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public int getMinSaescharenDiesel() {
-		int min = Integer.MAX_VALUE;
-		int z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getSaescharenDiesel()) < min) {
-            	min = z;
-			}
-   		}
-   		return min;
+   	public int minSaescharenDiesel() {
+		return mapReduce(new MinSaescharenMapReduce(
+					new TraktorDieselFilter())).intValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public int getMaxSaescharenDiesel() {
-		int max = Integer.MIN_VALUE;
-		int z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getSaescharenDiesel()) > max) {
-            	max = z;
-			}
-   		}
-   		return max;
+   	public int maxSaescharenDiesel() {
+		return mapReduce(new MaxSaescharenMapReduce(
+					new TraktorDieselFilter())).intValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public int getMinSaescharenBiogas() {
-		int min = Integer.MAX_VALUE;
-		int z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getSaescharenBiogas()) < min) {
-            	min = z;
-			}
-   		}
-   		return min;
+   	public int minSaescharenBiogas() {
+		return mapReduce(new MinSaescharenMapReduce(
+					new TraktorBiogasFilter())).intValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public int getMaxSaescharenBiogas() {
-		int max = Integer.MIN_VALUE;
-		int z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getSaescharenBiogas()) > max) {
-            	max = z;
-			}
-   		}
-   		return max;
+   	public int maxSaescharenBiogas() {
+		return mapReduce(new MaxSaescharenMapReduce(
+					new TraktorBiogasFilter())).intValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public float getMinKapazitaet() {
-		float min = Float.POSITIVE_INFINITY;
-		float z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getKapazitaet()) < min) {
-            	min = z;
-			}
-   		}
-   		return min;
+   	public float minKapazitaet() {
+		return mapReduce(new MinKapazitaetMapReduce(null)).floatValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public float getMaxKapazitaet() {
-		float max = Float.NEGATIVE_INFINITY;
-		float z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getKapazitaet()) > max) {
-            	max = z;
-			}
-   		}
-   		return max;
+   	public float maxKapazitaet() {
+		return mapReduce(new MaxKapazitaetMapReduce(null)).floatValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public float getMinKapazitaetDiesel() {
-		float min = Float.POSITIVE_INFINITY;
-		float z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getKapazitaetDiesel()) < min) {
-            	min = z;
-			}
-   		}
-   		return min;
+   	public float minKapazitaetDiesel() {
+		return mapReduce(new MinKapazitaetMapReduce(
+					new TraktorDieselFilter())).floatValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public float getMaxKapazitaetDiesel() {
-		float max = Float.NEGATIVE_INFINITY;
-		float z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getKapazitaetDiesel()) > max) {
-            	max = z;
-			}
-   		}
-   		return max;
+   	public float maxKapazitaetDiesel() {
+		return mapReduce(new MaxKapazitaetMapReduce(
+					new TraktorDieselFilter())).floatValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public float getMinKapazitaetBiogas() {
-		float min = Float.POSITIVE_INFINITY;
-		float z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getKapazitaetBiogas()) < min) {
-            	min = z;
-			}
-   		}
-   		return min;
+   	public float minKapazitaetBiogas() {
+		return mapReduce(new MinKapazitaetMapReduce(
+					new TraktorBiogasFilter())).floatValue();
    	}
 
    	@MethodAuthor(who="Florian Klampfer")
-   	public float getMaxKapazitaetBiogas() {
-		float max = Float.NEGATIVE_INFINITY;
-		float z;
-   		for(Traktor t : traktoren) {
-			if((z = t.getKapazitaetBiogas()) > max) {
-            	max = z;
-			}
-   		}
-   		return max;
+   	public float maxKapazitaetBiogas() {
+		return mapReduce(new MaxKapazitaetMapReduce(
+					new TraktorBiogasFilter())).floatValue();
    	}
+	
+	private interface MapReduce {
+		public void map(Traktor t);
+		public Number reduce();
+	}
+
+	private interface Filter {
+		public Traktor filter(Traktor t);
+	}
+
+	private class TraktorDieselFilter implements Filter {
+		public Traktor filter(Traktor t) {
+			return t.getDieselTraktor();
+		}
+	}
+
+	private class TraktorBiogasFilter implements Filter {
+		public Traktor filter(Traktor t) {
+			return t.getBiogasTraktor();
+		}
+	}
+
+	private class TraktorDuengenFilter implements Filter {
+		public Traktor filter(Traktor t) {
+			return t.getTraktorDuengen();
+		}
+	}
+
+	private class TraktorSaeenFilter implements Filter {
+		public Traktor filter(Traktor t) {
+			return t.getTraktorSaeen();
+		}
+	}
+
+	private abstract class AvgIntMapReduce implements MapReduce {
+		protected int value = 0;
+		protected int count = 0;
+		public abstract void map(Traktor t);
+		public Integer reduce() {
+			return value/count;
+		}
+	}
+	
+	private abstract class AvgFloatMapReduce implements MapReduce {
+		protected float value = 0;
+		protected int count = 0;
+		public abstract void map(Traktor t);
+		public Float reduce() {
+			return value/count;
+		}
+	}
+
+	private class AvgBetriebszeitMapReduce extends AvgIntMapReduce {
+		private Filter f;
+ 		public AvgBetriebszeitMapReduce(Filter f) { this.f = f; }
+		public void map(Traktor t) {
+			if(f != null) { t = f.filter(t); }
+			if(t != null) {
+				value += t.getBetriebszeit();
+				count++;
+			}
+		}
+	}
+
+	private class AvgDieselVerbrauchMapReduce extends AvgIntMapReduce {
+		private Filter f1 = new TraktorDieselFilter();
+		private Filter f2;
+		public AvgDieselVerbrauchMapReduce(Filter f) { this.f2 = f; }
+		public void map(Traktor t) {
+			t = f1.filter(t);
+			if(f2 != null && t != null) { t = f2.filter(t); }
+			if(t != null) {
+				value += t.getTreibstoffverbrauch().intValue();
+				count++;
+			}
+		}
+	}
+	
+	private class AvgBiogasVerbrauchMapReduce extends AvgFloatMapReduce {
+		private Filter f1 = new TraktorBiogasFilter();
+		private Filter f2;
+		public AvgBiogasVerbrauchMapReduce(Filter f) { this.f2 = f; }
+		public void map(Traktor t) {
+			t = f1.filter(t);
+			if(f2 != null && t != null) { t = f2.filter(t); }
+			if(t != null) {
+				value += t.getTreibstoffverbrauch().floatValue();
+				count++;
+			}
+		}
+	}
+
+	private abstract class ExtremeSaescharenMapReduce implements MapReduce {
+	   	protected int min = Integer.MAX_VALUE;
+	   	protected int max = Integer.MIN_VALUE;
+	   	private int value;
+		private Filter f1 = new TraktorSaeenFilter();
+		private Filter f2;
+		public ExtremeSaescharenMapReduce(Filter f) { this.f2 = f; }
+		public void map(Traktor t) {
+			t = f1.filter(t);
+			if(f2 != null && t != null) { t = f2.filter(t); }
+			if(t != null) {
+				if((value = t.getZahl().intValue()) < min) { min = value; }
+				if((value = t.getZahl().intValue()) > max) { max = value; }
+			}
+		}
+	}
+
+	private abstract class ExtremeKapazitaetMapReduce implements MapReduce {
+	   	protected float min = Float.POSITIVE_INFINITY;
+	   	protected float max = Float.NEGATIVE_INFINITY;
+	   	private float value;
+		private Filter f1 = new TraktorDuengenFilter();
+		private Filter f2;
+		public ExtremeKapazitaetMapReduce(Filter f) { this.f2 = f; }
+		public void map(Traktor t) {
+			t = f1.filter(t);
+			if(f2 != null && t != null) { t = f2.filter(t); }
+			if(t != null) {
+				if((value = t.getZahl().floatValue()) < min) { min = value; }
+				if((value = t.getZahl().floatValue()) > max) { max = value; }
+			}
+		}
+	}
+
+	private class MinSaescharenMapReduce extends ExtremeSaescharenMapReduce {
+		public MinSaescharenMapReduce(Filter f) { super(f); }
+		public Integer reduce() { return min; }
+	}
+	
+	private class MaxSaescharenMapReduce extends ExtremeSaescharenMapReduce {
+		public MaxSaescharenMapReduce(Filter f) { super(f); }
+		public Integer reduce() { return max; }
+	}
+
+	private class MinKapazitaetMapReduce extends ExtremeKapazitaetMapReduce {
+		public MinKapazitaetMapReduce(Filter f) { super(f); }
+		public Float reduce() { return min; }
+	}
+	
+	private class MaxKapazitaetMapReduce extends ExtremeKapazitaetMapReduce {
+		public MaxKapazitaetMapReduce(Filter f) { super(f); }
+		public Float reduce() { return max; }
+	}
 }

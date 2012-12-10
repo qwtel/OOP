@@ -14,42 +14,12 @@ public abstract class Geraet {
 	public abstract Number getZahl(); 
 
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitDuengen(Traktor t) {
-		return new Tupel(0, 0);
+	Traktor getTraktorDuengen(Traktor t) {
+		return null;
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBetriebszeitSaeen(Traktor t) {
-		return new Tupel(0, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchDuengen(Traktor t) {
-		return new Tupel(0, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getDieselVerbrauchSaeen(Traktor t) {
-		return new Tupel(0, 0);
-	}
-	
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauchDuengen(Traktor t) {
-		return new Tupel(.0f, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	Tupel getBiogasVerbrauchSaeen(Traktor t) {
-		return new Tupel(.0f, 0);
-	}
-
-	@MethodAuthor(who="Florian Klampfer")
-	int getSaescharen() {
-		return 0;
-	}
-	
-	@MethodAuthor(who="Florian Klampfer")
-	float getKapazitaet() {
-		return .0f;
+	Traktor getTraktorSaeen(Traktor t) {
+		return null;
 	}
 }

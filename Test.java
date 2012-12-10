@@ -14,24 +14,37 @@ public class Test {
 	public static void main(String[] args) throws Exception {
 		
 		Set<Bauernhof> bauernhoefe = new Set<Bauernhof>();
-		bauernhoefe.insert(new Bauernhof("OrwellsFarm"));
+		Bauernhof b1 = new Bauernhof("OrwellsFarm"); // XXX
+		bauernhoefe.insert(b1);
 		bauernhoefe.insert(new Bauernhof("oldMcDonaldsFarm"));
 		bauernhoefe.insert(new Bauernhof("FarmVille"));
 		
 		Geraet g1 = new GeraetDrill(5);
-		Traktor tgdr1 = new TraktorBioGas(g1);
+		Traktor t1 = new TraktorBioGas(g1);
+		t1.erhoeheStunden(3);
 		
 		Geraet g2 = new GeraetDuenger(2.3f);
-		Traktor tgdu1 = new TraktorBioGas(g2);
+		Traktor t2 = new TraktorBioGas(g2);
+		t2.erhoeheStunden(3);
 		
 		Geraet g3 = new GeraetDrill(12);
-		Traktor tddr1 = new TraktorDiesel(g1);
+		Traktor t3 = new TraktorDiesel(g3);
+		t3.erhoeheStunden(3);
 		
 		Geraet g4 = new GeraetDuenger(1.6f);
-		Traktor tddu1 = new TraktorDiesel(g2);
+		Traktor t4 = new TraktorDiesel(g4);
+		t4.erhoeheStunden(3);
 		
 		Geraet g5 = new GeraetDrill(8);
-		Traktor tgdr2 = new TraktorBioGas(g1);
+		Traktor t5 = new TraktorBioGas(g5);
+		t5.erhoeheStunden(3);
+
+		// XXX
+		b1.addTraktor(t1);
+		b1.addTraktor(t2);
+		b1.addTraktor(t3);
+		b1.addTraktor(t4);
+		b1.addTraktor(t5);
 
 		System.out.println(getClassAnnotation(Bauernhof.class));
 		System.out.println(getClassAnnotation(ClassAuthor.class));
@@ -44,6 +57,28 @@ public class Test {
 		System.out.println(getClassAnnotation(Traktor.class));
 		System.out.println(getClassAnnotation(TraktorBioGas.class));
 		System.out.println(getClassAnnotation(TraktorDiesel.class));
+
+		doTest("avgBetriebszeit", b1.avgBetriebszeit(), 3);
+		doTest("avgBetriebszeitDiesel", b1.avgBetriebszeitDiesel(), 3);
+		doTest("avgBetriebszeitBiogas", b1.avgBetriebszeitBiogas(), 3);
+		doTest("avgBetriebszeitDuengen", b1.avgBetriebszeitDuengen(), 3);
+		doTest("avgBetriebszeitSaeen", b1.avgBetriebszeitSaeen(), 3);
+
+		doTest("maxSaescharen", b1.maxSaescharen(), 12);
+		doTest("maxSaescharenBiogas", b1.maxSaescharenBiogas(), 8);
+		doTest("maxSaescharenDiesel", b1.maxSaescharenDiesel(), 12);
+			
+		doTest("minSaescharen", b1.minSaescharen(), 5);
+		doTest("minSaescharenBiogas", b1.minSaescharenBiogas(), 5);
+		doTest("minSaescharenDiesel", b1.minSaescharenDiesel(), 12);
+		
+		doTest("maxKapazitaet", b1.maxKapazitaet(), 2.3f);
+		doTest("maxKapazitaetBiogas", b1.maxKapazitaetBiogas(), 2.3f);
+		doTest("maxKapazitaetDiesel", b1.maxKapazitaetDiesel(), 1.6f);
+		
+		doTest("minKapazitaet", b1.minKapazitaet(), 1.6f);
+		doTest("minKapazitaetBiogas", b1.minKapazitaetBiogas(), 2.3f);
+		doTest("minKapazitaetDiesel", b1.minKapazitaetDiesel(), 1.6f);
 	}
 
 	@MethodAuthor(who="Johannes Deml")
@@ -75,24 +110,23 @@ public class Test {
 			Object expected) {
 
 		i++;
-		System.out.println("Test "+i+": "+description);
+		System.out.println("Test "+i+" "+description);
 
 		if (expected.equals(result)) {
-			System.out.println("\nResult:");
-			System.out.println(result);
-			System.out.println("Test "+i+" passed.");
+			System.out.println("Result: " + result);
+			System.out.println("Passed");
 		}
 		else {
-			System.out.println("\nExpected result:");
+			System.out.println("\nExpected result");
 			System.out.println(expected);
 
-			System.out.println("Failed Result:");
+			System.out.println("Failed Result");
 			System.out.println(result);
 
 			System.out.println("Test "+i+" failed!");
 		}
 
 		System.out.println(
-				"------------------------------------------------------\n");
+				"------------------------------------------------------");
 	}
 }
