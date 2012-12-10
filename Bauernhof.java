@@ -28,6 +28,9 @@ public class Bauernhof {
 		t.setGeraet(geraet);
 	}
 	
+	/**
+	 * Berechnet das Ergebnis eines MapReduce über allen Traktoren.
+	 */
 	@MethodAuthor(who="Florian Klampfer")
 	private Number mapReduce(MapReduce f) {
 		for(Traktor t : traktoren) {
@@ -167,76 +170,218 @@ public class Bauernhof {
 					new TraktorBiogasFilter())).floatValue();
    	}
 	
-	private interface MapReduce {
-		public void map(Traktor t);
-		public Number reduce();
-	}
-
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
+	 * ansonsten null. 
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private interface Filter {
+
+		/**
+		 * @param t Darf nicht null sein.
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
 		public Traktor filter(Traktor t);
 	}
 
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
+	 * ansonsten null. 
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorDieselFilter implements Filter {
+
+		/**
+		 * @param t Darf nicht null sein.
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Traktor filter(Traktor t) {
 			return t.getDieselTraktor();
 		}
 	}
 
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
+	 * ansonsten null. 
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorBiogasFilter implements Filter {
+
+		/**
+		 * @param t Darf nicht null sein.
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Traktor filter(Traktor t) {
 			return t.getBiogasTraktor();
 		}
 	}
 
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
+	 * ansonsten null.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorDuengenFilter implements Filter {
+
+		/**
+		 * @param t Darf nicht null sein.
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Traktor filter(Traktor t) {
 			return t.getTraktorDuengen();
 		}
 	}
 
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
+	 * ansonsten null.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorSaeenFilter implements Filter {
+
+		/**
+		 * @param t Darf nicht null sein.
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Traktor filter(Traktor t) {
 			return t.getTraktorSaeen();
 		}
 	}
 
-	private abstract class AvgIntMapReduce implements MapReduce {
-		protected int value = 0;
-		protected int count = 0;
-		public abstract void map(Traktor t);
-		public Integer reduce() {
-			return value/count;
-		}
-	}
-	
-	private abstract class AvgFloatMapReduce implements MapReduce {
-		protected float value = 0;
-		protected int count = 0;
-		public abstract void map(Traktor t);
-		public Float reduce() {
-			return value/count;
-		}
-	}
-
-	private class AvgBetriebszeitMapReduce extends AvgIntMapReduce {
+	/**
+	 * Implementiert einen Algorithmus in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private abstract class MapReduce {
 		private Filter f;
- 		public AvgBetriebszeitMapReduce(Filter f) { this.f = f; }
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+		public MapReduce(Filter f) { this.f = f; }
+
+   		@MethodAuthor(who="Florian Klampfer")
 		public void map(Traktor t) {
 			if(f != null) { t = f.filter(t); }
-			if(t != null) {
-				value += t.getBetriebszeit();
-				count++;
-			}
+			if(t != null) { innerMap(t); }
+		}
+
+   		@MethodAuthor(who="Florian Klampfer")
+		public abstract Number reduce();
+
+   		@MethodAuthor(who="Florian Klampfer")
+		protected abstract void innerMap(Traktor t);
+	}
+
+	/**
+	 * Implementiert eine integer Durschnittsbildung in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private abstract class AvgIntMapReduce extends MapReduce {
+		protected int value = 0;
+		protected int count = 0;
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+		public AvgIntMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		public Integer reduce() { return value/count; }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected abstract void innerMap(Traktor t);
+	}
+
+	/**
+	 * Implementiert eine float Durschnittsbildung in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private abstract class AvgFloatMapReduce extends MapReduce {
+		protected float value = 0;
+		protected int count = 0;
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+		public AvgFloatMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		public Float reduce() { return value/count; }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected abstract void innerMap(Traktor t);
+
+	}
+
+	/**
+	 * Implementiert eine Betriebszeit Durschnittsbildung in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private class AvgBetriebszeitMapReduce extends AvgIntMapReduce {
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+ 		public AvgBetriebszeitMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected void innerMap(Traktor t) {
+			value += t.getBetriebszeit();
+			count++;
 		}
 	}
 
+	/**
+	 * Implementiert eine Dieselverbrauch Durschnittsbildung in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class AvgDieselVerbrauchMapReduce extends AvgIntMapReduce {
-		private Filter f1 = new TraktorDieselFilter();
-		private Filter f2;
-		public AvgDieselVerbrauchMapReduce(Filter f) { this.f2 = f; }
-		public void map(Traktor t) {
-			t = f1.filter(t);
-			if(f2 != null && t != null) { t = f2.filter(t); }
+		private Filter f = new TraktorDieselFilter();
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+		public AvgDieselVerbrauchMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected void innerMap(Traktor t) {
+			t = f.filter(t);
 			if(t != null) {
 				value += t.getTreibstoffverbrauch().intValue();
 				count++;
@@ -244,13 +389,25 @@ public class Bauernhof {
 		}
 	}
 	
+	/**
+	 * Implementiert eine Biogasverbrauch Durschnittsbildung in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class AvgBiogasVerbrauchMapReduce extends AvgFloatMapReduce {
-		private Filter f1 = new TraktorBiogasFilter();
-		private Filter f2;
-		public AvgBiogasVerbrauchMapReduce(Filter f) { this.f2 = f; }
-		public void map(Traktor t) {
-			t = f1.filter(t);
-			if(f2 != null && t != null) { t = f2.filter(t); }
+		private Filter f = new TraktorBiogasFilter();
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+		public AvgBiogasVerbrauchMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected void innerMap(Traktor t) {
+			t = f.filter(t);
 			if(t != null) {
 				value += t.getTreibstoffverbrauch().floatValue();
 				count++;
@@ -258,16 +415,28 @@ public class Bauernhof {
 		}
 	}
 
-	private abstract class ExtremeSaescharenMapReduce implements MapReduce {
+	/**
+	 * Findet einen Saescharen Extremwert in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private abstract class ExtremeSaescharenMapReduce extends MapReduce {
 	   	protected int min = Integer.MAX_VALUE;
 	   	protected int max = Integer.MIN_VALUE;
 	   	private int value;
-		private Filter f1 = new TraktorSaeenFilter();
-		private Filter f2;
-		public ExtremeSaescharenMapReduce(Filter f) { this.f2 = f; }
-		public void map(Traktor t) {
-			t = f1.filter(t);
-			if(f2 != null && t != null) { t = f2.filter(t); }
+		private Filter f = new TraktorSaeenFilter();
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+		public ExtremeSaescharenMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected void innerMap(Traktor t) {
+			t = f.filter(t);
 			if(t != null) {
 				if((value = t.getZahl().intValue()) < min) { min = value; }
 				if((value = t.getZahl().intValue()) > max) { max = value; }
@@ -275,16 +444,28 @@ public class Bauernhof {
 		}
 	}
 
-	private abstract class ExtremeKapazitaetMapReduce implements MapReduce {
+	/**
+	 * Findet einen Kapazitaets Extremwert in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private abstract class ExtremeKapazitaetMapReduce extends MapReduce {
 	   	protected float min = Float.POSITIVE_INFINITY;
 	   	protected float max = Float.NEGATIVE_INFINITY;
 	   	private float value;
-		private Filter f1 = new TraktorDuengenFilter();
-		private Filter f2;
-		public ExtremeKapazitaetMapReduce(Filter f) { this.f2 = f; }
-		public void map(Traktor t) {
-			t = f1.filter(t);
-			if(f2 != null && t != null) { t = f2.filter(t); }
+		private Filter f = new TraktorDuengenFilter();
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
+		public ExtremeKapazitaetMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected void innerMap(Traktor t) {
+			t = f.filter(t);
 			if(t != null) {
 				if((value = t.getZahl().floatValue()) < min) { min = value; }
 				if((value = t.getZahl().floatValue()) > max) { max = value; }
@@ -292,23 +473,79 @@ public class Bauernhof {
 		}
 	}
 
+	/**
+	 * Findet einen Saescharen Minimum in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class MinSaescharenMapReduce extends ExtremeSaescharenMapReduce {
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
 		public MinSaescharenMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Integer reduce() { return min; }
 	}
 	
+	/**
+	 * Findet einen Saescharen Maximum in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class MaxSaescharenMapReduce extends ExtremeSaescharenMapReduce {
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
 		public MaxSaescharenMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Integer reduce() { return max; }
 	}
 
+	/**
+	 * Findet einen Kapazitaets Minimum in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class MinKapazitaetMapReduce extends ExtremeKapazitaetMapReduce {
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
 		public MinKapazitaetMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Float reduce() { return min; }
 	}
 	
+	/**
+	 * Findet einen Kapazitaets Maximum in zwei Schritten.
+	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
+	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
 	private class MaxKapazitaetMapReduce extends ExtremeKapazitaetMapReduce {
+
+		/**
+		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
+		 * werden sollen. Ansonsten null.
+		 */
 		public MaxKapazitaetMapReduce(Filter f) { super(f); }
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
 		public Float reduce() { return max; }
 	}
 }
