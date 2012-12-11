@@ -11,13 +11,19 @@
 public abstract class Geraet {
 
 	@MethodAuthor(who="Michael Ion")
-	public abstract Number getZahl(); 
+	public abstract Number getAnzahl(); 
 
+	/**
+	 * Liefert den Traktor wenn er die Bedingung erfüllt, ansonsten null.
+	 */
 	@MethodAuthor(who="Florian Klampfer")
 	Traktor getTraktorDuengen(Traktor t) {
 		return null;
 	}
 
+	/**
+	 * Liefert den Traktor wenn er die Bedingung erfüllt, ansonsten null.
+	 */
 	@MethodAuthor(who="Florian Klampfer")
 	Traktor getTraktorSaeen(Traktor t) {
 		return null;

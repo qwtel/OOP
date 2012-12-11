@@ -20,13 +20,16 @@ public class TraktorDiesel extends Traktor {
 	
 	@Override
 	@MethodAuthor(who = "Michael Ion")
-	public void erhoeheVerbrauchtenTreibstoff(Number verbraucht) {
+	public void incVerbrauchtenTreibstoff(Number verbraucht) {
 		verbrauch += verbraucht.intValue();
 	}
 
+	/**
+	 * Liefert den Traktor wenn er die Bedingung erfüllt, ansonsten null.
+	 */
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
-	Traktor getDieselTraktor() {
+	Traktor getTraktorDiesel() {
 		return this;
 	}
 }

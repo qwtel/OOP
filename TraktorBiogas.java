@@ -5,9 +5,9 @@
  * @author Michael Ion
  *
  */
-public class TraktorBioGas extends Traktor {
+public class TraktorBiogas extends Traktor {
 	float verbrauch;
-	public TraktorBioGas(Geraet geraet) {
+	public TraktorBiogas(Geraet geraet) {
 		super(geraet);
 		verbrauch = 0;
 	}
@@ -20,13 +20,16 @@ public class TraktorBioGas extends Traktor {
 	
 	@Override
 	@MethodAuthor(who = "Michael Ion")
-	public void erhoeheVerbrauchtenTreibstoff(Number verbraucht) {
+	public void incVerbrauchtenTreibstoff(Number verbraucht) {
 		verbrauch+=verbraucht.floatValue();
 	}
 
+	/**
+	 * Liefert den Traktor wenn er die Bedingung erfüllt, ansonsten null.
+	 */
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
-	Traktor getBiogasTraktor() {
+	Traktor getTraktorBiogas() {
 		return this;
 	}
 }

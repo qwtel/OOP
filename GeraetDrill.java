@@ -15,10 +15,13 @@ public class GeraetDrill extends Geraet {
 
 	@Override
 	@MethodAuthor(who="Michael Ion")
-	public Number getZahl() {
+	public Number getAnzahl() {
 		return zahl;
 	}
 
+	/**
+	 * Liefert den Traktor wenn er die Bedingung erfüllt, ansonsten null.
+	 */
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
 	Traktor getTraktorSaeen(Traktor t) {

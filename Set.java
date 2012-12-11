@@ -1,8 +1,7 @@
 import java.util.Iterator;
 
 /**
- * Eine Instanz von Set stellt eine Menge dar, deren Elementtypen durch einen 
- * Typparameter bestimmt werden. 
+ * Eine Instanz von Set stellt eine Menge da.
  */
 @ClassAuthor(who="Florian Klampfer")
 public class Set implements Iterable {
@@ -20,16 +19,15 @@ public class Set implements Iterable {
 	}
 
 	/**
-	 * Nimmt ein Argument, das in die Menge eingefügt wird.
+	 * Nimmt ein Identifiable, das in die Menge eingefügt wird.
 	 * Wird an der letzten Stelle der Liste eingefügt.
-	 * Mehrere gleiche Elemente dürfen in der Menge sein (aber nicht mehrere 
-	 * identische).
 	 *
-	 * @param e Ein Element das in der Liste gespeichert werden soll.
-	 * @return false, wenn sich das Element bereits in der Liste befindet.
+	 * @param e Ein Identifiable das in der Liste gespeichert werden soll. 
+	 *          Darf noch nicht enhalten sein oder die gleiche id() wie ein 
+	 *          bereits vorhandenes Identifiable besitzen.
 	 */
 	@MethodAuthor(who="Florian Klampfer")
-	public boolean insert(Identifiable e) {
+	public void insert(Identifizierbar e) {
 		Node newNode = new Node(e);
 		if(root == null) {
 			root = newNode;
@@ -37,25 +35,24 @@ public class Set implements Iterable {
 		else {
 			Node prev = null;
 			Node curr = root;
-
 			while(curr != null) {
-				if(curr.key == e) {
-					return false;
-				}
 				prev = curr;
 				curr = prev.next;
 			}
-			
 			prev.next = newNode;
 		}
-		
-		return true;
 	}
 
-	public Identifiable find(Object id) {
+	/**
+	 * Findet ein Identifiable im Set basierend auf dessen id().
+	 * @param id Die id() des gesuchten Elements.
+	 * @return false wenn das Objekt sich nicht im Set befindet. 
+	 */
+	@MethodAuthor(who="Florian Klampfer")
+	public Identifizierbar find(Object id) {
 		for(Object o : this) {
-			if(o instanceof Identifiable) {
-				Identifiable i = (Identifiable)o;
+			if(o instanceof Identifizierbar) {
+				Identifizierbar i = (Identifizierbar)o;
 				if(id.equals(i.id())) {
 					return i;
 				}
@@ -65,9 +62,9 @@ public class Set implements Iterable {
 	}
 
 	/**
-	 * Löscht ein Element aus dem Set.
-	 * @param toRemove Das Objekt welches aus dem Set gelöscht werden soll.
-	 * @return true wenn sich das Objekt im Set befand, ansonsten false.
+	 * Löscht ein Identifiable aus dem Set.
+	 * @param id Die id() des Elements welches aus dem Set gelöscht werden soll.
+	 * @return true wenn das Objekt entfernt wurde, ansonsten false.
 	 */
 	@MethodAuthor(who="Michael Ion")
 	public boolean remove(Object id) {
@@ -75,8 +72,8 @@ public class Set implements Iterable {
 		Object o;
 		while(iter.hasNext()) {
 			o = iter.next();
-			if(o instanceof Identifiable) {
-				Identifiable i = (Identifiable)o;
+			if(o instanceof Identifizierbar) {
+				Identifizierbar i = (Identifizierbar)o;
 				if(id.equals(i.id())) {
 					iter.remove();
 					return true;
@@ -88,8 +85,7 @@ public class Set implements Iterable {
 
 	/**
 	 * Liefert als Ergebnis einen Iterator, über den nacheinander auf alle 
-	 * Elemente der Menge in nicht weiter bestimmter Reihenfolge zugegriffen 
-	 * werden kann. 
+	 * Elemente der Menge zugegriffen werden kann. 
 	 */
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
@@ -108,7 +104,7 @@ public class Set implements Iterable {
 		/**
 		 * Erzeugt einen neuen Knoten welcher zum Einfügen an das Ende einer
 		 * Liste geeignet ist.
-		 * @param elem Das Element welches in der Liste gespeichert werden soll.
+		 * @param key Das Element welches in der Liste gespeichert werden soll.
 		 */
 		protected Node(Object key) {
 			this.key = key;

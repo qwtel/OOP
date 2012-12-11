@@ -1,8 +1,8 @@
 /**
- * TODO: EVERYTHING
+ * TODO: ALL THE THINGS
  */
 @ClassAuthor(who="Florian Klampfer")
-public class Bauernhof implements Identifiable {
+public class Bauernhof implements Identifizierbar {
 
 	private final String name;
 	private Set traktoren;
@@ -12,14 +12,9 @@ public class Bauernhof implements Identifiable {
 		traktoren = new Set();
 	}
 
-	@Override
-	public String id() {
-		return name;
-	}
-
 	@MethodAuthor(who="Florian Klampfer")
-	public boolean add(Traktor t) {
-		return traktoren.insert(t);
+	public void add(Traktor t) {
+		traktoren.insert(t);
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
@@ -42,9 +37,18 @@ public class Bauernhof implements Identifiable {
 		Traktor t = find(seriennummer);
 		t.setGeraet(geraet);
 	}
+
+	/**
+	 * @return Der Name des Hofs.
+	 */
+	@Override
+	@MethodAuthor(who="Florian Klampfer")
+	public String id() {
+		return name;
+	}
 	
 	/**
-	 * Berechnet das Ergebnis eines MapReduce über allen Traktoren.
+	 * Berechnet ein Ergebnis über allen Traktoren.
 	 * @see MapReduce
 	 */
 	@MethodAuthor(who="Florian Klampfer")
@@ -58,6 +62,9 @@ public class Bauernhof implements Identifiable {
 		return f.reduce();
 	}
 
+	/*
+	 * Verschiedene statistischer Methoden über den Bauernhof:
+	 */
 	@MethodAuthor(who="Florian Klampfer")
 	public int avgBetriebszeit() {
 		return mapReduce(new AvgBetriebszeitMapReduce(null)).intValue();
@@ -191,8 +198,6 @@ public class Bauernhof implements Identifiable {
 	
 	/**
 	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
-	 * ansonsten null. 
 	 */
    	@ClassAuthor(who="Florian Klampfer")
 	private interface Filter {
@@ -207,8 +212,6 @@ public class Bauernhof implements Identifiable {
 
 	/**
 	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
-	 * ansonsten null. 
 	 */
    	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorDieselFilter implements Filter {
@@ -220,14 +223,12 @@ public class Bauernhof implements Identifiable {
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		public Traktor filter(Traktor t) {
-			return t.getDieselTraktor();
+			return t.getTraktorDiesel();
 		}
 	}
 
 	/**
 	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
-	 * ansonsten null. 
 	 */
    	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorBiogasFilter implements Filter {
@@ -239,14 +240,12 @@ public class Bauernhof implements Identifiable {
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		public Traktor filter(Traktor t) {
-			return t.getBiogasTraktor();
+			return t.getTraktorBiogas();
 		}
 	}
 
 	/**
 	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
-	 * ansonsten null.
 	 */
    	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorDuengenFilter implements Filter {
@@ -264,8 +263,6 @@ public class Bauernhof implements Identifiable {
 
 	/**
 	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 * Liefert den Traktor zurück, wenn er das Kriterium erfüllt, 
-	 * ansonsten null.
 	 */
    	@ClassAuthor(who="Florian Klampfer")
 	private class TraktorSaeenFilter implements Filter {
@@ -462,8 +459,8 @@ public class Bauernhof implements Identifiable {
 		protected void innerMap(Traktor t) {
 			t = f.filter(t);
 			if(t != null) {
-				if((value = t.getZahl().intValue()) < min) { min = value; }
-				if((value = t.getZahl().intValue()) > max) { max = value; }
+				if((value = t.getAnzahl().intValue()) < min) { min = value; }
+				if((value = t.getAnzahl().intValue()) > max) { max = value; }
 			}
 		}
 	}
@@ -491,8 +488,8 @@ public class Bauernhof implements Identifiable {
 		protected void innerMap(Traktor t) {
 			t = f.filter(t);
 			if(t != null) {
-				if((value = t.getZahl().floatValue()) < min) { min = value; }
-				if((value = t.getZahl().floatValue()) > max) { max = value; }
+				if((value = t.getAnzahl().floatValue()) < min) { min = value; }
+				if((value = t.getAnzahl().floatValue()) > max) { max = value; }
 			}
 		}
 	}

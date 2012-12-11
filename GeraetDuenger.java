@@ -18,10 +18,13 @@ public class GeraetDuenger extends Geraet {
 
 	@Override
 	@MethodAuthor(who="Michael Ion")
-	public Number getZahl() {
+	public Number getAnzahl() {
 		return kapazitaet;
 	}
 
+	/**
+	 * Liefert den Traktor wenn er die Bedingung erfüllt, ansonsten null.
+	 */
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
 	Traktor getTraktorDuengen(Traktor t) {
