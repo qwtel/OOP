@@ -2,39 +2,58 @@
  * TODO: EVERYTHING
  */
 @ClassAuthor(who="Florian Klampfer")
-public class Bauernhof {
+public class Bauernhof implements Identifiable {
 
 	private final String name;
-	private Set<Traktor> traktoren;
+	private Set traktoren;
 
 	public Bauernhof(String name) {
 		this.name = name;
-		traktoren = new Set<Traktor>();
+		traktoren = new Set();
+	}
+
+	@Override
+	public String id() {
+		return name;
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	public boolean addTraktor(Traktor t) {
+	public boolean add(Traktor t) {
 		return traktoren.insert(t);
 	}
 
 	@MethodAuthor(who="Florian Klampfer")
-	public boolean removeTraktor(Traktor t) {
-		return traktoren.remove(t);
+	public boolean remove(int seriennummer) {
+		return traktoren.remove(seriennummer);
 	}
 
-	// XXX: is this necessary?
 	@MethodAuthor(who="Johannes Deml")
-	public void changeTraktor(Traktor t, Geraet geraet) {
+	public Traktor find(int seriennummer) {
+		Object o = traktoren.find(seriennummer);
+
+		if(o instanceof Traktor) {
+			return (Traktor)o;
+		}
+		return null;
+	}
+
+	@MethodAuthor(who="Johannes Deml")
+	public void change(int seriennummer, Geraet geraet) {
+		Traktor t = find(seriennummer);
 		t.setGeraet(geraet);
 	}
 	
 	/**
 	 * Berechnet das Ergebnis eines MapReduce über allen Traktoren.
+	 * @see MapReduce
 	 */
 	@MethodAuthor(who="Florian Klampfer")
 	private Number mapReduce(MapReduce f) {
-		for(Traktor t : traktoren) {
-			f.map(t);
+		for(Object o : traktoren) {
+			if(o instanceof Traktor) {
+				Traktor t = (Traktor)o;
+				f.map(t);
+			}
 		}
 		return f.reduce();
 	}
@@ -308,7 +327,10 @@ public class Bauernhof {
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
-		public Integer reduce() { return value/count; }
+		public Integer reduce() { 
+			if(count != 0) { return value/count; }
+			return 0;
+		}
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
@@ -333,12 +355,14 @@ public class Bauernhof {
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
-		public Float reduce() { return value/count; }
+		public Float reduce() {
+			if(count != 0) { return value/count; }
+			return .0f;
+		}
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		protected abstract void innerMap(Traktor t);
-
 	}
 
 	/**

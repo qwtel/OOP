@@ -10,41 +10,39 @@ import java.lang.reflect.Method;
 
 @ClassAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 public class Test {
+	
+	private static Bauernhof find(Set b, String name) {
+		Identifiable o = b.find(name);
+		if(o instanceof Bauernhof) {
+			return (Bauernhof)o;
+		}
+		return null;
+	}
+	
 	@MethodAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 	public static void main(String[] args) throws Exception {
 		
-		Set<Bauernhof> bauernhoefe = new Set<Bauernhof>();
-		Bauernhof b1 = new Bauernhof("OrwellsFarm"); // XXX
-		bauernhoefe.insert(b1);
-		bauernhoefe.insert(new Bauernhof("oldMcDonaldsFarm"));
-		bauernhoefe.insert(new Bauernhof("FarmVille"));
+		Set b = new Set();
+	
+		b.insert(new Bauernhof("OrwellsFarm"));
+		b.insert(new Bauernhof("oldMcDonaldsFarm"));
+		b.insert(new Bauernhof("FarmVille"));
 		
-		Geraet g1 = new GeraetDrill(5);
-		Traktor t1 = new TraktorBioGas(g1);
-		t1.erhoeheStunden(3);
-		
-		Geraet g2 = new GeraetDuenger(2.3f);
-		Traktor t2 = new TraktorBioGas(g2);
-		t2.erhoeheStunden(3);
-		
-		Geraet g3 = new GeraetDrill(12);
-		Traktor t3 = new TraktorDiesel(g3);
-		t3.erhoeheStunden(3);
-		
-		Geraet g4 = new GeraetDuenger(1.6f);
-		Traktor t4 = new TraktorDiesel(g4);
-		t4.erhoeheStunden(3);
-		
-		Geraet g5 = new GeraetDrill(8);
-		Traktor t5 = new TraktorBioGas(g5);
-		t5.erhoeheStunden(3);
+		find(b, "OrwellsFarm").add(new TraktorBioGas(new GeraetDrill(5)));
+		find(b, "OrwellsFarm").add(new TraktorBioGas(new GeraetDuenger(2.3f)));
+		find(b, "OrwellsFarm").add(new TraktorDiesel(new GeraetDrill(12)));
+		find(b, "OrwellsFarm").add(new TraktorDiesel(new GeraetDuenger(1.6f)));
+		find(b, "OrwellsFarm").add(new TraktorBioGas(new GeraetDrill(8)));
 
-		// XXX
-		b1.addTraktor(t1);
-		b1.addTraktor(t2);
-		b1.addTraktor(t3);
-		b1.addTraktor(t4);
-		b1.addTraktor(t5);
+		find(b, "OrwellsFarm").find(0).erhoeheStunden(3);
+		find(b, "OrwellsFarm").find(1).erhoeheStunden(3);
+		find(b, "OrwellsFarm").find(2).erhoeheStunden(3);
+		find(b, "OrwellsFarm").find(3).erhoeheStunden(3);
+		find(b, "OrwellsFarm").find(4).erhoeheStunden(3);
+
+		b.insert(new Bauernhof("NullBauernhof"));
+		find(b, "NullBauernhof").add(new TraktorBioGas(new GeraetDrill(0)));
+		find(b, "NullBauernhof").add(new TraktorBioGas(new GeraetDrill(0)));
 
 		System.out.println(getClassAnnotation(Bauernhof.class));
 		System.out.println(getClassAnnotation(ClassAuthor.class));
@@ -58,34 +56,74 @@ public class Test {
 		System.out.println(getClassAnnotation(TraktorBioGas.class));
 		System.out.println(getClassAnnotation(TraktorDiesel.class));
 
-		doTest("avgBetriebszeit", b1.avgBetriebszeit(), 3);
-		doTest("avgBetriebszeitDiesel", b1.avgBetriebszeitDiesel(), 3);
-		doTest("avgBetriebszeitBiogas", b1.avgBetriebszeitBiogas(), 3);
-		doTest("avgBetriebszeitDuengen", b1.avgBetriebszeitDuengen(), 3);
-		doTest("avgBetriebszeitSaeen", b1.avgBetriebszeitSaeen(), 3);
+		doTest("avgBetriebszeit", 
+				find(b, "OrwellsFarm").avgBetriebszeit(), 3);
+		doTest("avgBetriebszeitDiesel", 
+				find(b, "OrwellsFarm").avgBetriebszeitDiesel(), 3);
+		doTest("avgBetriebszeitBiogas", 
+				find(b, "OrwellsFarm").avgBetriebszeitBiogas(), 3);
+		doTest("avgBetriebszeitDuengen", 
+				find(b, "OrwellsFarm").avgBetriebszeitDuengen(), 3);
+		doTest("avgBetriebszeitSaeen", 
+				find(b, "OrwellsFarm").avgBetriebszeitSaeen(), 3);
 
-		doTest("maxSaescharen", b1.maxSaescharen(), 12);
-		doTest("maxSaescharenBiogas", b1.maxSaescharenBiogas(), 8);
-		doTest("maxSaescharenDiesel", b1.maxSaescharenDiesel(), 12);
+		doTest("maxSaescharen", 
+				find(b, "OrwellsFarm").maxSaescharen(), 12);
+		doTest("maxSaescharenBiogas", 
+				find(b, "OrwellsFarm").maxSaescharenBiogas(), 8);
+		doTest("maxSaescharenDiesel", 
+				find(b, "OrwellsFarm").maxSaescharenDiesel(), 12);
 			
-		doTest("minSaescharen", b1.minSaescharen(), 5);
-		doTest("minSaescharenBiogas", b1.minSaescharenBiogas(), 5);
-		doTest("minSaescharenDiesel", b1.minSaescharenDiesel(), 12);
+		doTest("minSaescharen", 
+				find(b, "OrwellsFarm").minSaescharen(), 5);
+		doTest("minSaescharenBiogas", 
+				find(b, "OrwellsFarm").minSaescharenBiogas(), 5);
+		doTest("minSaescharenDiesel", 
+				find(b, "OrwellsFarm").minSaescharenDiesel(), 12);
 		
-		doTest("maxKapazitaet", b1.maxKapazitaet(), 2.3f);
-		doTest("maxKapazitaetBiogas", b1.maxKapazitaetBiogas(), 2.3f);
-		doTest("maxKapazitaetDiesel", b1.maxKapazitaetDiesel(), 1.6f);
+		doTest("maxKapazitaet", 
+				find(b, "OrwellsFarm").maxKapazitaet(), 2.3f);
+		doTest("maxKapazitaetBiogas", 
+				find(b, "OrwellsFarm").maxKapazitaetBiogas(), 2.3f);
+		doTest("maxKapazitaetDiesel", 
+				find(b, "OrwellsFarm").maxKapazitaetDiesel(), 1.6f);
 		
-		doTest("minKapazitaet", b1.minKapazitaet(), 1.6f);
-		doTest("minKapazitaetBiogas", b1.minKapazitaetBiogas(), 2.3f);
-		doTest("minKapazitaetDiesel", b1.minKapazitaetDiesel(), 1.6f);
+		doTest("minKapazitaet", 
+				find(b, "OrwellsFarm").minKapazitaet(), 1.6f);
+		doTest("minKapazitaetBiogas", 
+				find(b, "OrwellsFarm").minKapazitaetBiogas(), 2.3f);
+		doTest("minKapazitaetDiesel", 
+				find(b, "OrwellsFarm").minKapazitaetDiesel(), 1.6f);
+
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBetriebszeit(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBetriebszeitDiesel(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBetriebszeitBiogas(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBetriebszeitDuengen(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBetriebszeitSaeen(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgDieselverbrauch(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgDieselverbrauchDuengen(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgDieselverbrauchSaeen(), 0);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBioGasverbrauch(), .0f);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBioGasverbrauchDuengen(), .0f);
+		doTest("Divison durch 0", 
+				find(b, "NullBauernhof").avgBioGasverbrauchSaeen(), .0f);
 	}
 
 	@MethodAuthor(who="Johannes Deml")
 	private static String getClassAnnotation(Class c){
 		String classAnnotations = "";
 		classAnnotations += "Klasse: " + c.getName();
-		ClassAuthor classAuthor = (ClassAuthor) c.getAnnotation(ClassAuthor.class);
+		ClassAuthor classAuthor = (ClassAuthor)c.getAnnotation(ClassAuthor.class);
 		if(classAuthor != null) {
 			classAnnotations += "  Autor(en): " + classAuthor.who();
 		}

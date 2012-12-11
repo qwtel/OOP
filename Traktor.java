@@ -8,7 +8,7 @@
  *
  */
 @ClassAuthor(who="Johannes Deml, Michael Ion")
-public abstract class Traktor {
+public abstract class Traktor implements Identifiable {
 
 	private static int seriennummer = 0;
 	private final int nummer;
@@ -20,6 +20,11 @@ public abstract class Traktor {
 		this.nummer = seriennummer++;
 		this.geraet = geraet;
 		betriebszeit = 0;
+	}
+
+	@Override
+	public Integer id() {
+		return nummer;
 	}
 	
 	@MethodAuthor(who = "Michael Ion")

@@ -1,21 +1,16 @@
 import java.util.Iterator;
 
 /**
- * Set
- *
  * Eine Instanz von Set stellt eine Menge dar, deren Elementtypen durch einen 
  * Typparameter bestimmt werden. 
- * 
- * @param <E> Typ der Elemente welche das Set enthalten soll.
- * @author Michael Ion, Florian Klampfer
  */
 @ClassAuthor(who="Florian Klampfer")
-public class Set<E> implements Iterable<E> {
+public class Set implements Iterable {
 	
 	/**
 	 * Set wird intern durch eine verkettete Liste realisiert.
 	 */
-	protected Node<E> root;
+	protected Node root;
 
 	/**
 	 * Erzeugt ein leeres Set.
@@ -26,9 +21,7 @@ public class Set<E> implements Iterable<E> {
 
 	/**
 	 * Nimmt ein Argument, das in die Menge eingefügt wird.
-	 *
 	 * Wird an der letzten Stelle der Liste eingefügt.
-	 *
 	 * Mehrere gleiche Elemente dürfen in der Menge sein (aber nicht mehrere 
 	 * identische).
 	 *
@@ -36,14 +29,14 @@ public class Set<E> implements Iterable<E> {
 	 * @return false, wenn sich das Element bereits in der Liste befindet.
 	 */
 	@MethodAuthor(who="Florian Klampfer")
-	public boolean insert(E e) {
-		Node<E> newNode = new Node<E>(e);
+	public boolean insert(Identifiable e) {
+		Node newNode = new Node(e);
 		if(root == null) {
 			root = newNode;
 		}
 		else {
-			Node<E> prev = null;
-			Node<E> curr = root;
+			Node prev = null;
+			Node curr = root;
 
 			while(curr != null) {
 				if(curr.key == e) {
@@ -59,84 +52,78 @@ public class Set<E> implements Iterable<E> {
 		return true;
 	}
 
-	/**
-	 * TODO: Zusicherungen
-	 * XXX: Life is to short to think about pointers (again).
-	 */
-	@MethodAuthor(who="Florian Klampfer")
-	public boolean remove(E toRemove) {
-		Iterator<E> iter = iterator();
-		E e;
-		while(iter.hasNext()) {
-			e = iter.next();
+	public Identifiable find(Object id) {
+		for(Object o : this) {
+			if(o instanceof Identifiable) {
+				Identifiable i = (Identifiable)o;
+				if(id.equals(i.id())) {
+					return i;
+				}
+			}
+		}
+		return null;
+	}
 
-			//if(e.equals(toRemove)) { 
-			if(e == toRemove) {
-				iter.remove();
-				return true;
+	/**
+	 * Löscht ein Element aus dem Set.
+	 * @param toRemove Das Objekt welches aus dem Set gelöscht werden soll.
+	 * @return true wenn sich das Objekt im Set befand, ansonsten false.
+	 */
+	@MethodAuthor(who="Michael Ion")
+	public boolean remove(Object id) {
+		Iterator iter = iterator();
+		Object o;
+		while(iter.hasNext()) {
+			o = iter.next();
+			if(o instanceof Identifiable) {
+				Identifiable i = (Identifiable)o;
+				if(id.equals(i.id())) {
+					iter.remove();
+					return true;
+				}
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Liefert als Ergebnis einen Iterator, über den nacheinander auf alle 
 	 * Elemente der Menge in nicht weiter bestimmter Reihenfolge zugegriffen 
 	 * werden kann. 
-	 *
-	 * Der Iterator muss auch remove implementieren und darf keine 
-	 * UnsupportedOperationException werfen (siehe java.lang.Iterator).
 	 */
 	@Override
 	@MethodAuthor(who="Florian Klampfer")
-	public Iterator<E> iterator() {
-		return new SetIterator<E>(root);
+	public Iterator iterator() {
+		return new SetIterator();
 	}
 
 	/**
-	 * Node
-	 *
 	 * Enhält ein Element vom Typ T und verweist auf den nächsten Listenknoten.
-	 *
-	 * @param <T> Typ des Elements welcher von Node gekapselt wird.
-	 * @author Florian Klampfer
 	 */
 	@ClassAuthor(who="Florian Klampfer")
-	protected class Node<T> {
-		protected T key;
-		protected Node<T> next;
+	protected class Node {
+		protected Object key;
+		protected Node next;
 
 		/**
 		 * Erzeugt einen neuen Knoten welcher zum Einfügen an das Ende einer
 		 * Liste geeignet ist.
-		 *
 		 * @param elem Das Element welches in der Liste gespeichert werden soll.
 		 */
-		protected Node(T key) {
+		protected Node(Object key) {
 			this.key = key;
 			this.next = null;
 		}
 	}
 
 	/**
-	 * SetIterator
-	 *
 	 * Iteriert über alle Elemente des Sets (in Reihenfolge der Liste).
-	 *
-	 * @author Florian Klampfer
 	 */
 	@ClassAuthor(who="Florian Klampfer")
-	protected class SetIterator<T> implements Iterator<T> {
+	protected class SetIterator implements Iterator {
 		
-		private final Node<T> root;
-		private Node<T> node;
-		private Node<T> prev;
-
-		public SetIterator(Node<T> node) {
-			this.root = node;
-			this.node = node;
-			this.prev = null;
-		}
+		private Node node = root;
+		private Node prev = null;
 
 		@Override
 		@MethodAuthor(who="Florian Klampfer")
@@ -146,7 +133,7 @@ public class Set<E> implements Iterable<E> {
 
 		@Override
 		@MethodAuthor(who="Florian Klampfer")
-		public T next() {
+		public Object next() {
 			if(node == null) {
 				return null;
 			}
@@ -156,13 +143,17 @@ public class Set<E> implements Iterable<E> {
 		}
 
 		/**
-		 * Löscht den letzten Node, der von next() geliefert wurde
-		 * XXX: What if the root gets deleted?
+		 * Löscht den letzten Node, der von next() geliefert wurde.
 		 */
 		@Override
 		@MethodAuthor(who="Michael Ion")
 		public void remove() {
-			Node<T> temp = root; 
+			if(prev == root) {
+            	root = root.next;
+				return;
+			}
+
+			Node temp = root; 
 			while(temp.next != prev) {
 				temp = temp.next;
 			}
