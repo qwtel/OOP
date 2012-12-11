@@ -1,13 +1,8 @@
 import java.lang.reflect.Method;
 
- /**
-  * Test
-  * 
-  * Handels all TestCases, includes main method.
-  * 
-  * @author Florian Klampfer, Michael Ion, Johannes Deml
-  */
-
+/**
+ * Handels all TestCases, includes main method.
+ */
 @ClassAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 public class Test {
 	
@@ -19,6 +14,7 @@ public class Test {
 		System.out.println(getClassAnnotation("Geraet"));
 		System.out.println(getClassAnnotation("GeraetDrill"));
 		System.out.println(getClassAnnotation("GeraetDuenger"));
+		System.out.println(getClassAnnotation("Identifizierbar"));
 		System.out.println(getClassAnnotation("MethodAuthor"));
 		System.out.println(getClassAnnotation("Set"));
 		System.out.println(getClassAnnotation("Test"));
@@ -123,13 +119,21 @@ public class Test {
 		return null;
 	}
 
+	/**
+	 * @param className Name einer existierenden Klasse.
+	 * @return Informationen ueber die Klasse in einem String
+	 * @throws ClassNotFoundException Wird geworfen, wenn der erhaltene Name
+	 * 								  keiner Klasse zugwiesen werden kann.
+	 */
 	@MethodAuthor(who="Johannes Deml")
-	private static String getClassAnnotation(String className) throws ClassNotFoundException{
+	private static String getClassAnnotation(String className) 
+			throws ClassNotFoundException{
 		String classAnnotations = "";
 		classAnnotations += "Klasse: " + Class.forName(className).getName();
 		ClassAuthor classAuthor = null;
 		if(Class.forName(className).isAnnotationPresent(ClassAuthor.class)) {
-			classAuthor = (ClassAuthor)Class.forName(className).getAnnotation(ClassAuthor.class);
+			classAuthor = (ClassAuthor)Class.forName(className).getAnnotation(
+				ClassAuthor.class);
 		}
 		if(classAuthor != null) {
 			classAnnotations += "  Autor(en): " + classAuthor.who();
@@ -137,7 +141,8 @@ public class Test {
 		classAnnotations += "\n";
 		Method[] methods = Class.forName(className).getDeclaredMethods(); 
 		for (Method method : methods) {
-			MethodAuthor methodAuthor = method.getAnnotation(MethodAuthor.class);
+			MethodAuthor methodAuthor = method.getAnnotation(
+				MethodAuthor.class);
 			classAnnotations += "  " + method.getName();
 			if(methodAuthor != null) {
 				classAnnotations += "  Autor(en): "+ methodAuthor.who();
@@ -162,6 +167,11 @@ public class Test {
 	}
 	
 	private static int i = 0;
+	/**
+	 * @param description Informationen ueber den Testversuch
+	 * @param result Die berechnete Loesung fuer den Test
+	 * @param expected Die erwartete Loesung fuer den Test
+	 */
 	@MethodAuthor(who="Florian Klampfer")
 	private static void doTest(String description, Object result, 
 			Object expected) {

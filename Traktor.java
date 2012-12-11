@@ -39,6 +39,10 @@ public abstract class Traktor implements Identifizierbar {
 		return betriebszeit;
 	}
 
+	/**
+	 * Aendert das Geraet auf das neu erhaltene Geraet
+	 * @param geraet Bedingung:Ein gueltiges Geraet
+	 */
 	@MethodAuthor(who = "Johannes Deml")
 	public void setGeraet(Geraet geraet) {
 		this.geraet = geraet;
@@ -53,9 +57,15 @@ public abstract class Traktor implements Identifizierbar {
 		return nummer;
 	}
 
+	/**
+	 * @return Gibt den bisher verbrauchten Treibstoff zurueck
+	 */
 	@MethodAuthor(who = "Johannes Deml")
 	public abstract Number getTreibstoffverbrauch();
 
+	/**
+	 * @param verbraucht Wird zum bisher verbrauchten Treibstoff dazugerechnet
+	 */
 	@MethodAuthor(who = "Johannes Deml")
 	public abstract void incVerbrauchtenTreibstoff(Number verbraucht);
 
