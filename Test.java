@@ -145,6 +145,18 @@ public class Test {
 			classAnnotations += "\n";
 		}
 		classAnnotations += "\n";
+		Class[] classes= Class.forName(className).getDeclaredClasses(); 
+		for (Class c : classes) {
+			ClassAuthor innerclassAuthor = (ClassAuthor) c.getAnnotation(ClassAuthor.class);
+			classAnnotations += "  " + c.getName();
+			if(innerclassAuthor != null) {
+				classAnnotations += "  Autor(en): "+ innerclassAuthor.who();
+			}
+			classAnnotations += "\n";
+		}
+		classAnnotations += "\n";
+		
+		
 		
 		return classAnnotations;
 	}
