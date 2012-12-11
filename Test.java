@@ -14,18 +14,17 @@ public class Test {
 	@MethodAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 	public static void main(String[] args) throws Exception {
 
-		System.out.println(getClassAnnotation(Bauernhof.class));
-		System.out.println(getClassAnnotation(ClassAuthor.class));
-		System.out.println(getClassAnnotation(Geraet.class));
-		System.out.println(getClassAnnotation(GeraetDrill.class));
-		System.out.println(getClassAnnotation(GeraetDuenger.class));
-		System.out.println(getClassAnnotation(MethodAuthor.class));
-		System.out.println(getClassAnnotation(Set.class));
-		System.out.println(getClassAnnotation(Test.class));
-		System.out.println(getClassAnnotation(Traktor.class));
-		System.out.println(getClassAnnotation(TraktorBiogas.class));
-		System.out.println(getClassAnnotation(TraktorDiesel.class));
-		
+		System.out.println(getClassAnnotation("Bauernhof"));
+		System.out.println(getClassAnnotation("ClassAuthor"));
+		System.out.println(getClassAnnotation("Geraet"));
+		System.out.println(getClassAnnotation("GeraetDrill"));
+		System.out.println(getClassAnnotation("GeraetDuenger"));
+		System.out.println(getClassAnnotation("MethodAuthor"));
+		System.out.println(getClassAnnotation("Set"));
+		System.out.println(getClassAnnotation("Test"));
+		System.out.println(getClassAnnotation("Traktor"));
+		System.out.println(getClassAnnotation("TraktorBiogas"));
+		System.out.println(getClassAnnotation("TraktorDiesel"));
 		Set b = new Set();
 	
 		b.insert(new Bauernhof("OrwellsFarm"));
@@ -125,15 +124,18 @@ public class Test {
 	}
 
 	@MethodAuthor(who="Johannes Deml")
-	private static String getClassAnnotation(Class c){
+	private static String getClassAnnotation(String className) throws ClassNotFoundException{
 		String classAnnotations = "";
-		classAnnotations += "Klasse: " + c.getName();
-		ClassAuthor classAuthor = (ClassAuthor)c.getAnnotation(ClassAuthor.class);
+		classAnnotations += "Klasse: " + Class.forName(className).getName();
+		ClassAuthor classAuthor = null;
+		if(Class.forName(className).isAnnotationPresent(ClassAuthor.class)) {
+			classAuthor = (ClassAuthor)Class.forName(className).getAnnotation(ClassAuthor.class);
+		}
 		if(classAuthor != null) {
 			classAnnotations += "  Autor(en): " + classAuthor.who();
 		}
 		classAnnotations += "\n";
-		Method[] methods = c.getDeclaredMethods(); 
+		Method[] methods = Class.forName(className).getDeclaredMethods(); 
 		for (Method method : methods) {
 			MethodAuthor methodAuthor = method.getAnnotation(MethodAuthor.class);
 			classAnnotations += "  " + method.getName();
