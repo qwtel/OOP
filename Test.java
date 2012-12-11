@@ -19,6 +19,7 @@ public class Test {
 		System.out.println(getClassAnnotation("Geraet"));
 		System.out.println(getClassAnnotation("GeraetDrill"));
 		System.out.println(getClassAnnotation("GeraetDuenger"));
+		System.out.println(getClassAnnotation("Identifizierbar"));
 		System.out.println(getClassAnnotation("MethodAuthor"));
 		System.out.println(getClassAnnotation("Set"));
 		System.out.println(getClassAnnotation("Test"));
@@ -123,6 +124,12 @@ public class Test {
 		return null;
 	}
 
+	/**
+	 * @param className Name einer existierenden Klasse.
+	 * @return Informationen ueber die Klasse in einem String
+	 * @throws ClassNotFoundException Wird geworfen, wenn der erhaltene Name
+	 * 								  keiner Klasse zugwiesen werden kann.
+	 */
 	@MethodAuthor(who="Johannes Deml")
 	private static String getClassAnnotation(String className) throws ClassNotFoundException{
 		String classAnnotations = "";
@@ -150,6 +157,11 @@ public class Test {
 	}
 	
 	private static int i = 0;
+	/**
+	 * @param description Informationen ueber den Testversuch
+	 * @param result Die berechnete Loesung fuer den Test
+	 * @param expected Die erwartete Loesung fuer den Test
+	 */
 	@MethodAuthor(who="Florian Klampfer")
 	private static void doTest(String description, Object result, 
 			Object expected) {

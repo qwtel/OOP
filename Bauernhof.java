@@ -22,6 +22,10 @@ public class Bauernhof implements Identifizierbar {
 		return traktoren.remove(seriennummer);
 	}
 
+	/**
+	 * @param seriennummer Die Nummer die den Traktor identifiziert
+	 * @return Die Instanz des Traktors sofern er existiert, sonst null
+	 */
 	@MethodAuthor(who="Johannes Deml")
 	public Traktor find(int seriennummer) {
 		Object o = traktoren.find(seriennummer);
@@ -32,6 +36,11 @@ public class Bauernhof implements Identifizierbar {
 		return null;
 	}
 
+	/**
+	 * @param seriennummer Die Nummer die den Traktor identifiziert
+	 * @param geraet Das Geraet, das dem Traktor zugewiesen wird
+	 * 				 Das alte Geraet verschwindet
+	 */
 	@MethodAuthor(who="Johannes Deml")
 	public void change(int seriennummer, Geraet geraet) {
 		Traktor t = find(seriennummer);
