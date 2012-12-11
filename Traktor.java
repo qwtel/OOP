@@ -22,11 +22,18 @@ public abstract class Traktor implements Identifizierbar {
 		betriebszeit = 0;
 	}
 
+	/**
+	 * Erhöht die betriebszeit um die spezifizierte Anzahl an Stunden.
+	 * @param stunden die Ganzzahl um die die Arbeitszeit erhöht wird.
+	 */
 	@MethodAuthor(who = "Michael Ion")
 	public void incStunden(int stunden) {
 		betriebszeit += stunden;
 	}
 
+	/** 
+	 * @return die Betriebszeit des Traktors
+	 */
 	@MethodAuthor(who = "Michael Ion")
 	public int getBetriebszeit() {
 		return betriebszeit;

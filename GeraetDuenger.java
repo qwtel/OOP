@@ -10,12 +10,15 @@ public class GeraetDuenger extends Geraet {
 	private float kapazitaet;
 
 	/**
-	 * Erstellt einen neuen GeraetDuenger mit der spezifizierten Kapazitaet
+	 * Erstellt einen neuen GeraetDuenger mit der spezifizierten Kapazitaet (ist eine Gleitkommazahl)
 	 */
 	public GeraetDuenger(float kapazitaet) {
 		this.kapazitaet = kapazitaet;
 	}
 
+	/**
+	 * Gibt die Kapazitaet des Behaelters zurück (muss eine Gleitkommazahl sein)
+	 */
 	@Override
 	@MethodAuthor(who="Michael Ion")
 	public Float getAnzahl() {

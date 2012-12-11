@@ -9,12 +9,18 @@
 public class GeraetDrill extends Geraet {
 	private int zahl;
 
+	/**
+	 * Erstellt einen neuen GeraetDrill mit der spezifizierten zahl (ist eine Ganzzahl)
+	 */
 	public GeraetDrill(int zahl) {
 		this.zahl = zahl;
 	}
 
 	@Override
 	@MethodAuthor(who="Michael Ion")
+	/**
+	 * Gibt die Anzahl der vorhandenen Saescharen zurück (muss eine Ganzzahl sein)
+	 */
 	public Integer getAnzahl() {
 		return zahl;
 	}

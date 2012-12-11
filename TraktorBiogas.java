@@ -11,13 +11,17 @@ public class TraktorBiogas extends Traktor {
 		super(geraet);
 		verbrauch = 0;
 	}
-	
+	/**
+	 * @return der Verbrauch des BioGasTraktors (muss eine Gleitkommazahl sein)
+	 */
 	@Override
 	@MethodAuthor(who = "Michael Ion")
 	public Float getTreibstoffverbrauch() {
 		return verbrauch;
 	}
-	
+	/**
+	 * erhöht den Verbrauch um den spezifizierten Wert (muss eine Gleitkommazahl sein)
+	 */
 	@Override
 	@MethodAuthor(who = "Michael Ion")
 	public void incVerbrauchtenTreibstoff(Number verbraucht) {

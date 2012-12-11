@@ -11,13 +11,17 @@ public class TraktorDiesel extends Traktor {
 		super(geraet);
 		verbrauch = 0;
 	}
-
+	/**
+	 * gibt den Verbrauch zurück (muss eine Ganzzahl sein)
+	 */
 	@Override
 	@MethodAuthor(who = "Michael Ion")
 	public Integer getTreibstoffverbrauch() {
 		return verbrauch;
 	}
-	
+	/**
+	 * erhöht den Verbrauch um den spezifizierten Wert (muss eine Ganzzahl sein)
+	 */
 	@Override
 	@MethodAuthor(who = "Michael Ion")
 	public void incVerbrauchtenTreibstoff(Number verbraucht) {
