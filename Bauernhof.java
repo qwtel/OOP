@@ -1,5 +1,6 @@
 /**
- * TODO: ALL THE THINGS
+ * Verwaltet Informationen über einen Bauernhof und ermöglicht statistische 
+ * Auswertungen über diesen Bauernhof ermöglicht. 
  */
 @ClassAuthor(who="Florian Klampfer")
 public class Bauernhof implements Identifizierbar {
