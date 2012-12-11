@@ -19,12 +19,12 @@ public class Set implements Iterable {
 	}
 
 	/**
-	 * Nimmt ein Identifiable, das in die Menge eingefügt wird.
+	 * Nimmt ein Element, das in die Menge eingefügt wird.
 	 * Wird an der letzten Stelle der Liste eingefügt.
 	 *
-	 * @param e Ein Identifiable das in der Liste gespeichert werden soll. 
+	 * @param e Ein Element das in der Liste gespeichert werden soll. 
 	 *          Darf noch nicht enhalten sein oder die gleiche id() wie ein 
-	 *          bereits vorhandenes Identifiable besitzen.
+	 *          bereits vorhandenes Element besitzen.
 	 */
 	@MethodAuthor(who="Florian Klampfer")
 	public void insert(Identifizierbar e) {
@@ -44,7 +44,7 @@ public class Set implements Iterable {
 	}
 
 	/**
-	 * Findet ein Identifiable im Set basierend auf dessen id().
+	 * Findet ein Element im Set basierend auf dessen id().
 	 * @param id Die id() des gesuchten Elements.
 	 * @return false wenn das Objekt sich nicht im Set befindet. 
 	 */
@@ -62,7 +62,7 @@ public class Set implements Iterable {
 	}
 
 	/**
-	 * Löscht ein Identifiable aus dem Set.
+	 * Löscht ein Element aus dem Set.
 	 * @param id Die id() des Elements welches aus dem Set gelöscht werden soll.
 	 * @return true wenn das Objekt entfernt wurde, ansonsten false.
 	 */

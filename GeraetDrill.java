@@ -15,7 +15,7 @@ public class GeraetDrill extends Geraet {
 
 	@Override
 	@MethodAuthor(who="Michael Ion")
-	public Number getAnzahl() {
+	public Integer getAnzahl() {
 		return zahl;
 	}
 

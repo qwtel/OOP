@@ -18,7 +18,7 @@ public class GeraetDuenger extends Geraet {
 
 	@Override
 	@MethodAuthor(who="Michael Ion")
-	public Number getAnzahl() {
+	public Float getAnzahl() {
 		return kapazitaet;
 	}
 

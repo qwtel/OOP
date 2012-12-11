@@ -11,17 +11,20 @@ import java.lang.reflect.Method;
 @ClassAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 public class Test {
 	
-	@MethodAuthor(who="Florian Klampfer")
-	private static Bauernhof find(Set b, String name) {
-		Identifizierbar o = b.find(name);
-		if(o instanceof Bauernhof) {
-			return (Bauernhof)o;
-		}
-		return null;
-	}
-	
 	@MethodAuthor(who="Florian Klampfer, Johannes Deml, Michael Ion")
 	public static void main(String[] args) throws Exception {
+
+		System.out.println(getClassAnnotation(Bauernhof.class));
+		System.out.println(getClassAnnotation(ClassAuthor.class));
+		System.out.println(getClassAnnotation(Geraet.class));
+		System.out.println(getClassAnnotation(GeraetDrill.class));
+		System.out.println(getClassAnnotation(GeraetDuenger.class));
+		System.out.println(getClassAnnotation(MethodAuthor.class));
+		System.out.println(getClassAnnotation(Set.class));
+		System.out.println(getClassAnnotation(Test.class));
+		System.out.println(getClassAnnotation(Traktor.class));
+		System.out.println(getClassAnnotation(TraktorBiogas.class));
+		System.out.println(getClassAnnotation(TraktorDiesel.class));
 		
 		Set b = new Set();
 	
@@ -34,12 +37,15 @@ public class Test {
 		find(b, "OrwellsFarm").add(new TraktorDiesel(new GeraetDrill(12)));
 		find(b, "OrwellsFarm").add(new TraktorDiesel(new GeraetDuenger(1.6f)));
 		find(b, "OrwellsFarm").add(new TraktorBiogas(new GeraetDrill(8)));
+		find(b, "OrwellsFarm").add(new TraktorBiogas(new GeraetDrill(8)));
 
 		find(b, "OrwellsFarm").find(0).incStunden(3);
 		find(b, "OrwellsFarm").find(1).incStunden(3);
 		find(b, "OrwellsFarm").find(2).incStunden(3);
 		find(b, "OrwellsFarm").find(3).incStunden(3);
 		find(b, "OrwellsFarm").find(4).incStunden(3);
+		find(b, "OrwellsFarm").find(5).incStunden(30);
+		find(b, "OrwellsFarm").remove(5);
 
 		b.insert(new Bauernhof("NullBauernhof"));
 		find(b, "NullBauernhof").add(new TraktorBiogas(new GeraetDrill(0)));
@@ -107,17 +113,15 @@ public class Test {
 		doTest("Divison durch 0", 
 				find(b, "NullBauernhof").avgBioGasverbrauchSaeen(), .0f);
 
-		System.out.println(getClassAnnotation(Bauernhof.class));
-		System.out.println(getClassAnnotation(ClassAuthor.class));
-		System.out.println(getClassAnnotation(Geraet.class));
-		System.out.println(getClassAnnotation(GeraetDrill.class));
-		System.out.println(getClassAnnotation(GeraetDuenger.class));
-		System.out.println(getClassAnnotation(MethodAuthor.class));
-		System.out.println(getClassAnnotation(Set.class));
-		System.out.println(getClassAnnotation(Test.class));
-		System.out.println(getClassAnnotation(Traktor.class));
-		System.out.println(getClassAnnotation(TraktorBiogas.class));
-		System.out.println(getClassAnnotation(TraktorDiesel.class));
+	}
+
+	@MethodAuthor(who="Florian Klampfer")
+	private static Bauernhof find(Set b, String name) {
+		Identifizierbar o = b.find(name);
+		if(o instanceof Bauernhof) {
+			return (Bauernhof)o;
+		}
+		return null;
 	}
 
 	@MethodAuthor(who="Johannes Deml")

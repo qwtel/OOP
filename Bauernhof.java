@@ -197,88 +197,6 @@ public class Bauernhof implements Identifizierbar {
    	}
 	
 	/**
-	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 */
-   	@ClassAuthor(who="Florian Klampfer")
-	private interface Filter {
-
-		/**
-		 * @param t Darf nicht null sein.
-		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
-		 */
-   		@MethodAuthor(who="Florian Klampfer")
-		public Traktor filter(Traktor t);
-	}
-
-	/**
-	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 */
-   	@ClassAuthor(who="Florian Klampfer")
-	private class TraktorDieselFilter implements Filter {
-
-		/**
-		 * @param t Darf nicht null sein.
-		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
-		 */
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		public Traktor filter(Traktor t) {
-			return t.getTraktorDiesel();
-		}
-	}
-
-	/**
-	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 */
-   	@ClassAuthor(who="Florian Klampfer")
-	private class TraktorBiogasFilter implements Filter {
-
-		/**
-		 * @param t Darf nicht null sein.
-		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
-		 */
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		public Traktor filter(Traktor t) {
-			return t.getTraktorBiogas();
-		}
-	}
-
-	/**
-	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 */
-   	@ClassAuthor(who="Florian Klampfer")
-	private class TraktorDuengenFilter implements Filter {
-
-		/**
-		 * @param t Darf nicht null sein.
-		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
-		 */
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		public Traktor filter(Traktor t) {
-			return t.getTraktorDuengen();
-		}
-	}
-
-	/**
-	 * Filtert Traktoren nach einem bestimmten Kriterium.
-	 */
-   	@ClassAuthor(who="Florian Klampfer")
-	private class TraktorSaeenFilter implements Filter {
-
-		/**
-		 * @param t Darf nicht null sein.
-		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
-		 */
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		public Traktor filter(Traktor t) {
-			return t.getTraktorSaeen();
-		}
-	}
-
-	/**
 	 * Implementiert einen Algorithmus in zwei Schritten.
 	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
 	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
@@ -294,7 +212,7 @@ public class Bauernhof implements Identifizierbar {
 		public MapReduce(Filter f) { this.f = f; }
 
    		@MethodAuthor(who="Florian Klampfer")
-		public void map(Traktor t) {
+		public final void map(Traktor t) {
 			if(f != null) { t = f.filter(t); }
 			if(t != null) { innerMap(t); }
 		}
@@ -307,68 +225,14 @@ public class Bauernhof implements Identifizierbar {
 	}
 
 	/**
-	 * Implementiert eine integer Durschnittsbildung in zwei Schritten.
-	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
-	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
-	 */
-   	@ClassAuthor(who="Florian Klampfer")
-	private abstract class AvgIntMapReduce extends MapReduce {
-		protected int value = 0;
-		protected int count = 0;
-
-		/**
-		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
-		 * werden sollen. Ansonsten null.
-		 */
-		public AvgIntMapReduce(Filter f) { super(f); }
-
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		public Integer reduce() { 
-			if(count != 0) { return value/count; }
-			return 0;
-		}
-
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		protected abstract void innerMap(Traktor t);
-	}
-
-	/**
-	 * Implementiert eine float Durschnittsbildung in zwei Schritten.
-	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
-	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
-	 */
-   	@ClassAuthor(who="Florian Klampfer")
-	private abstract class AvgFloatMapReduce extends MapReduce {
-		protected float value = 0;
-		protected int count = 0;
-
-		/**
-		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
-		 * werden sollen. Ansonsten null.
-		 */
-		public AvgFloatMapReduce(Filter f) { super(f); }
-
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		public Float reduce() {
-			if(count != 0) { return value/count; }
-			return .0f;
-		}
-
-   		@MethodAuthor(who="Florian Klampfer")
-		@Override
-		protected abstract void innerMap(Traktor t);
-	}
-
-	/**
 	 * Implementiert eine Betriebszeit Durschnittsbildung in zwei Schritten.
 	 * Im ersten Schritt wird wiederholt map mit verschiedenen Traktoren
 	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
 	 */
    	@ClassAuthor(who="Florian Klampfer")
-	private class AvgBetriebszeitMapReduce extends AvgIntMapReduce {
+	private class AvgBetriebszeitMapReduce extends MapReduce {
+		private int value = 0;
+		private int count = 0;
 
 		/**
 		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
@@ -382,6 +246,13 @@ public class Bauernhof implements Identifizierbar {
 			value += t.getBetriebszeit();
 			count++;
 		}
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		public Integer reduce() { 
+			if(count != 0) { return value/count; }
+			return 0;
+		}
 	}
 
 	/**
@@ -390,23 +261,30 @@ public class Bauernhof implements Identifizierbar {
 	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
 	 */
    	@ClassAuthor(who="Florian Klampfer")
-	private class AvgDieselVerbrauchMapReduce extends AvgIntMapReduce {
-		private Filter f = new TraktorDieselFilter();
+	private class AvgDieselVerbrauchMapReduce extends MapReduce {
+		private int value = 0;
+		private int count = 0;
 
 		/**
 		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
 		 * werden sollen. Ansonsten null.
 		 */
-		public AvgDieselVerbrauchMapReduce(Filter f) { super(f); }
+		public AvgDieselVerbrauchMapReduce(Filter f) { 
+			super(new TraktorDieselFilter(f));
+		}
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		protected void innerMap(Traktor t) {
-			t = f.filter(t);
-			if(t != null) {
-				value += t.getTreibstoffverbrauch().intValue();
-				count++;
-			}
+			value += t.getTreibstoffverbrauch().intValue();
+			count++;
+		}
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		public Integer reduce() { 
+			if(count != 0) { return value/count; }
+			return 0;
 		}
 	}
 	
@@ -416,23 +294,30 @@ public class Bauernhof implements Identifizierbar {
 	 * aufgerufen. Anschließen liefert reduce das Ergebnis.
 	 */
    	@ClassAuthor(who="Florian Klampfer")
-	private class AvgBiogasVerbrauchMapReduce extends AvgFloatMapReduce {
-		private Filter f = new TraktorBiogasFilter();
+	private class AvgBiogasVerbrauchMapReduce extends MapReduce {
+		private float value = 0;
+		private int count = 0;
 
 		/**
 		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
 		 * werden sollen. Ansonsten null.
 		 */
-		public AvgBiogasVerbrauchMapReduce(Filter f) { super(f); }
+		public AvgBiogasVerbrauchMapReduce(Filter f) {
+			super(new TraktorBiogasFilter(f));
+		}
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		protected void innerMap(Traktor t) {
-			t = f.filter(t);
-			if(t != null) {
-				value += t.getTreibstoffverbrauch().floatValue();
-				count++;
-			}
+			value += t.getTreibstoffverbrauch().floatValue();
+			count++;
+		}
+
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		public Float reduce() { 
+			if(count != 0) { return value/count; }
+			return .0f;
 		}
 	}
 
@@ -446,22 +331,20 @@ public class Bauernhof implements Identifizierbar {
 	   	protected int min = Integer.MAX_VALUE;
 	   	protected int max = Integer.MIN_VALUE;
 	   	private int value;
-		private Filter f = new TraktorSaeenFilter();
 
 		/**
 		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
 		 * werden sollen. Ansonsten null.
 		 */
-		public ExtremeSaescharenMapReduce(Filter f) { super(f); }
+		public ExtremeSaescharenMapReduce(Filter f) {
+			super(new TraktorSaeenFilter(f));
+		}
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		protected void innerMap(Traktor t) {
-			t = f.filter(t);
-			if(t != null) {
-				if((value = t.getAnzahl().intValue()) < min) { min = value; }
-				if((value = t.getAnzahl().intValue()) > max) { max = value; }
-			}
+			if((value = t.getAnzahl().intValue()) < min) { min = value; }
+			if((value = t.getAnzahl().intValue()) > max) { max = value; }
 		}
 	}
 
@@ -475,22 +358,20 @@ public class Bauernhof implements Identifizierbar {
 	   	protected float min = Float.POSITIVE_INFINITY;
 	   	protected float max = Float.NEGATIVE_INFINITY;
 	   	private float value;
-		private Filter f = new TraktorDuengenFilter();
 
 		/**
 		 * @param f Ein Filter wenn im map-Schritt bestimmte Traktoren gefiltert
 		 * werden sollen. Ansonsten null.
 		 */
-		public ExtremeKapazitaetMapReduce(Filter f) { super(f); }
+		public ExtremeKapazitaetMapReduce(Filter f) {
+			super(new TraktorDuengenFilter(f)); 
+		}
 
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		protected void innerMap(Traktor t) {
-			t = f.filter(t);
-			if(t != null) {
-				if((value = t.getAnzahl().floatValue()) < min) { min = value; }
-				if((value = t.getAnzahl().floatValue()) > max) { max = value; }
-			}
+			if((value = t.getAnzahl().floatValue()) < min) { min = value; }
+			if((value = t.getAnzahl().floatValue()) > max) { max = value; }
 		}
 	}
 
@@ -568,5 +449,114 @@ public class Bauernhof implements Identifizierbar {
    		@MethodAuthor(who="Florian Klampfer")
 		@Override
 		public Float reduce() { return max; }
+	}
+
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Ein Filter kann weitere Filter beeinhalten, die "rekursiv" abgearbeitet
+	 * werden.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private abstract class Filter {
+		private Filter f;
+		public Filter() { this(null); }
+		public Filter(Filter f) { this.f = f; }
+
+		/**
+		 * @param t Darf nicht null sein.
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		public final Traktor filter(Traktor t) {
+			if(f != null) { t = f.filter(t); }
+			if(t != null) { t = innerFilter(t); }
+			return t;
+		}
+
+		/**
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		protected abstract Traktor innerFilter(Traktor t);
+	}
+
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Ein Filter kann weitere Filter beeinhalten, die "rekursiv" abgearbeitet
+	 * werden.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private class TraktorDieselFilter extends Filter {
+		public TraktorDieselFilter() { super(null); }
+		public TraktorDieselFilter(Filter f) { super(f); }
+
+		/**
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected Traktor innerFilter(Traktor t) {
+			return t.getTraktorDiesel();
+		}
+	}
+
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Ein Filter kann weitere Filter beeinhalten, die "rekursiv" abgearbeitet
+	 * werden.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private class TraktorBiogasFilter extends Filter {
+		public TraktorBiogasFilter() { super(null); }
+		public TraktorBiogasFilter(Filter f) { super(f); }
+
+		/**
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected Traktor innerFilter(Traktor t) {
+			return t.getTraktorBiogas();
+		}
+	}
+
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Ein Filter kann weitere Filter beeinhalten, die "rekursiv" abgearbeitet
+	 * werden.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private class TraktorDuengenFilter extends Filter {
+		public TraktorDuengenFilter() { super(null); }
+		public TraktorDuengenFilter(Filter f) { super(f); }
+
+		/**
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected Traktor innerFilter(Traktor t) {
+			return t.getTraktorDuengen();
+		}
+	}
+
+	/**
+	 * Filtert Traktoren nach einem bestimmten Kriterium.
+	 * Ein Filter kann weitere Filter beeinhalten, die "rekursiv" abgearbeitet
+	 * werden.
+	 */
+   	@ClassAuthor(who="Florian Klampfer")
+	private class TraktorSaeenFilter extends Filter {
+		public TraktorSaeenFilter() { super(null); }
+		public TraktorSaeenFilter(Filter f) { super(f); }
+
+		/**
+		 * @return t wenn das Kriterium erfüllt ist, null ansonsten.
+		 */
+   		@MethodAuthor(who="Florian Klampfer")
+		@Override
+		protected Traktor innerFilter(Traktor t) {
+			return t.getTraktorSaeen();
+		}
 	}
 }

@@ -14,14 +14,14 @@ public class TraktorBiogas extends Traktor {
 	
 	@Override
 	@MethodAuthor(who = "Michael Ion")
-	public Number getTreibstoffverbrauch() {
+	public Float getTreibstoffverbrauch() {
 		return verbrauch;
 	}
 	
 	@Override
 	@MethodAuthor(who = "Michael Ion")
 	public void incVerbrauchtenTreibstoff(Number verbraucht) {
-		verbrauch+=verbraucht.floatValue();
+		verbrauch += verbraucht.floatValue();
 	}
 
 	/**

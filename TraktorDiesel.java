@@ -14,7 +14,7 @@ public class TraktorDiesel extends Traktor {
 
 	@Override
 	@MethodAuthor(who = "Michael Ion")
-	public Number getTreibstoffverbrauch() {
+	public Integer getTreibstoffverbrauch() {
 		return verbrauch;
 	}
 	

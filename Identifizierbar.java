@@ -1,5 +1,5 @@
 /**
- * Ein Identifiable ist ein Objekt, welches über eine id() verfügt.
+ * Ein Objekt welches über eine id() verfügt.
  */
 @ClassAuthor(who="Florian Klampfer")
 public interface Identifizierbar {
