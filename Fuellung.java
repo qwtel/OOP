@@ -1,6 +1,4 @@
-/**
- *
- */
-public abstract class Fuellung {
-
+public enum Fuellung {
+	Marmelade,
+	Schoko;
 }
