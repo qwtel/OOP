@@ -3,5 +3,5 @@
  */
 public interface Backmaschine {
 
-	public Keks create(Teigart teig);
+	public EinzelKeks create(Position p);
 }

@@ -5,6 +5,7 @@ import java.util.EnumMap;
  */
 public class Baeckerei {
 	private EnumMap<Form, Backmaschine> b;
+	private Backmaschine db;
 
 	public Baeckerei() {
 		b = new EnumMap<Form, Backmaschine>(Form.class);
@@ -19,9 +20,15 @@ public class Baeckerei {
    	   	for(Position p : bestellung.getListe()) {
    	   		Backmaschine backmaschine = b.get(p.getForm());
 
-			Keks k;
+			EinzelKeks k;
 			for(int i=0; i<p.getAnzahl(); i++) {
-				k = backmaschine.create(p.getTeigart());
+				k = backmaschine.create(p);
+
+				if(p.getFuellung() != null) {
+					db = new DoppelKeksBackmaschine(backmaschine, k);
+					k = db.create(p);
+				}
+
 				dose.add(k);
 			}
    	   	}

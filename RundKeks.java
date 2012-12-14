@@ -1,7 +1,7 @@
 /**
  * Ein Keks mit einer runden Form
  */
-public class RundKeks extends Keks {
+public class RundKeks extends EinzelKeks {
 	public RundKeks(Teigart teig) {
 		super(teig);
 	}

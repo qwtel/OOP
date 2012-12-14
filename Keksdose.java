@@ -3,20 +3,20 @@ import java.util.List;
 
 
 public class Keksdose{
-	private List<Keks> inhalt;
+	private List<EinzelKeks> inhalt;
 	
 	public Keksdose() {
-		this.inhalt = new ArrayList<Keks>(); 
+		this.inhalt = new ArrayList<EinzelKeks>(); 
 	}
 	
-	public void add(Keks keks) {
+	public void add(EinzelKeks keks) {
 		inhalt.add(keks);
 	}
 	
 	public String toString() {
 		String stringListe = "";
 		int counter = 0;
-		for(Keks keks:inhalt) {
+		for(EinzelKeks keks:inhalt) {
 			stringListe += "--Keks " + (counter++) + "--\n";
 			stringListe += keks.toString();
 			stringListe += "\n";

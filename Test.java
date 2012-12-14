@@ -8,14 +8,14 @@ public class Test {
 		Bestellung bestellung = new Bestellung();
 
 		bestellung.add(Form.Rund, 10, Teigart.Muerb);
-		bestellung.add(new Position(Form.Rund, 10, Teigart.Zimtstern));
-		bestellung.add(new Position(Form.Rund, 10, Teigart.Schoko));
-		bestellung.add(new Position(Form.Mond, 10, Teigart.Muerb));
-		bestellung.add(new Position(Form.Mond, 10, Teigart.Zimtstern));
-		bestellung.add(new Position(Form.Mond, 10, Teigart.Schoko));
-		bestellung.add(new Position(Form.Weihnachtsmann, 10, Teigart.Muerb));
-		bestellung.add(new Position(Form.Weihnachtsmann, 10, Teigart.Zimtstern));
-		bestellung.add(new Position(Form.Weihnachtsmann, 10, Teigart.Schoko));
+		bestellung.add(Form.Rund, 10, Teigart.Zimtstern);
+		bestellung.add(Form.Rund, 10, Teigart.Schoko);
+		bestellung.add(Form.Mond, 10, Teigart.Muerb);
+		bestellung.add(Form.Mond, 10, Teigart.Zimtstern);
+		bestellung.add(Form.Mond, 10, Teigart.Schoko);
+		bestellung.add(Form.Weihnachtsmann, 10, Teigart.Muerb);
+		bestellung.add(Form.Weihnachtsmann, 10, Teigart.Zimtstern);
+		bestellung.add(Form.Weihnachtsmann, 10, Teigart.Schoko);
 		bestellung.drucke();
 
 		Keksdose dose = baeckerei.nimmBestllungAuf(bestellung);

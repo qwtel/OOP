@@ -4,8 +4,8 @@
 public class MondKeksBackmaschine implements Backmaschine {
 
 	@Override
-	public Keks create(Teigart teig) {
-		return new MondKeks(teig);
+	public EinzelKeks create(Position p) {
+		return new MondKeks(p.getTeigart());
 	}
 
 }

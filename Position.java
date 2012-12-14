@@ -12,6 +12,7 @@ public class Position {
 		this.form = form;
 		this.anzahl = anzahl;
 		this.teigart = teigart;
+		this.fuellung = null;
 	}
 
 	public Position(Form form, int anzahl, Teigart teigart, Fuellung fuellung) {
