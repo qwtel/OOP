@@ -20,9 +20,10 @@ public class Bestellung {
 	}
 
 	public String drucke() {
-		String stringListe = "";
-		for (Position eintrag : liste ) {
-			stringListe+= eintrag.toString();
+		String stringListe = "Bestellung:\n";
+		for (int i=0; i<liste.size(); i++ ) {
+			stringListe += "Keksart"+(i);
+			stringListe += liste.get(i).toString();
 		}
 		return stringListe;
 	}

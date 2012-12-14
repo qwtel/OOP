@@ -17,4 +17,13 @@ public class Position {
 		this(form, anzahl, teigart);
 		this.fuellung = fuellung;
 	}
+	
+	public String toString() {
+		String auflistung = "";
+		auflistung += "Form: " +form.toString() +", \n";
+		auflistung += "Anzahl: " +anzahl +", \n";
+		auflistung += "Teigart: " +teigart.toString() +", \n";
+		auflistung += "Fuellung: " +fuellung.toString() +", \n";
+		return auflistung;
+	}
 }
