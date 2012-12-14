@@ -3,24 +3,23 @@
  */
 public class Test {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		Baeckerei baeckerei = new Baeckerei();
-		Bestellung bestellung = new Bestellung();
 
-		bestellung.add(Form.Rund, 10, Teigart.Muerb);
-		bestellung.add(Form.Rund, 10, Teigart.Zimtstern);
-		bestellung.add(Form.Rund, 10, Teigart.Schoko);
-		bestellung.add(Form.Mond, 10, Teigart.Muerb);
-		bestellung.add(Form.Mond, 10, Teigart.Zimtstern);
-		bestellung.add(Form.Mond, 10, Teigart.Schoko);
-		bestellung.add(Form.Weihnachtsmann, 10, Teigart.Muerb);
-		bestellung.add(Form.Weihnachtsmann, 10, Teigart.Zimtstern);
-		bestellung.add(Form.Weihnachtsmann, 10, Teigart.Schoko);
+		Bestellung bestellung = new Bestellung();
+		bestellung.add(Form.Rund, Teigart.Muerb, 2);
+		bestellung.add(Form.Rund, Teigart.Zimtstern, 2);
+		bestellung.add(Form.Rund, Teigart.Schoko, 2);
+		bestellung.add(Form.Mond, Teigart.Muerb, 2);
+		bestellung.add(Form.Mond, Teigart.Zimtstern, 2);
+		bestellung.add(Form.Mond, Teigart.Schoko, 2);
+		bestellung.add(Form.Weihnachtsmann, Teigart.Muerb, 2);
+		bestellung.add(Form.Weihnachtsmann, Teigart.Zimtstern, 2);
+		bestellung.add(Form.Weihnachtsmann, Teigart.Schoko, 2);
 		bestellung.drucke();
 
-		Keksdose dose = baeckerei.nimmBestllungAuf(bestellung);
+		Keksdose dose = baeckerei.nimmBestellungAuf(bestellung);
 		dose.inhalt();
-
 	}
 
 	private static int i = 0;

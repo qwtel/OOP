@@ -1,11 +1,14 @@
 /**
- * Eine Backmaschine, die RundKekse mit der spezifizierten Teigart herstellen
+ * Eine Backmaschine erstellt ein RundKeks aus einer Position.
  */
-public class RundKeksBackmaschine implements Backmaschine {
+class RundKeksBackmaschine implements Backmaschine {
 
+	/**
+	 * @param p Eine gültige Position.
+	 * @return Das entsprechende RundKeks.
+	 */
 	@Override
-	public EinzelKeks create(Position p) {
+	public Keks create(Position p) {
 		return new RundKeks(p.getTeigart());
 	}
-
 }

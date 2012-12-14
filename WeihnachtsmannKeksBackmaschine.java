@@ -1,11 +1,14 @@
 /**
- * Eine Backmaschine, die WeihnachstmannKekse mit der spezifizierten Teigart herstellen
+ * Eine Backmaschine erstellt ein WeihnachtsmannKeks aus einer Position.
  */
-public class WeihnachtsmannKeksBackmaschine implements Backmaschine {
+class WeihnachtsmannKeksBackmaschine implements Backmaschine {
 
+	/**
+	 * @param p Eine gültige Position.
+	 * @return Das entsprechende WeihnachtsmannKeks.
+	 */
 	@Override
-	public EinzelKeks create(Position p) {
+	public Keks create(Position p) {
 		return new WeihnachtsmannKeks(p.getTeigart());
 	}
-
 }

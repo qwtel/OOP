@@ -1,11 +1,14 @@
 /**
- * Eine Backmaschine, die MondKekse mit der spezifizierten Teigart herstellen
+ * Eine Backmaschine erstellt ein MondKeks aus einer Position.
  */
-public class MondKeksBackmaschine implements Backmaschine {
+class MondKeksBackmaschine implements Backmaschine {
 
+	/**
+	 * @param p Eine gültige Position.
+	 * @return Das entsprechende MondKeks.
+	 */
 	@Override
-	public EinzelKeks create(Position p) {
+	public Keks create(Position p) {
 		return new MondKeks(p.getTeigart());
 	}
-
 }

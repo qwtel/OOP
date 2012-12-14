@@ -1,22 +1,34 @@
 /**
- * Stellt ein Element einer Bestellung dar. Enthält die gewünschte Anzahl an Keksen aus spezifizierten
- * Bestandteilen
+ * Stellt ein Element einer Bestellung dar und kapselt die Paramter zur 
+ * Kekserstellung.
  */
-public class Position {
+class Position {
 	private Form form;
-	private int anzahl;
 	private Teigart teigart;
+	private int anzahl;
 	private Fuellung fuellung;
 	
-	public Position(Form form, int anzahl, Teigart teigart) {
+	/**
+	 * @param form Eine gültige Keksform.
+	 * @param teigart Eine gültige Teigart.
+	 * @param anzahl Die nichtnegative Anzahl der zu backenden Kekse.
+	 */
+	public Position(Form form, Teigart teigart, int anzahl) {
 		this.form = form;
 		this.anzahl = anzahl;
 		this.teigart = teigart;
 		this.fuellung = null;
 	}
 
-	public Position(Form form, int anzahl, Teigart teigart, Fuellung fuellung) {
-		this(form, anzahl, teigart);
+	/**
+	 * @param form Eine gültige Keksform.
+	 * @param teigart Eine gültige Teigart.
+	 * @param anzahl Die nichtnegative Anzahl der zu backenden Kekse.
+	 * @param fuellung Eine gültige Fuellung wenn ein DoppelKeks erstellt werden
+	 *                 soll.
+	 */
+	public Position(Form form, Teigart teigart, int anzahl, Fuellung fuellung) {
+		this(form, teigart, anzahl);
 		this.fuellung = fuellung;
 	}
 
@@ -37,6 +49,7 @@ public class Position {
 	}
 	
 	public String toString() {
+		// TODO: Füllung
 		String auflistung = "";
 		auflistung += "Form: " +form.toString();
 		auflistung += ", \nAnzahl: " +anzahl;

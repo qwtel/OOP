@@ -1,7 +1,11 @@
 /**
- * Stellt sicher, dass Backmaschinen eine create Methode mit spezifizierten Teig haben.
+ * Eine Backmaschine erstellt ein Keks aus einer Position.
  */
-public interface Backmaschine {
+interface Backmaschine {
 
-	public EinzelKeks create(Position p);
+	/**
+	 * @param p Eine gültige Position.
+	 * @return Das entsprechende Keks.
+	 */
+	public Keks create(Position p);
 }
