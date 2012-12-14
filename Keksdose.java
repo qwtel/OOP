@@ -13,11 +13,15 @@ public class Keksdose{
 		inhalt.add(keks);
 	}
 	
-	public String inhalt() {
+	public String toString() {
 		String stringListe = "";
 		for(Keks keks:inhalt) {
 			stringListe += keks.toString();
 		}
 		return stringListe;
+	}
+	
+	public String inhalt() {
+		return toString();
 	}
 }
