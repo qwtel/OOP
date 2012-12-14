@@ -34,4 +34,13 @@ public class Position {
 	public Fuellung getFuellung() {
 		return fuellung;
 	}
+	
+	public String toString() {
+		String auflistung = "";
+		auflistung += "Form: " +form.toString() +", \n";
+		auflistung += "Anzahl: " +anzahl +", \n";
+		auflistung += "Teigart: " +teigart.toString() +", \n";
+		auflistung += "Fuellung: " +fuellung.toString() +", \n";
+		return auflistung;
+	}
 }
