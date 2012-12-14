@@ -1,8 +1,8 @@
 /**
  * Ein Keks in der Form eines Mondes
  */
-public class MondKeks {
-	public MondKeks(Fuellung fuellung) {
-		super(fuellung);
+public class MondKeks extends Keks{
+	public MondKeks(Teig teig) {
+		super(teig);
 	}
 }

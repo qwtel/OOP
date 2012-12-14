@@ -2,7 +2,7 @@
  * Ein Keks in der Form des Weihnachtsmanns
  */
 public class WeihnachtsmannKeks extends Keks {
-	public WeihnachtsmannKeks(Fuellung fuellung) {
-		super(fuellung);
+	public WeihnachtsmannKeks(Teig teig) {
+		super(teig);
 	}
 }
