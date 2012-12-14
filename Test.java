@@ -4,6 +4,22 @@
 public class Test {
 	
 	public static void main(String[] args) throws Exception {
+		Baeckerei baeckerei = new Baeckerei();
+		Bestellung bestellung = new Bestellung();
+
+		bestellung.add(new Position(Form.Rund, 10, Teigart.Muerb));
+		bestellung.add(new Position(Form.Rund, 10, Teigart.Zimtstern));
+		bestellung.add(new Position(Form.Rund, 10, Teigart.Schoko));
+		bestellung.add(new Position(Form.Mond, 10, Teigart.Muerb));
+		bestellung.add(new Position(Form.Mond, 10, Teigart.Zimtstern));
+		bestellung.add(new Position(Form.Mond, 10, Teigart.Schoko));
+		bestellung.add(new Position(Form.Weihnachtsmann, 10, Teigart.Muerb));
+		bestellung.add(new Position(Form.Weihnachtsmann, 10, Teigart.Zimtstern));
+		bestellung.add(new Position(Form.Weihnachtsmann, 10, Teigart.Schoko));
+		//System.out.println(bestellung.drucke());
+
+		Keksdose dose = baeckerei.nimmBestllungAuf(bestellung);
+		System.out.println(dose.inhalt());
 
 	}
 
