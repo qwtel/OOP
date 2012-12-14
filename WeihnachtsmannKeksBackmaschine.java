@@ -1,9 +1,11 @@
-
+/**
+ * Eine Backmaschine, die WeihnachstmannKekse mit der spezifizierten Teigart herstellen
+ */
 public class WeihnachtsmannKeksBackmaschine implements Backmaschine {
 
 	@Override
-	public Keks onCreate() {
-		return null;
+	public Keks create(Teigart teig) {
+		return new WeihnachtsmannKeks(teig);
 	}
 
 }
