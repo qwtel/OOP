@@ -7,6 +7,6 @@ public class MondKeks extends Keks{
 	}
 	
 	public String toString() {
-		return "Mond " + super.toString();
+		return "Form: Mond " + super.toString();
 	}
 }

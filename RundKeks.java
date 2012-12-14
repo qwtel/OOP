@@ -7,6 +7,6 @@ public class RundKeks extends Keks {
 	}
 	
 	public String toString() {
-		return "Rund " + super.toString();
+		return "Form: Rund " + super.toString();
 	}
 }

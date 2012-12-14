@@ -37,10 +37,11 @@ public class Position {
 	
 	public String toString() {
 		String auflistung = "";
-		auflistung += "Form: " +form.toString() +", \n";
-		auflistung += "Anzahl: " +anzahl +", \n";
-		auflistung += "Teigart: " +teigart.toString() +", \n";
-		auflistung += "Fuellung: " +fuellung.toString() +", \n";
+		auflistung += "Form: " +form.toString();
+		auflistung += ", \nAnzahl: " +anzahl;
+		auflistung += ", \nTeigart: " +teigart.toString();
+		//auflistung += ", \nFuellung: " +fuellung.toString();
+		auflistung += "\n";
 		return auflistung;
 	}
 }

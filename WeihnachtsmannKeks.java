@@ -7,6 +7,6 @@ public class WeihnachtsmannKeks extends Keks {
 	}
 	
 	public String toString() {
-		return "Weihnachtsmann " + super.toString();
+		return "Form: Weihnachtsmann " + super.toString();
 	}
 }

@@ -8,8 +8,8 @@ public class Bestellung {
 		this.liste = new ArrayList<Position>();
 	}
 	
-	public void add(Position eintrag) {
-		liste.add(eintrag);
+	public void add(Form form, int anzahl, Teigart teigart) {
+		liste.add(new Position(form, anzahl, teigart));
 	}
 	
 	public List<Position> getListe() {
@@ -18,14 +18,16 @@ public class Bestellung {
 
 	public String toString() {
 		String stringListe = "Bestellung:\n";
-		for (int i=0; i<liste.size(); i++ ) {
-			stringListe += "Keksbestellung"+(i) +":\n";
-			stringListe += liste.get(i).toString();
+		int counter = 0;
+		for (Position eintrag : liste) {
+			stringListe += "----Keksposition "+ (counter++) +"----\n";
+			stringListe += eintrag.toString() + "\n";
+			
 		}
 		return stringListe;
 	}
 	
-	public String drucke() {
-		return toString();
+	public void drucke() {
+		System.out.println(toString());
 	}
 }

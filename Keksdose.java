@@ -15,13 +15,16 @@ public class Keksdose{
 	
 	public String toString() {
 		String stringListe = "";
+		int counter = 0;
 		for(Keks keks:inhalt) {
+			stringListe += "--Keks " + (counter++) + "--\n";
 			stringListe += keks.toString();
+			stringListe += "\n";
 		}
 		return stringListe;
 	}
 	
-	public String inhalt() {
-		return toString();
+	public void inhalt() {
+		System.out.println(toString());
 	}
 }
