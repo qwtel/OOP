@@ -2,9 +2,9 @@
  *
  */
 public abstract class Keks {
-	private Teig teig;
+	private Teigart teig;
 
-	public Keks(Teig teig) {
+	public Keks(Teigart teig) {
 		this.teig = teig;
 	}
 }

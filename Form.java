@@ -1,5 +1,5 @@
 public enum Form {
 	Rund,
-	Stern,
+	Mond,
 	Weihnachtsmann;
 }
