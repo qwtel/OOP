@@ -9,6 +9,6 @@ public abstract class Keks {
 	}
 	
 	public String toString() {
-		return " " + teig.toString() + " ";
+		return " " + teig.toString() + " \n";
 	}
 }
