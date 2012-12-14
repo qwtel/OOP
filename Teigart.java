@@ -1,4 +1,4 @@
-public enum Teig {
+public enum Teigart {
 	Muerb,
 	Zimtstern,
 	Schoko;
