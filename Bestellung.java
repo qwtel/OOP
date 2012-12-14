@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.Position;
-
-
 public class Bestellung {
 	private List<Position> liste;
 	
