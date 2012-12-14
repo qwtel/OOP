@@ -1,6 +1,7 @@
 /**
  *
  */
-public abstract class Backmaschine {
+public interface Backmaschine {
 
+	public Keks onCreate();
 }
