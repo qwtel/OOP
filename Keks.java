@@ -7,4 +7,8 @@ public abstract class Keks {
 	public Keks(Teigart teig) {
 		this.teig = teig;
 	}
+	
+	public String toString() {
+		return " " + teig.toString() + " ";
+	}
 }

@@ -5,4 +5,8 @@ public class WeihnachtsmannKeks extends Keks {
 	public WeihnachtsmannKeks(Teigart teig) {
 		super(teig);
 	}
+	
+	public String toString() {
+		return "Weihnachtsmann " + super.toString();
+	}
 }
