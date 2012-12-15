@@ -49,12 +49,12 @@ class Position {
 	}
 	
 	public String toString() {
-		// TODO: Füllung
 		String auflistung = "";
 		auflistung += "Form: " +form.toString();
 		auflistung += ", \nAnzahl: " +anzahl;
 		auflistung += ", \nTeigart: " +teigart.toString();
-		//auflistung += ", \nFuellung: " +fuellung.toString();
+		if(fuellung != null)
+			auflistung += ", \nFuellung: " +fuellung.toString();
 		auflistung += "\n";
 		return auflistung;
 	}

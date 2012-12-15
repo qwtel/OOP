@@ -16,6 +16,11 @@ public class Test {
 		bestellung.add(Form.Weihnachtsmann, Teigart.Muerb, 2);
 		bestellung.add(Form.Weihnachtsmann, Teigart.Zimtstern, 2);
 		bestellung.add(Form.Weihnachtsmann, Teigart.Schoko, 2);
+		
+		bestellung.add(Form.Rund, Teigart.Muerb, 2, Fuellung.Marmelade);
+		bestellung.add(Form.Mond, Teigart.Zimtstern, 2, Fuellung.Schoko);
+		bestellung.add(Form.Weihnachtsmann, Teigart.Schoko, 2, Fuellung.Marmelade);
+		
 		bestellung.drucke();
 
 		Keksdose dose = baeckerei.nimmBestellungAuf(bestellung);

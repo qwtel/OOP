@@ -22,13 +22,11 @@ public class DoppelKeks implements Keks {
 	 */
 	@Override
 	public Keks clone() {
-		// TODO: Deep copy !
-		return  null;
+		return  new DoppelKeks(keks1.clone(), keks2.clone(), fuellung);
 	}
 
 	@Override
 	public String toString() {
-		// TODO
-		return "";
+		return keks1.toString() + "\nFuellung: " + fuellung.toString();
 	}
 }
