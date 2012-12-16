@@ -1,5 +1,5 @@
 /**
- * Ein einfacher Keks ohne Füllung.
+ * Ein einfacher Keks ohne Fuellung.
  */
 public abstract class EinzelKeks implements Keks {
 	private Teigart teig;

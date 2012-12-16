@@ -6,7 +6,7 @@ import java.util.EnumMap;
 public class Baeckerei {
 
 	/**
-	 * Muss Backmaschinen für alle Keksformen enthalten.
+	 * Muss Backmaschinen fuer alle Keksformen enthalten.
 	 * @see From
 	 */
 	private EnumMap<Form, Backmaschine> b;
@@ -19,7 +19,7 @@ public class Baeckerei {
 	}
 
 	/**
-	 * @param bestellung Eine gültige Bestellung.
+	 * @param bestellung Eine gueltige Bestellung.
 	 * @return Eine Keksdose entsprechend der Bestellung.
 	 */
    	public Keksdose nimmBestellungAuf(Bestellung bestellung) {

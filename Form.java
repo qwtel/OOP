@@ -1,5 +1,5 @@
 /**
- * Ein Auflistung aller möglichen Keksformen.
+ * Ein Auflistung aller moeglichen Keksformen.
  */
 public enum Form {
 	Rund,

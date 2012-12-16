@@ -1,5 +1,5 @@
 /**
- * Ein Doppelkeks besteht aus zwei einfachen Keksen und einer Füllung.
+ * Ein Doppelkeks besteht aus zwei einfachen Keksen und einer Fuellung.
  */
 public class DoppelKeks implements Keks {
 	private Keks keks1;
@@ -9,7 +9,7 @@ public class DoppelKeks implements Keks {
 	/**
 	 * @param keks1 Ein einfacher Keks.
 	 * @param keks2 Ein einfacher Keks gleicher Form wie keks1.
-	 * @param fuellung Eine gültige Fuellung.
+	 * @param fuellung Eine gueltige Fuellung.
 	 */
 	public DoppelKeks(Keks keks1, Keks keks2, Fuellung fuellung) {
 		this.keks1 = keks1;

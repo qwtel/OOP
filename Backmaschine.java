@@ -4,7 +4,7 @@
 interface Backmaschine {
 
 	/**
-	 * @param p Eine gültige Position.
+	 * @param p Eine gueltige Position.
 	 * @return Das entsprechende Keks.
 	 */
 	public Keks create(Position p);

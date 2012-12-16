@@ -9,8 +9,8 @@ class Position {
 	private Fuellung fuellung;
 	
 	/**
-	 * @param form Eine gültige Keksform.
-	 * @param teigart Eine gültige Teigart.
+	 * @param form Eine gueltige Keksform.
+	 * @param teigart Eine gueltige Teigart.
 	 * @param anzahl Die nichtnegative Anzahl der zu backenden Kekse.
 	 */
 	public Position(Form form, Teigart teigart, int anzahl) {
@@ -21,10 +21,10 @@ class Position {
 	}
 
 	/**
-	 * @param form Eine gültige Keksform.
-	 * @param teigart Eine gültige Teigart.
+	 * @param form Eine gueltige Keksform.
+	 * @param teigart Eine gueltige Teigart.
 	 * @param anzahl Die nichtnegative Anzahl der zu backenden Kekse.
-	 * @param fuellung Eine gültige Fuellung wenn ein DoppelKeks erstellt werden
+	 * @param fuellung Eine gueltige Fuellung wenn ein DoppelKeks erstellt werden
 	 *                 soll.
 	 */
 	public Position(Form form, Teigart teigart, int anzahl, Fuellung fuellung) {

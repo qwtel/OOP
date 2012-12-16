@@ -4,7 +4,7 @@
 class WeihnachtsmannKeksBackmaschine implements Backmaschine {
 
 	/**
-	 * @param p Eine gültige Position.
+	 * @param p Eine gueltige Position.
 	 * @return Das entsprechende WeihnachtsmannKeks.
 	 */
 	@Override

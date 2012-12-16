@@ -1,5 +1,5 @@
 /**
- * Ein Auflistung aller möglichen Teigarten für einfache Kekse.
+ * Ein Auflistung aller moeglichen Teigarten fuer einfache Kekse.
  */
 public enum Teigart {
 	Muerb,

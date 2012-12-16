@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Eine Bestellung welche an eine Baeckerei übergeben werden kann.
+ * Eine Bestellung welche an eine Baeckerei uebergeben werden kann.
  */
 public class Bestellung {
 	private List<Position> liste;
@@ -15,10 +15,10 @@ public class Bestellung {
 	}
 	
 	/**
-	 * Fügt eine Position für ein Einzelkeks zur Bestellliste hinzu.
+	 * Fuegt eine Position fuer ein Einzelkeks zur Bestellliste hinzu.
 	 *
-	 * @param form Eine gültige Keksform.
-	 * @param teigart Eine gültige Teigart.
+	 * @param form Eine gueltige Keksform.
+	 * @param teigart Eine gueltige Teigart.
 	 * @param anzahl Die nichtnegative Anzahl der zu backenden Kekse.
 	 */
 	public void add(Form form, Teigart teigart, int anzahl) {
@@ -26,12 +26,12 @@ public class Bestellung {
 	}
 
 	/**
-	 * Fügt eine Position für ein Doppelkeks zur Bestellliste hinzu.
+	 * Fuegt eine Position fuer ein Doppelkeks zur Bestellliste hinzu.
 	 *
-	 * @param form Eine gültige Keksform.
-	 * @param teigart Eine gültige Teigart.
+	 * @param form Eine gueltige Keksform.
+	 * @param teigart Eine gueltige Teigart.
 	 * @param anzahl Die nichtnegative Anzahl der zu backenden Kekse.
-	 * @param fuellung Eine gültige Fuellung wenn ein DoppelKeks erstellt werden
+	 * @param fuellung Eine gueltige Fuellung wenn ein DoppelKeks erstellt werden
 	 *                 soll.
 	 */
 	public void add(Form form, Teigart teigart, int anzahl, Fuellung fuellung) {
@@ -39,7 +39,7 @@ public class Bestellung {
 	}
 	
 	/*
-	 * XXX: Client kann die liste verändern! vl doch Interator implementieren?
+	 * XXX: Client kann die liste veraendern! vl doch Interator implementieren?
 	 */
 	public List<Position> getListe() {
 		return liste;
