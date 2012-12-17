@@ -1,4 +1,4 @@
-< vimport java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +39,7 @@ public class Bestellung {
 	}
 	
 	/*
-	 * Gibt die Liste mit allen Positionen zurück.
+	 * Gibt die Liste mit allen Positionen zurueck.
 	 */
 	public List<Position> getListe() {
 		return liste;
