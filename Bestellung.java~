@@ -1,4 +1,4 @@
-< vimport java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +39,7 @@ public class Bestellung {
 	}
 	
 	/*
-	 * Gibt die Liste mit allen Positionen zurück.
+	 * XXX: Client kann die liste veraendern! vl doch Interator implementieren?
 	 */
 	public List<Position> getListe() {
 		return liste;
