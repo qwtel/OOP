@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Eine Bestellung welche an eine Baeckerei uebergeben werden kann.
  */
-public class Bestellung {
+public class Bestellung implements Iterable<Position> {
 	private List<Position> liste;
 	
 	/**
@@ -38,11 +39,9 @@ public class Bestellung {
 		liste.add(new Position(form, teigart, anzahl, fuellung));
 	}
 	
-	/*
-	 * Gibt die Liste mit allen Positionen zurueck.
-	 */
-	public List<Position> getListe() {
-		return liste;
+	@Override
+	public Iterator<Position> iterator() {
+		return liste.iterator();
 	}
 
 	@Override

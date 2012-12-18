@@ -25,7 +25,7 @@ public class Baeckerei {
    	public Keksdose nimmBestellungAuf(Bestellung bestellung) {
    	   	Keksdose dose = new Keksdose();
 
-   	   	for(Position p : bestellung.getListe()) {
+   	   	for(Position p : bestellung) {
    	   		Backmaschine backmaschine = b.get(p.getForm());
 			Keks k = backmaschine.create(p);
 
